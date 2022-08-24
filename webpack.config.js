@@ -1,5 +1,6 @@
 // For node to know our absolute file path we will be using the internal module path
 const path = require("path");
+require("dotenv").config();
 
 // Our export here is the configuration webpack will use
 module.exports = {
@@ -44,6 +45,6 @@ module.exports = {
     },
     compress: true,
     // [port] what port on our local machine to run the dev server
-    port: 3001,
+    port: process.env.CL_PORT,
   }
 }
