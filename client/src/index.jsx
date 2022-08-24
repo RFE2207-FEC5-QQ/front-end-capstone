@@ -1,4 +1,3 @@
-// Bring React in to build a component.
 import React from "react";
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -21,19 +20,17 @@ const theme = createTheme({
     ].join(','),
   }
 });
-
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   }
 });
 
-// Huzzah for jsx!
 const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
-      <h1>Hello World!!!!!!!</h1>
+      <h1>Hello World!!!</h1>
     </ThemeProvider>
   );
 }
