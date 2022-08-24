@@ -26,8 +26,6 @@
 * [MaterialUI](https://mui.com/)
 * [Axios](https://axios-http.com/)
 * [ExpressJS](https://expressjs.com/)
-* [MongoDB](https://www.mongodb.com/)
-* [Mongoose](https://mongoosejs.com/)
 
 **Dev Dependencies**
 * [Jest](https://jestjs.io/)
@@ -52,11 +50,6 @@
 
 ## Environment File (`.env`) Configuration
 * `SV_PORT`: Server port (default: 3000)
-* `DB_HOST`: MongoDB database host (default: “localhost”)
-* `DB_PORT`: MongoDB database port (default: 4500)
-* `DB_USER`: MongoDB username (default: “root”)
-* `DB_PASS`: MongoDB password (default: “”)
-* `DB_NAME`: MongoDB database name
 * `CL_PORT`: Webpack client dev server port (default: 3001)
 
 ## Scripts
