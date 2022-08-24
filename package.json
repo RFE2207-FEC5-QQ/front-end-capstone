@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "node server/index.js",
     "build": "webpack --mode=production",
     "client-dev": "webpack serve",
     "server-dev": "npx nodemon server/index.js",
