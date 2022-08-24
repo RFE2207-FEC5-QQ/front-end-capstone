@@ -2,11 +2,12 @@
   "name": "front-end-capstone",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "start": "webpack --mode=development",
     "build": "webpack --mode=production",
     "dev": "webpack serve --open",
+    "server-dev": "npx nodemon --watch server/index.js",
     "test": "test"
   },
   "repository": {
