@@ -11,10 +11,11 @@
 
 # Description
 > The redesigned Atelier user interface will allow customers to browse and search products, add desired products to their cart, and finally checkout the products in the cart. The interface consists of a ‘Product Details’ page, which contains three main features:
-Overview
-Ratings & reviews
-Related items & comparison section.
-Maintenance of the product catalog and inventory is not under the scope of the current application version. Product information is obtained through the [Atelier API](https://app-hrsei-api.herokuapp.com/api/fec2/:CAMPUS_CODE/)
+> * Overview
+> * Ratings & reviews
+> * Related items & comparison section
+> 
+> Maintenance of the product catalog and inventory is not under the scope of the current application version. Product information is obtained through the [Atelier API](https://app-hrsei-api.herokuapp.com/api/fec2/:CAMPUS_CODE/).
 
 # Installation
 **Requirements**
