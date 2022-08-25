@@ -26,13 +26,23 @@ const darkTheme = createTheme({
   }
 });
 
-const App = () => {
-  return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline/>
-      <h1>Hello World!!!</h1>
-    </ThemeProvider>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      productId: 0
+    }
+  }
+
+  render() {
+    return (
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline/>
+        <h1>Hello World!!!</h1>
+      </ThemeProvider>
+    );
+  }
 }
 
 root.render(<App />);
