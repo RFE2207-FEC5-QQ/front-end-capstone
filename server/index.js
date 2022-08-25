@@ -1,7 +1,7 @@
 require('dotenv').config();
-const express = require("express");
+const express = require('express');
 const app = express();
-const path = require("path");
+const path = require('path');
 
 // Only required in production
 // TODO: Figure out how to prevent this from running in development mode rather than just commenting out
