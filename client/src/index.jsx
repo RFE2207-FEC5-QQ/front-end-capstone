@@ -8,6 +8,10 @@ import RelatedProducts from "./views/RelatedProducts.jsx";
 import QuestionsAnswers from "./views/QuestionsAnswers.jsx";
 import Reviews from "./views/Reviews.jsx";
 
+// Sprint 1 exercise:
+// This comment is here for testing out creation of dev branch and pushing to central repo.
+// A pull request will be made on dev branch.
+
 const root = createRoot(document.getElementById("root"));
 
 const theme = createTheme({
