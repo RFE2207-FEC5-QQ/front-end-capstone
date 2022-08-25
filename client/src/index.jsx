@@ -2,6 +2,12 @@ import React from "react";
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createRoot } from "react-dom/client";
+
+import Overview from "./views/Overview.jsx";
+import RelatedProducts from "./views/RelatedProducts.jsx";
+import QuestionsAnswers from "./views/QuestionsAnswers.jsx";
+import Reviews from "./views/Reviews.jsx";
+
 const root = createRoot(document.getElementById("root"));
 
 const theme = createTheme({
@@ -40,6 +46,10 @@ class App extends React.Component {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline/>
         <h1>Hello World!!!</h1>
+        <Overview/>
+        <RelatedProducts/>
+        <QuestionsAnswers/>
+        <Reviews/>
       </ThemeProvider>
     );
   }
