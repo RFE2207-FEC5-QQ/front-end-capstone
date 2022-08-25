@@ -9,10 +9,11 @@ class Reviews extends React.Component {
       productId: 1,
       reviews: []
     };
+    this.getReviews = this.getReviews.bind(this);
   }
 
   getReviews() {
-    axios.get('/reviews', {params: {'product_id': this.state.productId}})
+    axios.get('/reviews', { params: { productId: this.state.productId } })
       .then((success) => {
         this.setState({reviews: success.data});
       })
@@ -21,8 +22,12 @@ class Reviews extends React.Component {
       });
   }
 
+  componentDidMount() {
+    this.getReviews();
+  }
+
   render() {
-    console.log('reviews', reviews);
+    console.log('reviews', this.state.reviews);
     return (
       <div className='view-reviews'>
       </div>
