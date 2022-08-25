@@ -3,7 +3,6 @@ import React from 'react'; // React module is imported if you choose to convert 
 const QuestionsAnswers = () => {
   return (
     <div className='view-questions'>
-      <h1>Questions and Answers</h1>
     </div>
   );
 };

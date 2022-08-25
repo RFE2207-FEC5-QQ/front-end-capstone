@@ -1,10 +1,10 @@
 import React from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
 
-const Overview = () => {
+const Navigation = () => {
   return (
-    <div className='view-overview'>
+    <div className='view-navigation'>
     </div>
   );
 };
 
-export default Overview;
+export default Navigation;

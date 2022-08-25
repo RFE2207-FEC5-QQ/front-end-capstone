@@ -3,7 +3,6 @@ import React from 'react'; // React module is imported if you choose to convert 
 const RelatedProducts = () => {
   return (
     <div className='view-related'>
-      <h1>Related Products</h1>
     </div>
   );
 };

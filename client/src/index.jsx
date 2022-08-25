@@ -3,6 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createRoot } from 'react-dom/client';
 
+import Navigation from './components/views/Navigation.jsx';
 import Overview from './components/views/Overview.jsx';
 import RelatedProducts from './components/views/RelatedProducts.jsx';
 import QuestionsAnswers from './components/views/QuestionsAnswers.jsx';
@@ -49,7 +50,6 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={darkTheme}>
         <CssBaseline/>
-        <h1>Hello World!!!</h1>
         <Navigation/>
         <Overview/>
         <RelatedProducts/>
