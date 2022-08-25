@@ -37,8 +37,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 0
-    }
+      productId: 0,
+    };
   }
 
   render() {
@@ -46,6 +46,7 @@ class App extends React.Component {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline/>
         <h1>Hello World!!!</h1>
+        <Navigation/>
         <Overview/>
         <RelatedProducts/>
         <QuestionsAnswers/>
