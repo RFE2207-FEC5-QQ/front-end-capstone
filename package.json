@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node server/index.js",
     "build": "webpack --mode=production",
-    "client-dev": "webpack serve",
+    "client-dev": "webpack --mode=development --watch",
+    "client-dev-serverless": "webpack serve",
     "server-dev": "npx nodemon server/index.js",
     "dev": "npm run client-dev & npm run server-dev",
     "test": "test"
