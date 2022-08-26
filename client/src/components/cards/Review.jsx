@@ -1,20 +1,39 @@
 import React from 'react';
+import axios from 'axios';
 
-const Review = ({review}) => {
+class Review extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      review: props.review
+    };
+    this.markHelpful = this.markHelpful.bind(this);
+    this.reportReview = this.reportReview.bind(this);
+  }
 
-  return (
-    <div className='review'>
-      <p>{review.reviewer_name}</p>
-      <p>{review.date}</p>
-      <p>{review.rating}</p>
-      <p>{review.recommend}</p>
-      <p>{review.summary}</p>
-      <p>{review.body}</p>
-      <p>{review.helpfulness}</p>
-    </div>
-  );
+  markHelpful() {
 
-};
+  }
+
+  reportReview() {
+
+  }
+
+  render () {
+    return (
+      <div className='review'>
+        <p>{this.state.review.reviewer_name}</p>
+        <p>{this.state.review.date}</p>
+        <p>{this.state.review.rating}</p>
+        <p>{this.state.review.recommend}</p>
+        <p>{this.state.review.summary}</p>
+        <p>{this.state.review.body}</p>
+        <p>{this.state.review.helpfulness}</p>
+      </div>
+    );
+  }
+
+}
 
 export default Review;
