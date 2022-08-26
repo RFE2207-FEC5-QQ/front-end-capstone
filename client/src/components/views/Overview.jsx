@@ -15,8 +15,7 @@ const Overview = () => {
     }
     axios(options)
       .then(res => {
-        console.log('data from getProducts: ', res.data);
-        setProducts(prev => res.data);
+        setProducts(res.data);
       })
   }
 
@@ -24,11 +23,13 @@ const Overview = () => {
     getProducts();
   }, [])
 
-  return (
-    <div className='view-overview'>
-      <Info product={products[1]}/>
-    </div>
-  );
+  if (products.length) {
+    return (
+      <div className='view-overview'>
+        <Info product={products[0]}/>
+      </div>
+    );
+  }
 };
 
 export default Overview;

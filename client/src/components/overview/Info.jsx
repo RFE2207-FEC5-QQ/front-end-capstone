@@ -1,23 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Rating } from '@mui/material'
 
-const Info = () => {
-
-const [product, setProduct] = useState({
-  id: 1,
-  name: 'Cameo Onesie',
-  rating: 3.5
-})
+const Info = ({product}) => {
 
   return (
-    <div>
-      <Rating
-        name='rating'
-        value={product.rating}
-        precision={0.25}
-        readOnly
-      />
-      {product.name}
+    <div className='product-info'>
+      <div className='product-rating'>
+        <Rating
+          name='rating'
+          value={2.5}
+          precision={0.25}
+          readOnly
+        />
+        Read All Reviews
+      </div>
+      <div className='product-category'>
+        {product.category}
+      </div>
+      <div className='product-name'>
+        {product.name}
+      </div>
+      <div className='product-price'>
+        {`$${product.default_price}`}
+      </div>
+      <div className='product-social-media'>
+        Facebook
+        Twitter
+        Pinterest
+      </div>
     </div>
   )
 }
