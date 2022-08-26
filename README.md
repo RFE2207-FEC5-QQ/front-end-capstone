@@ -51,6 +51,9 @@
 ## Environment File (`.env`) Configuration
 * `SV_PORT`: Server port (default: 3000)
 * `CL_PORT`: Webpack client dev server port (default: 3001)
+* `API_URL`: URL to fetch hrsei API calls from, replace `:CAMPUS_CODE` with your Hack Reactor campus code (default: 'https://app-hrsei-api.herokuapp.com/api/fec2/:CAMPUS_CODE/')
+* `GITHUB_AUTH`: GitHub authentication token, required for hrsei API calls (default: "")
+
 
 ## Scripts
 **Production**
@@ -58,8 +61,9 @@
 * `npm build`: [webpack] Generates bundle.js for production
 
 **Development**
-* `npm run client-dev`: [webpack] Serves client files to dev server on port `env.CL_PORT`
-* `npm run server-dev`: [nodemon] Starts Express server on port `env.SV_PORT`
+* `npm run client-dev`: [webpack] Compiles client files in webpack development mode to bundle.js on every file save
+# `npm run client-dev-serverless`: [webpack] Serves client files to dev server on port `env.CL_PORT`, for use when developing client (with no server connection)
+* `npm run server-dev`: [nodemon] Starts Express server on port `env.SV_PORT`, restarts on every file save
 * `npm run dev`: Runs client-dev and server-dev scripts in parallel, for use when developing both client and server features
 
 **Testing**
