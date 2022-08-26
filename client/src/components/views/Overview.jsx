@@ -14,6 +14,7 @@ const Overview = () => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
+  const [selectedStyle, setSelectedStyle] = useState({});
 
   const getProducts = () => {
     var options = {
@@ -28,18 +29,22 @@ const Overview = () => {
       })
   }
 
-  const getStyles = (id) => {
+  const getStyles = (id=37311) => {
     var options = {
       method: 'get',
       url: '/styles',
       params: {
-        id: 37311
+        id: id
       }
     }
     axios(options)
       .then(res => {
         setStyles(res.data.results);
       })
+  }
+
+  const updateStyle = (style) => {
+    setSelectedStyle(style);
   }
 
   useEffect(() => {
@@ -55,8 +60,14 @@ const Overview = () => {
             <Gallery />
           </Grid>
           <Grid item xs={4}>
-            <Info product={product}/>
-            <Style styles={styles}/>
+            <Info
+              product={product}
+            />
+            <Style
+              styles={styles}
+              selectedStyle={selectedStyle}
+              updateStyle={updateStyle}
+            />
             <Cart />
           </Grid>
           <Grid item xs={12}>

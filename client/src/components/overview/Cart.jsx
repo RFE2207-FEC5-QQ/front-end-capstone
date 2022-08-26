@@ -9,22 +9,20 @@ const Cart = (props) => {
   return(
     <div className='overview-cart'>
       <Box>
-        <InputLabel>
-          Select Size
-        </InputLabel>
-        <Select
-          value={size}
-          sx={{
-            width: 200
-          }}
-          label="Select"
-        >
-          {sizes.map(size => {
-            return <MenuItem>{size}</MenuItem>
-          })}
-        </Select>
+        <FormControl fullWidth>
+          <InputLabel>
+            Select Size
+          </InputLabel>
+          <Select
+            label="Select"
+          >
+            {sizes.map(size => {
+              return <MenuItem>{size}</MenuItem>
+            })}
+          </Select>
+        </FormControl>
       </Box>
-      <FormControl halfwidth>
+      <FormControl fullWidth>
         <InputLabel>
           Qty
         </InputLabel>
