@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Grid } from '@mui/material'
 
 import Info from '../overview/Info.jsx';
 import Style from '../overview/Style.jsx';
@@ -30,11 +31,19 @@ const Overview = () => {
   if (products.length) {
     return (
       <div className='view-overview'>
-        <Gallery />
-        <Info product={products[0]}/>
-        <Style />
-        <Cart />
-        <Description />
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <Gallery />
+          </Grid>
+          <Grid item xs={4}>
+            <Info product={products[0]}/>
+            <Style />
+            <Cart />
+          </Grid>
+          <Grid item xs={12}>
+            <Description />
+          </Grid>
+        </Grid>
       </div>
     );
   }
