@@ -1,5 +1,5 @@
 .view-reviews {
-  max-width: 800px;
+  max-width: 700px;
   min-width: 450px;
   margin: 10px;
   padding: 10px;
@@ -56,16 +56,11 @@
   text-decoration: underline;
 }
 
-.review-bottomline {
-  display: flex;
-  justify-content: flex-start;
-}
-
 .review-images {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .review-img {
@@ -74,4 +69,9 @@
   height: 100px;
   margin-right: 10px;
   margin-top: 10px
+}
+
+.review-bottomline {
+  display: flex;
+  justify-content: flex-start;
 }
