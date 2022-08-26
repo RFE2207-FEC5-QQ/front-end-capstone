@@ -3,6 +3,8 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
+// Get reviews for productId
+// Expects 'sort' and 'productId' in query
 router.get('/reviews', (req, res, next) => {
   if (!req.query.sort || !req.query.productId) {
     res.sendStatus(404);
@@ -28,6 +30,8 @@ router.get('/reviews', (req, res, next) => {
     });
 });
 
+// Post new review
+// Expects review information in body
 router.post('/reviews', (req, res, next) => {
   axios.post(process.env.API_URL + 'reviews/',
     {
@@ -51,6 +55,48 @@ router.post('/reviews', (req, res, next) => {
     .catch((error) => {
       console.log(error);
       res.sendStatus(401);
+    });
+});
+
+// Mark review as helpful
+// Expects 'reviewId' in query
+router.put('/reviews', (req, res, next) => {
+  if (!req.query.reviewId) {
+    res.sendStatus(404);
+    return;
+  }
+  axios.get(`${process.env.API_URL}reviews/${req.query.reviewId}/helpful`,
+    {
+      headers: { 'Authorization': process.env.GITHUB_AUTH }
+    }
+  )
+    .then((success) => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
+// Reports review
+// Expects 'reviewId' in query
+router.put('/reviews', (req, res, next) => {
+  if (!req.query.reviewId) {
+    res.sendStatus(404);
+    return;
+  }
+  axios.get(`${process.env.API_URL}reviews/${req.query.reviewId}/report`,
+    {
+      headers: { 'Authorization': process.env.GITHUB_AUTH }
+    }
+  )
+    .then((success) => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
     });
 });
 
