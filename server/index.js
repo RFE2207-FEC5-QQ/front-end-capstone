@@ -4,16 +4,27 @@ const app = express();
 const path = require('path');
 const axios = require('axios');
 
-// Only required in production
-// TODO: Figure out how to prevent this from running in development mode rather than just commenting out
 app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.json());
+
 
 app.get('/reviews', (req, res, next) => {
-  console.log(req.method);
-  console.log(req.query);
-  axios.get(process.env.API_URL,
+  // page
+  // count
+  // sort
+  // product_id
+  if (!req.query.sort || !req.query.productId) {
+    req.sendStatus(404);
+    return;
+  }
+  axios.get(process.env.API_URL + 'reviews/',
     {
-      params: { 'product_id': req.query.productId },
+      params: {
+        'page': req.query.page || 1,
+        'count': req.query.count || 5,
+        'sort': req.query.sort,
+        'product_id': req.query.productId
+      },
       headers: { 'Authorization': process.env.GITHUB_AUTH }
     }
   )
@@ -23,6 +34,32 @@ app.get('/reviews', (req, res, next) => {
     .catch((error) => {
       console.log(error);
       res.sendStatus(404);
+    });
+});
+
+app.post('/reviews', (req, res, next) => {
+  axios.post(process.env.API_URL + 'reviews/',
+    {
+      'product_id': req.body.productId,
+      'rating': req.body.rating,
+      'summary': req.body.summary,
+      'body': req.body.body,
+      'recommend': req.body.recommend,
+      'name': req.body.name,
+      'email': req.body.email,
+      'photos': req.body.photos,
+      'characteristics': req.body.characteristics
+    },
+    {
+      headers: { 'Authorization': process.env.GITHUB_AUTH }
+    }
+  )
+    .then((success) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(401);
     });
 });
 
