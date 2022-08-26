@@ -9,7 +9,26 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       productId: 37311,
-      reviews: [],
+      // DEBUG - Using sample review
+      reviews: [
+        {
+          'review_id': 1275440,
+          'rating': 5,
+          'summary': 'Chester B Arthur',
+          'recommend': true,
+          'response': null,
+          'body': 'man do i hate stuff about cats, they are the worst',
+          'date': '2022-07-15T00:00:00.000Z',
+          'reviewer_name': 'cat',
+          'helpfulness': 2,
+          'photos': [
+            {
+              'id': 2455345,
+              'url': 'http://res.cloudinary.com/dm84tjpoq/image/upload/v1657918306/vw1hfv268xkgpyfr0i04.jpg'
+            }
+          ]
+        }
+      ],
       sort: 'newest'
     };
     this.getReviews = this.getReviews.bind(this);
@@ -54,7 +73,8 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-    this.getReviews();
+    // DEBUG - Uncomment to get reviews on mount
+    // this.getReviews();
   }
 
   render() {
@@ -63,7 +83,7 @@ class Reviews extends React.Component {
       <div className='view-reviews'>
         {
           this.state.reviews.length === 0 ? 'Reviews Not Found' : this.state.reviews.map((review) => {
-            return <Review review={review} key={review.review_id}/>;
+            return <Review review={review} getReviews={this.getReviews} key={review.review_id}/>;
           })
         }
       </div>

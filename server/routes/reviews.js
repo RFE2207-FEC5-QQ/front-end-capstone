@@ -59,13 +59,15 @@ router.post('/reviews', (req, res, next) => {
 });
 
 // Mark review as helpful
-// Expects 'reviewId' in query
-router.put('/reviews', (req, res, next) => {
-  if (!req.query.reviewId) {
+// Expects 'reviewId' in body
+router.put('/reviews/helpful', (req, res, next) => {
+  console.log(req.body);
+  if (!req.body.reviewId) {
     res.sendStatus(404);
     return;
   }
-  axios.get(`${process.env.API_URL}reviews/${req.query.reviewId}/helpful`,
+  axios.put(`${process.env.API_URL}reviews/${req.body.reviewId}/helpful`,
+    {},
     {
       headers: { 'Authorization': process.env.GITHUB_AUTH }
     }
@@ -80,13 +82,15 @@ router.put('/reviews', (req, res, next) => {
 });
 
 // Reports review
-// Expects 'reviewId' in query
-router.put('/reviews', (req, res, next) => {
-  if (!req.query.reviewId) {
+// Expects 'reviewId' in body
+router.put('/reviews/report', (req, res, next) => {
+  console.log(req.body);
+  if (!req.body.reviewId) {
     res.sendStatus(404);
     return;
   }
-  axios.get(`${process.env.API_URL}reviews/${req.query.reviewId}/report`,
+  axios.put(`${process.env.API_URL}reviews/${req.body.reviewId}/report`,
+    {},
     {
       headers: { 'Authorization': process.env.GITHUB_AUTH }
     }

@@ -1,39 +1,47 @@
 import React from 'react';
 import axios from 'axios';
 
-class Review extends React.Component {
+const Review = ({review, getReviews}) =>{
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      review: props.review
-    };
-    this.markHelpful = this.markHelpful.bind(this);
-    this.reportReview = this.reportReview.bind(this);
-  }
+  const markHelpful = () => {
+    axios.put('/reviews/helpful', {
+      reviewId: review.review_id
+    })
+      .then((success) => {
+        // DEBUG - Uncomment to refresh reviews on success
+        // getReviews();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-  markHelpful() {
+  const reportReview = () => {
+    axios.put('/reviews/report', {
+      reviewId: review.review_id
+    })
+      .then((success) => {
+        // DEBUG - Uncomment to refresh reviews on success
+        // getReviews();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-  }
+  return (
+    <div className='review'>
+      <p>{review.reviewer_name}</p>
+      <p>{review.date}</p>
+      <p>{review.rating}</p>
+      <p>{review.recommend}</p>
+      <p>{review.summary}</p>
+      <p>{review.body}</p>
+      <p onClick={markHelpful}>Helpful {review.helpfulness}</p>
+      <p onClick={reportReview}>Report Review</p>
+    </div>
+  );
 
-  reportReview() {
-
-  }
-
-  render () {
-    return (
-      <div className='review'>
-        <p>{this.state.review.reviewer_name}</p>
-        <p>{this.state.review.date}</p>
-        <p>{this.state.review.rating}</p>
-        <p>{this.state.review.recommend}</p>
-        <p>{this.state.review.summary}</p>
-        <p>{this.state.review.body}</p>
-        <p>{this.state.review.helpfulness}</p>
-      </div>
-    );
-  }
-
-}
+};
 
 export default Review;
