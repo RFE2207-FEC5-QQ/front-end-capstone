@@ -7,7 +7,7 @@ router.get('/related', (req, res, next) => {
 
 });
 
-router.post('/reviews', (req, res, next) => {
+router.post('/related', (req, res, next) => {
 
 });
 
