@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Rating } from '@mui/material'
+import { Box, Rating } from '@mui/material'
 
 const Info = ({product}) => {
 
@@ -14,9 +14,9 @@ const Info = ({product}) => {
         />
         Read All Reviews
       </div>
-      <div className='product-category'>
+      <Box>
         {product.category}
-      </div>
+      </Box>
       <div className='product-name'>
         {product.name}
       </div>
