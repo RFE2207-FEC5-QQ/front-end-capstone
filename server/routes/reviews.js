@@ -61,7 +61,6 @@ router.post('/reviews', (req, res, next) => {
 // Mark review as helpful
 // Expects 'reviewId' in body
 router.put('/reviews/helpful', (req, res, next) => {
-  console.log(req.body);
   if (!req.body.reviewId) {
     res.sendStatus(404);
     return;
@@ -84,7 +83,6 @@ router.put('/reviews/helpful', (req, res, next) => {
 // Reports review
 // Expects 'reviewId' in body
 router.put('/reviews/report', (req, res, next) => {
-  console.log(req.body);
   if (!req.body.reviewId) {
     res.sendStatus(404);
     return;
