@@ -12,6 +12,8 @@ import Gallery from '../overview/Gallery.jsx';
 const Overview = () => {
 
   const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState({});
+  const [styles, setStyles] = useState([]);
 
   const getProducts = () => {
     var options = {
@@ -21,11 +23,28 @@ const Overview = () => {
     axios(options)
       .then(res => {
         setProducts(res.data);
+        // move this product up to index.jsx
+        setProduct(res.data[0]);
+      })
+  }
+
+  const getStyles = (id) => {
+    var options = {
+      method: 'get',
+      url: '/styles',
+      params: {
+        id: 37311
+      }
+    }
+    axios(options)
+      .then(res => {
+        setStyles(res.data.results);
       })
   }
 
   useEffect(() => {
     getProducts();
+    getStyles();
   }, [])
 
   if (products.length) {
@@ -36,8 +55,8 @@ const Overview = () => {
             <Gallery />
           </Grid>
           <Grid item xs={4}>
-            <Info product={products[0]}/>
-            <Style />
+            <Info product={product}/>
+            <Style styles={styles}/>
             <Cart />
           </Grid>
           <Grid item xs={12}>

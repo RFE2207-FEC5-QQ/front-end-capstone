@@ -1,9 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 
 const Cart = (props) => {
+
+  const [sizes, setSizes] = useState(['xs', 's']);
+  const [size, setSize] = useState('s');
+
   return(
     <div className='overview-cart'>
-      Add To Cart
+      <Box>
+        <InputLabel>
+          Select Size
+        </InputLabel>
+        <Select
+          value={size}
+          sx={{
+            width: 200
+          }}
+          label="Select"
+        >
+          {sizes.map(size => {
+            return <MenuItem>{size}</MenuItem>
+          })}
+        </Select>
+      </Box>
+      <FormControl halfwidth>
+        <InputLabel>
+          Qty
+        </InputLabel>
+        <Select
+          label="Select"
+        >
+          <MenuItem>Qty 1</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   )
 }
