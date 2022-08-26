@@ -1,13 +1,14 @@
 import React from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Button,
+  Divider,
+  FormControlLabel,
+  Switch,
+} from '@mui/material';
 
 const Navigation = ({ mode, onChange }) => {
 

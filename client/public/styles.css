@@ -20,4 +20,15 @@ body {
 
 .view-navigation {
   position: fixed;
+  z-index: 999;
+}
+
+.view-related {
+  z-index: 0,
+}
+
+.related-star {
+  /* display: flex; */
+  position: fixed;
+  margin-left: auto;
 }

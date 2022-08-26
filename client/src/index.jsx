@@ -64,7 +64,7 @@ class App extends React.Component {
         <Overview/>
         <RelatedProducts/>
         <QuestionsAnswers/>
-        <Reviews/>
+        {/* <Reviews/> */}
       </ThemeProvider>
     );
   }
