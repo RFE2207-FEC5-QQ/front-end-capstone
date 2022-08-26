@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'Elan';
+  src: url('./fonts/ElanRegular.ttf') format('ttf'),
+}
+
+html,
+body {
+  height: 100%;
+  margin-top: 10rem;
+  margin-left: 1rem;
+}
+
+.main-header {
+  font-family: 'Elan';
+}
+
+.secondary-header {
+  font-size: 0.75rem;
+}
+
+.view-navigation {
+  position: fixed;
+  z-index: 999;
+}
+
+.view-related {
+  z-index: 0,
+}
+
+.related-star {
+  /* display: flex; */
+  position: fixed;
+  margin-left: auto;
+}
