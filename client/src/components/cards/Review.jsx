@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Rating from '@mui/material/Rating';
+import { Rating } from '@mui/material';
 
 const Review = ({review, getReviews}) =>{
 
@@ -37,13 +37,25 @@ const Review = ({review, getReviews}) =>{
           <Rating name="rating" value={review.rating} readOnly />
         </span>
         <span className='review-name-date'>
-          <span className='review-name'>{review.reviewer_name},</span>
+          <span className='review-name'>{review.reviewer_name}</span>
           <span className='review-date'>{new Date(review.date).toDateString()}</span>
         </span>
       </div>
       <p>{review.recommend}</p>
       <p>{review.summary}</p>
       <p>{review.body}</p>
+      <div className='review-images'>
+        {review.photos.map((photo) => {
+          return (
+            <img
+              className='review-img'
+              key={photo.id}
+              src={photo.url}
+              loading='lazy'
+            />
+          );
+        })}
+      </div>
       <div className='review-bottomline'>
         <span className='review-helpful'>
           <span id='helpful-text' onClick={markHelpful}>Helpful</span> ({review.helpfulness})

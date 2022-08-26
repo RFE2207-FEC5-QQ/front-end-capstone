@@ -14,7 +14,7 @@ router.get('/reviews', (req, res, next) => {
     {
       params: {
         'page': req.query.page || 1,
-        'count': req.query.count || 5,
+        'count': req.query.count || 2,
         'sort': req.query.sort,
         'product_id': req.query.productId
       },

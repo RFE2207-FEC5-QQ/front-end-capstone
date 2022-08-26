@@ -1,10 +1,11 @@
 .view-reviews {
-  width: 40%;
+  max-width: 800px;
   min-width: 450px;
-  margin: 20px;
+  margin: 10px;
+  padding: 10px;
 }
 /*
-.review-list-top {
+.review-view-top {
 
 }
  */
@@ -30,6 +31,7 @@
 }
 
 .review-name {
+  font-weight: bold;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -57,4 +59,19 @@
 .review-bottomline {
   display: flex;
   justify-content: flex-start;
+}
+
+.review-images {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.review-img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  margin-top: 10px
 }

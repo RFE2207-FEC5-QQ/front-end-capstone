@@ -31,13 +31,40 @@ class Reviews extends React.Component {
             {
               'id': 2455345,
               'url': 'http://res.cloudinary.com/dm84tjpoq/image/upload/v1657918306/vw1hfv268xkgpyfr0i04.jpg'
+            },
+            {
+              'id': 1111111,
+              'url': 'https://i.imgur.com/EPHb3G6.jpeg'
+            },
+            {
+              'id': 1111111,
+              'url': 'https://i.imgur.com/EPHb3G6.jpeg'
+            },
+            {
+              'id': 1111111,
+              'url': 'https://i.imgur.com/EPHb3G6.jpeg'
+            },
+            {
+              'id': 1111111,
+              'url': 'https://i.imgur.com/EPHb3G6.jpeg'
+            },
+            {
+              'id': 1111111,
+              'url': 'https://i.imgur.com/EPHb3G6.jpeg'
+            },
+            {
+              'id': 1111111,
+              'url': 'https://i.imgur.com/EPHb3G6.jpeg'
             }
           ]
         }
       ],
-      sort: 'newest'
+      sort: 'newest',
+      count: 2,
+      page: 1
     };
     this.handleSortChange = this.handleSortChange.bind(this);
+    this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.postReview = this.postReview.bind(this);
   }
@@ -47,12 +74,18 @@ class Reviews extends React.Component {
     this.setState({sort: e.target.value}, this.getReviews);
   }
 
+  handleMoreReviews() {
+    // After state is set, use getReviews as a callback to get sorted list of reviews
+    this.setState({count: this.state.count + 2}, this.getReviews);
+  }
+
   getReviews() {
-    console.log(this.state.sort);
     axios.get('/reviews', {
       params: {
         productId: this.state.productId,
-        sort: this.state.sort
+        sort: this.state.sort,
+        count: this.state.count,
+        page: this.state.page
       }
     })
       .then((success) => {
@@ -93,7 +126,7 @@ class Reviews extends React.Component {
     console.log('reviews', this.state.reviews); // DEBUG
     return (
       <div className='view-reviews'>
-        <div className='review-list-top'>
+        <div className='review-view-top'>
           {`${this.state.reviews.length} ${this.state.reviews.length === 1 ? 'review' : 'reviews'}, sorted by `}
           <span className='review-list-sort'>
             <Select
@@ -110,11 +143,16 @@ class Reviews extends React.Component {
             </Select>
           </span>
         </div>
-        {
-          this.state.reviews.length === 0 ? 'Reviews Not Found' : this.state.reviews.map((review) => {
-            return <Review review={review} getReviews={this.getReviews} key={review.review_id}/>;
-          })
-        }
+        <div className='review-list'>
+          {
+            this.state.reviews.length === 0 ? 'Reviews Not Found' : this.state.reviews.map((review) => {
+              return <Review review={review} getReviews={this.getReviews} key={review.review_id}/>;
+            })
+          }
+        </div>
+        <div className='review-buttons'>
+          <button onClick={this.handleMoreReviews}>More Reviews</button> <button>Add a Review +</button>
+        </div>
       </div>
     );
   }
