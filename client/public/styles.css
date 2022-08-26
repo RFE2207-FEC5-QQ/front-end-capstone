@@ -1,0 +1,49 @@
+.review {
+  width: 40%;
+  min-width: 450px;
+  margin: 20px;
+}
+
+.review-topline {
+  display: flex;
+  justify-content: space-between;
+}
+/*
+.review-rating {
+
+}
+ */
+.review-name-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-name {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+/*
+.review-date {
+
+}
+ */
+.review-helpful {
+  margin-right: 10px;
+}
+
+#helpful-text {
+  text-decoration: underline;
+}
+
+.review-report {
+  margin-left: 10px;
+}
+
+#report-text {
+  text-decoration: underline;
+}
+
+.review-bottomline {
+  display: flex;
+  justify-content: flex-start;
+}
