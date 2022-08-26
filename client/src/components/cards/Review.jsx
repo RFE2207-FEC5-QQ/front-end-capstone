@@ -1,15 +1,17 @@
 import React from 'react';
 import axios from 'axios';
+import Rating from '@mui/material/Rating';
 
 const Review = ({review, getReviews}) =>{
 
+  // TODO: Only allow someone to mark a review as helpful once
+  // Cache session with cookies to get their marked reviews
   const markHelpful = () => {
     axios.put('/reviews/helpful', {
       reviewId: review.review_id
     })
       .then((success) => {
-        // DEBUG - Uncomment to refresh reviews on success
-        // getReviews();
+        getReviews();
       })
       .catch((error) => {
         console.log(error);
@@ -21,8 +23,7 @@ const Review = ({review, getReviews}) =>{
       reviewId: review.review_id
     })
       .then((success) => {
-        // DEBUG - Uncomment to refresh reviews on success
-        // getReviews();
+        getReviews();
       })
       .catch((error) => {
         console.log(error);
@@ -31,14 +32,27 @@ const Review = ({review, getReviews}) =>{
 
   return (
     <div className='review'>
-      <p>{review.reviewer_name}</p>
-      <p>{review.date}</p>
-      <p>{review.rating}</p>
+      <div className='review-topline'>
+        <span className='revew-rating'>
+          <Rating name="rating" value={review.rating} readOnly />
+        </span>
+        <span className='review-name-date'>
+          <span className='review-name'>{review.reviewer_name},</span>
+          <span className='review-date'>{new Date(review.date).toDateString()}</span>
+        </span>
+      </div>
       <p>{review.recommend}</p>
       <p>{review.summary}</p>
       <p>{review.body}</p>
-      <p onClick={markHelpful}>Helpful {review.helpfulness}</p>
-      <p onClick={reportReview}>Report Review</p>
+      <div className='review-bottomline'>
+        <span className='review-helpful'>
+          <span id='helpful-text' onClick={markHelpful}>Helpful</span> ({review.helpfulness})
+        </span>
+        <span> | </span>
+        <span className='review-report'>
+          <span id='report-text' onClick={reportReview}>Report</span>
+        </span>
+      </div>
     </div>
   );
 
