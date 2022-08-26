@@ -1,7 +1,18 @@
-.review {
+.view-reviews {
   width: 40%;
   min-width: 450px;
   margin: 20px;
+}
+/*
+.review-list-top {
+
+}
+ */
+.review {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-style: solid;
+  border-width: 0 0 2px 0;
 }
 
 .review-topline {

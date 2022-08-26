@@ -1,12 +1,18 @@
 import React from 'react';
 import axios from 'axios';
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 import Review from '../cards/Review.jsx';
 
 class Reviews extends React.Component {
 
   constructor(props) {
     super(props);
+    // TODO: Add selector for number of reviews to display, page number
     this.state = {
       productId: 37311,
       // DEBUG - Using sample review
@@ -31,12 +37,18 @@ class Reviews extends React.Component {
       ],
       sort: 'newest'
     };
+    this.handleSortChange = this.handleSortChange.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.postReview = this.postReview.bind(this);
+  }
 
+  handleSortChange(e) {
+    // After state is set, use getReviews as a callback to get sorted list of reviews
+    this.setState({sort: e.target.value}, this.getReviews);
   }
 
   getReviews() {
+    console.log(this.state.sort);
     axios.get('/reviews', {
       params: {
         productId: this.state.productId,
@@ -78,9 +90,26 @@ class Reviews extends React.Component {
   }
 
   render() {
-    console.log('reviews', this.state.reviews);
+    console.log('reviews', this.state.reviews); // DEBUG
     return (
       <div className='view-reviews'>
+        <div className='review-list-top'>
+          {`${this.state.reviews.length} ${this.state.reviews.length === 1 ? 'review' : 'reviews'}, sorted by `}
+          <span className='review-list-sort'>
+            <Select
+              variant="standard"
+              labelId="sort-select-label"
+              id="sort-select"
+              value={this.state.sort}
+              onChange={this.handleSortChange}
+              label="Sort"
+            >
+              <MenuItem value={'newest'}>newest</MenuItem>
+              <MenuItem value={'helpful'}>helpful</MenuItem>
+              <MenuItem value={'relevant'}>relevance</MenuItem>
+            </Select>
+          </span>
+        </div>
         {
           this.state.reviews.length === 0 ? 'Reviews Not Found' : this.state.reviews.map((review) => {
             return <Review review={review} getReviews={this.getReviews} key={review.review_id}/>;
