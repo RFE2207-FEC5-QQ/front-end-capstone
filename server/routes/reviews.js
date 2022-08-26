@@ -7,7 +7,7 @@ const router = express.Router();
 // Expects 'sort' and 'productId' in query
 router.get('/reviews', (req, res, next) => {
   if (!req.query.sort || !req.query.productId) {
-    req.sendStatus(404);
+    res.sendStatus(404);
     return;
   }
   axios.get(process.env.API_URL + 'reviews/',
