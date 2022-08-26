@@ -2,7 +2,7 @@ import React from 'react';
 
 const Description = (props) => {
   return(
-    <div className='product-description'>
+    <div className='overview-description'>
       Description
     </div>
   )
