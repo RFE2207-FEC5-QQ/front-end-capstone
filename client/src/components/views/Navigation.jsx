@@ -5,27 +5,33 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-// import '../../fonts/ElanRegular.ttf';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
-const Navigation = () => {
+const Navigation = ({ mode, onChange }) => {
 
   return (
     <Box className='view-navigation' sx={{ flexGrow: 1 }}>
       <AppBar
-        position='sticky'
-        elevation={0}
-        sx={{backgroundColor: 'white', color: 'black'}}>
+        position='fixed'
+        elevation={0}>
+        <Box sx={{ display: 'flex', justifyContent: 'end'}}>
+          <FormControlLabel
+            control={<Switch onChange={ onChange } color='default' sx={{ m: 0 }}/>}
+          />
+        </Box>
         <Typography
           className='main-header'
           variant='h2'
           component='div'
-          sx={{ flexGrow: 1, padding: 2, margin: 'auto'}}>
-          ATELIER
+          sx={{ flexGrow: 1, padding: 0, margin: 'auto', fontWeight: 100}}>
+          <div className='main-header'>ATELIER</div>
         </Typography>
         <Divider variant='middle'/>
         <Typography
-          variant='h6'
+          className='secondary-header'
+          variant='text'
           component='div'
           sx={{
             display: 'flex',
