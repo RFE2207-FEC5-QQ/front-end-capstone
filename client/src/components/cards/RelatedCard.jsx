@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   CardMedia,
@@ -10,10 +10,29 @@ import {
 } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
-const RelatedCard = (props) => {
+const RelatedCard = ({ item }) => {
+
+  const [imageURL, setimageURL] = useState('');
+
+  useEffect(() => {
+    axios
+      .get('/styles', {
+        params: {
+          productId: item,
+        }
+      })
+      .then((results) => {
+        const url = results.data;
+        setImage(url);
+      })
+      .catch((err) => {
+        throw ('Error fetching product image');
+      });
+
+  }, []);
+
 
   return (
-    // <Box>
     <Card
       className='related-card'
       sx={{ maxWidth: 250 }}
@@ -23,7 +42,7 @@ const RelatedCard = (props) => {
         <CardMedia
           component="img"
           height="100"
-          image="https://unsplash.com/photos/e616t35Vbeg"
+          image={imageURL}
           alt="green iguana"
         />
         <CardContent>
@@ -37,7 +56,6 @@ const RelatedCard = (props) => {
         </CardContent>
       </CardActionArea>
     </Card>
-    // </Box>
   );
 };
 
