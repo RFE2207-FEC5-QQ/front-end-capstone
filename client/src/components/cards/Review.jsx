@@ -33,7 +33,7 @@ const Review = ({review, getReviews}) =>{
   return (
     <div className='review'>
       <div className='review-topline'>
-        <span className='revew-rating'>
+        <span className='review-rating'>
           <Rating name="rating" value={review.rating} readOnly />
         </span>
         <span className='review-name-date'>

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Rating } from '@mui/material';
 
 class ReviewMeta extends React.Component {
 
@@ -12,15 +13,15 @@ class ReviewMeta extends React.Component {
       reviewMeta: {
         'product_id': '37311',
         'ratings': {
-          '1': '43',
-          '2': '23',
-          '3': '59',
-          '4': '66',
-          '5': '215'
+          '1': '50',
+          '2': '50',
+          '3': '50',
+          '4': '50',
+          '5': '50'
         },
         'recommended': {
-          'false': '75',
-          'true': '331'
+          'false': '125',
+          'true': '125'
         },
         'characteristics': {
           'Fit': {
@@ -43,6 +44,22 @@ class ReviewMeta extends React.Component {
       }
     };
     this.getReviewMeta = this.getReviewMeta.bind(this);
+    this.getAverageRating = this.getAverageRating.bind(this);
+  }
+
+  getAverageRating() {
+    let ratings = this.state.reviewMeta.ratings;
+    let totalReviews = 0;
+    let totalStars = 0;
+    for (let key in ratings) {
+      let numValue = parseInt(ratings[key]);
+      let starValue = parseInt(key);
+      totalReviews += numValue;
+      totalStars += starValue * numValue;
+    }
+    let averageRating = totalStars / totalReviews;
+    console.log(averageRating);
+    return averageRating;
   }
 
   getReviewMeta() {
@@ -61,14 +78,24 @@ class ReviewMeta extends React.Component {
 
   componentDidMount() {
     // DEBUG - Uncomment to get review meta on mount
-    this.getReviewMeta();
+    // this.getReviewMeta();
   }
 
   render() {
+    let rating = this.getAverageRating();
     return (
       <div className='review-meta'>
+        <span className='review-meta-avg-rating'>
+          <span id='review-meta-avg-rating-number'>{rating.toFixed(1)}</span>
+          <Rating
+            name="avg-rating"
+            value={rating}
+            precision={0.25}
+            readOnly
+          />
+        </span>
         {Object.keys(this.state.reviewMeta).map((key, index, collection) => (
-          <p>{key}: {JSON.stringify(this.state.reviewMeta[key])}</p>
+          <p key={key}>{key}: {JSON.stringify(this.state.reviewMeta[key])}</p>
         ))}
       </div>
     );
