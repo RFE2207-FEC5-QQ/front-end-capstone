@@ -42,3 +42,8 @@ body {
 .strike-original-price {
   text-decoration: line-through;
 }
+
+.no-image {
+  /* display: flex; */
+  margin: auto;
+}

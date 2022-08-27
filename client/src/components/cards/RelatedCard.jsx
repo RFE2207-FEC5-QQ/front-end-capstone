@@ -11,6 +11,11 @@ import {
   Typography,
 } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+// import {
+//   StarBorderOutlinedIcon,
+//   ImageNotSupportedIcon,
+// } from '@mui/icons-material';
 
 const RelatedCard = ({ item }) => {
 
@@ -53,7 +58,9 @@ const RelatedCard = ({ item }) => {
         // console.log('defaultStyle', defaultStyle);
         if (defaultStyle) {
           setStyle(defaultStyle);
-          setImgURL(defaultStyle.photos[0].thumbnail_url);
+          if (defaultStyle.photos[0].thumbnail_url) {
+            setImgURL(defaultStyle.photos[0].thumbnail_url);
+          }
           setOrigPrice(defaultStyle.original_price);
 
           if (defaultStyle.sale_price) {
@@ -103,30 +110,30 @@ const RelatedCard = ({ item }) => {
       {detail &&
         <Card
           className='related-card'
-          sx={{ maxWidth: 250 }}
+          sx={{ width: 200, height: 300 }}
           elevation={0}>
-          <StarBorderOutlinedIcon className='related-star'></StarBorderOutlinedIcon>
           <CardActionArea>
+            <StarBorderOutlinedIcon className='related-star'></StarBorderOutlinedIcon>
             {imgURL
               ? <CardMedia
                 component="img"
                 height="100%"
                 image={imgURL}
                 alt="green iguana"
+                sx={{ height: 150, objectFit: 'contain' }}
               />
-              : <div className='related-image'>No image</div>
+              : <ImageNotSupportedIcon className='no-image' sx={{ display: 'flex', height: 150}}/>
             }
             <CardContent>
               <Typography gutterBottom variant="body2" component="div">
                 {detail.category}
               </Typography>
-              <Typography gutterBottom variant="h6" component="div">
+              <Typography gutterBottom variant="body1" component="div">
                 {detail.name}
               </Typography>
               {salePrice
                 ? <React.Fragment>
                   <Typography variant="body2" color="red">
-                    {/* Need to determine how to do strike through and color */}
                     ${salePrice}
                   </Typography>
                   <Typography className='strike-original-price' variant="body2" color="text.secondary">
@@ -137,6 +144,7 @@ const RelatedCard = ({ item }) => {
                    ${origPrice}
                 </Typography>
               }
+              {/* Currently rating is not at correct precision. Fix later. */}
               <Rating
                 name="quarter-rating"
                 value={rating}
