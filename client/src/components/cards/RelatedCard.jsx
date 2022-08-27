@@ -7,6 +7,7 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  Rating,
   Typography,
 } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
@@ -18,6 +19,7 @@ const RelatedCard = ({ item }) => {
   const [imgURL, setImgURL] = useState(null);
   const [salePrice, setSalePrice] = useState(null);
   const [origPrice, setOrigPrice] = useState(null);
+  const [rating, setRating] = useState(null);
 
   useEffect(() => {
 
@@ -29,7 +31,7 @@ const RelatedCard = ({ item }) => {
       })
       .then((results) => {
         const productDetail = results.data;
-        console.log('productDetail', productDetail);
+        // console.log('productDetail', productDetail);
         setDetail(productDetail);
       })
       .catch((err) => {
@@ -44,7 +46,7 @@ const RelatedCard = ({ item }) => {
       })
       .then((results) => {
         const productStyle = results.data;
-        console.log('productStyle', productStyle);
+        // console.log('productStyle', productStyle);
         const defaultStyle = productStyle
           .results
           .find(eachStyle => eachStyle['default?'] === true);
@@ -65,6 +67,32 @@ const RelatedCard = ({ item }) => {
       })
       .catch((err) => {
         throw ('Error fetching product image');
+      });
+
+    axios
+      .get('/reviews/meta', {
+        params: {
+          productId: item,
+        }
+      })
+      .then((results) => {
+        const productRatings = results.data.ratings;
+        let numRatings = 0;
+        let sumRatings = 0;
+        let avgRating;
+
+        for (let i in productRatings) {
+          numRatings += parseInt(productRatings[i]);
+          sumRatings += i * productRatings[i];
+        }
+        avgRating = sumRatings / numRatings;
+
+        console.log('productRating', productRatings);
+        console.log('avgRating', avgRating);
+        setRating(avgRating);
+      })
+      .catch((err) => {
+        throw ('Error getting product rating');
       });
 
   }, []);
@@ -109,6 +137,11 @@ const RelatedCard = ({ item }) => {
                    ${origPrice}
                 </Typography>
               }
+              <Rating
+                name="quarter-rating"
+                value={rating}
+                precision={0.25}
+                size='small'/>
             </CardContent>
           </CardActionArea>
         </Card>
