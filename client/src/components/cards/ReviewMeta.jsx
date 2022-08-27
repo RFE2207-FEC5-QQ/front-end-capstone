@@ -5,11 +5,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const ratingTheme = createTheme({
   palette: {
-    secondary: {
-      main: '#FF7F7F',
+    primary: {
+      main: '#333333',
     },
     neutral: {
-      main: '#FF7F7F',
+      main: '#dfcc97',
     },
     success: {
       main: '#90ee90',
@@ -46,7 +46,7 @@ class ReviewMeta extends React.Component {
           },
           'Length': {
             'id': 125032,
-            'value': '3.3'
+            'value': '3'
           },
           'Comfort': {
             'id': 125033,
@@ -61,11 +61,11 @@ class ReviewMeta extends React.Component {
     };
     this.getReviewMeta = this.getReviewMeta.bind(this);
     this.paletteMap = {
-      '1': 'error',
-      '2': 'warning',
-      '3': 'neutral',
-      '4': 'info',
-      '5': 'success'
+      '1': ['error', '#ff3333'],
+      '2': ['warning', '#ff9966'],
+      '3': ['neutral', '#dfcc97'],
+      '4': ['info', '#66cce6'],
+      '5': ['success', '#90ee90']
     };
   }
 
@@ -116,7 +116,7 @@ class ReviewMeta extends React.Component {
               readOnly
             />
           </div>
-          <div>
+          <div className='review-meta-recommended'>
             {(parseInt(this.state.reviewMeta.recommended.true) / (parseInt(this.state.reviewMeta.recommended.true) + parseInt(this.state.reviewMeta.recommended.false)) * 100).toFixed(0)}% of users recommend this product
           </div>
           <div className='review-meta-avg-rating-breakdown'>
@@ -124,6 +124,9 @@ class ReviewMeta extends React.Component {
               <div key={key} className='review-meta-avg-rating-breakdown-entry'>
                 <div id='review-meta-avg-rating-breakdown-key'>
                   <Rating
+                    sx={{
+                      color: this.paletteMap[key][1]
+                    }}
                     name={`${key} stars`}
                     value={parseInt(key)}
                     readOnly
@@ -133,7 +136,7 @@ class ReviewMeta extends React.Component {
                 <LinearProgress
                   variant='determinate'
                   value={(parseInt(this.state.reviewMeta.ratings[key]) / highestNumValue) * 100}
-                  color={this.paletteMap[key]}
+                  color={this.paletteMap[key][0]}
                 />
               </div>
             ))}
@@ -141,8 +144,10 @@ class ReviewMeta extends React.Component {
           <div className='review-meta-characteristics'>
             {Object.keys(this.state.reviewMeta.characteristics).map((key) => (
               <div key={key} className='review-meta-characteristics-entry'>
-                <div id='review-meta-characteristic'>
-                  {key}
+                <div className='review-meta-labels'>
+                  <span>Left</span>
+                  <span id='review-meta-characteristic'>{key}</span>
+                  <span>Right</span>
                 </div>
                 <LinearProgress
                   variant='determinate'
