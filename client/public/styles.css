@@ -1,11 +1,21 @@
-/*
-.review-view {
 
+.reviews-view {
+  padding: 10px;
 }
- */
+
+.reviews-panels {
+  display: flex;
+  justify-content: flex-start;
+  min-width: 500px;
+}
+
+.review-meta {
+  width: 35%;
+  word-break: break-all;
+}
+
 .review-list {
-  max-width: 700px;
-  min-width: 450px;
+  width: 65%;
   padding: 10px;
 }
 
