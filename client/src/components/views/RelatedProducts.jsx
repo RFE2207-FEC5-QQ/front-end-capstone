@@ -28,10 +28,7 @@ const responsive = {
 };
 
 const RelatedProducts = () => {
-  // Use placeholder productId passed down from global state for now.
-  // const [related, setRelated] = useState(null);
-  const [relatedList, setRelatedList] = useState([]);
-
+  const [relatedList, setRelatedList] = useState(null);
 
   useEffect(() => {
     axios
@@ -51,12 +48,14 @@ const RelatedProducts = () => {
       });
   }, []);
 
-  let relatedCards = relatedList.map((product, i) => <RelatedCard key={i} item={product}/>);
-
   return (
-    <Carousel className='carousel' responsive={responsive}>
-      {relatedCards}
-    </Carousel>
+    <React.Fragment>
+      {relatedList &&
+        <Carousel className='carousel' responsive={responsive}>
+          {relatedList.map((product, i) => <RelatedCard key={i} item={product}/>)}
+        </Carousel>
+      }
+    </React.Fragment>
   );
 };
 
