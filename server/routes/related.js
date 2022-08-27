@@ -9,7 +9,7 @@ router.get('/related', (req, res, next) => {
   axios
     .get(relatedURL, {
       headers: {
-        Authorization: process.env.GITHUB_AUTH,
+        'Authorization': process.env.GITHUB_AUTH,
       }
     })
     .then((results) => {
@@ -44,5 +44,26 @@ router.get('/styles', (req, res, next) => {
       res.sendStatus(404);
     })
 })
+
+// Temporary. Will use Daniel's router in final version.
+router.get('/details', (req, res, next) => {
+  var id = req.query.productId;
+  console.log('id', id, 'req query', req.query)
+  var options = {
+    method: 'get',
+    url: `${process.env.API_URL}products/${id}`,
+    headers: {
+      'Authorization': process.env.GITHUB_AUTH
+    }
+  };
+  axios(options)
+    .then(result => {
+      console.log('detail result', result)
+      res.status(200).send(result.data);
+    })
+    .catch((err) => {
+      res.sendStatus(404);
+    })
+});
 
 module.exports = router;

@@ -13,11 +13,29 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 const RelatedCard = ({ item }) => {
 
-  // const [imageURL, setimageURL] = useState('');
+  const [detail, setDetail] = useState(null);
   const [style, setStyle] = useState(null);
   const [imgURL, setImgURL] = useState(null);
+  const [salePrice, setSalePrice] = useState(null);
+  const [origPrice, setOrigPrice] = useState(null);
 
   useEffect(() => {
+
+    axios
+      .get('/details', {
+        params: {
+          productId: item,
+        }
+      })
+      .then((results) => {
+        const productDetail = results.data;
+        console.log('productDetail', productDetail);
+        setDetail(productDetail);
+      })
+      .catch((err) => {
+        throw ('Error fetching product detail');
+      });
+
     axios
       .get('/styles', {
         params: {
@@ -26,10 +44,24 @@ const RelatedCard = ({ item }) => {
       })
       .then((results) => {
         const productStyle = results.data;
-        // console.log('productStyle', productStyle.results[0].photos[0].url);
         console.log('productStyle', productStyle);
-        setStyle(productStyle);
-        setImgURL(productStyle.results[0].photos[0].thumbnail_url);
+        const defaultStyle = productStyle
+          .results
+          .find(eachStyle => eachStyle['default?'] === true);
+        // console.log('defaultStyle', defaultStyle);
+        if (defaultStyle) {
+          setStyle(defaultStyle);
+          setImgURL(defaultStyle.photos[0].thumbnail_url);
+          setOrigPrice(defaultStyle.original_price);
+
+          if (defaultStyle.sale_price) {
+            set(defaultStyle.sale_price);
+          }
+        } else {
+          // Need to determine with Daniel what to do if default style not set in API.
+          // setStyle(productStyle.results[0]);
+          // setImgURL(productStyle.resultsphotos[0].thumbnail_url);
+        }
       })
       .catch((err) => {
         throw ('Error fetching product image');
@@ -40,7 +72,7 @@ const RelatedCard = ({ item }) => {
 
   return (
     <React.Fragment>
-      {style &&
+      {detail &&
         <Card
           className='related-card'
           sx={{ maxWidth: 250 }}
@@ -57,13 +89,26 @@ const RelatedCard = ({ item }) => {
               : <div className='related-image'>No image</div>
             }
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lizard
+              <Typography gutterBottom variant="body2" component="div">
+                {detail.category}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over 6,000
-                species, ranging across all continents except Antarctica
+              <Typography gutterBottom variant="h6" component="div">
+                {detail.name}
               </Typography>
+              {salePrice
+                ? <React.Fragment>
+                  <Typography variant="body2" color="red">
+                    {/* Need to determine how to do strike through and color */}
+                    ${salePrice}
+                  </Typography>
+                  <Typography className='strike-original-price' variant="body2" color="text.secondary">
+                    ${origPrice}
+                  </Typography>
+                </React.Fragment>
+                : <Typography variant="body2" color="text.secondary">
+                   ${origPrice}
+                </Typography>
+              }
             </CardContent>
           </CardActionArea>
         </Card>

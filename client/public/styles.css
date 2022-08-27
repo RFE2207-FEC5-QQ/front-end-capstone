@@ -38,3 +38,7 @@ body {
   width: 75vw;
   margin: auto;
 }
+
+.strike-original-price {
+  text-decoration: line-through;
+}
