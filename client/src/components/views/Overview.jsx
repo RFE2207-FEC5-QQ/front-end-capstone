@@ -40,6 +40,7 @@ const Overview = () => {
     axios(options)
       .then(res => {
         setStyles(res.data.results);
+        setSelectedStyle(res.data.results[0]);
       })
   }
 
@@ -68,7 +69,9 @@ const Overview = () => {
               selectedStyle={selectedStyle}
               updateStyle={updateStyle}
             />
-            <Cart />
+            <Cart
+              skus={selectedStyle.skus}
+            />
           </Grid>
           <Grid item xs={12}>
             <Description />
