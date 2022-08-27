@@ -15,17 +15,20 @@ const Style = ({ styles, updateStyle }) => {
 
   return(
     <div className='overview-styles'>
-      Styles:
+      STYLE > SELECTED STYLE
       <Grid container spacing={1}>
         {styles.map(style => {
           return (
-            <Box>
+            <div className='style-images'>
               <Grid item xs={3}>
-                <ToggleButton onClick={() => {styleClick(style)}}>
-                  <img src={style.photos[0].thumbnail_url} key={style.style_id}></img>
-                </ToggleButton>
+                <img
+                  className='style-image'
+                  src={style.photos[0].thumbnail_url}
+                  key={style.style_id}
+                  onClick={() => {styleClick(style)}}
+                ></img>
               </Grid>
-            </Box>
+            </div>
           )
         })}
       </Grid>
