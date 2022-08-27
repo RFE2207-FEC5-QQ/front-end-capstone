@@ -17,7 +17,7 @@ router.get('/related', (req, res, next) => {
       res.status(200).send(relatedIds);
     })
     .catch((err) => {
-      throw ('Error calling Atelier API!');
+      res.sendStatus(404);
     });
 });
 
