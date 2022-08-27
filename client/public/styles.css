@@ -21,6 +21,13 @@
   align-items: center;
 }
 
+.review-meta-avg-rating-breakdown {
+  margin-top: 10px;
+}
+
+.review-meta-avg-rating-breakdown-entry {
+}
+
 #review-meta-avg-rating-number {
   margin-right: 10px;
 }
