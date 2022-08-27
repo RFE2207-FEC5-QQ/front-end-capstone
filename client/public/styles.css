@@ -5,7 +5,6 @@
 
 html,
 body {
-  height: 100%;
   margin-top: 10rem;
   margin-left: 1rem;
 }
@@ -23,12 +22,19 @@ body {
   z-index: 999;
 }
 
-.view-related {
-  z-index: 0,
+.related-card {
+  position: relative;
 }
 
 .related-star {
-  /* display: flex; */
-  position: fixed;
-  margin-left: auto;
+  position: absolute;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  right: 0;
+}
+
+.carousel {
+  display: flex;
+  width: 75vw;
+  margin: auto;
 }
