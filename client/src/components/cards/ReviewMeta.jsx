@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Rating, LinearProgress } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import RecommendIcon from '@mui/icons-material/Recommend';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const ratingTheme = createTheme({
   palette: {
@@ -116,11 +116,10 @@ class ReviewMeta extends React.Component {
             />
           </div>
           <div className='review-meta-recommended'>
-            <RecommendIcon fontSize='large'/>
+            <CheckCircleIcon fontSize='large'/>
             {(parseInt(this.state.reviewMeta.recommended.true) / (parseInt(this.state.reviewMeta.recommended.true) + parseInt(this.state.reviewMeta.recommended.false)) * 100).toFixed(0)}%
           </div>
         </div>
-
         <ThemeProvider theme={ratingTheme}>
           <div className='review-meta-avg-rating-breakdown'>
             {Object.keys(this.state.reviewMeta.ratings).map((key) => (

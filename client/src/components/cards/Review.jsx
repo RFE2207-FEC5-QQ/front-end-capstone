@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Rating } from '@mui/material';
-import RecommendIcon from '@mui/icons-material/Recommend';
+import CheckIcon from '@mui/icons-material/Check';
 
 const Review = ({review, getReviews}) =>{
 
@@ -37,27 +37,33 @@ const Review = ({review, getReviews}) =>{
         <span className='review-rating'>
           <Rating name="rating" value={review.rating} readOnly />
         </span>
-        <span className='review-name-date'>
-          {review.recommend && <RecommendIcon/>}
+        <div className='review-name-date'>
           <span className='review-name'>{review.reviewer_name}</span>
           <span className='review-date'>{new Date(review.date).toDateString()}</span>
+        </div>
+      </div>
+      <p className='review-summary'>{review.summary}</p>
+      <p className='review-body'>{review.body}</p>
+      {review.photos.length > 0 &&
+        <div className='review-images'>
+          {review.photos.map((photo) => {
+            return (
+              <img
+                className='review-img'
+                key={photo.id}
+                src={photo.url}
+                loading='lazy'
+              />
+            );
+          })}
+        </div>
+      }
+      {review.recommend && (
+        <span className='review-recommended'>
+          <CheckIcon/>
+          <span>I recommend this product</span>
         </span>
-      </div>
-      <p>{review.recommend}</p>
-      <p>{review.summary}</p>
-      <p>{review.body}</p>
-      <div className='review-images'>
-        {review.photos.map((photo) => {
-          return (
-            <img
-              className='review-img'
-              key={photo.id}
-              src={photo.url}
-              loading='lazy'
-            />
-          );
-        })}
-      </div>
+      )}
       <div className='review-bottomline'>
         <span className='review-helpful'>
           <span id='helpful-text' onClick={markHelpful}>Helpful</span> ({review.helpfulness})
