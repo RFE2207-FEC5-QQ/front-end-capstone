@@ -12,10 +12,7 @@ import {
 } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
-// import {
-//   StarBorderOutlinedIcon,
-//   ImageNotSupportedIcon,
-// } from '@mui/icons-material';
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
 const RelatedCard = ({ item }) => {
 
@@ -107,37 +104,29 @@ const RelatedCard = ({ item }) => {
     <React.Fragment>
       {detail &&
         <div className='related-card'>
-          <StarBorderOutlinedIcon className='related-star'></StarBorderOutlinedIcon>
+          <ArrowDropDownOutlinedIcon className='related-star'></ArrowDropDownOutlinedIcon>
           {imgURL
             ? <img className='card-img' src={imgURL}></img>
-            // : <div className='no-img'><ImageNotSupportedIcon sx={{border: 'solid 1px red'}}/></div>
-            : <div className='no-img'></div>
+            : <div className='no-img'><ImageNotSupportedIcon sx={{border: 'solid 1px red'}}/></div>
           }
-          <Typography gutterBottom variant="body2" component="div">
-            {detail.category}
-          </Typography>
-          <Typography gutterBottom variant="body1" component="div">
-            {detail.name}
-          </Typography>
-          {salePrice
-            ? <React.Fragment>
-              <Typography variant="body2" color="red">
-                ${salePrice}
-              </Typography>
-              <Typography className='strike-original-price' variant="body2" color="text.secondary">
-                ${origPrice}
-              </Typography>
-            </React.Fragment>
-            : <Typography variant="body2" color="text.secondary">
-                ${origPrice}
-            </Typography>
-          }
-          {/* Currently rating is not at correct precision. Fix later. */}
-          <Rating
-            name="quarter-rating"
-            value={rating}
-            precision={0.25}
-            size='small'/>
+          <div className='card-content'>
+            <div className='card-description'>{detail.category}</div>
+            <div className='card-description'>{detail.name}</div>
+            {origPrice
+              ? <React.Fragment>
+                <div className='card-description sale-price'>${origPrice}</div>
+                <div className='card-description strike-original-price'>${origPrice}</div>
+              </React.Fragment>
+              : <div className='card-description'>${origPrice}</div>
+            }
+            {/* Currently rating is not at correct precision. Fix later. */}
+            <Rating
+              className='card-description'
+              name="quarter-rating"
+              value={rating}
+              precision={0.25}
+              size='small'/>
+          </div>
         </div>
       }
     </React.Fragment>
