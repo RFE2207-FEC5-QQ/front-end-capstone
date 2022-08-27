@@ -25,9 +25,19 @@
   margin-top: 10px;
 }
 
-.review-meta-avg-rating-breakdown-entry {
+.review-meta-characteristics {
+  margin-top: 50px;
 }
 
+.review-meta-avg-rating-breakdown-entry {
+  margin-top: 10px;
+}
+
+/*
+#review-meta-avg-rating-breakdown-key {
+
+}
+ */
 #review-meta-avg-rating-number {
   margin-right: 10px;
 }
