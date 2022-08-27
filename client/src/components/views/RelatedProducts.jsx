@@ -41,7 +41,6 @@ const RelatedProducts = () => {
         const relatedIds = results.data;
         console.log('relatedIds', relatedIds);
         setRelatedList(relatedIds);
-        return;
       })
       .catch((err) => {
         throw ('Error fetching related products');
