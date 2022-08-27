@@ -6,23 +6,32 @@
 .reviews-panels {
   display: flex;
   justify-content: flex-start;
-  min-width: 500px;
+  min-width: 550px;
+  gap: 20px;
 }
 
 .review-meta {
-  margin-right: 20px;
   width: 35%;
+}
+
+.review-meta-topbar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .review-meta-avg-rating {
   display: flex;
-  font-size: 3em;
-  justify-content: flex-start;
   align-items: center;
+  font-size: 3em;
 }
 
 .review-meta-recommended {
-  font-size: 1.2em;
+  gap: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 24px;
 }
 
 .review-meta-avg-rating-breakdown {

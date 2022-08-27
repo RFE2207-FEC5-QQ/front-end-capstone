@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Rating } from '@mui/material';
+import RecommendIcon from '@mui/icons-material/Recommend';
 
 const Review = ({review, getReviews}) =>{
 
@@ -37,6 +38,7 @@ const Review = ({review, getReviews}) =>{
           <Rating name="rating" value={review.rating} readOnly />
         </span>
         <span className='review-name-date'>
+          {review.recommend && <RecommendIcon/>}
           <span className='review-name'>{review.reviewer_name}</span>
           <span className='review-date'>{new Date(review.date).toDateString()}</span>
         </span>

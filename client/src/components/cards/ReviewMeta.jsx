@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Rating, LinearProgress } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import RecommendIcon from '@mui/icons-material/Recommend';
 
 const ratingTheme = createTheme({
   palette: {
@@ -89,12 +90,11 @@ class ReviewMeta extends React.Component {
   }
 
   render() {
-    let ratings = this.state.reviewMeta.ratings;
     let totalReviews = 0;
     let totalStars = 0;
     let highestNumValue = 0;
-    for (let key in ratings) {
-      let numValue = parseInt(ratings[key]);
+    for (let key in this.state.reviewMeta.ratings) {
+      let numValue = parseInt(this.state.reviewMeta.ratings[key]);
       if (numValue > highestNumValue) {
         highestNumValue = numValue;
       }
@@ -103,10 +103,9 @@ class ReviewMeta extends React.Component {
       totalStars += starValue * numValue;
     }
     let averageRating = totalStars / totalReviews;
-    console.log(highestNumValue);
     return (
       <div className='review-meta'>
-        <ThemeProvider theme={ratingTheme}>
+        <div className='review-meta-topbar'>
           <div className='review-meta-avg-rating'>
             <div id='review-meta-avg-rating-number'>{averageRating.toFixed(1)}</div>
             <Rating
@@ -117,8 +116,12 @@ class ReviewMeta extends React.Component {
             />
           </div>
           <div className='review-meta-recommended'>
-            {(parseInt(this.state.reviewMeta.recommended.true) / (parseInt(this.state.reviewMeta.recommended.true) + parseInt(this.state.reviewMeta.recommended.false)) * 100).toFixed(0)}% of users recommend this product
+            <RecommendIcon fontSize='large'/>
+            {(parseInt(this.state.reviewMeta.recommended.true) / (parseInt(this.state.reviewMeta.recommended.true) + parseInt(this.state.reviewMeta.recommended.false)) * 100).toFixed(0)}%
           </div>
+        </div>
+
+        <ThemeProvider theme={ratingTheme}>
           <div className='review-meta-avg-rating-breakdown'>
             {Object.keys(this.state.reviewMeta.ratings).map((key) => (
               <div key={key} className='review-meta-avg-rating-breakdown-entry'>
