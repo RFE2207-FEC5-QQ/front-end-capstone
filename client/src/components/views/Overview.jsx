@@ -26,10 +26,11 @@ const Overview = () => {
         setProducts(res.data);
         // move this product up to index.jsx
         setProduct(res.data[0]);
+        getStyles(res.data[0].id)
       })
   }
 
-  const getStyles = (id=37311) => {
+  const getStyles = (id) => {
     var options = {
       method: 'get',
       url: '/styles',
@@ -39,8 +40,18 @@ const Overview = () => {
     }
     axios(options)
       .then(res => {
-        setStyles(res.data.results);
-        setSelectedStyle(res.data.results[0]);
+        var results = res.data.results;
+        var hasDefault = false;
+        setStyles(results);
+        results.forEach(result => {
+          if (result['default?']) {
+            hasDefault = true;
+            setSelectedStyle(result)
+          }
+        })
+        if (!hasDefault) {
+          setSelectedStyle(results[0]);
+        }
       })
   }
 
@@ -50,7 +61,6 @@ const Overview = () => {
 
   useEffect(() => {
     getProducts();
-    getStyles();
   }, [])
 
   if (products.length) {

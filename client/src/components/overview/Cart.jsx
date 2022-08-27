@@ -52,7 +52,7 @@ const Cart = ({skus}) => {
           onChange={updateSize}
           >
             {sizes.map(size => {
-              return <MenuItem value={size}>{size}</MenuItem>
+              return <MenuItem value={size} key={size}>{size}</MenuItem>
             })}
           </Select>
         </FormControl>
@@ -68,7 +68,7 @@ const Cart = ({skus}) => {
             onChange={updateQty}
           >
             {qtys.map(qty => {
-              return <MenuItem value={qty}>{qty}</MenuItem>
+              return <MenuItem value={qty} key={qty}>{qty}</MenuItem>
             })}
           </Select>
         </FormControl>
