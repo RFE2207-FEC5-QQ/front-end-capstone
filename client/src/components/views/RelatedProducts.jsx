@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import RelatedCard from './RelatedCard.jsx';
+import RelatedCard from '../cards/RelatedCard.jsx';
 // import Carousel from 'react-material-ui-carousel';
 import { Paper, Button, Box } from '@mui/material';
 import Carousel from 'react-multi-carousel';
@@ -42,7 +42,7 @@ const RelatedProducts = () => {
   //     .get('/related', {
   //       params: {
   //         // productId
-  //         productId: 1,
+  //         productId: 37311,
   //       }
   //     })
   //     .then((results) => {
@@ -53,6 +53,7 @@ const RelatedProducts = () => {
   //     });
   // // }, [productId]);
   // }, [1]);
+
   let relatedMap = related.map((product, i) => <RelatedCard key={i} item={product}/>);
 
   return (
