@@ -38,6 +38,7 @@ const RelatedCard = ({ item }) => {
         const productDetail = results.data;
         // console.log('productDetail', productDetail);
         setDetail(productDetail);
+        setOrigPrice(productDetail.default_price);
       })
       .catch((err) => {
         throw ('Error fetching product detail');
@@ -61,8 +62,6 @@ const RelatedCard = ({ item }) => {
           if (defaultStyle.photos[0].thumbnail_url) {
             setImgURL(defaultStyle.photos[0].thumbnail_url);
           }
-          setOrigPrice(defaultStyle.original_price);
-
           if (defaultStyle.sale_price) {
             set(defaultStyle.sale_price);
           }
@@ -93,8 +92,7 @@ const RelatedCard = ({ item }) => {
           sumRatings += i * productRatings[i];
         }
         avgRating = sumRatings / numRatings;
-
-        console.log('productRating', productRatings);
+        // console.log('productRating', productRatings);
         console.log('avgRating', avgRating);
         setRating(avgRating);
       })
@@ -108,51 +106,39 @@ const RelatedCard = ({ item }) => {
   return (
     <React.Fragment>
       {detail &&
-        <Card
-          className='related-card'
-          sx={{ width: 200, height: 300 }}
-          elevation={0}>
-          <CardActionArea>
-            <StarBorderOutlinedIcon className='related-star'></StarBorderOutlinedIcon>
-            {imgURL
-              ? <CardMedia
-                component="img"
-                height="100%"
-                image={imgURL}
-                alt="green iguana"
-                sx={{ height: 150, objectFit: 'contain' }}
-              />
-              : <ImageNotSupportedIcon className='no-image' sx={{ display: 'flex', height: 150}}/>
-            }
-            <CardContent>
-              <Typography gutterBottom variant="body2" component="div">
-                {detail.category}
+        <div className='related-card'>
+          <StarBorderOutlinedIcon className='related-star'></StarBorderOutlinedIcon>
+          {imgURL
+            ? <img className='card-img' src={imgURL}></img>
+            // : <div className='no-img'><ImageNotSupportedIcon sx={{border: 'solid 1px red'}}/></div>
+            : <div className='no-img'></div>
+          }
+          <Typography gutterBottom variant="body2" component="div">
+            {detail.category}
+          </Typography>
+          <Typography gutterBottom variant="body1" component="div">
+            {detail.name}
+          </Typography>
+          {salePrice
+            ? <React.Fragment>
+              <Typography variant="body2" color="red">
+                ${salePrice}
               </Typography>
-              <Typography gutterBottom variant="body1" component="div">
-                {detail.name}
+              <Typography className='strike-original-price' variant="body2" color="text.secondary">
+                ${origPrice}
               </Typography>
-              {salePrice
-                ? <React.Fragment>
-                  <Typography variant="body2" color="red">
-                    ${salePrice}
-                  </Typography>
-                  <Typography className='strike-original-price' variant="body2" color="text.secondary">
-                    ${origPrice}
-                  </Typography>
-                </React.Fragment>
-                : <Typography variant="body2" color="text.secondary">
-                   ${origPrice}
-                </Typography>
-              }
-              {/* Currently rating is not at correct precision. Fix later. */}
-              <Rating
-                name="quarter-rating"
-                value={rating}
-                precision={0.25}
-                size='small'/>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+            </React.Fragment>
+            : <Typography variant="body2" color="text.secondary">
+                ${origPrice}
+            </Typography>
+          }
+          {/* Currently rating is not at correct precision. Fix later. */}
+          <Rating
+            name="quarter-rating"
+            value={rating}
+            precision={0.25}
+            size='small'/>
+        </div>
       }
     </React.Fragment>
   );

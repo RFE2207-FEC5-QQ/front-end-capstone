@@ -22,28 +22,45 @@ body {
   z-index: 999;
 }
 
+.carousel {
+  width: 700px;
+  margin: auto;
+}
+
 .related-card {
+  border: 2px solid red;
   position: relative;
+  width: 180px;
+  height: 300px;
+}
+
+.card-img {
+  border: 2px solid green;
+  width: 100%;
+  height: 50%;
+  object-fit: contain;
+  margin: 1;
+}
+
+.no-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid green;
+  width: 100%;
+  height: 50%;
+  margin: 1;
 }
 
 .related-star {
   position: absolute;
-  margin-top: 1rem;
-  margin-right: 1rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
   right: 0;
-}
-
-.carousel {
-  display: flex;
-  width: 75vw;
-  margin: auto;
 }
 
 .strike-original-price {
   text-decoration: line-through;
 }
 
-.no-image {
-  /* display: flex; */
-  margin: auto;
-}
+
