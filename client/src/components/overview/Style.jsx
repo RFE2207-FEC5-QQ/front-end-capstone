@@ -1,39 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Grid, ToggleButton } from '@mui/material'
 
-const Style = ({ styles, updateStyle }) => {
+const Style = ({ styles, updateStyle, selectedStyle }) => {
 
-  const [checked, setChecked] = useState(styles[0]);
+  const [checked, setChecked] = useState('');
 
   const styleClick = (style) => {
     setChecked(style);
     updateStyle(style);
   }
 
-  // Have to implement checkmark
-  // Have to use CSS to correctly size each image
+  useEffect(() => {
+    setChecked(selectedStyle);
+  })
 
-  return(
-    <div className='overview-styles'>
-      STYLE > SELECTED STYLE
-      <Grid container spacing={1}>
-        {styles.map(style => {
-          return (
-            <div className='style-images'>
-              <Grid item xs={3}>
-                <img
-                  className='style-image'
-                  src={style.photos[0].thumbnail_url}
-                  key={style.style_id}
-                  onClick={() => {styleClick(style)}}
-                ></img>
-              </Grid>
-            </div>
-          )
-        })}
-      </Grid>
-    </div>
-  )
+  // Have to implement checkmark
+  // Make header look nicer
+    return(
+      <div className='overview-styles'>
+        STYLE > SELECTED STYLE
+        <Grid container spacing={1}>
+          {styles.map(style => {
+            return (
+              <div className='style-images' key={style.style_id}>
+                <Grid item xs={3}>
+                  <img
+                    className={checked.style_id === style.style_id ? 'style-image checked-image' : 'style-image'}
+                    src={style.photos[0].thumbnail_url}
+                    onClick={() => {styleClick(style)}}
+                  ></img>
+                </Grid>
+              </div>
+            )
+          })}
+        </Grid>
+      </div>
+    )
 }
 
 export default Style;

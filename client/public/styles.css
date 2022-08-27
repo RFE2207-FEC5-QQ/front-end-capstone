@@ -34,10 +34,17 @@ body {
 }
 
 .style-image {
-  width: 100px;
-  height: 100px;
+  border: 2px solid rgba(0,0,0,0);
   border-radius: 50%;
-  padding: 20px;
+  margin: 4px;
+  cursor: pointer;
+  height: 68px;
+  width: 68px;
+  object-fit: cover;
+}
+
+.style-images {
+  padding: 10px;
 }
 
 .overview-select {
@@ -50,4 +57,8 @@ body {
   width: 200px;
   height: 50px;
   padding: 10px;
+}
+
+.checked-image {
+  border: solid blue
 }
