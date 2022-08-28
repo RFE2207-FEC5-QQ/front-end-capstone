@@ -34,6 +34,21 @@ body {
 }
 
 /* Product Info */
+.product-category {
+  color: grey;
+  font-size: 20px;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.product-price {
+  padding: 5px;
+  padding-bottom: 10px;
+}
+
 .original-price {
   font: bold;
   display: inline;
@@ -46,6 +61,15 @@ body {
 }
 
 /* Style Selector */
+.style-selector {
+  font-weight: bold;
+}
+
+.selected-style {
+  color: grey;
+  padding-left: 10px;
+}
+
 .style-image {
   border: 2px solid rgba(0,0,0,0);
   border-radius: 50%;

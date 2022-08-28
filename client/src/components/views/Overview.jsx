@@ -9,7 +9,7 @@ import Description from '../overview/Description.jsx';
 import Gallery from '../overview/Gallery.jsx';
 // React module is imported if you choose to convert to class component, remove the import if not
 
-const Overview = () => {
+const Overview = (props) => {
 
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
@@ -24,9 +24,11 @@ const Overview = () => {
     axios(options)
       .then(res => {
         setProducts(res.data);
-        // move this product up to index.jsx
         setProduct(res.data[0]);
         getStyles(res.data[0].id)
+      })
+      .catch(err => {
+        console.log(err)
       })
   }
 
@@ -52,6 +54,10 @@ const Overview = () => {
         if (!hasDefault) {
           setSelectedStyle(results[0]);
         }
+
+      })
+      .catch(err => {
+        console.log(err)
       })
   }
 
@@ -63,16 +69,19 @@ const Overview = () => {
     getProducts();
   }, [])
 
-  if (products.length) {
+  if (products.length && selectedStyle.skus) {
     return (
       <div className='view-overview'>
         <Grid container spacing={2}>
           <Grid item xs={8}>
-            <Gallery />
+            <Gallery
+              products={products}
+            />
           </Grid>
           <Grid item xs={4}>
             <Info
               product={product}
+              selectedStyle={selectedStyle}
             />
             <Style
               styles={styles}
@@ -84,7 +93,9 @@ const Overview = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Description />
+            <Description
+              product={product}
+            />
           </Grid>
         </Grid>
       </div>
