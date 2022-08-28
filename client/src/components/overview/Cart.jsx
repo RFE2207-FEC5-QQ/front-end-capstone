@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material'
 
-const Cart = ({ skus }) => {
+const Cart = ({ selectedStyle, skus }) => {
 
   const [sizes, setSizes] = useState([]);
   const [size, setSize] = useState('');
@@ -39,60 +39,83 @@ const Cart = ({ skus }) => {
   }
 
   const addToCart = () => {
-    console.log('add to cart button clicked');
+    if (size === '') {
+      console.log('select size');
+    }
+    console.log('add to cart button clicked: ', selectedStyle, size, qty);
   }
 
   useEffect(() => {
     getSizes();
-  }, [])
+    setSize('');
+    setQty('');
+  }, [skus])
 
-  return(
-    <div className='overview-cart'>
-      <div className='overview-select'>
-        <FormControl className='overview-select'>
-          <InputLabel>
-            Select Size
-          </InputLabel>
-          <Select
-            value={size}
-            label="Select"
-            onChange={updateSize}
+  if (skus) {
+    return(
+      <div className='overview-cart'>
+        <div className='overview-select'>
+          <FormControl className='overview-select'>
+            <InputLabel>
+              Select Size
+            </InputLabel>
+            <Select
+              value={size}
+              label="Select"
+              onChange={updateSize}
+              >
+              {sizes.map(size => {
+                return <MenuItem value={size} key={size}>{size}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </div>
+        <div className='overview-select'>
+          <FormControl className='overview-select'>
+            <InputLabel>
+              -
+            </InputLabel>
+            <Select
+              value={qty}
+              label="Select"
+              onChange={updateQty}
             >
-            {sizes.map(size => {
-              return <MenuItem value={size} key={size}>{size}</MenuItem>
-            })}
-          </Select>
-        </FormControl>
-      </div>
-      <div className='overview-select'>
-        <FormControl className='overview-select'>
-          <InputLabel>
-            -
-          </InputLabel>
-          <Select
-            value={qty}
-            label="Select"
-            onChange={updateQty}
+              {qtys.map(qty => {
+                return <MenuItem value={qty} key={qty}>{qty}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </div>
+        <div className='add-to-cart'>
+          <Button
+            variant='contained'
+            className='add-to-cart'
+            onClick={addToCart}
           >
-            {qtys.map(qty => {
-              return <MenuItem value={qty} key={qty}>{qty}</MenuItem>
-            })}
-          </Select>
-        </FormControl>
+            Add to Cart
+          </Button>
+        </div>
       </div>
-      <div className='overview-select'>
+    )
+  } else {
+    return(
+      <div className='overview-cart'>
+        <div className='overview-select'>
+          <FormControl className='overview-select'>
+            <InputLabel>
+              OUT OF STOCK
+            </InputLabel>
+            <Select
+              value={size}
+              label="Select"
+              disabled
+              >
+            </Select>
+          </FormControl>
+        </div>
       </div>
-      <div className='add-to-cart'>
-        <Button
-          variant='contained'
-          className='add-to-cart'
-          onClick={addToCart}
-        >
-          Add to Cart
-        </Button>
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Cart;

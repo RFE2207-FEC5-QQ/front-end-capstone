@@ -54,7 +54,6 @@ const Overview = (props) => {
         if (!hasDefault) {
           setSelectedStyle(results[0]);
         }
-
       })
       .catch(err => {
         console.log(err)
@@ -69,7 +68,7 @@ const Overview = (props) => {
     getProducts();
   }, [])
 
-  if (products.length && selectedStyle.skus) {
+  if (products.length) {
     return (
       <div className='view-overview'>
         <Grid container spacing={2}>
@@ -89,6 +88,7 @@ const Overview = (props) => {
               updateStyle={updateStyle}
             />
             <Cart
+              selectedStyle={selectedStyle}
               skus={selectedStyle.skus}
             />
           </Grid>
