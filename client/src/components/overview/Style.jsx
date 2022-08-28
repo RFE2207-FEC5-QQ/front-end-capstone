@@ -12,7 +12,7 @@ const Style = ({ styles, updateStyle, selectedStyle }) => {
 
   useEffect(() => {
     setChecked(selectedStyle);
-  })
+  }, [selectedStyle])
 
   // Have to implement checkmark
   // Make header look nicer

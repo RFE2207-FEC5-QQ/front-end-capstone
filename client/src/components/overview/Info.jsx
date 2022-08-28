@@ -36,7 +36,8 @@ const Info = ({ product, selectedStyle }) => {
 
   useEffect(() => {
     getRatings();
-  })
+  }, [product])
+
   if (selectedStyle.sale_price) {
     return (
       <div className='product-info'>
