@@ -5,7 +5,7 @@ const Cart = ({ selectedStyle, skus }) => {
 
   const [sizes, setSizes] = useState([]);
   const [size, setSize] = useState('');
-  const [qtys, setQtys] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+  const [qtys, setQtys] = useState([]);
   const [qty, setQty] = useState('');
 
   const getSizes = () => {
@@ -25,13 +25,13 @@ const Cart = ({ selectedStyle, skus }) => {
         quantity = skus[key].quantity;
       }
     }
-    if (quantity > 15) {
-      return;
-    }
     for (var i = 1; i <= quantity; i++) {
-      qtysArr.push(i);
+      if (i <= 15) {
+        qtysArr.push(i);
+      }
     }
     setQtys(qtysArr);
+    setQty(1);
   }
 
   const updateQty = (e) => {
