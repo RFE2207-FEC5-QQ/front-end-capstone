@@ -11,7 +11,6 @@ body {
 
 .main-header {
   font-family: 'Elan';
-
 }
 
 .secondary-header {
@@ -84,6 +83,13 @@ body {
   margin: 1;
 }
 
+.card-rating {
+  display: flex;
+  align-items: center;
+  font-size: 0.75em;
+  color: #666;
+}
+
 .comparison-modal {
   border: 2px solid pink;
   background-color: white;
@@ -124,8 +130,6 @@ body {
   border: 2px solid greenyellow;
   font-weight: 900;
 }
-
-
 
 .strike-original-price {
   text-decoration: line-through;

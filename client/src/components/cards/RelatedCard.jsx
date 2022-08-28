@@ -94,7 +94,7 @@ const RelatedCard = ({ item }) => {
         avgRating = sumRatings / numRatings;
         // console.log('productRating', productRatings);
         // console.log('avgRating', avgRating);
-        setRating(avgRating);
+        setRating([avgRating, numRatings]);
       })
       .catch((err) => {
         throw ('Error getting product rating');
@@ -133,13 +133,16 @@ const RelatedCard = ({ item }) => {
               </React.Fragment>
             }
             {/* Currently rating is not at correct precision. Fix later. */}
-            <Rating
-              className='card-description'
-              name="quarter-rating"
-              value={rating}
-              precision={0.25}
-              size='small'
-              readOnly/>
+            <div className='card-rating'>
+              <Rating
+                className='card-rating'
+                name="quarter-rating"
+                value={rating[0]}
+                precision={0.25}
+                size='small'
+                readOnly/>
+              <div className='num-ratings'>&nbsp;&nbsp;&#40;{rating[1]}&#41;</div>
+            </div>
           </div>
         </div>
       }
