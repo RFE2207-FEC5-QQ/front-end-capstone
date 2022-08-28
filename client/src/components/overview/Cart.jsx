@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Box, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material'
 
-const Cart = ({skus}) => {
+const Cart = ({ skus }) => {
 
   const [sizes, setSizes] = useState([]);
   const [size, setSize] = useState('');
-  const [qtys, setQtys] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const [qtys, setQtys] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
   const [qty, setQty] = useState('');
 
   const getSizes = () => {
@@ -25,6 +25,9 @@ const Cart = ({skus}) => {
         quantity = skus[key].quantity;
       }
     }
+    if (quantity > 15) {
+      return;
+    }
     for (var i = 1; i <= quantity; i++) {
       qtysArr.push(i);
     }
@@ -33,6 +36,10 @@ const Cart = ({skus}) => {
 
   const updateQty = (e) => {
     setQty(e.target.value);
+  }
+
+  const addToCart = () => {
+    console.log('add to cart button clicked');
   }
 
   useEffect(() => {
@@ -49,8 +56,8 @@ const Cart = ({skus}) => {
           <Select
             value={size}
             label="Select"
-          onChange={updateSize}
-          >
+            onChange={updateSize}
+            >
             {sizes.map(size => {
               return <MenuItem value={size} key={size}>{size}</MenuItem>
             })}
@@ -74,25 +81,12 @@ const Cart = ({skus}) => {
         </FormControl>
       </div>
       <div className='overview-select'>
-        {/* <FormControl className='overview-select'>
-          <InputLabel>
-            Select Qty
-          </InputLabel>
-          <Select
-            value={qty}
-            label="Select"
-            onChange={updateQty}
-          >
-            {qtys.map(qty => {
-              return <MenuItem value={qty}>{qty}</MenuItem>
-            })}
-          </Select>
-        </FormControl> */}
       </div>
       <div className='add-to-cart'>
         <Button
           variant='contained'
           className='add-to-cart'
+          onClick={addToCart}
         >
           Add to Cart
         </Button>

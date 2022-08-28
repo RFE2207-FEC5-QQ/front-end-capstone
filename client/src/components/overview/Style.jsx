@@ -18,7 +18,12 @@ const Style = ({ styles, updateStyle, selectedStyle }) => {
   // Make header look nicer
     return(
       <div className='overview-styles'>
-        STYLE > SELECTED STYLE
+        <span className='style-selector'>
+          STYLE >
+        </span>
+        <span className='selected-style'>
+          {selectedStyle.name}
+        </span>
         <Grid container spacing={1}>
           {styles.map(style => {
             return (

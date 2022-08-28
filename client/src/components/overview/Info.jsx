@@ -47,7 +47,9 @@ const Info = ({ product, selectedStyle }) => {
             precision={0.25}
             readOnly
           />
-          Read All Reviews
+          <a>
+            {`Read All [] Reviews`}
+          </a>
         </div>
         <div className='product-category'>
           {product.category}
@@ -55,11 +57,13 @@ const Info = ({ product, selectedStyle }) => {
         <div className='product-name'>
           {product.name}
         </div>
-        <div className='original-price'>
-          {`$${selectedStyle.original_price}`}
-        </div>
-        <div className='sale-price'>
-          {`$${selectedStyle.sale_price}`}
+        <div className='product-price'>
+          <div className='original-price'>
+            {`$${selectedStyle.original_price}`}
+          </div>
+          <div className='sale-price'>
+            {`$${selectedStyle.sale_price}`}
+          </div>
         </div>
         <div className='product-social-media'>
           Facebook
@@ -78,7 +82,9 @@ const Info = ({ product, selectedStyle }) => {
             precision={0.25}
             readOnly
           />
-          Read All Reviews
+          <a>
+            {`Read All [] Reviews`}
+          </a>
         </div>
         <div className='product-category'>
           {product.category}
