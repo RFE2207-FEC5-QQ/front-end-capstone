@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
-import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
+import Comparison from './Comparison.jsx';
 
 const RelatedCard = ({ item }) => {
 
@@ -107,7 +107,11 @@ const RelatedCard = ({ item }) => {
     <React.Fragment>
       {(detail && style && rating) &&
         <div className='related-card'>
-          <ArrowDropDownOutlinedIcon className='related-button'></ArrowDropDownOutlinedIcon>
+          <Comparison
+            className='comparison'
+            mainProduct={item}
+            currProduct={{detail, salePrice, origPrice, rating}}
+          />
           {imgURL
             ? <div className='card-img'><img src={imgURL}></img></div>
             : <div className='no-img'><ImageNotSupportedIcon sx={{border: 'solid 1px red'}}/></div>

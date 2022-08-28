@@ -84,13 +84,48 @@ body {
   margin: 1;
 }
 
-.related-button {
+.comparison-modal {
+  border: 2px solid pink;
+  background-color: white;
+  height: 300px;
+  width: 500px;
+  align-items: center;
+}
+
+.comparison-button {
   display: inline;
   position: fixed;
   margin-top: 0.5em;
   margin-right: 0.5em;
   right: 0;
+  border-radius: 50%;
 }
+
+.comparison-button:hover {
+  background-color: #EBEDEF;
+}
+
+.comparison-title {
+  text-align: center;
+}
+
+.comparison-content {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.comparison-content > * {
+  border: 2px solid gold;
+  flex: 1;
+  text-align: center;
+}
+
+.product-comparator {
+  border: 2px solid greenyellow;
+  font-weight: 900;
+}
+
+
 
 .strike-original-price {
   text-decoration: line-through;
