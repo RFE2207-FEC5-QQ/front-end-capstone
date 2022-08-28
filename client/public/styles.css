@@ -9,6 +9,7 @@ body {
   margin-left: 1rem;
 }
 
+/* Navigation bar */
 .main-header {
   font-family: 'Elan';
 }
@@ -22,15 +23,16 @@ body {
   z-index: 999;
 }
 
+/* Related products carousel and cards */
 .carousel {
-  border: 2px solid black;
+  /* border: 2px solid black; */
   width: 680px;
   margin: auto;
 }
 
 .related-card {
   flex-direction: column;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   position: relative;
   width: 220px;
   height: 300px;
@@ -41,7 +43,7 @@ body {
 }
 
 .card-img {
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   display: flex;
   justify-content: center;
   width: 65%;
@@ -52,7 +54,7 @@ body {
 }
 
 .card-content {
-  border: 2px solid grey;
+  /* border: 2px solid grey; */
   display: flex;
   flex-direction: column;
   height: 50%;
@@ -90,47 +92,7 @@ body {
   color: #666;
 }
 
-.comparison-modal {
-  border: 2px solid pink;
-  background-color: white;
-  height: 300px;
-  width: 500px;
-  align-items: center;
-}
-
-.comparison-button {
-  display: inline;
-  position: fixed;
-  margin-top: 0.5em;
-  margin-right: 0.5em;
-  right: 0;
-  border-radius: 50%;
-}
-
-.comparison-button:hover {
-  background-color: #EBEDEF;
-}
-
-.comparison-title {
-  text-align: center;
-}
-
-.comparison-content {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.comparison-content > * {
-  border: 2px solid gold;
-  flex: 1;
-  text-align: center;
-}
-
-.product-comparator {
-  border: 2px solid greenyellow;
-  font-weight: 900;
-}
-
+/* Related product card content */
 .strike-original-price {
   text-decoration: line-through;
   font-size: 0.75em;
@@ -149,4 +111,99 @@ body {
   font-size: 0.75em;
 }
 
+/* Comparison Modal */
+.comparison-modal {
+  /* border: 2px solid #D7DBDD; */
+  position: relative;
+  background-color: white;
+  height: 150px;
+  width: 300px;
+  align-items: left;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  overflow-y: auto;
+}
 
+::-webkit-scrollbar {
+  background: #fff;
+}
+
+.popup-arrow {
+  color: transparent;
+}
+
+.comparison-button {
+  display: inline;
+  position: fixed;
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+  right: 0;
+  border-radius: 50%;
+}
+
+.comparison-button:hover {
+  background-color: #EBEDEF;
+}
+
+.comparison-header-container {
+  /* border: 2px solid black; */
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding-top: 0.5em;
+  padding-bottom: 0.25em;
+}
+
+.comparison-title {
+  text-align: left;
+  font-size: 0.75em;
+  color: #666;
+}
+
+.comparison-content {
+  /* border: 2px solid purple; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.comparison-content > * {
+  /* border: 2px solid gold; */
+  flex: 1;
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 0.75em;
+}
+
+.comparison-values {
+  padding-top: 4em;
+}
+
+.product-comparator {
+  /* border: 2px solid greenyellow; */
+  font-weight: 900;
+}
+
+
+
+/* For product comparison modal */
+@keyframes anvil {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  1% {
+    transform: scale(0.96) translateY(0px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+    box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+  }
+}
+.popup-content {
+  -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}

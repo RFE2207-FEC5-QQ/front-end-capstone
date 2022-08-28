@@ -34,7 +34,7 @@ const RelatedCard = ({ item }) => {
       })
       .then((results) => {
         const productDetail = results.data;
-        // console.log('productDetail', productDetail);
+        console.log('productDetail', productDetail);
         setDetail(productDetail);
         setOrigPrice(productDetail.default_price);
       })
