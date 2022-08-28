@@ -92,7 +92,7 @@ const Overview = (props) => {
               skus={selectedStyle.skus}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='description-grid'>
             <Description
               product={product}
             />
