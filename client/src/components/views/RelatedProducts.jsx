@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'; // React module is imported 
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import RelatedCard from '../cards/RelatedCard.jsx';
-// import Carousel from 'react-material-ui-carousel';
 import { Paper, Button, Box } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -21,10 +20,10 @@ const responsive = {
   //   breakpoint: { max: 1024, min: 464 },
   //   items: 3
   // },
-  // mobile: {
-  //   breakpoint: { max: 464, min: 0 },
-  //   items: 1
-  // }
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
+  }
 };
 
 const RelatedProducts = () => {
@@ -35,11 +34,11 @@ const RelatedProducts = () => {
       .get('/related', {
         params: {
           // Placeholder productId for now.
-          productId: 37314,
+          productId: 37315,
         }
       })
       .then((results) => {
-        const relatedIds = results.data;
+        const relatedIds = [...new Set(results.data)];
         console.log('relatedIds', relatedIds);
         setRelatedList(relatedIds);
       })

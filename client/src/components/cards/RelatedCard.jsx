@@ -20,6 +20,7 @@ const RelatedCard = ({ item }) => {
   const [style, setStyle] = useState(null);
   const [imgURL, setImgURL] = useState(null);
   const [salePrice, setSalePrice] = useState(null);
+  const [percentOff, setPercentOff] = useState(null);
   const [origPrice, setOrigPrice] = useState(null);
   const [rating, setRating] = useState(null);
 
@@ -60,12 +61,14 @@ const RelatedCard = ({ item }) => {
             setImgURL(defaultStyle.photos[0].thumbnail_url);
           }
           if (defaultStyle.sale_price) {
-            set(defaultStyle.sale_price);
+            setSalePrice(defaultStyle.sale_price);
+            const discount = (origPrice - salePrice) / origPrice;
+            setPercentOff(discount);
           }
         } else {
           // Need to determine with Daniel what to do if default style not set in API.
-          // setStyle(productStyle.results[0]);
-          // setImgURL(productStyle.resultsphotos[0].thumbnail_url);
+          setStyle(productStyle.results[0]);
+          setImgURL(productStyle.results[0].photos[0].thumbnail_url);
         }
       })
       .catch((err) => {
@@ -90,7 +93,7 @@ const RelatedCard = ({ item }) => {
         }
         avgRating = sumRatings / numRatings;
         // console.log('productRating', productRatings);
-        console.log('avgRating', avgRating);
+        // console.log('avgRating', avgRating);
         setRating(avgRating);
       })
       .catch((err) => {
@@ -102,11 +105,11 @@ const RelatedCard = ({ item }) => {
 
   return (
     <React.Fragment>
-      {detail &&
+      {(detail && style && rating) &&
         <div className='related-card'>
-          <ArrowDropDownOutlinedIcon className='related-star'></ArrowDropDownOutlinedIcon>
+          <ArrowDropDownOutlinedIcon className='related-button'></ArrowDropDownOutlinedIcon>
           {imgURL
-            ? <img className='card-img' src={imgURL}></img>
+            ? <div className='card-img'><img src={imgURL}></img></div>
             : <div className='no-img'><ImageNotSupportedIcon sx={{border: 'solid 1px red'}}/></div>
           }
           <div className='card-content'>
@@ -114,10 +117,16 @@ const RelatedCard = ({ item }) => {
             <div className='card-description'>{detail.name}</div>
             {origPrice
               ? <React.Fragment>
-                <div className='card-description sale-price'>${origPrice}</div>
-                <div className='card-description strike-original-price'>${origPrice}</div>
+                <div className='card-description'>
+                  <span className='sale-price'>${origPrice}&nbsp;&nbsp;</span>
+                  <span className='strike-original-price'>${origPrice}</span>
+                </div>
               </React.Fragment>
-              : <div className='card-description'>${origPrice}</div>
+              : <React.Fragment>
+                <div className='card-description'>
+                  <span className='original-price'>${origPrice}</span>
+                </div>
+              </React.Fragment>
             }
             {/* Currently rating is not at correct precision. Fix later. */}
             <Rating
@@ -125,7 +134,8 @@ const RelatedCard = ({ item }) => {
               name="quarter-rating"
               value={rating}
               precision={0.25}
-              size='small'/>
+              size='small'
+              readOnly/>
           </div>
         </div>
       }
