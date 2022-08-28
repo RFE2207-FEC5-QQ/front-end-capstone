@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material'
+import { FormControl, InputLabel, Select, MenuItem, Button, Alert } from '@mui/material'
 
 const Cart = ({ selectedStyle, skus }) => {
 
@@ -7,6 +7,7 @@ const Cart = ({ selectedStyle, skus }) => {
   const [size, setSize] = useState('');
   const [qtys, setQtys] = useState([]);
   const [qty, setQty] = useState('');
+  const [sizeNotSelected, setSizeNotSelected] = useState('');
 
   const getSizes = () => {
     var sizeArr = [];
@@ -41,20 +42,33 @@ const Cart = ({ selectedStyle, skus }) => {
   const addToCart = () => {
     if (size === '') {
       console.log('select size');
+      setSizeNotSelected(true);
+    } else {
+      setSizeNotSelected(false);
+      console.log('add to cart button clicked: ', selectedStyle, size, qty);
     }
-    console.log('add to cart button clicked: ', selectedStyle, size, qty);
   }
 
   useEffect(() => {
     getSizes();
     setSize('');
     setQty('');
+    setSizeNotSelected('');
   }, [skus])
 
   if (skus) {
     return(
       <div className='overview-cart'>
         <div className='overview-select'>
+          {sizeNotSelected &&
+          <div className='size-warning'>
+            <Alert
+              severity="error"
+              sx={{width: '200px'}}
+            >Please Select Size
+            </Alert>
+          </div>
+          }
           <FormControl className='overview-select'>
             <InputLabel>
               Select Size

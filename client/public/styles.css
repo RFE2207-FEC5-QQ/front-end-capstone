@@ -101,6 +101,10 @@ body {
   padding: 10px;
 }
 
+.size-warning {
+  padding-bottom: 5px;
+}
+
 /* Description */
 #description-grid {
   padding-top: 50px;
