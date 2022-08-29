@@ -49,6 +49,7 @@ const RelatedProducts = () => {
 
   return (
     <React.Fragment>
+      <h4 className='related-header'>Related Products</h4>
       {relatedList &&
         <Carousel className='carousel' responsive={responsive}>
           {relatedList.map((product, i) => <RelatedCard key={i} item={product}/>)}
