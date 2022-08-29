@@ -114,7 +114,7 @@ class Reviews extends React.Component {
       sort: 'relevant',
       count: 2,
       page: 1,
-      filter: null
+      filter: {}
     };
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
@@ -134,20 +134,20 @@ class Reviews extends React.Component {
 
   setFilter(key, value) {
     let filter = this.state.filter;
-    if (filter) { // If filter state has been set to something besides null
+    if (filter[key]) { // If filter key exists
       let index = filter[key].indexOf(value);
       if (index !== -1) { // If this specific filter - value pair is found, toggle it off
         filter[key].splice(index, 1);
+        if (filter[key].length === 0) {
+          delete filter[key]; // If filter key has no values after toggling off, remove this filter key from object
+        }
       } else { // If this filter - value pair is not found, add it to the filters
         filter[key].push(value);
       }
-    } else { // If the filter state is set to null, add this filter - value pair
-      filter = {
-        [key]: [value]
-      };
+    } else { // If the filter key does not exist, add this filter - value pair
+      filter[key] = [value];
     }
     // After state is set, use getReviews as a callback to get filtered list of reviews
-    console.log(filter);
     this.setState({filter}, this.getReviews);
   }
 
@@ -164,11 +164,11 @@ class Reviews extends React.Component {
         let reviews = success.data.results;
         let filter = this.state.filter;
         // Additive filters
-        if (filter) {
+        if (Object.keys(filter).length > 0) {
           let filteredReviews = [];
           for (let review of reviews) {
             let match = true;
-            for (let key in filter) { // TODO: Currently not as efficient as it iterate through filters with no values
+            for (let key in filter) {
               if (filter[key].length !== 0 && !filter[key].includes(review[key])) {
                 match = false;
                 break;
