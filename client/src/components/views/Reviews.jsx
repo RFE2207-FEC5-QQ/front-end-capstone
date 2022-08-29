@@ -114,7 +114,7 @@ class Reviews extends React.Component {
       sort: 'relevant',
       count: 2,
       page: 1,
-      filter: {}
+      filter: null
     };
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
@@ -128,12 +128,26 @@ class Reviews extends React.Component {
   }
 
   handleMoreReviews() {
-    // After state is set, use getReviews as a callback to get sorted list of reviews
+    // After state is set, use getReviews as a callback to get list of reviews
     this.setState({count: this.state.count + 2}, this.getReviews);
   }
 
-  setFilter(filter) {
-    // After state is set, use getReviews as a callback to get sorted list of reviews
+  setFilter(key, value) {
+    let filter = this.state.filter;
+    if (filter) { // If filter state has been set to something besides null
+      let index = filter[key].indexOf(value);
+      if (index !== -1) { // If this specific filter - value pair is found, toggle it off
+        filter[key].splice(index, 1);
+      } else { // If this filter - value pair is not found, add it to the filters
+        filter[key].push(value);
+      }
+    } else { // If the filter state is set to null, add this filter - value pair
+      filter = {
+        [key]: [value]
+      };
+    }
+    // After state is set, use getReviews as a callback to get filtered list of reviews
+    console.log(filter);
     this.setState({filter}, this.getReviews);
   }
 
@@ -148,13 +162,14 @@ class Reviews extends React.Component {
     })
       .then((success) => {
         let reviews = success.data.results;
-        let filterObj = this.state.filter;
-        if (filterObj) {
+        let filter = this.state.filter;
+        // Additive filters
+        if (filter) {
           let filteredReviews = [];
           for (let review of reviews) {
             let match = true;
-            for (let key in filterObj) {
-              if (review[key] !== filterObj[key]) {
+            for (let key in filter) { // TODO: Currently not as efficient as it iterate through filters with no values
+              if (filter[key].length !== 0 && !filter[key].includes(review[key])) {
                 match = false;
                 break;
               }
@@ -195,7 +210,7 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     // DEBUG - Uncomment to get reviews on mount
-    this.getReviews();
+    // this.getReviews();
   }
 
 
@@ -204,7 +219,7 @@ class Reviews extends React.Component {
       <div className='reviews-view'>
         <h2>{'Ratings & Reviews'}</h2>
         <div className='reviews-panels'>
-          <ReviewMeta filterbyRating={(ratingStars) => this.setFilter({rating: parseInt(ratingStars)})} paletteMap={paletteMap} characteristicChart={characteristicChart}/>
+          <ReviewMeta filterbyRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))} paletteMap={paletteMap} characteristicChart={characteristicChart}/>
           <ReviewList reviews={this.state.reviews} sort={this.state.sort} getReviews={this.getReviews} handleSortChange={this.handleSortChange} handleMoreReviews={this.handleMoreReviews} ratingTheme={ratingTheme} paletteMap={paletteMap}/>
         </div>
       </div>
