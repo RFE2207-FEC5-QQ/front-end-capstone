@@ -47,8 +47,11 @@ const Style = ({ styles, updateStyle, selectedStyle }) => {
               return (
                 <div className='style-images' key={style.style_id}>
                   <Grid item xs={3}>
+                    <CheckIcon
+                      className={checked.style_id === style.style_id ? 'checked-image' : 'unchecked-image'}
+                    />
                     <ImageNotSupportedIcon
-                      className={checked.style_id === style.style_id ? 'style-image checked-image' : 'style-image'}
+                      className='style-image'
                       onClick={() => {styleClick(style)}}
                       sx={{
                         width: '68px',

@@ -97,6 +97,9 @@ body {
 }
 
 /* Cart */
+.overview-cart {
+  padding-top: 20px;
+}
 .overview-select {
   width: 200px;
   padding: 10px;
