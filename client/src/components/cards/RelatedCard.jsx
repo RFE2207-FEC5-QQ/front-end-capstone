@@ -12,9 +12,10 @@ import {
 } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
 
-const RelatedCard = ({ item }) => {
+const RelatedCard = ({ item, modal, onClick }) => {
   const [detail, setDetail] = useState(null);
   const [style, setStyle] = useState(null);
   const [imgURL, setImgURL] = useState(null);
@@ -24,7 +25,6 @@ const RelatedCard = ({ item }) => {
   const [rating, setRating] = useState(null);
 
   useEffect(() => {
-
     axios
       .get('/details', {
         params: {
@@ -106,16 +106,25 @@ const RelatedCard = ({ item }) => {
 
   }, []);
 
+  const handleRemove = () => {
+    onClick(item);
+  };
 
   return (
     <React.Fragment>
       {(detail && style && rating) &&
         <div className='related-card'>
-          <Comparison
-            className='comparison'
-            mainProduct={item}
-            currProduct={{detail, salePrice, origPrice, rating}}
-          />
+          {modal === 'outfit'
+            ? <CloseIcon
+              className='modal-button'
+              onClick={handleRemove}
+            />
+            : <Comparison
+              className='comparison'
+              mainProduct={item}
+              currProduct={{detail, salePrice, origPrice, rating}}
+            />
+          }
           {imgURL
             ? <div className='img-container'><img className='card-img' src={imgURL}></img></div>
             : <div className='img-container'><ImageNotSupportedIcon className='card-img' sx={{border: 'solid 1px red'}}/></div>

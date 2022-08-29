@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import RelatedCard from '../cards/RelatedCard.jsx';
 import { Paper, Button, Box } from '@mui/material';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -28,6 +30,7 @@ const responsive = {
 
 const RelatedProducts = () => {
   const [relatedList, setRelatedList] = useState(null);
+  const modalIcon = StarBorderOutlinedIcon;
 
   useEffect(() => {
     axios
@@ -52,7 +55,7 @@ const RelatedProducts = () => {
       <h4 className='related-header'>Related Products</h4>
       {relatedList &&
         <Carousel className='carousel' responsive={responsive}>
-          {relatedList.map((product, i) => <RelatedCard key={i} item={product}/>)}
+          {relatedList.map((product, i) => <RelatedCard key={i} item={product} modal='related'/>)}
         </Carousel>
       }
     </React.Fragment>

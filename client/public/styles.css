@@ -39,7 +39,8 @@ body {
 .card-description:nth-child(1),
 .card-rating,
 .strike-original-price,
-.comparison-title {
+.comparison-title,
+.modal-button {
   color: #666;
 }
 
@@ -93,7 +94,7 @@ body {
   border: 2px solid grey;
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 40%;
   padding: 0.5em;
 }
 
@@ -134,7 +135,7 @@ body {
   width: 0px;
 }
 
-.comparison-button {
+.modal-button {
   display: inline;
   position: fixed;
   margin-top: 0.5em;
@@ -143,7 +144,7 @@ body {
   border-radius: 50%;
 }
 
-.comparison-button:hover {
+.modal-button:hover {
   background-color: #EBEDEF;
 }
 
