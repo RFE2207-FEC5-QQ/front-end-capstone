@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
+import { Modal, Box } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 const Comparison = ({ mainProduct, currProduct }) => {
@@ -7,10 +8,19 @@ const Comparison = ({ mainProduct, currProduct }) => {
   const { detail, salePrice, origPrice, rating } = currProduct;
 
   const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
+  const handleClose = () => setOpen(false);
 
   return (
     <React.Fragment>
+      <StarBorderOutlinedIcon
+        className='comparison-button'
+        onClick={() => setOpen(open => !open)}
+      />
+      {/* <div className='test'>HI TESTING HERE</div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+      > */}
       <Popup
         trigger={
           <StarBorderOutlinedIcon
@@ -18,11 +28,11 @@ const Comparison = ({ mainProduct, currProduct }) => {
             onClick={() => setOpen(open => !open)}
           />
         }
-        // modal={true}
         open={open}
-        onClose={closeModal}
+        onClose={handleClose}
         closeOnDocumentClick
         position='bottom right'>
+        {/* <div> */}
         <div className="comparison-modal">
           <div className='comparison-header-container'>
             <div className='comparison-title'>COMPARING</div>
@@ -65,6 +75,8 @@ const Comparison = ({ mainProduct, currProduct }) => {
           </div>
         </div>
       </Popup>
+      {/* </Modal> */}
+
     </React.Fragment>
   );
 };

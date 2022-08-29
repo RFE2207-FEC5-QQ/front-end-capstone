@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Elan';
-  src: url('./fonts/ElanRegular.ttf') format('ttf'),
+  src: url('../src/fonts/Elan.ttf') format('ttf'),
 }
 
 html,
@@ -23,6 +23,25 @@ body {
   z-index: 999;
 }
 
+/* Common text size and color formatting for related product cards and modals. */
+.card-description:nth-child(1),
+.original-price,
+.sale-price,
+.strike-original-price,
+.discount,
+.card-rating,
+.comparison-title,
+.comparison-content > * {
+  font-size: 0.75rem;
+}
+
+.card-description:nth-child(1),
+.card-rating,
+.strike-original-price,
+.comparison-title {
+  color: #666;
+}
+
 /* Related products carousel and cards */
 .carousel {
   /* border: 2px solid black; */
@@ -32,50 +51,36 @@ body {
 
 .related-card {
   flex-direction: column;
-  /* border: 2px solid red; */
+  border: 2px solid red;
   position: relative;
   width: 220px;
   height: 300px;
+  /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2)) */
 }
 
 .related-card:hover {
   cursor: pointer;
 }
 
-.card-img {
-  /* border: 2px solid yellow; */
+.img-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 65%;
-  height: 50%;
-  object-fit: contain;
-  overflow: hidden;
+  height: 55%;
   margin: auto;
 }
 
-.card-content {
-  /* border: 2px solid grey; */
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  padding: 0.5em;
-}
-
-.card-description:nth-child(1) {
-  color: #666;
-  font-size: 0.75em;
-}
-
-.card-description:nth-child(2) {
-  flex-basis: 30%;
-  font-size: 1;
-}
-
-.card-description:nth-child(3) {
-  font-size: 1em;
-}
-
+.card-img,
 .no-img {
+  border: 2px solid yellow;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+/* .no-img {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,40 +88,43 @@ body {
   width: 100%;
   height: 50%;
   margin: 1;
+} */
+
+.card-content {
+  border: 2px solid grey;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  padding: 0.5em;
 }
+
+
+.card-description:nth-child(2) {
+  flex-basis: 30%;
+  font-size: 1rem;
+}
+
 
 .card-rating {
   display: flex;
   align-items: center;
-  font-size: 0.75em;
-  color: #666;
 }
 
 /* Related product card content */
 .strike-original-price {
   text-decoration: line-through;
-  font-size: 0.75em;
-  opacity: 0.5;
 }
 
-.original-price {
-  font-size: 0.75em;
-}
 .sale-price {
   color: red;
-  font-size: 0.75em;
-}
-
-.discount {
-  font-size: 0.75em;
 }
 
 /* Comparison Modal */
 .comparison-modal {
-  /* border: 2px solid #D7DBDD; */
+  border: 2px solid #D7DBDD;
   position: relative;
-  background-color: white;
-  height: 150px;
+  /* background-color: white; */
+  height: 200px;
   width: 300px;
   align-items: left;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
@@ -126,11 +134,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  background: #fff;
-}
-
-.popup-arrow {
-  color: transparent;
+  width: 0px;
 }
 
 .comparison-button {
@@ -147,44 +151,31 @@ body {
 }
 
 .comparison-header-container {
-  /* border: 2px solid black; */
+  border: 2px solid black;
   position: sticky;
   top: 0;
-  background-color: white;
-  padding-top: 0.5em;
+  z-index: 999;
+  padding-top: 0.25em;
   padding-bottom: 0.25em;
 }
 
-.comparison-title {
-  text-align: left;
-  font-size: 0.75em;
-  color: #666;
-}
-
 .comparison-content {
-  /* border: 2px solid purple; */
+  border: 2px solid purple;
   display: flex;
   justify-content: space-evenly;
 }
 
 .comparison-content > * {
-  /* border: 2px solid gold; */
+  border: 2px solid gold;
   flex: 1;
   flex-basis: 100%;
   text-align: center;
-  font-size: 0.75em;
-}
-
-.comparison-values {
-  padding-top: 4em;
 }
 
 .product-comparator {
-  /* border: 2px solid greenyellow; */
+  border: 2px solid greenyellow;
   font-weight: 900;
 }
-
-
 
 /* For product comparison modal */
 @keyframes anvil {

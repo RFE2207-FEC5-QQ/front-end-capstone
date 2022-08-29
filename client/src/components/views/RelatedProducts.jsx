@@ -34,7 +34,7 @@ const RelatedProducts = () => {
       .get('/related', {
         params: {
           // Placeholder productId for now.
-          productId: 37315,
+          productId: 37311,
         }
       })
       .then((results) => {

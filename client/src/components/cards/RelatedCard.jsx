@@ -91,10 +91,15 @@ const RelatedCard = ({ item }) => {
           numRatings += parseInt(productRatings[i]);
           sumRatings += i * productRatings[i];
         }
-        avgRating = sumRatings / numRatings;
+        if (numRatings) {
+          avgRating = sumRatings / numRatings;
+          setRating([avgRating, numRatings]);
+        } else {
+          // Decide whether to modify state differently later.
+          setRating([0, 0]);
+        }
         // console.log('productRating', productRatings);
         // console.log('avgRating', avgRating);
-        setRating([avgRating, numRatings]);
       })
       .catch((err) => {
         throw ('Error getting product rating');
@@ -113,8 +118,8 @@ const RelatedCard = ({ item }) => {
             currProduct={{detail, salePrice, origPrice, rating}}
           />
           {imgURL
-            ? <div className='card-img'><img src={imgURL}></img></div>
-            : <div className='no-img'><ImageNotSupportedIcon sx={{border: 'solid 1px red'}}/></div>
+            ? <div className='img-container'><img className='card-img' src={imgURL}></img></div>
+            : <div className='img-container'><ImageNotSupportedIcon className='card-img' sx={{border: 'solid 1px red'}}/></div>
           }
           <div className='card-content'>
             <div className='card-description'>{detail.category}</div>
