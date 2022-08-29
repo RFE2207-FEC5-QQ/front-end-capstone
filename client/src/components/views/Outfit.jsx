@@ -41,9 +41,9 @@ const Outfit = () => {
   }, []);
 
   const addOutfit = () => {
-    if (!outfits.includes(37317)) {
-      localStorage.setItem('outfits', JSON.stringify([...outfits, 37317]));
-      setOutfits([...outfits, 37317]);
+    if (!outfits.includes(37316)) {
+      localStorage.setItem('outfits', JSON.stringify([...outfits, 37316]));
+      setOutfits([...outfits, 37316]);
     }
   };
 
