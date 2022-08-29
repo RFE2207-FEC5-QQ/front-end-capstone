@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Grid } from '@mui/material';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import CheckIcon from '@mui/icons-material/Check';
 
 const Style = ({ styles, updateStyle, selectedStyle }) => {
 
@@ -31,8 +32,11 @@ const Style = ({ styles, updateStyle, selectedStyle }) => {
               return (
                 <div className='style-images' key={style.style_id}>
                   <Grid item xs={3}>
+                    <CheckIcon
+                      className={checked.style_id === style.style_id ? 'checked-image' : 'unchecked-image'}
+                    />
                     <img
-                      className={checked.style_id === style.style_id ? 'style-image checked-image' : 'style-image'}
+                      className='style-image'
                       src={style.photos[0].thumbnail_url}
                       onClick={() => {styleClick(style)}}
                     ></img>

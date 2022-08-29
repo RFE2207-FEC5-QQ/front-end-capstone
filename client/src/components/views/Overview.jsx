@@ -24,8 +24,8 @@ const Overview = (props) => {
     axios(options)
       .then(res => {
         setProducts(res.data);
-        setProduct(res.data[1]);
-        getStyles(res.data[1].id)
+        setProduct(res.data[0]);
+        getStyles(res.data[0].id)
       })
       .catch(err => {
         console.log(err)

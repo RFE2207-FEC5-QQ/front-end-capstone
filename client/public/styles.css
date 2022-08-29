@@ -80,12 +80,20 @@ body {
   object-fit: cover;
 }
 
-.style-images {
-  padding: 10px;
+.unchecked-image {
+  position: relative;
+  left: 50px;
+  top: 22px;
+  opacity: 0
 }
 
 .checked-image {
-  border: solid blue
+  border-radius: 50%;
+  background-color: white;
+  border: solid black;
+  position: relative;
+  left: 50px;
+  top: 30px;
 }
 
 /* Cart */
