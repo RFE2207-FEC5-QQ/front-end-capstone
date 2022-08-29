@@ -5,6 +5,8 @@ import { createRoot } from 'react-dom/client';
 import Navigation from './components/views/Navigation.jsx';
 import Overview from './components/views/Overview.jsx';
 import RelatedProducts from './components/views/RelatedProducts.jsx';
+// Ensure proper merge with new outfit component.
+import Outfit from './components/views/Outfit.jsx';
 import QuestionsAnswers from './components/views/QuestionsAnswers.jsx';
 import Reviews from './components/views/Reviews.jsx';
 
@@ -63,7 +65,10 @@ class App extends React.Component {
         <Navigation onChange={this.toggleColorMode}/>
         <Overview/>
         <RelatedProducts/>
+        {/* Ensure proper merge due to inclusion of Outfit component created on outfit branch. */}
+        <Outfit/>
         <QuestionsAnswers/>
+        {/* Uncomment out Reviews once merging with main branch. */}
         {/* <Reviews/> */}
       </ThemeProvider>
     );

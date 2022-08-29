@@ -62,6 +62,8 @@ body {
 .related-card:hover {
   cursor: pointer;
   border: 2px solid #EBEDEF;
+  /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2)) */
+
 }
 
 .img-container {
@@ -128,7 +130,7 @@ body {
   overflow-y: auto;
 }
 
-::-webkit-scrollbar {
+.comparison-modal::-webkit-scrollbar {
   width: 0px;
 }
 
@@ -192,4 +194,13 @@ body {
 }
 .popup-content {
   -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+
+/* Outfit cards */
+.add-outfits-btn-container {
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid steelblue; */
 }

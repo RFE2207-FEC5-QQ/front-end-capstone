@@ -15,7 +15,6 @@ import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import Comparison from './Comparison.jsx';
 
 const RelatedCard = ({ item }) => {
-
   const [detail, setDetail] = useState(null);
   const [style, setStyle] = useState(null);
   const [imgURL, setImgURL] = useState(null);
