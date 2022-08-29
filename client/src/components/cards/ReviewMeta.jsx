@@ -9,7 +9,6 @@ class ReviewMeta extends React.Component {
   // Props:
   // characteristicChart
   // paletteMap
-  // ratingTheme
   constructor(props) {
     super(props);
     this.state = {
@@ -85,27 +84,32 @@ class ReviewMeta extends React.Component {
         <div className='review-meta-topbar'>
           <div className='review-meta-avg-rating'>
             <div id='review-meta-avg-rating-number'>{averageRating.toFixed(1)}</div>
-            <Rating
-              sx={{
-                color: this.props.paletteMap[Math.round(averageRating)][1]
-              }}
-              name='avg-rating'
-              value={averageRating}
-              precision={0.25}
-              readOnly
-            />
+            <div className='review-meta-avg-rating-stars-amount'>
+              <Rating
+                sx={{
+                  color: this.props.paletteMap[Math.round(averageRating)][1]
+                }}
+                name='avg-rating'
+                value={averageRating}
+                precision={0.25}
+                readOnly
+              />
+              <div id='review-meta-total-rating-count'>
+                {totalReviews} Ratings
+              </div>
+            </div>
           </div>
           <div className='review-meta-recommended'>
             <CheckCircleIcon fontSize='large'/>
             {(parseInt(this.state.reviewMeta.recommended.true) / (parseInt(this.state.reviewMeta.recommended.true) + parseInt(this.state.reviewMeta.recommended.false)) * 100).toFixed(0)}%
           </div>
         </div>
-        <ThemeProvider theme={this.props.ratingTheme}>
-          <div className='review-meta-avg-rating-breakdown'>
-            <h2>Rating Breakdown</h2>
-            {Object.keys(this.state.reviewMeta.ratings).map((key) => (
-              <div key={key} className='review-meta-avg-rating-breakdown-entry'>
-                <div id='review-meta-avg-rating-breakdown-key'>
+        <div className='review-meta-avg-rating-breakdown'>
+          <h2>Rating Breakdown</h2>
+          {Object.keys(this.state.reviewMeta.ratings).map((key) => (
+            <div key={key} className='review-meta-avg-rating-breakdown-entry' onClick={() => this.props.filterbyRating(key)}>
+              <div className='review-meta-avg-rating-breakdown-stars'>
+                <span id='review-meta-avg-rating-breakdown-stars-amount'>
                   <Rating
                     // sx={{
                     //   color: this.props.paletteMap[key][1]
@@ -115,7 +119,10 @@ class ReviewMeta extends React.Component {
                     readOnly
                     size='small'
                   />
-                </div>
+                </span>
+                <span id='review-meta-avg-rating-breakdown-stars-count'>({this.state.reviewMeta.ratings[key]})</span>
+              </div>
+              <span className='review-meta-avg-rating-breakdown-bar'>
                 <LinearProgress
                   sx={{
                     bgcolor: '#333333',
@@ -125,25 +132,25 @@ class ReviewMeta extends React.Component {
                   value={(parseInt(this.state.reviewMeta.ratings[key]) / totalReviews) * 100}
                   color={'success'}
                 />
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className='review-meta-characteristics'>
+          {Object.keys(this.state.reviewMeta.characteristics).map((key) => (
+            <div key={key} className='review-meta-characteristics-entry'>
+              <div className='review-meta-characteristics-labels'>
+                <span id='review-meta-characteristic-left'>{this.props.characteristicChart[key][1]}</span>
+                <span id='review-meta-characteristic-center'>{key}</span>
+                <span id='review-meta-characteristic-right'>{this.props.characteristicChart[key][5]}</span>
               </div>
-            ))}
-          </div>
-          <div className='review-meta-characteristics'>
-            {Object.keys(this.state.reviewMeta.characteristics).map((key) => (
-              <div key={key} className='review-meta-characteristics-entry'>
-                <div className='review-meta-labels'>
-                  <span id='review-meta-characteristic-left'>{this.props.characteristicChart[key][1]}</span>
-                  <span id='review-meta-characteristic-center'>{key}</span>
-                  <span id='review-meta-characteristic-right'>{this.props.characteristicChart[key][5]}</span>
-                </div>
-                <LinearProgress
-                  variant='determinate'
-                  value={((parseInt(this.state.reviewMeta.characteristics[key]['value']) - 1) / 4) * 100}
-                />
-              </div>
-            ))}
-          </div>
-        </ThemeProvider>
+              <LinearProgress
+                variant='determinate'
+                value={((parseInt(this.state.reviewMeta.characteristics[key]['value']) - 1) / 4) * 100}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
