@@ -24,28 +24,20 @@ router.get('/reviews', (req, res, next) => {
     .then((success) => {
       if (req.query.sort === 'relevant') {
         let reviewWeights = {};
-        for (review of success.data.results) {
-          review['helpful'] = null;
+        let sortedRelevant = [];
+        for (let i = 0; i < success.data.results.length; i++) {
+          let review = success.data.results[i];
+          review['helpful'] = i;
           review['newest'] = null;
           reviewWeights[review.review_id] = review;
-        }
-        let relevantSort = success.data.results.slice().sort(function(a, b) {
-          return b.helpfulness - a.helpfulness;
-        });
-        for (var i = 0; i < relevantSort.length; i++) {
-          reviewWeights[relevantSort[i].review_id]['helpful'] = i;
         }
         let newestSort = success.data.results.slice().sort(function(a, b) {
           return new Date(b.date).getTime() - new Date(a.date).getTime();
         });
-        for (var i = 0; i < newestSort.length; i++) {
-          reviewWeights[newestSort[i].review_id]['newest'] = i;
-        }
-        let sortedRelevant = [];
-        for (let reviewId in reviewWeights) {
-          reviewWeights[reviewId]['relevance'] = reviewWeights[reviewId]['helpful'] + ((reviewWeights[reviewId]['newest'] + 1) * 1.2);
+        for (let i = 0; i < newestSort.length; i++) {
+          let reviewId = newestSort[i].review_id;
+          reviewWeights[reviewId]['relevance'] = reviewWeights[reviewId]['helpful'] + ((i + 1) * 1.2);
           delete reviewWeights[reviewId]['helpful'];
-          delete reviewWeights[reviewId]['newest'];
           sortedRelevant.push(reviewWeights[reviewId]);
         }
         sortedRelevant.sort(function(a, b) {
