@@ -8,6 +8,9 @@ import Review from '../cards/Review.jsx';
 
 class ReviewList extends React.Component {
 
+  // Props:
+  // paletteMap
+  // ratingTheme
   constructor(props) {
     super(props);
     // TODO: Add selector for number of reviews to display, page number
@@ -129,7 +132,7 @@ class ReviewList extends React.Component {
         </div>
         {
           this.state.reviews.length === 0 ? 'Reviews Not Found' : this.state.reviews.map((review) => (
-            <Review review={review} getReviews={this.getReviews} key={review.review_id}/>
+            <Review review={review} getReviews={this.getReviews} ratingTheme={this.props.ratingTheme} paletteMap={this.props.paletteMap} key={review.review_id}/>
           ))
         }
         <div className='review-buttons'>

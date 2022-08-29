@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Rating } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
-const Review = ({review, getReviews}) =>{
+
+const Review = ({review, getReviews, ratingTheme, paletteMap}) =>{
 
   // TODO: Only allow someone to mark a review as helpful once
   // Cache session with cookies to get their marked reviews
@@ -35,7 +36,14 @@ const Review = ({review, getReviews}) =>{
     <div className='review'>
       <div className='review-topline'>
         <span className='review-rating'>
-          <Rating name="rating" value={review.rating} readOnly />
+          <Rating
+            sx={{
+              color: paletteMap[review.rating][1]
+            }}
+            name="rating"
+            value={review.rating}
+            readOnly
+          />
         </span>
         <div className='review-name-date'>
           <span className='review-name'>{review.reviewer_name}</span>
