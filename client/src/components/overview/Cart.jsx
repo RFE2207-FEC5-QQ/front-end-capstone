@@ -12,7 +12,9 @@ const Cart = ({ selectedStyle, skus }) => {
   const getSizes = () => {
     var sizeArr = [];
     for (var item in skus) {
-      sizeArr.push(skus[item].size);
+      if (skus[item].size) {
+        sizeArr.push(skus[item].size);
+      }
     }
     setSizes(sizeArr);
   }
@@ -56,7 +58,7 @@ const Cart = ({ selectedStyle, skus }) => {
     setSizeNotSelected('');
   }, [skus])
 
-  if (skus) {
+  if (sizes.length) {
     return(
       <div className='overview-cart'>
         <div className='overview-select'>
