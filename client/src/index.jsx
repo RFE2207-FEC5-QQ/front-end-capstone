@@ -42,7 +42,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 0,
+      productId: 37311 // TODO: Change to currently viewed product ID using context
     };
   }
 
@@ -54,7 +54,7 @@ class App extends React.Component {
         <Overview/>
         <RelatedProducts/>
         <QuestionsAnswers/>
-        <Reviews/>
+        <Reviews productId={this.state.productId}/>
       </ThemeProvider>
     );
   }

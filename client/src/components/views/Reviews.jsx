@@ -79,7 +79,6 @@ class Reviews extends React.Component {
     super(props);
     // TODO: Add selector for number of reviews to display, page number
     this.state = {
-      productId: 37311,
       // DEBUG - Using sample review
       reviews: [
         {
@@ -120,12 +119,11 @@ class Reviews extends React.Component {
       count: 2,
       page: 1,
       filter: {},
-      showModal: false
+      showReviewModal: false
     };
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
-    this.postReview = this.postReview.bind(this);
     this.openReviewModal = this.openReviewModal.bind(this);
     this.closeReviewModal = this.closeReviewModal.bind(this);
 
@@ -163,7 +161,7 @@ class Reviews extends React.Component {
   getReviews() {
     return axios.get('/reviews', {
       params: {
-        productId: this.state.productId,
+        productId: this.props.productId,
         sort: this.state.sort,
         count: this.state.count,
         page: this.state.page
@@ -196,37 +194,12 @@ class Reviews extends React.Component {
       });
   }
 
-  postReview() {
-    // DEBUG - Using test values
-    axios.post('/reviews', {
-      productId: 37311,
-      rating: 5,
-      summary: 'Just so great',
-      body: 'Seriously just the best piece of clothing in my wardrobe. Would give 6 stars if I could!',
-      recommend: true,
-      name: 'Ryan',
-      email: 'ryan@example.com',
-      photos: ['https://i.imgur.com/EPHb3G6.jpeg'],
-      characteristics: {}
-    })
-      .then((success) => {
-        console.log('POST success!'); // DEBUG
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  openReviewModal() {
+    this.setState({showReviewModal: true});
   }
 
-  openReviewModal(e) {
-    e.preventDefault();
-    console.log('open review');
-    this.setState({showModal: true});
-  }
-
-  closeReviewModal(e) {
-    e.preventDefault();
-    console.log('close review');
-    this.setState({showModal: false});
+  closeReviewModal() {
+    this.setState({showReviewModal: false});
   }
 
   componentDidMount() {
@@ -241,7 +214,7 @@ class Reviews extends React.Component {
         <h2>{'Ratings & Reviews'}</h2>
         <div className='reviews-panels'>
           <ReviewMeta
-            productId={this.state.productId}
+            productId={this.props.productId}
             filterbyRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
             paletteMap={paletteMap}
             characteristicChart={characteristicChart}
@@ -256,7 +229,7 @@ class Reviews extends React.Component {
             ratingTheme={ratingTheme}
             paletteMap={paletteMap}
           />
-          {this.state.showModal && <ReviewFormModal closeReviewModal={this.closeReviewModal}/>}
+          {this.state.showReviewModal && <ReviewFormModal closeReviewModal={this.closeReviewModal} productId={this.props.productId}/>}
         </div>
       </div>
     );
