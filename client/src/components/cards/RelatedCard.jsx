@@ -127,7 +127,7 @@ const RelatedCard = ({ item, modal, onClick }) => {
           }
           {imgURL
             ? <div className='img-container'><img className='card-img' src={imgURL}></img></div>
-            : <div className='img-container'><ImageNotSupportedIcon className='card-img' sx={{border: 'solid 1px red'}}/></div>
+            : <div className='img-container'><ImageNotSupportedIcon className='no-img'/></div>
           }
           <div className='card-content'>
             <div className='card-description'>{detail.category}</div>

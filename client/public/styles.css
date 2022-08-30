@@ -84,6 +84,11 @@ body {
   height: 100%;
 }
 
+.related-card:hover .no-img {
+  width: 20%;
+  height: 20%;
+}
+
 .img-container {
   display: flex;
   justify-content: center;
@@ -93,9 +98,8 @@ body {
   margin: auto;
 }
 
-.card-img,
-.no-img {
-  border: 2px solid yellow;
+.card-img {
+  /* border: 2px solid yellow; */
   width: 97%;
   height: 97%;
   object-fit: cover;
@@ -104,7 +108,7 @@ body {
 }
 
 .card-content {
-  border: 2px solid grey;
+  /* border: 2px solid grey; */
   display: flex;
   flex-direction: column;
   height: 30%;
