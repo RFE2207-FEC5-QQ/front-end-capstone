@@ -251,9 +251,9 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     // DEBUG - Uncomment to get reviews on mount
-    this.getReviews();
+    // this.getReviews();
     // DEBUG - Uncomment to get review meta on mount
-    this.getReviewMeta();
+    // this.getReviewMeta();
   }
 
 

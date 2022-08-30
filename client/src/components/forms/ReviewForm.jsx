@@ -65,7 +65,7 @@ export default class ReviewForm extends React.Component {
   }
 
   render() {
-    // console.log(this.state.characteristics);
+    // console.log(this.state);
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
         <div className='review-form-rating'>
@@ -120,10 +120,10 @@ export default class ReviewForm extends React.Component {
                       type='radio'
                       name={`characteristic-${characteristic.toLowerCase()}-${key}`}
                       value={key}
-                      checked={this.state.characteristics[characteristic] === parseInt(key)}
+                      checked={this.state.characteristics[this.props.metaCharacteristics[characteristic].id] === parseInt(key)}
                       onChange={(e) => {
                         let characteristics = this.state.characteristics;
-                        characteristics[characteristic] = parseInt(e.target.value);
+                        characteristics[this.props.metaCharacteristics[characteristic].id] = parseInt(e.target.value);
                         this.setState({characteristics});
                       }}
                     />
