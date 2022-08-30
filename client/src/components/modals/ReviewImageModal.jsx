@@ -4,38 +4,24 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
-export default class ReviewImageModal extends React.Component {
+const ReviewImageModal = ({id, url, closeImageModal}) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: this.props.id,
-      url: this.props.url
-    };
-    this.exitModal = this.exitModal.bind(this);
-  }
+  return (
+    <div className='review-image-modal'>
+      <Dialog open={true} onClose={closeImageModal}>
+        <DialogContent>
+          <img
+            src={url}
+            style={{ width: '100%'}}
+          />
+        </DialogContent>
+        <DialogActions>
+          <button onClick={closeImageModal}>Close</button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
 
-  exitModal(e) {
-    e.preventDefault();
-    this.props.closeImageModal();
-  }
+};
 
-  render() {
-    return (
-      <div className='review-image-modal'>
-        <Dialog open={true} onClose={this.exitModal}>
-          <DialogContent>
-            <img
-              src={this.state.url}
-              style={{ width: '100%'}}
-            />
-          </DialogContent>
-          <DialogActions>
-            <button onClick={this.exitModal}>Close</button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    );
-  }
-
-}
+export default ReviewImageModal;

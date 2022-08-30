@@ -15,11 +15,11 @@ export default class ReviewImage extends React.Component {
     this.closeImageModal = this.closeImageModal.bind(this);
   }
 
-  openImageModal() {
+  openImageModal(e) {
     this.setState({showModal: true});
   }
 
-  closeImageModal() {
+  closeImageModal(e) {
     this.setState({showModal: false});
   }
 

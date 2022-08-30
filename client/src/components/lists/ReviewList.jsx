@@ -5,7 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
 
-const ReviewList = ({reviews, sort, getReviews, handleSortChange, handleMoreReviews, ratingTheme, paletteMap}) => {
+const ReviewList = ({reviews, sort, getReviews, openReviewModal, handleSortChange, handleMoreReviews, ratingTheme, paletteMap}) => {
 
   console.log('reviews', reviews); // DEBUG
 
@@ -33,7 +33,7 @@ const ReviewList = ({reviews, sort, getReviews, handleSortChange, handleMoreRevi
           ))
         }
         <div className='review-buttons'>
-          <button onClick={handleMoreReviews}>More Reviews</button> <button>Add a Review +</button>
+          <button onClick={handleMoreReviews}>More Reviews</button> <button onClick={openReviewModal}>Add a Review +</button>
         </div>
       </div>
     </div>

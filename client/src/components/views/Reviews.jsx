@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import ReviewList from '../lists/ReviewList.jsx';
 import ReviewMeta from '../cards/ReviewMeta.jsx';
+import ReviewFormModal from '../modals/ReviewFormModal.jsx';
 
 const characteristicChart = {
   Size: {
@@ -118,12 +119,16 @@ class Reviews extends React.Component {
       sort: 'relevant',
       count: 2,
       page: 1,
-      filter: {}
+      filter: {},
+      showModal: false
     };
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
     this.postReview = this.postReview.bind(this);
+    this.openReviewModal = this.openReviewModal.bind(this);
+    this.closeReviewModal = this.closeReviewModal.bind(this);
+
   }
 
   handleSortChange(e) {
@@ -212,6 +217,18 @@ class Reviews extends React.Component {
       });
   }
 
+  openReviewModal(e) {
+    e.preventDefault();
+    console.log('open review');
+    this.setState({showModal: true});
+  }
+
+  closeReviewModal(e) {
+    e.preventDefault();
+    console.log('close review');
+    this.setState({showModal: false});
+  }
+
   componentDidMount() {
     // DEBUG - Uncomment to get reviews on mount
     // this.getReviews();
@@ -223,8 +240,23 @@ class Reviews extends React.Component {
       <div className='reviews-view'>
         <h2>{'Ratings & Reviews'}</h2>
         <div className='reviews-panels'>
-          <ReviewMeta productId={this.state.productId} filterbyRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))} paletteMap={paletteMap} characteristicChart={characteristicChart}/>
-          <ReviewList reviews={this.state.reviews} sort={this.state.sort} getReviews={this.getReviews} handleSortChange={this.handleSortChange} handleMoreReviews={this.handleMoreReviews} ratingTheme={ratingTheme} paletteMap={paletteMap}/>
+          <ReviewMeta
+            productId={this.state.productId}
+            filterbyRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
+            paletteMap={paletteMap}
+            characteristicChart={characteristicChart}
+          />
+          <ReviewList
+            reviews={this.state.reviews}
+            sort={this.state.sort}
+            getReviews={this.getReviews}
+            openReviewModal={this.openReviewModal}
+            handleSortChange={this.handleSortChange}
+            handleMoreReviews={this.handleMoreReviews}
+            ratingTheme={ratingTheme}
+            paletteMap={paletteMap}
+          />
+          {this.state.showModal && <ReviewFormModal closeReviewModal={this.closeReviewModal}/>}
         </div>
       </div>
     );
