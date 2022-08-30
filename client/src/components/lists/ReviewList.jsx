@@ -26,13 +26,15 @@ const ReviewList = ({reviews, sort, getReviews, handleSortChange, handleMoreRevi
           <MenuItem value={'relevant'}>relevance</MenuItem>
         </Select>
       </div>
-      {
-        reviews.length === 0 ? 'Reviews Not Found' : reviews.map((review) => (
-          <Review review={review} getReviews={getReviews} ratingTheme={ratingTheme} paletteMap={paletteMap} key={review.review_id}/>
-        ))
-      }
-      <div className='review-buttons'>
-        <button onClick={handleMoreReviews}>More Reviews</button> <button>Add a Review +</button>
+      <div className='review-list-entries'>
+        {
+          reviews.length === 0 ? 'Reviews Not Found' : reviews.map((review) => (
+            <Review review={review} getReviews={getReviews} ratingTheme={ratingTheme} paletteMap={paletteMap} key={review.review_id}/>
+          ))
+        }
+        <div className='review-buttons'>
+          <button onClick={handleMoreReviews}>More Reviews</button> <button>Add a Review +</button>
+        </div>
       </div>
     </div>
   );

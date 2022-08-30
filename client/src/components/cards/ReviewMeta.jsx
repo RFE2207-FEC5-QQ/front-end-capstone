@@ -65,7 +65,7 @@ export default class ReviewMeta extends React.Component {
 
   componentDidMount() {
     // DEBUG - Uncomment to get review meta on mount
-    this.getReviewMeta();
+    // this.getReviewMeta();
   }
 
   render() {
@@ -125,7 +125,7 @@ export default class ReviewMeta extends React.Component {
                 <LinearProgress
                   sx={{
                     bgcolor: '#333333',
-                    p: 0.3,
+                    p: 0.3
                   }}
                   variant='determinate'
                   value={(parseInt(this.state.reviewMeta.ratings[key]) / totalReviews) * 100}
@@ -144,6 +144,9 @@ export default class ReviewMeta extends React.Component {
                 <span id='review-meta-characteristic-right'>{this.props.characteristicChart[key][5]}</span>
               </div>
               <LinearProgress
+                sx={{
+                  p: 0.6
+                }}
                 variant='determinate'
                 value={((parseInt(this.state.reviewMeta.characteristics[key]['value']) - 1) / 4) * 100}
               />

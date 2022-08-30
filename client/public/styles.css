@@ -109,6 +109,12 @@
   padding: 0px 10px 10px 10px;
 }
 
+.review-list-entries {
+  height: 605px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
 .review {
   padding-top: 20px;
   padding-bottom: 20px;
