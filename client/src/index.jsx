@@ -88,20 +88,11 @@ class App extends React.Component {
       psychMode: this.state.psychMode,
     });
   }
-  // if (!this.state.darkMode) {
-  //   document.body.classList.remove('dark-mode');
-  //   return;
-  // }
-  // document.body.classList.add('dark-mode');
-  // }
 
-  componentDidUpdate() {
-    if (!this.state.darkMode) {
-      window.localStorage.setItem('dark', false);
-      document.body.classList.remove('dark-mode');
-    } else {
-      window.localStorage.setItem('dark', true);
-      document.body.classList.add('dark-mode');
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.darkMode !== prevState.darkMode) {
+      window.localStorage.setItem('dark', this.state.darkMode);
+      document.body.classList.toggle('dark-mode');
     }
   }
 
