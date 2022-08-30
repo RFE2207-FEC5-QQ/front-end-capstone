@@ -131,6 +131,10 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
     return (
       <div className='expanded-view'>
         <div className='gallery-carousel'>
+          <KeyboardArrowUpIcon
+            onClick={clickUp}
+            className={carouselIndex === 0 ? 'no-arrow' : 'up-arrow'}
+          />
           {photos.map((item, idx) => {
             return (
               <img
@@ -141,19 +145,23 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
               ></img>
             )
           })}
+          <KeyboardArrowDownIcon
+            onClick={clickDown}
+            className={carouselIndex === carousel.length - 1 ? 'no-arrow' : 'up-arrow'}
+          />
         </div>
         <div className='expanded-image-container'>
           <ArrowBackIcon
             onClick={clickBack}
-            className={index === 0 ? 'no-arrow' : 'expanded-left-arrow'}
+            className={(carouselIndex === 0 && index === 0) ? 'no-arrow' : 'expanded-left-arrow'}
           />
           <img
             className='expanded-image'
             src={photo.thumbnail_url}
-            ></img>
+          ></img>
           <ArrowForwardIcon
             onClick={clickForward}
-            className={index === photos.length - 1 ? 'no-arrow' : 'right-arrow'}
+            className={(index === photos.length - 1 && carouselIndex === carousel.length - 1) ? 'no-arrow' : 'right-arrow'}
           />
           <CropFreeIcon
             className='crop-icon'
