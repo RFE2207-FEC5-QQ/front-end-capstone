@@ -13,10 +13,12 @@ import {
 const Navigation = ({ mode, onChange }) => {
 
   return (
-    <Box className='view-navigation' sx={{ flexGrow: 1 }}>
-      <AppBar
+    // <Box className='view-navigation light-mode' sx={{ flexGrow: 1 }}>
+      <div className='nav-bar light-mode'>
+        {/* <Appbar
         position='fixed'
-        elevation={0}>
+        elevation={0}
+        > */}
         <Box sx={{ display: 'flex', justifyContent: 'end'}}>
           <FormControlLabel
             control={<Switch onChange={ onChange } color='default' sx={{ m: 0 }}/>}
@@ -46,8 +48,9 @@ const Navigation = ({ mode, onChange }) => {
           <div>REVIEWS</div>
         </Typography>
         <Divider variant='middle'/>
-      </AppBar>
-    </Box>
+      {/* </AppBar> */}
+      </div>
+    // </Box>
   );
 };
 

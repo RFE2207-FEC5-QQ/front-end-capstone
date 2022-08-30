@@ -3,24 +3,49 @@
   src: url('../src/fonts/Elan_Arcteryx_Thin.otf') format('otf'),
 } */
 
-html,
-body {
+:root {
+  --bg-light-color: #fff;
+  --bg-dark-color: #212F3C;
+  --text-light-color: #000;
+  --text-dark-color: #fff;
+}
+
+.light-mode {
+  background-color: var(--bg-light-color);
+  color: var(--text-light-color);
+}
+
+.dark-mode {
+  background-color: var(--bg-dark-color);
+  color: var(--text-dark-color);
+}
+
+html {
+/* body { */
   margin-top: 10rem;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
+  /* margin: 0; */
 }
 
 /* Navigation bar */
+/* .view-navigation {
+  position: fixed;
+  z-index: 999;
+} */
+
+.nav-bar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+
 .main-header {
   font-family: 'Elan';
 }
 
 .secondary-header {
   font-size: 0.75rem;
-}
-
-.view-navigation {
-  position: fixed;
-  z-index: 999;
 }
 
 /* Common text size and color formatting for related product cards and modals. */

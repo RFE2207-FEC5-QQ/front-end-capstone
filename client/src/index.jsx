@@ -12,34 +12,34 @@ import Reviews from './components/views/Reviews.jsx';
 
 const root = createRoot(document.getElementById('root'));
 
-const lightTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#ffffff',
-    },
-    divider: '#000000',
-    text: {
-      primary: '#000000',
-      secondary: '#000000',
-    },
-  }
-});
+// const lightTheme = createTheme({
+//   palette: {
+//     primary: {
+//       main: '#ffffff',
+//     },
+//     divider: '#000000',
+//     text: {
+//       primary: '#000000',
+//       secondary: '#000000',
+//     },
+//   }
+// });
 
-const darkTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#17202A',
-    },
-    background: {
-      default: '#17202A',
-    },
-    divider: '#ffffff',
-    text: {
-      primary: '#ffffff',
-      secondary: '#ffffff',
-    },
-  }
-});
+// const darkTheme = createTheme({
+//   palette: {
+//     primary: {
+//       main: '#17202A',
+//     },
+//     background: {
+//       default: '#17202A',
+//     },
+//     divider: '#ffffff',
+//     text: {
+//       primary: '#ffffff',
+//       secondary: '#ffffff',
+//     },
+//   }
+// });
 
 class App extends React.Component {
   constructor(props) {
@@ -52,6 +52,15 @@ class App extends React.Component {
   }
 
   toggleColorMode() {
+    const rootElement = document.querySelector('body');
+    const navElement = document.querySelector('.nav-bar');
+    if (!this.state.darkMode) {
+      rootElement.classList.add('dark-mode');
+      navElement.classList.add('dark-mode');
+    } else {
+      rootElement.classList.remove('dark-mode');
+      navElement.classList.remove('dark-mode');
+    }
     this.setState({
       productId: this.state.productId,
       darkMode: !this.state.darkMode,
@@ -60,8 +69,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <ThemeProvider theme={this.state.darkMode ? darkTheme : lightTheme}>
-        <CssBaseline/>
+      // <ThemeProvider theme={this.state.darkMode ? darkTheme : lightTheme}>
+      //   <CssBaseline/>
+      <React.Fragment>
         <Navigation onChange={this.toggleColorMode}/>
         <Overview/>
         <RelatedProducts/>
@@ -70,7 +80,8 @@ class App extends React.Component {
         <QuestionsAnswers/>
         {/* Uncomment out Reviews once merging with main branch. */}
         {/* <Reviews/> */}
-      </ThemeProvider>
+        {/* </ThemeProvider> */}
+      </React.Fragment>
     );
   }
 }
