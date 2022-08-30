@@ -77,7 +77,6 @@ class Reviews extends React.Component {
 
   constructor(props) {
     super(props);
-    // TODO: Add selector for number of reviews to display, page number
     this.state = {
       // DEBUG - Using sample review
       reviews: [
@@ -115,15 +114,49 @@ class Reviews extends React.Component {
           ]
         }
       ],
+      // DEBUG - Using sample review meta
+      reviewMeta: {
+        'product_id': '37311',
+        'ratings': {
+          '1': '10',
+          '2': '20',
+          '3': '30',
+          '4': '40',
+          '5': '50'
+        },
+        'recommended': {
+          'false': '75',
+          'true': '75'
+        },
+        'characteristics': {
+          'Fit': {
+            'id': 125031,
+            'value': '1.5'
+          },
+          'Length': {
+            'id': 125032,
+            'value': '3'
+          },
+          'Comfort': {
+            'id': 125033,
+            'value': '4'
+          },
+          'Quality': {
+            'id': 125034,
+            'value': '5'
+          }
+        }
+      },
       sort: 'relevant',
       count: 2,
       page: 1,
       filter: {},
-      showReviewModal: false
+      showReviewModal: true // DEBUG: Set to 'false' for production
     };
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
+    this.getReviewMeta = this.getReviewMeta.bind(this);
     this.openReviewModal = this.openReviewModal.bind(this);
     this.closeReviewModal = this.closeReviewModal.bind(this);
 
@@ -194,6 +227,20 @@ class Reviews extends React.Component {
       });
   }
 
+  getReviewMeta() {
+    axios.get('/reviews/meta', {
+      params: {
+        productId: this.props.productId
+      }
+    })
+      .then((success) => {
+        this.setState({reviewMeta: success.data});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   openReviewModal() {
     this.setState({showReviewModal: true});
   }
@@ -204,7 +251,9 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     // DEBUG - Uncomment to get reviews on mount
-    // this.getReviews();
+    this.getReviews();
+    // DEBUG - Uncomment to get review meta on mount
+    this.getReviewMeta();
   }
 
 
@@ -214,6 +263,7 @@ class Reviews extends React.Component {
         <h2>{'Ratings & Reviews'}</h2>
         <div className='reviews-panels'>
           <ReviewMeta
+            reviewMeta={this.state.reviewMeta}
             productId={this.props.productId}
             filterbyRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
             paletteMap={paletteMap}
@@ -229,7 +279,12 @@ class Reviews extends React.Component {
             ratingTheme={ratingTheme}
             paletteMap={paletteMap}
           />
-          {this.state.showReviewModal && <ReviewFormModal closeReviewModal={this.closeReviewModal} productId={this.props.productId}/>}
+          {this.state.showReviewModal &&
+          <ReviewFormModal
+            closeReviewModal={this.closeReviewModal}
+            reviewMeta={this.state.reviewMeta}
+            productId={this.props.productId}
+          />}
         </div>
       </div>
     );
