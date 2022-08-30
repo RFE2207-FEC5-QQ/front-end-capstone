@@ -33,6 +33,99 @@ body {
   margin-left: auto;
 }
 
+/* Image Gallery */
+.overview-gallery {
+  background-color: #E8E8E8;
+  position: relative;
+  width: 900px;
+  height: 600px;
+  border-radius: 5px;
+}
+
+.gallery-carousel {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: solid black 2px;
+}
+
+.selected-image-container {
+  position: absolute;
+  left: 100px;
+  width: 800px;
+  height: 600px;
+}
+
+.selected-image {
+  position: absolute;
+  left: 100px;
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: solid black 1px;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 10px;
+  top: 300px;
+  cursor: pointer;
+}
+
+.left-arrow {
+  position: absolute;
+  left: 10px;
+  top: 300px;
+  cursor: pointer;
+}
+
+.right-arrow:hover {
+  width: 30px;
+  height: 30px;
+  top: 297px;
+  right: 5px;
+}
+
+.left-arrow:hover {
+  width: 30px;
+  height: 30px;
+  top: 297px;
+  left: 5px;
+}
+
+.no-arrow {
+  opacity: 0;
+}
+
+.carousel-image {
+  border: solid lightgray;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selected-carousel-image {
+  border: solid black;
+  border-bottom: solid black 5px;
+}
+
+.crop-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.crop-icon:hover {
+  width: 25px;
+  height: 25px;
+}
+
 /* Product Info */
 .product-category {
   color: grey;
@@ -45,8 +138,8 @@ body {
 }
 
 .product-price {
-  padding: 5px;
-  padding-bottom: 10px;
+  margin: 5px;
+  margin-bottom: 10px;
 }
 
 .original-price {
@@ -57,7 +150,7 @@ body {
 .sale-price {
   color: red;
   display: inline;
-  padding: 5px;
+  margin: 5px;
 }
 
 /* Style Selector */
@@ -73,7 +166,7 @@ body {
 .style-image {
   border: 2px solid rgba(0,0,0,0);
   border-radius: 50%;
-  margin: 4px;
+  margin: 2px;
   cursor: pointer;
   height: 68px;
   width: 68px;

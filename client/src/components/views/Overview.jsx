@@ -68,13 +68,14 @@ const Overview = (props) => {
     getProducts();
   }, [])
 
-  if (products.length) {
+  if (products.length && Object.keys(selectedStyle).length) {
     return (
       <div className='view-overview'>
         <Grid container spacing={2}>
           <Grid item xs={8}>
             <Gallery
-              products={products}
+              product={product}
+              selectedStyle={selectedStyle}
             />
           </Grid>
           <Grid item xs={4}>
