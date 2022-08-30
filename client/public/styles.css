@@ -88,6 +88,7 @@
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
   align-items: center;
+  /* word-break: break-word; */
 }
 
 #review-meta-characteristic-left {
@@ -173,7 +174,7 @@
   margin-bottom: 20px;
 }
 
-.review-img {
+.review-image-preview {
   object-fit: cover;
   width: 100px;
   height: 100px;

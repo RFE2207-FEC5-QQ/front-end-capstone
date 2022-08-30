@@ -11,23 +11,32 @@ export default class ReviewImage extends React.Component {
       url: this.props.url,
       showModal: false
     };
-    this.toggleImageModal = this.toggleImageModal.bind(this);
+    this.openImageModal = this.openImageModal.bind(this);
+    this.closeImageModal = this.closeImageModal.bind(this);
   }
 
-  toggleImageModal() {
-    this.setState({showModal: !this.state.showModal});
+  openImageModal() {
+    this.setState({showModal: true});
+  }
+
+  closeImageModal() {
+    this.setState({showModal: false});
   }
 
   render() {
     return (
-      <div>
+      <div className='review-image'>
         {this.state.showModal &&
-        <ReviewImageModal key={this.state.id} id={this.state.id} url={this.state.url}/>}
+        <ReviewImageModal
+          id={this.state.id}
+          url={this.state.url}
+          closeImageModal={this.closeImageModal}
+        />}
         <img
-          className='review-img'
+          className='review-image-preview'
           src={this.state.url}
           loading='lazy'
-          onClick={this.toggleImageModal}
+          onClick={this.openImageModal}
         />
       </div>
 
