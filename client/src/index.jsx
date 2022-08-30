@@ -18,25 +18,83 @@ class App extends React.Component {
     this.state = {
       productId: 0,
       darkMode: false,
+      psychMode: false,
     };
-    this.toggleDarkMode = this.toggleDarkMode.bind(this);
+    this.darkMode = this.darkMode.bind(this);
+    this.godMode = this.godMode.bind(this);
+    this.ludiMode = this.ludiMode.bind(this);
+    this.psychMode = this.psychMode.bind(this);
   }
 
-  toggleDarkMode() {
-    const rootElement = document.querySelector('body');
-    rootElement.classList.toggle('dark-mode');
+  darkMode() {
     this.setState({
       productId: this.state.productId,
       darkMode: !this.state.darkMode,
+      psychMode: this.state.psychMode,
     });
   }
 
+  godMode() {
+    const rootElement = document.querySelector('body');
+    rootElement.classList.toggle('god-mode');
+    this.setState({
+      productId: this.state.productId,
+      darkMode: this.state.darkMode,
+      customMode: !this.state.customMode,
+    });
+  }
+
+  ludiMode() {
+    const rootElement = document.querySelector('body');
+    rootElement.classList.toggle('ludicrous-mode');
+    this.setState({
+      productId: this.state.productId,
+      darkMode: this.state.darkMode,
+      customMode: !this.state.customMode,
+    });
+  }
+
+  psychMode() {
+    this.setState({
+      productId: this.state.productId,
+      darkMode: this.state.darkMode,
+      psychMode: !this.state.psychMode,
+    });
+  }
+
+  componentDidMount() {
+    if (!this.state.darkMode) {
+      document.body.classList.remove('dark-mode');
+      return;
+    }
+    document.body.classList.add('dark-mode');
+  }
+
+  componentDidUpdate() {
+    if (!this.state.darkMode) {
+      document.body.classList.remove('dark-mode');
+    } else {
+      document.body.classList.add('dark-mode');
+    }
+  }
+
   render() {
+    const themeTogglers = {
+      toggleDark: this.darkMode,
+      toggleGod: this.godMode,
+      toggleLudi: this.ludiMode,
+      togglePsych: this.psychMode
+    };
+
+    const modes = {
+      psychMode: this.state.psychMode,
+    };
+
     return (
       <React.Fragment>
-        <Navigation onChange={this.toggleDarkMode}/>
+        <Navigation className='psychedlic mode' modes={modes} toggleTheme={themeTogglers}/>
         <Overview/>
-        <RelatedProducts/>
+        <RelatedProducts modes={modes}/>
         {/* Ensure proper merge due to inclusion of Outfit component created on outfit branch. */}
         <Outfit/>
         <QuestionsAnswers/>

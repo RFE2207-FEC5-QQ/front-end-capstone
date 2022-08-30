@@ -28,9 +28,10 @@ const responsive = {
   }
 };
 
-const RelatedProducts = () => {
+const RelatedProducts = ({ modes }) => {
   const [relatedList, setRelatedList] = useState(null);
   const modalIcon = StarBorderOutlinedIcon;
+  const { psychMode } = modes;
 
   useEffect(() => {
     axios
@@ -55,7 +56,7 @@ const RelatedProducts = () => {
       <h4 className='related-header'>Related Products</h4>
       {relatedList &&
         <Carousel className='carousel' responsive={responsive}>
-          {relatedList.map((product, i) => <RelatedCard key={i} item={product} modal='related'/>)}
+          {relatedList.map((product, i) => <RelatedCard psychMode={psychMode} key={i} item={product} modal='related'/>)}
         </Carousel>
       }
     </React.Fragment>

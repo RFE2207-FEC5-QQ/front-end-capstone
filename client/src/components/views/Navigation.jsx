@@ -1,4 +1,4 @@
-import React from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
+import React, { useState, useEffect } from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
 import {
   AppBar,
   Box,
@@ -10,42 +10,39 @@ import {
   Switch,
 } from '@mui/material';
 
-const Navigation = ({ mode, onChange }) => {
+const Navigation = ({ modes, toggleTheme }) => {
+  const { psychMode } = modes;
+  const { toggleDark, toggleGod, toggleLudi, togglePsych } = toggleTheme;
 
+  console.log(modes);
+
+  let onPsych = '';
+  if (psychMode) {
+    onPsych = 'psychedelic-mode';
+  } else {
+    onPsych = '';
+  }
+
+  console.log(modes);
   return (
-    <div className='nav-bar'>
-      {/* <div>God Mode</div>
-      <div>Ludicrous Mode</div>
-      <div>Psychedelic Mode</div> */}
-      <Box sx={{ display: 'flex', justifyContent: 'end'}}>
-        <FormControlLabel
-          control={<Switch onChange={ onChange } color='default' sx={{ m: 0 }}/>}
-        />
-      </Box>
-      <Typography
-        className='main-header'
-        variant='h2'
-        component='div'
-        sx={{ flexGrow: 1, padding: 0, margin: 'auto', fontWeight: 100}}>
-        <div className='main-header'>ATELIER</div>
-      </Typography>
-      <Divider variant='middle'/>
-      <Typography
-        className='secondary-header'
-        variant='text'
-        component='div'
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          padding: 1,
-        }}>
+    <div className={`nav-bar ${onPsych}`}>
+      <span onClick={toggleGod}>God Mode </span>
+      <span onClick={toggleLudi}>Ludicrous Mode </span>
+      <span onClick={togglePsych}>Psychedelic Mode</span>
+      <FormControlLabel
+        control={<Switch onChange={ toggleDark } color='default' sx={{ m: 0 }}/>}
+      />
+      <div className={`main-header ${onPsych}`}>
+        <h1 className={`layer glitch`}>ATELIER</h1>
+      </div>
+      <hr className='solid'/>
+      <div className={`secondary-header layer glitch ${onPsych}`}>
         <div>PRODUCT DETAIL</div>
         <div>RELATED PRODUCTS</div>
         <div>QUESTIONS</div>
         <div>REVIEWS</div>
-      </Typography>
-      <Divider variant='middle'/>
+      </div>
+      <hr className='solid'/>
     </div>
   );
 };

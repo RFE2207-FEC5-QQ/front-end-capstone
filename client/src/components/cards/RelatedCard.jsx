@@ -15,7 +15,7 @@ import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
 
-const RelatedCard = ({ item, modal, onClick }) => {
+const RelatedCard = ({ psychMode, item, modal, onClick }) => {
   const [detail, setDetail] = useState(null);
   const [style, setStyle] = useState(null);
   const [imgURL, setImgURL] = useState(null);
@@ -23,6 +23,14 @@ const RelatedCard = ({ item, modal, onClick }) => {
   const [percentOff, setPercentOff] = useState(null);
   const [origPrice, setOrigPrice] = useState(null);
   const [rating, setRating] = useState(null);
+
+  let onPsych = '';
+
+  if (psychMode) {
+    onPsych = 'psychedelic-mode';
+  } else {
+    onPsych = '';
+  }
 
   useEffect(() => {
     axios
@@ -129,7 +137,7 @@ const RelatedCard = ({ item, modal, onClick }) => {
             ? <div className='img-container'><img className='card-img' src={imgURL}></img></div>
             : <div className='img-container'><ImageNotSupportedIcon className='no-img'/></div>
           }
-          <div className='card-content'>
+          <div className={`card-content ${onPsych}`}>
             <div className='card-description'>{detail.category}</div>
             <div className='card-description'>{detail.name}</div>
             {origPrice
