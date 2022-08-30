@@ -134,6 +134,10 @@ body {
   left: 5px;
 }
 
+.up-arrow {
+  margin-left: 18px;
+}
+
 .no-arrow {
   opacity: 0;
 }
