@@ -18,10 +18,12 @@ class App extends React.Component {
     this.state = {
       productId: 0,
       darkMode: false,
+      punkMode: false,
       psychMode: false,
     };
     this.darkMode = this.darkMode.bind(this);
     this.godMode = this.godMode.bind(this);
+    this.punkMode = this.punkMode.bind(this);
     this.ludiMode = this.ludiMode.bind(this);
     this.psychMode = this.psychMode.bind(this);
   }
@@ -44,6 +46,16 @@ class App extends React.Component {
     });
   }
 
+  punkMode() {
+    this.setState({
+      productId: this.state.productId,
+      darkMode: this.state.darkMode,
+      punkMode: !this.state.punkMode,
+      psychMode: this.state.psychMode,
+    });
+  }
+
+
   ludiMode() {
     const rootElement = document.querySelector('body');
     rootElement.classList.toggle('ludicrous-mode');
@@ -58,6 +70,7 @@ class App extends React.Component {
     this.setState({
       productId: this.state.productId,
       darkMode: this.state.darkMode,
+      punkMode: this.state.punkMode,
       psychMode: !this.state.psychMode,
     });
   }
@@ -82,17 +95,19 @@ class App extends React.Component {
     const themeTogglers = {
       toggleDark: this.darkMode,
       toggleGod: this.godMode,
+      togglePunk: this.punkMode,
       toggleLudi: this.ludiMode,
-      togglePsych: this.psychMode
+      togglePsych: this.psychMode,
     };
 
     const modes = {
+      punkMode: this.state.punkMode,
       psychMode: this.state.psychMode,
     };
 
     return (
       <React.Fragment>
-        <Navigation className='psychedlic mode' modes={modes} toggleTheme={themeTogglers}/>
+        <Navigation modes={modes} toggleTheme={themeTogglers}/>
         <Overview/>
         <RelatedProducts modes={modes}/>
         {/* Ensure proper merge due to inclusion of Outfit component created on outfit branch. */}

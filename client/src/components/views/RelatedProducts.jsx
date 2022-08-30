@@ -52,14 +52,14 @@ const RelatedProducts = ({ modes }) => {
   }, []);
 
   return (
-    <React.Fragment>
-      <h4 className='related-header'>Related Products</h4>
+    <div className='related-products'>
+      <div className='related-header'>Related Products</div>
       {relatedList &&
         <Carousel className='carousel' responsive={responsive}>
           {relatedList.map((product, i) => <RelatedCard psychMode={psychMode} key={i} item={product} modal='related'/>)}
         </Carousel>
       }
-    </React.Fragment>
+    </div>
   );
 };
 

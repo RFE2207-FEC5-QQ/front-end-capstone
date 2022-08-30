@@ -64,7 +64,7 @@ const Outfit = () => {
 
   return (
     <React.Fragment>
-      <h4 className='related-header'>Your Outfit</h4>
+      <div className='related-header'>Your Outfit</div>
       <Carousel className='carousel' responsive={responsive}>
         {outfitCards}
       </Carousel>

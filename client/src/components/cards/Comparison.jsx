@@ -36,7 +36,7 @@ const Comparison = ({ mainProduct, currProduct }) => {
         <div className="comparison-modal theme">
           <div className='comparison-header-container'>
             <div className='comparison-title'>COMPARING</div>
-            <div className='comparison-content product-comparator'>
+            <div className='comparison-content product-name'>
               <div>{detail.name}</div>
               <div></div>
               <div>Main Product Name</div>
@@ -58,6 +58,12 @@ const Comparison = ({ mainProduct, currProduct }) => {
             <div className='product-comparator'>
               <div>Category</div>
               <div>Price</div>
+              <div>Rating</div>
+              <div>Rating</div>
+              <div>Rating</div>
+              <div>Rating</div>
+              <div>Rating</div>
+              <div>Rating</div>
               <div>Rating</div>
               <div>Rating</div>
               <div>Rating</div>

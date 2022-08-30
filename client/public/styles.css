@@ -1,7 +1,12 @@
-/* @font-face {
-  font-family: 'elon';
-  src: url('../src/fonts/Elan_Arcteryx_Thin.otf') format('otf'),
-} */
+@font-face {
+  font-family: 'Elan';
+  src: url('fonts/Elan_Thin.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cyberpunk';
+  src: url('fonts/Cyberpunk-Regular.woff2') format('woff2');
+}
 
 /* Global element variables */
 :root {
@@ -9,24 +14,26 @@
   --text-theme-color: rgba(0, 0, 0, 1);
   --popup-theme-color: #F8F9F9;
   --shadow-color: rgba(0, 0, 0, 0.15);
+  --header-font: 'Elan';
   --text-font: arial;
   --text-size: 0.75rem;
+  --text-font-weight: normal;
 }
 
 /* Custom themes and variables */
 .dark-mode {
   --bg-theme-color: #23262E;
   --text-theme-color: rgba(230, 230, 230, 0.87);
-  --popup-theme-color: #171d24;
+  --popup-theme-color: #1B1D24;
   --shadow-color: rgba(0, 0, 0, 0.3);
+  --text-font-weight: 100;
 }
 
 .god-mode {
-
 }
 
-.ludicrous-mode {
-
+.punk-mode {
+  --header-font: 'Cyberpunk';
 }
 
 .psychedelic-mode {
@@ -56,7 +63,6 @@
     }
 }
 
-
 /* Standard formatting */
 html {
   margin-top: 10rem;
@@ -67,6 +73,7 @@ body {
   color: var(--text-theme-color);
   font-family: var(--text-font);
   font-size: var(--text-size);
+  /* font-weight: var(--text-font-weight) */
 }
 
 .nav-bar {
@@ -78,17 +85,18 @@ body {
 }
 
 .main-header {
-  font-family: 'Elan';
-  font-size: 1rem;
+  font-family: var(--header-font);
+  font-size: 2rem;
 }
 
 .secondary-header {
 display: flex;
 justify-content: space-evenly;
-padding: 1;
+font-family: var(--header-font);
+padding: 0.25rem;
 }
 
-/* Common text size and color formatting for specific sections. */
+/* Common text size and color formatting for specific headers. */
 .related-header,
 .card-description:nth-child(1),
 .card-rating,
@@ -99,10 +107,19 @@ padding: 1;
 }
 
 /* Related products carousel and cards */
+.related-header {
+  width: 690px;
+  margin: auto;
+  font-size: 1rem;
+  padding-top: 1rem;
+}
+
 .carousel {
   /* border: 2px solid black; */
-  width: 680px;
+  width: 690px;
   margin: auto;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
 }
 
 .related-card {
@@ -191,14 +208,14 @@ padding: 1;
 
 /* Comparison Modal */
 .comparison-modal {
-  border: 2px solid #D7DBDD;
+  border: 2px solid var(--popup-theme-color);
   position: relative;
-  /* background-color: white; */
+  background-color: var(--bg-theme-color);
   height: 200px;
   width: 300px;
   align-items: left;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
-  padding-left: 0.5em;
+  /* padding-left: 0.5em; */
   padding-right: 0.5em;
   overflow-y: auto;
   background-color: var(--bg-theme-color);
@@ -222,30 +239,39 @@ padding: 1;
 }
 
 .comparison-header-container {
-  border: 2px solid black;
+  /* border: 2px solid black; */
+  background-color: var(--bg-theme-color);
   position: sticky;
   top: 0;
   z-index: 999;
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+}
+
+.comparison-title {
+  padding-bottom: 0.5em;
+}
+
+.product-name {
+  font-size: 1rem;
+}
+
+.product-comparator {
+  /* border: 2px solid greenyellow; */
+  font-weight: 550;
 }
 
 .comparison-content {
-  border: 2px solid purple;
+  /* border: 2px solid purple; */
   display: flex;
   justify-content: space-evenly;
 }
 
 .comparison-content > * {
-  border: 2px solid gold;
+  /* border: 2px solid gold; */
   flex: 1;
   flex-basis: 100%;
   text-align: center;
-}
-
-.product-comparator {
-  border: 2px solid greenyellow;
-  font-weight: 900;
 }
 
 /* For product comparison modal */
