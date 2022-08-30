@@ -43,7 +43,6 @@ const Cart = ({ selectedStyle, skus }) => {
 
   const addToCart = () => {
     if (size === '') {
-      console.log('select size');
       setSizeNotSelected(true);
     } else {
       setSizeNotSelected(false);
@@ -57,6 +56,12 @@ const Cart = ({ selectedStyle, skus }) => {
     setQty('');
     setSizeNotSelected('');
   }, [skus])
+
+  useEffect(() => {
+    if (size !== '') {
+      setSizeNotSelected(false);
+    }
+  }, [size])
 
   if (sizes.length) {
     return(
