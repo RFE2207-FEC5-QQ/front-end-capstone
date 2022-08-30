@@ -107,6 +107,10 @@ class Reviews extends React.Component {
             {
               'id': 1111113,
               'url': 'https://i.imgur.com/EPHb3G6.jpeg'
+            },
+            {
+              'id': 2455346,
+              'url': 'http://res.cloudinary.com/dm84tjpoq/image/upload/v1657918306/vw1hfv268xkgpyfr0i04.jpg'
             }
           ]
         }

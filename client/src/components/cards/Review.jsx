@@ -58,18 +58,20 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
           <span className='review-date'>{new Date(review.date).toDateString()}</span>
         </div>
       </div>
-      <p className='review-summary'>{review.summary}</p>
+      <p className='review-summary'>
+        {review.summary.slice(0, 60)}
+      </p>
       <p className='review-body'>
-        {review.body.length < 250 ? review.body :
+        {review.body.length < 250 ? review.body.slice(0, 1000) :
           <span id='review-body-long'>
-            {reviewBodyExpanded ? review.body : review.body.slice(0, 250)}
+            {reviewBodyExpanded ? review.body.slice(0, 1000) : review.body.slice(0, 250)}
             <button onClick={toggleReviewBody}>{reviewBodyExpanded ? 'Show less' : 'Show more'}</button>
           </span>
         }
       </p>
       {review.photos.length > 0 &&
         <div className='review-images'>
-          {review.photos.map((photo) => {
+          {review.photos.slice(0, 5).map((photo) => {
             return (
               <ReviewImage id={photo.id} url={photo.url} key={photo.id}/>
             );
