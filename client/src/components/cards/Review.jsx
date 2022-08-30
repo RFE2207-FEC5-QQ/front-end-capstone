@@ -65,10 +65,16 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
         </div>
       }
       {review.recommend && (
-        <span className='review-recommended'>
+        <div className='review-recommended'>
           <CheckIcon/>
-          <span>I recommend this product</span>
-        </span>
+          <div>I recommend this product</div>
+        </div>
+      )}
+      {review.response && (
+        <div className='review-response'>
+          <p><b>Response:</b></p>
+          <p>{review.response}</p>
+        </div>
       )}
       <div className='review-bottomline'>
         <span className='review-helpful'>

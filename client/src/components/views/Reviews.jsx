@@ -86,7 +86,7 @@ class Reviews extends React.Component {
           'rating': 5,
           'summary': 'This is a summary...',
           'recommend': true,
-          'response': null,
+          'response': 'Hey just responding to your review, we love it!',
           'body': 'Let me tell you about being a cat, it isn\'t always great! Consectetur voluptate sit cillum in occaecat sit. Commodo ipsum ad adipisicing adipisicing. Cupidatat non esse elit proident duis incididunt laborum. Laboris eiusmod in pariatur. Excepteur sint occaecat ullamco cillum ea minim deserunt. Officia labore id sunt consectetur amet eiusmod. Mollit do nisi ipsum aute. Laborum eiusmod occaecat sunt enim enim laborum.',
           'date': '2022-07-15T00:00:00.000Z',
           'reviewer_name': 'An Actual Real Life Cat',
@@ -210,7 +210,7 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     // DEBUG - Uncomment to get reviews on mount
-    this.getReviews();
+    // this.getReviews();
   }
 
 
