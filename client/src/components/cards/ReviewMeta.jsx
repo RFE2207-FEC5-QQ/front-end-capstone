@@ -29,7 +29,7 @@ export default class ReviewMeta extends React.Component {
         'characteristics': {
           'Fit': {
             'id': 125031,
-            'value': '2.3'
+            'value': '1.5'
           },
           'Length': {
             'id': 125032,
@@ -148,7 +148,7 @@ export default class ReviewMeta extends React.Component {
                   p: 0.6
                 }}
                 variant='determinate'
-                value={((parseInt(this.state.reviewMeta.characteristics[key]['value']) - 1) / 4) * 100}
+                value={((parseFloat(this.state.reviewMeta.characteristics[key]['value']) - 1) / 4) * 100}
               />
             </div>
           ))}
