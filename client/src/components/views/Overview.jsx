@@ -15,6 +15,7 @@ const Overview = (props) => {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState({});
+  const [defaultView, setDefaultView] = useState(true);
 
   const getProducts = () => {
     var options = {
@@ -24,8 +25,8 @@ const Overview = (props) => {
     axios(options)
       .then(res => {
         setProducts(res.data);
-        setProduct(res.data[0]);
-        getStyles(res.data[0].id)
+        setProduct(res.data[4]);
+        getStyles(res.data[4].id)
       })
       .catch(err => {
         console.log(err)
@@ -64,11 +65,52 @@ const Overview = (props) => {
     setSelectedStyle(style);
   }
 
+  const updateView = () => {
+    setDefaultView(!defaultView);
+  }
+
   useEffect(() => {
     getProducts();
   }, [])
 
-  if (products.length && Object.keys(selectedStyle).length) {
+  if (defaultView) {
+    if (products.length && Object.keys(selectedStyle).length) {
+      return (
+        <div className='view-overview'>
+          <Grid container spacing={2}>
+            <Grid item xs={8}>
+              <Gallery
+                product={product}
+                selectedStyle={selectedStyle}
+                updateView={updateView}
+                defaultView={defaultView}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <Info
+                product={product}
+                selectedStyle={selectedStyle}
+              />
+              <Style
+                styles={styles}
+                selectedStyle={selectedStyle}
+                updateStyle={updateStyle}
+              />
+              <Cart
+                selectedStyle={selectedStyle}
+                skus={selectedStyle.skus}
+              />
+            </Grid>
+            <Grid item xs={12} id='description-grid'>
+              <Description
+                product={product}
+              />
+            </Grid>
+          </Grid>
+        </div>
+      );
+    }
+  } else {
     return (
       <div className='view-overview'>
         <Grid container spacing={2}>
@@ -76,21 +118,8 @@ const Overview = (props) => {
             <Gallery
               product={product}
               selectedStyle={selectedStyle}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <Info
-              product={product}
-              selectedStyle={selectedStyle}
-            />
-            <Style
-              styles={styles}
-              selectedStyle={selectedStyle}
-              updateStyle={updateStyle}
-            />
-            <Cart
-              selectedStyle={selectedStyle}
-              skus={selectedStyle.skus}
+              updateView={updateView}
+              defaultView={defaultView}
             />
           </Grid>
           <Grid item xs={12} id='description-grid'>

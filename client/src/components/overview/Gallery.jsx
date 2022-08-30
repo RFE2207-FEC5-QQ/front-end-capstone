@@ -3,7 +3,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CropFreeIcon from '@mui/icons-material/CropFree';
 
-const Gallery = ({ product, selectedStyle }) => {
+const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
 
   const [photos, setPhotos] = useState([]);
   const [photo, setPhoto] = useState({});
@@ -22,7 +22,7 @@ const Gallery = ({ product, selectedStyle }) => {
   }
 
   const cropClick = () => {
-    console.log('crop clicked')
+    updateView();
   }
 
   useEffect(() => {
@@ -34,40 +34,77 @@ const Gallery = ({ product, selectedStyle }) => {
     setPhoto(selectedStyle.photos[index]);
   }, [index])
 
-  return (
-    <div className='overview-gallery'>
-      <div className='gallery-carousel'>
-        {photos.map((item, idx) => {
-          return (
-            <img
-              key={idx}
-              className={idx === index ? 'selected-carousel-image carousel-image' : 'carousel-image'}
-              src={item.thumbnail_url}
-              onClick={() => {carouselClick(idx)}}
+  if (defaultView) {
+    return (
+      <div className='overview-gallery'>
+        <div className='gallery-carousel'>
+          {photos.map((item, idx) => {
+            return (
+              <img
+                key={idx}
+                className={idx === index ? 'selected-carousel-image carousel-image' : 'carousel-image'}
+                src={item.thumbnail_url}
+                onClick={() => {carouselClick(idx)}}
+              ></img>
+            )
+          })}
+        </div>
+        <div className='selected-image-container'>
+          <ArrowBackIcon
+            onClick={clickBack}
+            className={index === 0 ? 'no-arrow' : 'left-arrow'}
+          />
+          <img
+            className='selected-image'
+            src={photo.thumbnail_url}
             ></img>
-          )
-        })}
+          <ArrowForwardIcon
+            onClick={clickForward}
+            className={index === photos.length - 1 ? 'no-arrow' : 'right-arrow'}
+          />
+          <CropFreeIcon
+            className='crop-icon'
+            onClick={cropClick}
+          />
+        </div>
       </div>
-      <div className='selected-image-container'>
-        <ArrowBackIcon
-          onClick={clickBack}
-          className={index === 0 ? 'no-arrow' : 'left-arrow'}
-        />
-        <img
-          className='selected-image'
-          src={photo.thumbnail_url}
-          ></img>
-        <ArrowForwardIcon
-          onClick={clickForward}
-          className={index === photos.length - 1 ? 'no-arrow' : 'right-arrow'}
-        />
-        <CropFreeIcon
-          className='crop-icon'
-          onClick={cropClick}
-        />
+    )
+  } else {
+    return (
+      <div className='expanded-view'>
+        <div className='gallery-carousel'>
+          {photos.map((item, idx) => {
+            return (
+              <img
+                key={idx}
+                className={idx === index ? 'selected-carousel-image carousel-image' : 'carousel-image'}
+                src={item.thumbnail_url}
+                onClick={() => {carouselClick(idx)}}
+              ></img>
+            )
+          })}
+        </div>
+        <div className='expanded-image-container'>
+          <ArrowBackIcon
+            onClick={clickBack}
+            className={index === 0 ? 'no-arrow' : 'expanded-left-arrow'}
+          />
+          <img
+            className='expanded-image'
+            src={photo.thumbnail_url}
+            ></img>
+          <ArrowForwardIcon
+            onClick={clickForward}
+            className={index === photos.length - 1 ? 'no-arrow' : 'right-arrow'}
+          />
+          <CropFreeIcon
+            className='crop-icon'
+            onClick={cropClick}
+          />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Gallery;
