@@ -59,14 +59,14 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
         </div>
       </div>
       <p className='review-summary'>{review.summary}</p>
-      <div className='review-body'>
+      <p className='review-body'>
         {review.body.length < 250 ? review.body :
-          <div id='review-body-long'>
+          <span id='review-body-long'>
             {reviewBodyExpanded ? review.body : review.body.slice(0, 250)}
             <button onClick={toggleReviewBody}>{reviewBodyExpanded ? 'Show less' : 'Show more'}</button>
-          </div>
+          </span>
         }
-      </div>
+      </p>
       {review.photos.length > 0 &&
         <div className='review-images'>
           {review.photos.map((photo) => {
