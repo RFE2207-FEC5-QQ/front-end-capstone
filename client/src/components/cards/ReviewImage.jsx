@@ -7,19 +7,17 @@ export default class ReviewImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
-      url: this.props.url,
       showModal: false
     };
     this.openImageModal = this.openImageModal.bind(this);
     this.closeImageModal = this.closeImageModal.bind(this);
   }
 
-  openImageModal(e) {
+  openImageModal() {
     this.setState({showModal: true});
   }
 
-  closeImageModal(e) {
+  closeImageModal() {
     this.setState({showModal: false});
   }
 
@@ -28,13 +26,13 @@ export default class ReviewImage extends React.Component {
       <div className='review-image'>
         {this.state.showModal &&
         <ReviewImageModal
-          id={this.state.id}
-          url={this.state.url}
+          id={this.props.id}
+          url={this.props.url}
           closeImageModal={this.closeImageModal}
         />}
         <img
           className='review-image-preview'
-          src={this.state.url}
+          src={this.props.url}
           loading='lazy'
           onClick={this.openImageModal}
         />
