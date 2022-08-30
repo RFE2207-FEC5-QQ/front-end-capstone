@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
+const sortRelevant = require('../helpers/index.js').sortRelevant;
 
 // Get reviews for productId
 // Expects 'sort' and 'productId' in query
@@ -23,27 +24,7 @@ router.get('/reviews', (req, res, next) => {
   )
     .then((success) => {
       if (req.query.sort === 'relevant') {
-        let reviewWeights = {};
-        let sortedRelevant = [];
-        for (let i = 0; i < success.data.results.length; i++) {
-          let review = success.data.results[i];
-          review['helpful'] = i;
-          review['newest'] = null;
-          reviewWeights[review.review_id] = review;
-        }
-        let newestSort = success.data.results.slice().sort(function(a, b) {
-          return new Date(b.date).getTime() - new Date(a.date).getTime();
-        });
-        for (let i = 0; i < newestSort.length; i++) {
-          let reviewId = newestSort[i].review_id;
-          reviewWeights[reviewId]['relevance'] = reviewWeights[reviewId]['helpful'] + ((i + 1) * 1.2);
-          delete reviewWeights[reviewId]['helpful'];
-          sortedRelevant.push(reviewWeights[reviewId]);
-        }
-        sortedRelevant.sort(function(a, b) {
-          return a['relevance'] - b['relevance'];
-        });
-        success.data.results = sortedRelevant;
+        success.data.results = sortRelevant(success.data.results);
       }
       res.status(200).send(success.data);
     })
