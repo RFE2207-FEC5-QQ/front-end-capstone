@@ -4,36 +4,44 @@
 } */
 
 :root {
-  --bg-light-color: #fff;
-  --bg-dark-color: #212F3C;
-  --text-light-color: #000;
-  --text-dark-color: #fff;
-}
-
-.light-mode {
-  background-color: var(--bg-light-color);
-  color: var(--text-light-color);
+  --bg-theme-color: #fff;
+  --text-theme-color: rgba(0, 0, 0, 1);
+  --popup-theme-color: #F8F9F9;
+  --shadow-color: rgba(0, 0, 0, 0.15);
 }
 
 .dark-mode {
-  background-color: var(--bg-dark-color);
-  color: var(--text-dark-color);
+  --bg-theme-color: #121212;
+  --text-theme-color: rgba(230, 230, 230, 0.87);
+  --popup-theme-color: #141A20;
+  --shadow-color: rgba(39, 39, 39, 0.15);
 }
+
+.god-mode {
+
+}
+
+.ludicrous-mode {
+
+}
+
+.psychedelic-mode {
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+}
+
 
 html {
-/* body { */
   margin-top: 10rem;
-  /* margin-left: 1rem; */
-  /* margin: 0; */
 }
 
-/* Navigation bar */
-/* .view-navigation {
-  position: fixed;
-  z-index: 999;
-} */
+body {
+  background-color: var(--bg-theme-color);
+  color: var(--text-theme-color);
+}
 
 .nav-bar {
+  background-color: var(--bg-theme-color);
   width: 100%;
   position: fixed;
   top: 0;
@@ -44,11 +52,8 @@ html {
   font-family: 'Elan';
 }
 
-.secondary-header {
-  font-size: 0.75rem;
-}
-
-/* Common text size and color formatting for related product cards and modals. */
+/* Common text size and color formatting for specific sections. */
+.secondary-header,
 .card-description:nth-child(1),
 .original-price,
 .sale-price,
@@ -79,11 +84,12 @@ html {
 .related-card {
   flex-direction: column;
   /* border: 2px solid transparent; */
+  border-radius: 2%;
   position: relative;
   width: 220px;
   height: 300px;
   margin: 5px;
-  /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2)) */
+  background-color: var(--bg-theme-color);
 }
 
 .related-card .img-container {
@@ -97,11 +103,11 @@ html {
 .related-card:hover {
   cursor: pointer;
   /* border: 2px solid #EBEDEF; */
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-  background-color: #F8F9F9;
+  box-shadow: 0px 0px 1px var(--shadow-color);
+  box-shadow: 0px 0px 3px var(--shadow-color);
+  box-shadow: 0px 0px 5px var(--shadow-color);
+  box-shadow: 0px 0px 8px var(--shadow-color);
+  background-color: var(--popup-theme-color);
 }
 
 .related-card:hover .card-img {
@@ -171,6 +177,7 @@ html {
   padding-left: 0.5em;
   padding-right: 0.5em;
   overflow-y: auto;
+  background-color: var(--bg-theme-color);
 }
 
 .comparison-modal::-webkit-scrollbar {
@@ -187,7 +194,7 @@ html {
 }
 
 .modal-button:hover {
-  background-color: #EBEDEF;
+  background-color: var(--bg-theme-color);
 }
 
 .comparison-header-container {

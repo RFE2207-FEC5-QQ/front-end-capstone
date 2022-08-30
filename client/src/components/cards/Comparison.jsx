@@ -33,7 +33,7 @@ const Comparison = ({ mainProduct, currProduct }) => {
         closeOnDocumentClick
         position='bottom right'>
         {/* <div> */}
-        <div className="comparison-modal">
+        <div className="comparison-modal theme">
           <div className='comparison-header-container'>
             <div className='comparison-title'>COMPARING</div>
             <div className='comparison-content product-comparator'>
