@@ -7,7 +7,7 @@ import ReviewImage from '../cards/ReviewImage.jsx';
 
 const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
 
-  const [showImageModal, setShowImageModal] = useState(false);
+  const [reviewBodyExpanded, setReviewBodyExpanded] = useState(false);
 
   // TODO: Only allow someone to mark a review as helpful once
   // Cache session with cookies to get their marked reviews
@@ -35,6 +35,11 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       });
   };
 
+  const toggleReviewBody = (e) => {
+    e.preventDefault();
+    setReviewBodyExpanded(!reviewBodyExpanded);
+  };
+
   return (
     <div className='review'>
       <div className='review-topline'>
@@ -54,7 +59,14 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
         </div>
       </div>
       <p className='review-summary'>{review.summary}</p>
-      <p className='review-body'>{review.body}</p>
+      <div className='review-body'>
+        {review.body.length < 250 ? review.body :
+          <div id='review-body-long'>
+            {reviewBodyExpanded ? review.body : review.body.slice(0, 250)}
+            <button onClick={toggleReviewBody}>{reviewBodyExpanded ? 'Show less' : 'Show more'}</button>
+          </div>
+        }
+      </div>
       {review.photos.length > 0 &&
         <div className='review-images'>
           {review.photos.map((photo) => {
