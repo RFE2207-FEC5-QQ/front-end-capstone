@@ -1,16 +1,23 @@
 import React from 'react';
 import axios from 'axios';
+import { Rating } from '@mui/material';
 
 // TODO: Should actually refactor this and the other modal (anything with toggled visibility)
 // to store their visibility within the component, that way you don't re-render the parent every time
 // You show / hide the component
 export default class ReviewForm extends React.Component {
 
+  // props.postSubmit - Action taken after submitting form
+  // props.metaCharacteristics - Characteristics for currently selected product
+  // props.characteristicChart - Mapping of characteristic types to their value descriptions
+  // props.productId - Currently selected product
+  // props.paletteMap - Colors for the star ratings
   constructor(props) {
     super(props);
+    // TODO: Ensure someone can't submit the form without all required values filled out
     this.state = {
       rating: null, // 1 - 5
-      recommend: false, // Recommendation will be captured via a radio button array of “Yes” and “No”.
+      recommend: true, // Recommendation will be captured via a radio button array of “Yes” and “No”.
       // Default radio button behavior will apply.
       characteristics: {},
       summary: '', // A text input allowing up to 60 characters.
@@ -53,58 +60,139 @@ export default class ReviewForm extends React.Component {
 
   submitForm(e) {
     e.preventDefault();
-    // this.postReview();
+    this.postReview();
     this.props.postSubmit();
   }
 
   render() {
+    // console.log(this.state.characteristics);
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
-        <label>
-          Name:
-          <input
-            type='text'
-            name='name'
-            value={this.state.name}
+        <div className='review-form-rating'>
+          {'Rating '}
+          <Rating
+            sx={{
+              color: this.props.paletteMap[this.state.rating || 3][1]
+            }}
+            name="rating"
+            value={this.state.rating}
             onChange={(e) =>
-              this.setState({name: e.target.value})
+              this.setState({rating: parseInt(e.target.value)})
             }
           />
-        </label>
-        <label>
-          Email:
-          <input
-            type='text'
-            name='email'
-            value={this.state.email}
-            onChange={(e) =>
-              this.setState({email: e.target.value})
-            }
-          />
-        </label>
-        <label>
-          Summary:
-          <input
-            type='text'
-            name='summary'
-            value={this.state.summary}
-            onChange={(e) =>
-              this.setState({summary: e.target.value})
-            }
-          />
-        </label>
-        <label>
-          Body:
-          <input
-            type='text'
-            name='body'
-            value={this.state.body}
-            onChange={(e) =>
-              this.setState({body: e.target.value})
-            }
-          />
-        </label>
-        <input type="submit" value="Submit" />
+        </div>
+        <div className='review-form-recommend'>
+          {'Do you recommend this product?'}
+          <label>
+            <input
+              type='radio'
+              name='recommend-true'
+              value='true'
+              checked={this.state.recommend}
+              onChange={(e) =>
+                this.setState({recommend: true})
+              }
+            />
+            Yes
+          </label>
+          <label>
+            <input
+              type='radio'
+              name='recommend-false'
+              value='false'
+              checked={!this.state.recommend}
+              onChange={(e) =>
+                this.setState({recommend: false})
+              }
+            />
+            No
+          </label>
+        </div>
+        <div className='review-form-characteristics'>
+          {'Characteristics'}
+          {Object.keys(this.props.metaCharacteristics).map((characteristic) => (
+            <div key={characteristic.toLowerCase()} className='review-form-characteristics-entry'>
+              {characteristic}
+              {Object.keys(this.props.characteristicChart[characteristic]).map((key) => (
+                <div key={`${characteristic.toLowerCase()}-${key}`} className='review-form-characteristics-entry-value'>
+                  <label>
+                    <input
+                      type='radio'
+                      name={`characteristic-${characteristic.toLowerCase()}-${key}`}
+                      value={key}
+                      checked={this.state.characteristics[characteristic] === parseInt(key)}
+                      onChange={(e) => {
+                        let characteristics = this.state.characteristics;
+                        characteristics[characteristic] = parseInt(e.target.value);
+                        this.setState({characteristics});
+                      }}
+                    />
+                    {this.props.characteristicChart[characteristic][key]}
+                  </label>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className='review-form-summary'>
+          <label>
+            {'Summary (optional) '}
+            <input
+              type='text'
+              name='summary'
+              placeholder='Example: Best purchase ever!'
+              value={this.state.summary}
+              onChange={(e) =>
+                this.setState({summary: e.target.value})
+              }
+            />
+          </label>
+        </div>
+        <div className='review-form-body'>
+          <label>
+            {'Body '}
+            <textarea
+              name='body'
+              placeholder='Why did you like the product or not?'
+              value={this.state.body}
+              onChange={(e) =>
+                this.setState({body: e.target.value})
+              }
+            />
+          </label>
+        </div>
+        <div className='review-form-photos'>
+          {'Photos (optional)'}
+        </div>
+        <div className='review-form-name'>
+          <label>
+            {'Name '}
+            <input
+              type='text'
+              name='name'
+              placeholder='Example: jackson11!'
+              value={this.state.name}
+              onChange={(e) =>
+                this.setState({name: e.target.value})
+              }
+            />
+          </label>
+        </div>
+        <div className='review-form-email'>
+          <label>
+            {'Email '}
+            <input
+              type='text'
+              name='email'
+              placeholder='Example: jackson11@email.com'
+              value={this.state.email}
+              onChange={(e) =>
+                this.setState({email: e.target.value})
+              }
+            />
+          </label>
+        </div>
+        <input type='submit' value='Submit' />
       </form>
     );
   }

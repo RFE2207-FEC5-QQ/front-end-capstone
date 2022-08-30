@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {InputLabel, MenuItem, FormControl} from '@mui/material';
+import { InputLabel, MenuItem, FormControl } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';

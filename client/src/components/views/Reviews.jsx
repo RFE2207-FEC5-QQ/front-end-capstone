@@ -281,9 +281,11 @@ class Reviews extends React.Component {
           />
           {this.state.showReviewModal &&
           <ReviewFormModal
-            closeReviewModal={this.closeReviewModal}
-            reviewMeta={this.state.reviewMeta}
+            metaCharacteristics={this.state.reviewMeta.characteristics}
+            characteristicChart={characteristicChart}
             productId={this.props.productId}
+            closeReviewModal={this.closeReviewModal}
+            paletteMap={paletteMap}
           />}
         </div>
       </div>

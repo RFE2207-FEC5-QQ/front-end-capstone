@@ -1,8 +1,5 @@
 import React from 'react';
-
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
+import { Dialog, DialogActions, DialogContent } from '@mui/material';
 
 const ReviewImageModal = ({id, url, closeImageModal}) => {
 
