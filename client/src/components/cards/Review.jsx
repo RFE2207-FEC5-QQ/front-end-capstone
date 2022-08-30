@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Rating } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
+import ReviewImage from '../cards/ReviewImage.jsx';
 
-const Review = ({review, getReviews, ratingTheme, paletteMap}) =>{
+const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
+
+  const [showImageModal, setShowImageModal] = useState(false);
 
   // TODO: Only allow someone to mark a review as helpful once
   // Cache session with cookies to get their marked reviews
@@ -56,12 +59,7 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) =>{
         <div className='review-images'>
           {review.photos.map((photo) => {
             return (
-              <img
-                className='review-img'
-                key={photo.id}
-                src={photo.url}
-                loading='lazy'
-              />
+              <ReviewImage id={photo.id} url={photo.url} key={photo.id}/>
             );
           })}
         </div>

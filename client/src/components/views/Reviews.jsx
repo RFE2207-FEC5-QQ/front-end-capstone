@@ -219,7 +219,7 @@ class Reviews extends React.Component {
       <div className='reviews-view'>
         <h2>{'Ratings & Reviews'}</h2>
         <div className='reviews-panels'>
-          <ReviewMeta filterbyRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))} paletteMap={paletteMap} characteristicChart={characteristicChart}/>
+          <ReviewMeta productId={this.state.productId} filterbyRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))} paletteMap={paletteMap} characteristicChart={characteristicChart}/>
           <ReviewList reviews={this.state.reviews} sort={this.state.sort} getReviews={this.getReviews} handleSortChange={this.handleSortChange} handleMoreReviews={this.handleMoreReviews} ratingTheme={ratingTheme} paletteMap={paletteMap}/>
         </div>
       </div>

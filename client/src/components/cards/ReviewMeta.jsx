@@ -4,7 +4,7 @@ import { Rating, LinearProgress } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-class ReviewMeta extends React.Component {
+export default class ReviewMeta extends React.Component {
 
   // Props:
   // characteristicChart
@@ -12,7 +12,6 @@ class ReviewMeta extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 37311,
       // DEBUG - Using sample review meta
       reviewMeta: {
         'product_id': '37311',
@@ -53,7 +52,7 @@ class ReviewMeta extends React.Component {
   getReviewMeta() {
     axios.get('/reviews/meta', {
       params: {
-        productId: this.state.productId
+        productId: this.props.productId
       }
     })
       .then((success) => {
@@ -66,7 +65,7 @@ class ReviewMeta extends React.Component {
 
   componentDidMount() {
     // DEBUG - Uncomment to get review meta on mount
-    // this.getReviewMeta();
+    this.getReviewMeta();
   }
 
   render() {
@@ -156,5 +155,3 @@ class ReviewMeta extends React.Component {
   }
 
 }
-
-export default ReviewMeta;
