@@ -76,17 +76,31 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.state.darkMode) {
-      document.body.classList.remove('dark-mode');
-      return;
+    let darkSetting = window.localStorage.getItem('dark');
+    if (darkSetting === null) {
+      window.localStorage.setItem('dark', false);
+      darkSetting = false;
     }
-    document.body.classList.add('dark-mode');
+    this.setState({
+      productId: this.state.productId,
+      darkMode: darkSetting,
+      punkMode: this.state.punkMode,
+      psychMode: this.state.psychMode,
+    });
   }
+  // if (!this.state.darkMode) {
+  //   document.body.classList.remove('dark-mode');
+  //   return;
+  // }
+  // document.body.classList.add('dark-mode');
+  // }
 
   componentDidUpdate() {
     if (!this.state.darkMode) {
+      window.localStorage.setItem('dark', false);
       document.body.classList.remove('dark-mode');
     } else {
+      window.localStorage.setItem('dark', true);
       document.body.classList.add('dark-mode');
     }
   }

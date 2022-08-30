@@ -31,27 +31,30 @@ const Navigation = ({ modes, toggleTheme }) => {
 
   console.log(modes);
   return (
-    <div className={`nav-bar ${onPsych}`}>
-      <span onClick={toggleGod}>God Mode </span>
-      <span onClick={togglePunk}>Punk Mode </span>
-      <span onClick={toggleLudi}>Ludicrous Mode </span>
-      <span onClick={togglePsych}>Psychedelic Mode </span>
-      <FormControlLabel
-        control={<Switch onChange={ toggleDark } color='default' sx={{ m: 0 }}/>}
-      />
-      <div className={`main-header ${onPsych} ${punkedOut}`}>
-        {/* <h1 className='layer glitch'>ATELIER</h1> */}
-        <div className=''>ATELIER</div>
+    <React.Fragment>
+      <div className='nav-bar'>
+        <span onClick={toggleGod}>God Mode </span>
+        <span onClick={togglePunk}>Punk Mode </span>
+        <span onClick={toggleLudi}>Ludicrous Mode </span>
+        <span onClick={togglePsych}>Psychedelic Mode </span>
+        <FormControlLabel
+          control={<Switch onChange={ toggleDark } color='default' sx={{ m: 0 }}/>}
+        />
+        <div className={`main-header ${onPsych} ${punkedOut}`}>
+          {/* <h1 className='layer glitch'>ATELIER</h1> */}
+          <div className=''>ATELIER</div>
+        </div>
+        <hr className='solid'/>
+        <div className={`secondary-header ${onPsych} ${punkedOut}`}>
+          <div>PRODUCT DETAIL</div>
+          <div>RELATED PRODUCTS</div>
+          <div>QUESTIONS</div>
+          <div>REVIEWS</div>
+        </div>
+        <hr className='solid'/>
       </div>
-      <hr className='solid'/>
-      <div className={`secondary-header ${onPsych} ${punkedOut}`}>
-        <div>PRODUCT DETAIL</div>
-        <div>RELATED PRODUCTS</div>
-        <div>QUESTIONS</div>
-        <div>REVIEWS</div>
-      </div>
-      <hr className='solid'/>
-    </div>
+      <div className='bg-color-placeholder'></div>
+    </React.Fragment>
   );
 };
 
