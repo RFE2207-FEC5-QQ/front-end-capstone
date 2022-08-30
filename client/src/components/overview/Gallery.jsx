@@ -4,6 +4,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CropFreeIcon from '@mui/icons-material/CropFree';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import CropSquareRoundedIcon from '@mui/icons-material/CropSquareRounded';
 
 const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
 
@@ -69,6 +70,8 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
     setCarousel(result);
     setPhotos(result[0]);
     setPhoto(result[0][0]);
+    setIndex(0);
+    setCarouselIndex(0);
   }, [selectedStyle])
 
   useEffect(() => {
@@ -114,7 +117,8 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
           />
           <img
             className='selected-image'
-            src={photo.thumbnail_url}
+            src={photo.url}
+            onClick={cropClick}
             ></img>
           <ArrowForwardIcon
             onClick={clickForward}
@@ -133,21 +137,20 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
         <div className='gallery-carousel'>
           <KeyboardArrowUpIcon
             onClick={clickUp}
-            className={carouselIndex === 0 ? 'no-arrow' : 'up-arrow'}
+            className={carouselIndex === 0 ? 'no-arrow' : 'expanded-up-arrow'}
           />
           {photos.map((item, idx) => {
             return (
-              <img
-                key={idx}
-                className={idx === index ? 'selected-carousel-image carousel-image' : 'carousel-image'}
-                src={item.thumbnail_url}
-                onClick={() => {carouselClick(idx)}}
-              ></img>
+                <CropSquareRoundedIcon
+                  key={idx}
+                  className={idx === index ? 'selected-carousel-icon carousel-icon' : 'carousel-icon'}
+                  onClick={() => {carouselClick(idx)}}
+              />
             )
           })}
           <KeyboardArrowDownIcon
             onClick={clickDown}
-            className={carouselIndex === carousel.length - 1 ? 'no-arrow' : 'up-arrow'}
+            className={carouselIndex === carousel.length - 1 ? 'no-arrow' : 'expanded-up-arrow'}
           />
         </div>
         <div className='expanded-image-container'>
@@ -157,7 +160,7 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
           />
           <img
             className='expanded-image'
-            src={photo.thumbnail_url}
+            src={photo.url}
           ></img>
           <ArrowForwardIcon
             onClick={clickForward}

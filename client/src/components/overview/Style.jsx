@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Grid } from '@mui/material';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CheckIcon from '@mui/icons-material/Check';
+import ArrowRightRoundedIcon from '@mui/icons-material/ArrowRightRounded';
 
 const Style = ({ styles, updateStyle, selectedStyle }) => {
 
@@ -16,13 +17,14 @@ const Style = ({ styles, updateStyle, selectedStyle }) => {
     setChecked(selectedStyle);
   }, [selectedStyle])
 
-  // Have to implement checkmark
-  // Make header look nicer
     return(
       <div className='overview-styles'>
         <span className='style-selector'>
-          STYLE >
+          STYLE
         </span>
+          <ArrowRightRoundedIcon
+            className='style-arrow'
+          />
         <span className='selected-style'>
           {selectedStyle.name}
         </span>
