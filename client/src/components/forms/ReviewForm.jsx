@@ -80,7 +80,6 @@ export default class ReviewForm extends React.Component {
   }
 
   render() {
-    console.log(this.state.characteristicsValid);
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
         <div className='review-form-rating'>
@@ -233,7 +232,7 @@ export default class ReviewForm extends React.Component {
               value={this.state.email}
               onChange={(e) =>
                 this.setState({email: e.target.value}, () => {
-                  let isValid = 0 < this.state.email.length <= 60;
+                  let isValid = 0 < this.state.email.length && this.state.email.length <= 60;
                   this.setState({emailValid: isValid});
                 })
               }
