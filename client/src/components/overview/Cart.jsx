@@ -100,6 +100,7 @@ const Cart = ({ selectedStyle, skus }) => {
               value={qty}
               label="Select"
               onChange={updateQty}
+              disabled={size === ''}
             >
               {qtys.map(qty => {
                 return <MenuItem value={qty} key={qty}>{qty}</MenuItem>
