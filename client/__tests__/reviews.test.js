@@ -42,11 +42,23 @@ const productId = 37311;
 
 describe('\'ReviewList\' React component', () => {
 
-  test('Expect review list to be present', async () => {
+  beforeEach(() => {
     render(<Reviews productId={productId}/>);
-    let items = await screen.getAllByText('This is a summary...');
+  });
+
+  test('Expect review list to be present', () => {
+    let items = document.getElementsByClassName('review-list');
     expect(items).toHaveLength(1);
   });
 
-});
+  test('Expects there to be 1 review posted', () => {
+    let items = document.getElementsByClassName('review');
+    expect(items).toHaveLength(1);
+  });
 
+  test('Expects the summary text to be visible on screen', async () => {
+    let item = await screen.getByText('This is a summary...');
+    expect(item).toBeTruthy();
+  });
+
+});
