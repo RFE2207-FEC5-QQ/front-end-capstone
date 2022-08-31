@@ -17,7 +17,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: 0,
-      darkMode: false,
+      darkMode: JSON.parse(window.localStorage.getItem('dark')) ?? false,
       punkMode: false,
       psychMode: false,
     };
@@ -37,6 +37,7 @@ class App extends React.Component {
   }
 
   godMode() {
+    // Remove querySelector after building out function if using.
     const rootElement = document.querySelector('body');
     rootElement.classList.toggle('god-mode');
     this.setState({
@@ -57,6 +58,7 @@ class App extends React.Component {
 
 
   ludiMode() {
+    // Remove querySelector after building out function if using.
     const rootElement = document.querySelector('body');
     rootElement.classList.toggle('ludicrous-mode');
     this.setState({
@@ -76,22 +78,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let darkSetting = window.localStorage.getItem('dark');
-    if (darkSetting === null) {
-      window.localStorage.setItem('dark', false);
-      darkSetting = false;
+    if (this.state.darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
     }
-    this.setState({
-      productId: this.state.productId,
-      darkMode: darkSetting,
-      punkMode: this.state.punkMode,
-      psychMode: this.state.psychMode,
-    });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.darkMode !== prevState.darkMode) {
-      window.localStorage.setItem('dark', this.state.darkMode);
+      window.localStorage.setItem('dark', JSON.stringify(this.state.darkMode));
       document.body.classList.toggle('dark-mode');
     }
   }
