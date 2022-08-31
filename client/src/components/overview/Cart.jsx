@@ -8,6 +8,7 @@ const Cart = ({ selectedStyle, skus }) => {
   const [qtys, setQtys] = useState([]);
   const [qty, setQty] = useState('');
   const [sizeNotSelected, setSizeNotSelected] = useState('');
+  const [cart, setCart] = useState(false);
 
   const getSizes = () => {
     var sizeArr = [];
@@ -44,6 +45,7 @@ const Cart = ({ selectedStyle, skus }) => {
   const addToCart = () => {
     if (size === '') {
       setSizeNotSelected(true);
+      setCart(true);
     } else {
       setSizeNotSelected(false);
       console.log('add to cart button clicked: ', selectedStyle, size, qty);
@@ -84,7 +86,6 @@ const Cart = ({ selectedStyle, skus }) => {
               value={size}
               label="Select"
               onChange={updateSize}
-              open={sizeNotSelected}
               >
               {sizes.map(size => {
                 return <MenuItem value={size} key={size}>{size}</MenuItem>

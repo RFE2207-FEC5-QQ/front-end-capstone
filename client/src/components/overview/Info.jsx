@@ -4,6 +4,7 @@ import { Box, Rating } from '@mui/material'
 
 const Info = ({ product, selectedStyle }) => {
 
+  const [reviews, setReviews] = useState({});
   const [rating, setRating] = useState(0)
 
   const getAvgRating = (ratings) => {
@@ -14,6 +15,7 @@ const Info = ({ product, selectedStyle }) => {
       count += Number(ratings[rating]);
     }
     var average = Math.ceil((total / count) * 100) / 100;
+    setReviews(count);
     setRating(average);
   }
 
@@ -48,8 +50,8 @@ const Info = ({ product, selectedStyle }) => {
             precision={0.25}
             readOnly
           />
-          <a>
-            {`Read All [] Reviews`}
+          <a href='' className='read-all-reviews'>
+            {`Read All [${reviews}] Reviews`}
           </a>
         </div>
         <div className='product-category'>
@@ -66,11 +68,6 @@ const Info = ({ product, selectedStyle }) => {
             {`$${selectedStyle.sale_price}`}
           </div>
         </div>
-        <div className='product-social-media'>
-          Facebook
-          Twitter
-          Pinterest
-        </div>
       </div>
     )
   } else {
@@ -83,8 +80,8 @@ const Info = ({ product, selectedStyle }) => {
             precision={0.25}
             readOnly
           />
-          <a>
-            {`Read All [] Reviews`}
+          <a href='' className='read-all-reviews'>
+            {`Read All [${reviews}] Reviews`}
           </a>
         </div>
         <div className='product-category'>
@@ -93,13 +90,8 @@ const Info = ({ product, selectedStyle }) => {
         <div className='product-name'>
           {product.name}
         </div>
-        <div className='product-price'>
+        <div className='product-price' id='product-price'>
           {`$${selectedStyle.original_price}`}
-        </div>
-        <div className='product-social-media'>
-          Facebook
-          Twitter
-          Pinterest
         </div>
       </div>
     )

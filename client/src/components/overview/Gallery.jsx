@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Zoom from 'react-img-zoom';
+
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CropFreeIcon from '@mui/icons-material/CropFree';
@@ -13,6 +15,7 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
   const [photos, setPhotos] = useState([]);
   const [photo, setPhoto] = useState({});
   const [index, setIndex] = useState(0);
+  const [zoom, setZoom] = useState(false);
 
   const clickForward = () => {
     if (index === 6 && carouselIndex !== carousel.length - 1) {
@@ -47,6 +50,14 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
 
   const cropClick = () => {
     updateView();
+  }
+
+  const zoomIn = () => {
+    setZoom(true);
+  }
+
+  const zoomOut = () => {
+    setZoom(false);
   }
 
   useEffect(() => {
@@ -131,7 +142,7 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
         </div>
       </div>
     )
-  } else {
+  } else if (!defaultView && !zoom) {
     return (
       <div className='expanded-view'>
         <div className='gallery-carousel'>
@@ -161,6 +172,7 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
           <img
             className='expanded-image'
             src={photo.url}
+            onClick={zoomIn}
           ></img>
           <ArrowForwardIcon
             onClick={clickForward}
@@ -169,6 +181,19 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
           <CropFreeIcon
             className='crop-icon'
             onClick={cropClick}
+          />
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div className='expanded-view'>
+        <div className='zoom-image-container' onClick={zoomOut}>
+          <Zoom
+            zoomScale={2.5}
+            img={photo.url}
+            height={600}
+            width={1400}
           />
         </div>
       </div>
