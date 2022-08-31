@@ -84,6 +84,7 @@ const Cart = ({ selectedStyle, skus }) => {
               value={size}
               label="Select"
               onChange={updateSize}
+              open={sizeNotSelected}
               >
               {sizes.map(size => {
                 return <MenuItem value={size} key={size}>{size}</MenuItem>
