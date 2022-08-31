@@ -22,9 +22,7 @@ class App extends React.Component {
       psychMode: false,
     };
     this.darkMode = this.darkMode.bind(this);
-    this.godMode = this.godMode.bind(this);
     this.punkMode = this.punkMode.bind(this);
-    this.ludiMode = this.ludiMode.bind(this);
     this.psychMode = this.psychMode.bind(this);
   }
 
