@@ -46,8 +46,8 @@ body {
 
 .expanded-image {
   position: absolute;
-  left: 150px;
-  width: 1200px;
+  left: 400px;
+  width: 600px;
   height: 600px;
   object-fit: cover;
   border-radius: 5px;
