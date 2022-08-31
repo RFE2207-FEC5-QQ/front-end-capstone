@@ -26,13 +26,6 @@ const RelatedProducts = () => {
   // }, [productId]);
   }, [1]);
 
-
-
-  // return (
-  //   <div className='view-related'>
-  //   </div>
-  // );
-
   return (
     <Carousel>
       {/* <RelatedCard/>
