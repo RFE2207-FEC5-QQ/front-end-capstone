@@ -180,7 +180,7 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {'Characters left: ' + (60 - this.state.summary.length).toString()}
+            {`Max characters left: ${(60 - this.state.summary.length).toString()}`}
           </label>
         </div>
         <div className='review-form-body'>
@@ -197,7 +197,8 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {'Characters left: ' + (1000 - this.state.body.length).toString()}
+            {this.state.bodyValid ? 'Minimum reached' : `Minimum required characters left: [${(50 - this.state.body.length).toString()}]`}
+            {`Max characters left: ${(1000 - this.state.body.length).toString()}`}
           </label>
         </div>
         <div className='review-form-photos'>
@@ -218,7 +219,7 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {'Characters left: ' + (60 - this.state.name.length).toString()}
+            {`Max characters left: ${(60 - this.state.name.length).toString()}`}
             {'For privacy reasons, do not use your full name or email address'}
           </label>
         </div>
@@ -237,7 +238,7 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {'Characters left: ' + (60 - this.state.email.length).toString()}
+            {`Max characters left: ${(60 - this.state.email.length).toString()}`}
             {'For authentication reasons, you will not be emailed'}
           </label>
         </div>
