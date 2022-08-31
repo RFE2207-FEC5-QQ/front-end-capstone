@@ -35,8 +35,7 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       });
   };
 
-  const toggleReviewBody = (e) => {
-    e.preventDefault();
+  const toggleReviewBodyExpanded = () => {
     setReviewBodyExpanded(!reviewBodyExpanded);
   };
 
@@ -65,7 +64,7 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
         {review.body.length < 250 ? review.body.slice(0, 1000) :
           <span id='review-body-long'>
             {reviewBodyExpanded ? review.body.slice(0, 1000) : review.body.slice(0, 250)}
-            <button onClick={toggleReviewBody}>{reviewBodyExpanded ? 'Show less' : 'Show more'}</button>
+            <button onClick={toggleReviewBodyExpanded}>{reviewBodyExpanded ? 'Show less' : 'Show more'}</button>
           </span>
         }
       </p>

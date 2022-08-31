@@ -16,6 +16,7 @@ describe('\'/reviews\' routes', () => {
       })
       .then((success) => {
         let reviews = success.body.results;
+        expect(Array.isArray(reviews)).toBe(Array.isArray([]));
         expect(reviews.length).toBe(reviewCount);
       });
   });
