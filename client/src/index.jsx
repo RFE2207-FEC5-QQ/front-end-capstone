@@ -36,35 +36,12 @@ class App extends React.Component {
     });
   }
 
-  godMode() {
-    // Remove querySelector after building out function if using.
-    const rootElement = document.querySelector('body');
-    rootElement.classList.toggle('god-mode');
-    this.setState({
-      productId: this.state.productId,
-      darkMode: this.state.darkMode,
-      customMode: !this.state.customMode,
-    });
-  }
-
   punkMode() {
     this.setState({
       productId: this.state.productId,
       darkMode: this.state.darkMode,
       punkMode: !this.state.punkMode,
       psychMode: this.state.psychMode,
-    });
-  }
-
-
-  ludiMode() {
-    // Remove querySelector after building out function if using.
-    const rootElement = document.querySelector('body');
-    rootElement.classList.toggle('ludicrous-mode');
-    this.setState({
-      productId: this.state.productId,
-      darkMode: this.state.darkMode,
-      customMode: !this.state.customMode,
     });
   }
 

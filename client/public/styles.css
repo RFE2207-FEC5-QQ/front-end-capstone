@@ -6,8 +6,8 @@
 }
 
 @font-face {
-  font-family: 'CooperHewitt-Light';
-  src: url('fonts/CooperHewitt-Light.woff') format('woff');
+  font-family: 'CooperHewitt-Book';
+  src: url('fonts/CooperHewitt-Book.woff') format('woff');
 }
 
 @font-face {
@@ -23,11 +23,12 @@
   --shadow-color: rgba(0, 0, 0, 0.15);
   --header-font: 'Elan';
   --header-divider-color: #F5F5F5;
-  --text-font: 'CooperHewitt-Light';
+  --text-font: 'CooperHewitt-Book';
   --text-size: 0.75rem;
   --text-font-weight: normal;
   --text-hover-color: #6D6D6D;
   --text-sale-color: #C0392B;
+  --theme-icon-color: #282828;
 }
 
 /* Apply custom themes and variables here */
@@ -40,12 +41,7 @@
   --text-font-weight: 100;
   --text-hover-color: rgba(255, 255, 255, 1);
   --text-sale-color: rgba(231, 76, 70, 0.87);
-}
-
-.god-mode {
-}
-
-.ludicrous-mode {
+  --theme-icon-color: rgba(230, 230, 230, 0.87);
 }
 
 .punk-mode {
@@ -121,6 +117,7 @@ body {
   padding: 0.1rem;
   margin-right: 2rem;
   border-radius: 50%;
+  color: var(--theme-icon-color);
 }
 
 .theme-icon:hover {
@@ -139,8 +136,8 @@ body {
   justify-content: center;
   gap: 5rem;
   /* font-family: var(--header-font); */
-  font-family: 'CooperHewitt-Light';
-  font-size: 0.85rem;
+  font-family: var(--text-font);
+  font-size: 0.9rem;
   padding-top: 0.8rem;
   padding-bottom: 0.5rem;
   background-color: var(--header-divider-color);

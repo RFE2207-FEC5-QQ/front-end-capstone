@@ -52,15 +52,15 @@ const Navigation = ({ modes, toggleTheme }) => {
           {/* <h1 className='layer glitch'>ATELIER</h1> */}
           <div className=''>
             <span className={punkedOut} onClick={togglePunk}>A</span>
-            T
-            <span className={onPsych} onClick={togglePsych}>E</span>
-            LIER</div>
+            t
+            <span className={onPsych} onClick={togglePsych}>e</span>
+            lier</div>
         </div>
         <div className={`secondary-header ${onPsych}`}>
-          <div className={punkedOut}>PRODUCT DETAIL</div>
-          <div className={punkedOut}>RELATED PRODUCTS</div>
-          <div className={punkedOut}>QUESTIONS</div>
-          <div className={punkedOut}>REVIEWS</div>
+          <div className={punkedOut}>Product Detail</div>
+          <div className={punkedOut}>Related Products</div>
+          <div className={punkedOut}>Questions</div>
+          <div className={punkedOut}>Reviews</div>
         </div>
       </div>
       <div className='bg-color-placeholder'></div>
