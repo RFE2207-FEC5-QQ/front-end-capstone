@@ -1,6 +1,13 @@
+/* Apply any custom fonts here */
+/* Elan is for main header logo */
 @font-face {
   font-family: 'Elan';
   src: url('fonts/Elan_Thin.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'CooperHewitt-Light';
+  src: url('fonts/CooperHewitt-Light.woff') format('woff');
 }
 
 @font-face {
@@ -8,28 +15,30 @@
   src: url('fonts/Cyberpunk-Regular.woff2') format('woff2');
 }
 
-/* Global element variables */
+/* Place global element variables here */
 :root {
   --bg-theme-color: #fff;
   --text-theme-color: rgba(0, 0, 0, 1);
   --popup-theme-color: #F8F9F9;
-  --card-border-color: #D0D0D0;
   --shadow-color: rgba(0, 0, 0, 0.15);
   --header-font: 'Elan';
-  --text-font: arial;
+  --header-divider-color: #F5F5F5;
+  --text-font: 'CooperHewitt-Light';
   --text-size: 0.75rem;
   --text-font-weight: normal;
+  --text-hover-color: #6D6D6D;
   --text-sale-color: #C0392B;
 }
 
-/* Custom themes and variables */
+/* Apply custom themes and variables here */
 .dark-mode {
   --bg-theme-color: #23262E;
   --text-theme-color: rgba(230, 230, 230, 0.87);
+  --header-divider-color: #1f1f23;
   --popup-theme-color: #1B1D24;
-  /* --card-border-color: */
   --shadow-color: rgba(0, 0, 0, 0.3);
   --text-font-weight: 100;
+  --text-hover-color: rgba(255, 255, 255, 1);
   --text-sale-color: rgba(231, 76, 70, 0.87);
 }
 
@@ -70,9 +79,10 @@
     }
 }
 
-/* Standard formatting */
+/* Standard content formatting */
 html {
-  margin-top: 9rem;
+  /* Current navbar height is 7rem */
+  margin-top: 7rem;
 }
 
 body {
@@ -95,26 +105,50 @@ body {
   position: fixed;
   background-color: var(--bg-theme-color);
   width: 100%;
-  height: 9rem;
+  height: 7rem;
   top: 0;
   z-index: 998;
+}
+
+.top-bar-container {
+  display: flex;
+  justify-content: end;
+  background-color: var(--header-divider-color);
+  padding: 0.25rem;
+}
+
+.theme-icon {
+  padding: 0.1rem;
+  margin-right: 2rem;
+  border-radius: 50%;
+}
+
+.theme-icon:hover {
+  background-color: var(--bg-theme-color);
+  cursor: pointer;
 }
 
 .main-header {
   font-family: var(--header-font);
   font-size: 2rem;
-}
-
-hr.solid {
-  border-top: 1px solid var(--text-theme-color);
-  /* width: 100%; */
+  padding-left: 2rem;
 }
 
 .secondary-header {
-display: flex;
-justify-content: space-evenly;
-font-family: var(--header-font);
-padding: 0.25rem;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  /* font-family: var(--header-font); */
+  font-family: 'CooperHewitt-Light';
+  font-size: 0.85rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.5rem;
+  background-color: var(--header-divider-color);
+}
+
+.secondary-header div:hover {
+  cursor: pointer;
+  color: var(--text-hover-color);
 }
 
 /* Common text size and color formatting for specific headers. */
@@ -146,7 +180,7 @@ padding: 0.25rem;
 
 .related-card {
   flex-direction: column;
-  border: 1px solid var(--card-border-color);
+  /* border: 1px solid var(--card-border-color); */
   border-radius: 2%;
   position: relative;
   width: 220px;
@@ -156,7 +190,7 @@ padding: 0.25rem;
 }
 
 .related-card .img-container {
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
 }
 
 .related-card .card-content {
@@ -187,8 +221,8 @@ padding: 0.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65%;
-  height: 60%;
+  width: 100%;
+  height: 70%;
   margin: auto;
 }
 
@@ -241,6 +275,10 @@ padding: 0.25rem;
   padding-right: 0.5em;
   overflow-y: auto;
   background-color: var(--bg-theme-color);
+}
+
+@keyframes slide-down {
+  100% { down: 5%; }
 }
 
 .comparison-modal::-webkit-scrollbar {

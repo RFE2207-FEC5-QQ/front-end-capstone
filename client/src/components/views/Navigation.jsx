@@ -9,9 +9,11 @@ import {
   FormControlLabel,
   Switch,
 } from '@mui/material';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 const Navigation = ({ modes, toggleTheme }) => {
-  const { punkMode, psychMode } = modes;
+  const { darkMode, punkMode, psychMode } = modes;
   const { toggleDark, toggleGod, togglePunk, toggleLudi, togglePsych } = toggleTheme;
 
   let onPsych = '';
@@ -33,25 +35,33 @@ const Navigation = ({ modes, toggleTheme }) => {
   return (
     <React.Fragment>
       <div className='nav-bar'>
-        <span onClick={toggleGod}>God Mode </span>
-        <span onClick={togglePunk}>Punk Mode </span>
-        <span onClick={toggleLudi}>Ludicrous Mode </span>
-        <span onClick={togglePsych}>Psychedelic Mode </span>
-        <FormControlLabel
-          control={<Switch onChange={ toggleDark } color='default' sx={{ m: 0 }}/>}
-        />
+        <div className='top-bar-container'>
+          {/* <span onClick={toggleGod}>God Mode </span> */}
+          {/* <span onClick={togglePunk}>Punk Mode </span> */}
+          {/* <span onClick={toggleLudi}>Ludicrous Mode </span> */}
+          {/* <span onClick={togglePsych}>Psychedelic Mode </span> */}
+          {/* <FormControlLabel
+            control={<Switch onChange={ toggleDark } color='default' sx={{ m: 0 }}/>}
+          /> */}
+          {darkMode
+            ? <DarkModeOutlinedIcon className='theme-icon' onClick={ toggleDark }/>
+            : <LightModeOutlinedIcon className='theme-icon'onClick={ toggleDark }/>
+          }
+        </div>
         <div className={`main-header ${onPsych} ${punkedOut}`}>
           {/* <h1 className='layer glitch'>ATELIER</h1> */}
-          <div className=''>ATELIER</div>
+          <div className=''>
+            <span className={punkedOut} onClick={togglePunk}>A</span>
+            T
+            <span className={onPsych} onClick={togglePsych}>E</span>
+            LIER</div>
         </div>
-        <hr className='solid'/>
-        <div className={`secondary-header ${onPsych} ${punkedOut}`}>
-          <div>PRODUCT DETAIL</div>
-          <div>RELATED PRODUCTS</div>
-          <div>QUESTIONS</div>
-          <div>REVIEWS</div>
+        <div className={`secondary-header ${onPsych}`}>
+          <div className={punkedOut}>PRODUCT DETAIL</div>
+          <div className={punkedOut}>RELATED PRODUCTS</div>
+          <div className={punkedOut}>QUESTIONS</div>
+          <div className={punkedOut}>REVIEWS</div>
         </div>
-        <hr className='solid'/>
       </div>
       <div className='bg-color-placeholder'></div>
     </React.Fragment>

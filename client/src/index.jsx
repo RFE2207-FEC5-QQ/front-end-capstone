@@ -102,6 +102,7 @@ class App extends React.Component {
     };
 
     const modes = {
+      darkMode: this.state.darkMode,
       punkMode: this.state.punkMode,
       psychMode: this.state.psychMode,
     };
