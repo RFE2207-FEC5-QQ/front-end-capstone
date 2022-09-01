@@ -47,10 +47,10 @@ const Navigation = ({ modes, toggleTheme }) => {
             lier</div>
         </div>
         <div className={`secondary-header ${onPsych}`}>
-          <div className={punkedOut}>Product Detail</div>
-          <div className={punkedOut}>Related Products</div>
-          <div className={punkedOut}>Questions</div>
-          <div className={punkedOut}>Reviews</div>
+          <a href='#overiew' className={punkedOut}>Product Detail</a>
+          <a href='#related' className={punkedOut}>Related Products</a>
+          <a href='#questions' className={punkedOut}>Questions</a>
+          <a href='#reviews' className={punkedOut}>Reviews</a>
         </div>
       </div>
       <div className='bg-color-placeholder'></div>
