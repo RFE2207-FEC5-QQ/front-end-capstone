@@ -100,14 +100,17 @@ a {
   width: 100%;
   top: 0;
   z-index: 999;
+  transition: all 0s;
 }
 
 /* For hiding or showing navbar during scrolling */
 .scrolled-down {
-  transform: translateY(-100%); transition: all 0.5s ease-in-out;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
 }
 .scrolled-up {
-  transform: translateY(0); transition: all 0.5s ease-in-out;
+  transform: translateY(0);
+  transition: transform 0.5s ease-in-out;
 }
 
 /* Needed to prevent transparent background during psychedelic mode. */
