@@ -1,14 +1,4 @@
 import React, { useState, useEffect } from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Typography,
-  Button,
-  Divider,
-  FormControlLabel,
-  Switch,
-} from '@mui/material';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
@@ -36,20 +26,20 @@ const Navigation = ({ modes, toggleTheme }) => {
     <React.Fragment>
       <div className='nav-bar'>
         <div className='top-bar-container'>
-          {/* <span onClick={toggleGod}>God Mode </span> */}
-          {/* <span onClick={togglePunk}>Punk Mode </span> */}
-          {/* <span onClick={toggleLudi}>Ludicrous Mode </span> */}
-          {/* <span onClick={togglePsych}>Psychedelic Mode </span> */}
-          {/* <FormControlLabel
-            control={<Switch onChange={ toggleDark } color='default' sx={{ m: 0 }}/>}
-          /> */}
           {darkMode
-            ? <DarkModeOutlinedIcon className='theme-icon' onClick={ toggleDark }/>
-            : <LightModeOutlinedIcon className='theme-icon'onClick={ toggleDark }/>
+            ? <DarkModeOutlinedIcon
+              aria-label='dark-icon'
+              className='theme-icon'
+              onClick={ toggleDark }
+            />
+            : <LightModeOutlinedIcon
+              aria-label='light-icon'
+              className='theme-icon'
+              onClick={ toggleDark }
+            />
           }
         </div>
         <div className={`main-header ${onPsych} ${punkedOut}`}>
-          {/* <h1 className='layer glitch'>ATELIER</h1> */}
           <div className=''>
             <span className={punkedOut} onClick={togglePunk}>A</span>
             t
