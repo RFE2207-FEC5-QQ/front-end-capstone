@@ -40,17 +40,18 @@ const Navigation = ({ modes, toggleTheme }) => {
           }
         </div>
         <div className={`main-header ${onPsych} ${punkedOut}`}>
-          <div className=''>
-            <span className={punkedOut} onClick={togglePunk}>A</span>
+          <div className='title'>
+            <span onClick={togglePunk}>A</span>
             t
-            <span className={onPsych} onClick={togglePsych}>e</span>
-            lier</div>
+            <span onClick={togglePsych}>e</span>
+            lier
+          </div>
         </div>
-        <div className={`secondary-header ${onPsych}`}>
-          <a href='#overiew' className={punkedOut}>Product Detail</a>
-          <a href='#related' className={punkedOut}>Related Products</a>
-          <a href='#questions' className={punkedOut}>Questions</a>
-          <a href='#reviews' className={punkedOut}>Reviews</a>
+        <div className='secondary-header'>
+          <a href='#overiew' className={onPsych}>Product Detail</a>
+          <a href='#related' className={onPsych}>Related Products</a>
+          <a href='#questions' className={onPsych}>Questions</a>
+          <a href='#reviews' className={onPsych}>Reviews</a>
         </div>
       </div>
       <div className='bg-color-placeholder'></div>

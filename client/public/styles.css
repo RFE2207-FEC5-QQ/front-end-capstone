@@ -29,6 +29,7 @@
   --text-hover-color: #6D6D6D;
   --text-sale-color: #C0392B;
   --theme-icon-color: #282828;
+  --header-text-size: 2rem;
 }
 
 /* Apply custom themes and variables here */
@@ -66,6 +67,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 100% 100%;
+  background-color: (--header-divider-color);
   animation: rainbow 35s infinite linear;
 }
 
@@ -86,6 +88,7 @@ body {
   color: var(--text-theme-color);
   font-family: var(--text-font);
   font-size: var(--text-size);
+  margin-left: 0;
 }
 
 a {
@@ -115,7 +118,9 @@ a {
   display: flex;
   justify-content: end;
   background-color: var(--header-divider-color);
-  padding: 0.25rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem;
 }
 
 .theme-icon {
@@ -131,22 +136,32 @@ a {
 }
 
 .main-header {
+  align-items: center;
   font-family: var(--header-font);
-  font-size: 2rem;
+  font-size: var(--header-text-size);
   padding-left: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.title {
+  height: 3rem;
 }
 
 .secondary-header {
   display: flex;
   justify-content: center;
+  position: relative;
   gap: 5rem;
   font-family: var(--text-font);
   font-size: 0.9rem;
-  /* color: var(--text-theme-color);
-  text-decoration: none; */
   padding-top: 0.8rem;
   padding-bottom: 0.5rem;
   background-color: var(--header-divider-color);
+}
+
+.secondary-header a {
+  z-index: 998;
 }
 
 .secondary-header a:hover {
@@ -387,16 +402,6 @@ a {
   color: #909497;
   /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2)) */
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /* Glitch animation for punk mode */
