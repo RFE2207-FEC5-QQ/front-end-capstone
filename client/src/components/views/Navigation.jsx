@@ -21,7 +21,6 @@ const Navigation = ({ modes, toggleTheme }) => {
     punkedOut = '';
   }
 
-  console.log(modes);
   return (
     <React.Fragment>
       <div className='nav-bar'>
@@ -47,11 +46,13 @@ const Navigation = ({ modes, toggleTheme }) => {
             lier
           </div>
         </div>
-        <div className='secondary-header'>
-          <a href='#overiew' className={onPsych}>Product Detail</a>
-          <a href='#related' className={onPsych}>Related Products</a>
-          <a href='#questions' className={onPsych}>Questions</a>
-          <a href='#reviews' className={onPsych}>Reviews</a>
+        <div className={`secondary-header secondary-header-pad`}>
+          <div className={`secondary-header ${onPsych}`}>
+            <a href='#overiew' className={`${punkedOut}`}>Product Detail</a>
+            <a href='#related' className={`${punkedOut}`}>Related Products</a>
+            <a href='#questions' className={`${punkedOut}`}>Questions</a>
+            <a href='#reviews' className={`${punkedOut}`}>Reviews</a>
+          </div>
         </div>
       </div>
       <div className='bg-color-placeholder'></div>

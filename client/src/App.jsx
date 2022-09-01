@@ -18,6 +18,7 @@ class App extends React.Component {
     this.darkMode = this.darkMode.bind(this);
     this.punkMode = this.punkMode.bind(this);
     this.psychMode = this.psychMode.bind(this);
+    this.useRainbow = this.useRainbow.bind(this);
   }
 
   darkMode() {
@@ -47,18 +48,57 @@ class App extends React.Component {
     });
   }
 
+  useRainbow() {
+    const viewportHeight = window.innerHeight;
+    const contentHeight = document.body.getBoundingClientRect().height;
+    const viewportsPerRotation = Math.min(3, contentHeight / viewportHeight);
+    const from = 51;
+    const progress = window.scrollY / (viewportHeight * viewportsPerRotation);
+    const h = (from + 360 * progress) % 360;
+    document.body.style.backgroundColor = `hsl(${h}deg, 100%, 50%)`;
+  };
+
   componentDidMount() {
     if (this.state.darkMode) {
       document.body.classList.add('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
     }
+
+    let lastScroll = 0;
+    const navBar = document.querySelector('.nav-bar');
+    const navPlaceHolder = document.querySelector('.bg-color-placeholder');
+
+    window.addEventListener("scroll", () => {
+      let currentScroll = window.scrollY;
+      if (currentScroll - lastScroll > 0) {
+        navBar.classList.add("scrolled-down");
+        navPlaceHolder.classList.add("scrolled-down");
+        navBar.classList.remove("scrolled-up");
+        navPlaceHolder.classList.remove("scrolled-up");
+      } else {
+        navBar.classList.add("scrolled-up");
+        navPlaceHolder.classList.add("scrolled-down");
+        navBar.classList.remove("scrolled-down");
+        navPlaceHolder.classList.remove("scrolled-up");
+      }
+      lastScroll = currentScroll;
+    })
+
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.darkMode !== prevState.darkMode) {
       window.localStorage.setItem('dark', JSON.stringify(this.state.darkMode));
       document.body.classList.toggle('dark-mode');
+    }
+    if (this.state.psychMode !== prevState.psychMode) {
+      if (this.state.psychMode) {
+        window.addEventListener('scroll', this.useRainbow, { passive: true });
+      } else {
+        window.removeEventListener('scroll', this.useRainbow);
+        document.body.style.backgroundColor = '';
+      }
     }
   }
 

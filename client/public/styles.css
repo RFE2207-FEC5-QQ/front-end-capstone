@@ -25,6 +25,7 @@
   --text-sale-color: #C0392B;
   --theme-icon-color: #282828;
   --header-text-size: 2rem;
+  --secondary-header-text-size: 0.9rem;
 }
 
 /* Apply custom themes and variables here */
@@ -42,6 +43,8 @@
 
 .punk-mode {
   --header-font: 'Cyberpunk';
+  --text-font: 'Cyberpunk';
+  --secondary-header-text-size: 0.8rem;
 }
 
 .psychedelic-mode {
@@ -62,7 +65,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 100% 100%;
-  background-color: (--header-divider-color);
+  background-attachment: fixed;
   animation: rainbow 35s infinite linear;
 }
 
@@ -97,6 +100,14 @@ a {
   width: 100%;
   top: 0;
   z-index: 999;
+}
+
+/* For hiding or showing navbar during scrolling */
+.scrolled-down {
+  transform: translateY(-100%); transition: all 0.5s ease-in-out;
+}
+.scrolled-up {
+  transform: translateY(0); transition: all 0.5s ease-in-out;
 }
 
 /* Needed to prevent transparent background during psychedelic mode. */
@@ -135,8 +146,8 @@ a {
   font-family: var(--header-font);
   font-size: var(--header-text-size);
   padding-left: 2rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
+  /* padding-bottom: 0.25rem; */
 }
 
 .title {
@@ -148,15 +159,13 @@ a {
   justify-content: center;
   position: relative;
   gap: 5rem;
-  font-family: var(--text-font);
-  font-size: 0.9rem;
-  padding-top: 0.8rem;
-  padding-bottom: 0.5rem;
   background-color: var(--header-divider-color);
+  font-size: 0.9rem;
 }
 
-.secondary-header a {
-  z-index: 998;
+.secondary-header-pad {
+  padding-top: 0.75rem;
+  padding-bottom: 0.5rem;
 }
 
 .secondary-header a:hover {
