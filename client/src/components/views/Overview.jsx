@@ -26,7 +26,7 @@ const Overview = (props) => {
       .then(res => {
         setProducts(res.data);
         setProduct(res.data[4]);
-        getStyles(res.data[4].id)
+        getStyles(res.data[4].id);
       })
       .catch(err => {
         console.log(err)
