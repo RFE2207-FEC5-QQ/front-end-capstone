@@ -6,11 +6,6 @@
 }
 
 @font-face {
-  font-family: 'CooperHewitt-Book';
-  src: url('fonts/CooperHewitt-Book.woff') format('woff');
-}
-
-@font-face {
   font-family: 'Cyberpunk';
   src: url('fonts/Cyberpunk-Regular.woff2') format('woff2');
 }
@@ -23,7 +18,7 @@
   --shadow-color: rgba(0, 0, 0, 0.15);
   --header-font: 'Elan';
   --header-divider-color: #F5F5F5;
-  --text-font: 'CooperHewitt-Book';
+  --text-font: 'Helvetica-light';
   --text-size: 0.75rem;
   --text-font-weight: normal;
   --text-hover-color: #6D6D6D;
