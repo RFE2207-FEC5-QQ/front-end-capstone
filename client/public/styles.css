@@ -23,7 +23,7 @@
   --shadow-color: rgba(0, 0, 0, 0.15);
   --header-font: 'Elan';
   --header-divider-color: #F5F5F5;
-  --text-font: 'CooperHewitt-Book';
+  --text-font: 'Helvetica-light';
   --text-size: 0.75rem;
   --text-font-weight: normal;
   --text-hover-color: #6D6D6D;
@@ -138,8 +138,8 @@ body {
   /* font-family: var(--header-font); */
   font-family: var(--text-font);
   font-size: 0.9rem;
-  padding-top: 0.8rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
   background-color: var(--header-divider-color);
 }
 
