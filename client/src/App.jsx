@@ -48,6 +48,7 @@ class App extends React.Component {
     });
   }
 
+
   useRainbow() {
     const viewportHeight = window.innerHeight;
     const contentHeight = document.body.getBoundingClientRect().height;
@@ -92,6 +93,7 @@ class App extends React.Component {
       window.localStorage.setItem('dark', JSON.stringify(this.state.darkMode));
       document.body.classList.toggle('dark-mode');
     }
+
     if (this.state.psychMode !== prevState.psychMode) {
       if (this.state.psychMode) {
         window.addEventListener('scroll', this.useRainbow, { passive: true });
@@ -121,7 +123,7 @@ class App extends React.Component {
         <Overview/>
         <RelatedProducts modes={modes}/>
         <QuestionsAnswers/>
-        <Reviews/>
+        <Reviews productId={37311}/>
       </React.Fragment>
     );
   }
