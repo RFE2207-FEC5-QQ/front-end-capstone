@@ -875,3 +875,289 @@ body {
   display: flex;
   justify-content: flex-start;
 }
+
+/* Image Gallery */
+/* Expanded View */
+.expanded-view {
+  background-color: #E8E8E8;
+  position: relative;
+  width: 1400px;
+  height: 600px;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.expanded-image {
+  position: absolute;
+  left: 400px;
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: solid black 1px;
+  transition: 0.5s;
+  cursor: crosshair;
+}
+
+.zoom-image-container {
+  cursor: zoom-out;
+}
+
+.expanded-left-arrow {
+  position: absolute;
+  left: 110px;
+  top: 300px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.carousel-icon {
+  color: black
+}
+
+.selected-carousel-icon {
+  color: red;
+}
+
+.expanded-up-arrow {
+  margin-left: 0px;
+}
+
+/* Default View */
+.overview-gallery {
+  background-color: #E8E8E8;
+  position: relative;
+  width: 900px;
+  height: 600px;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.gallery-carousel {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  border-right: solid black 2px;
+}
+
+.selected-image-container {
+  position: absolute;
+  left: 100px;
+  width: 800px;
+  height: 600px;
+}
+
+.selected-image {
+  position: absolute;
+  left: 100px;
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: solid black 1px;
+  transition: 0.5s;
+  cursor: zoom-in;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 10px;
+  top: 300px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.left-arrow {
+  position: absolute;
+  left: 10px;
+  top: 300px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.right-arrow:hover {
+  width: 30px;
+  height: 30px;
+  top: 297px;
+  right: 5px;
+}
+
+.left-arrow:hover {
+  width: 30px;
+  height: 30px;
+  top: 297px;
+  left: 5px;
+}
+
+.up-arrow {
+  margin-left: 18px;
+}
+
+.no-arrow {
+  opacity: 0;
+}
+
+.carousel-image {
+  border: solid lightgray;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selected-carousel-image {
+  border: solid black;
+  border-bottom: solid red 6px;
+}
+
+.crop-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.crop-icon:hover {
+  width: 25px;
+  height: 25px;
+}
+
+/* Product Info */
+.read-all-reviews {
+  margin: 10px;
+  position: relative;
+  bottom: 6px;
+}
+
+.product-category {
+  margin-top: 8px;
+  color: grey;
+  font-size: 20px;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: 50px;
+  margin-left: -3px;
+}
+
+.product-price {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.original-price {
+  font: bold;
+  display: inline;
+  text-decoration: line-through;
+}
+.sale-price {
+  color: red;
+  display: inline;
+  margin: 5px;
+}
+
+/* Style Selector */
+.style-selector {
+  font-weight: bold;
+  position: relative;
+}
+
+.selected-style {
+  color: grey;
+  padding-left: 25px;
+}
+
+.style-arrow {
+  position: absolute;
+}
+
+.style-image {
+  border: 2px solid rgba(0,0,0,0);
+  border-radius: 50%;
+  margin: 2px;
+  cursor: pointer;
+  height: 68px;
+  width: 68px;
+  object-fit: cover;
+  margin-bottom: -10px;
+}
+
+.unchecked-image {
+  position: relative;
+  left: 50px;
+  top: 22px;
+  opacity: 0
+}
+
+.checked-image {
+  border-radius: 50%;
+  background-color: white;
+  border: solid black;
+  position: relative;
+  left: 50px;
+  top: 30px;
+}
+
+/* Cart */
+.overview-cart {
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.overview-select {
+  width: 200px;
+  padding-right: 10px;
+  display: inline;
+}
+
+.add-to-cart {
+  width: 200px;
+  height: 50px;
+  padding-top: 10px;
+}
+
+.size-warning {
+  padding-bottom: 5px;
+}
+
+/* Description */
+#description-grid {
+  padding-top: 50px;
+  padding-left: 100px;
+}
+
+.slogan-description {
+  border-right: solid grey 5px;
+}
+
+.product-slogan {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.product-description {
+  font-style: italic;
+}
+
+.product-features {
+  margin-left: 10px;
+  margin-top: 0;
+  position: relative;
+}
+
+.feature-value {
+  margin-left: 5px;
+  position: absolute;
+}
+
+.product-social {
+  margin: 5px;
+}
