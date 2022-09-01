@@ -50,10 +50,10 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={darkTheme}>
         <CssBaseline/>
-        <Navigation/>
+        {/* <Navigation/>
         <Overview/>
         <RelatedProducts/>
-        <QuestionsAnswers/>
+        <QuestionsAnswers/> */}
         <Reviews productId={this.state.productId}/>
       </ThemeProvider>
     );
