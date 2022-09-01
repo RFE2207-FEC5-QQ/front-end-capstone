@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import RelatedCard from './RelatedCard.jsx';
+// import RelatedCard from './RelatedCard.jsx';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@mui/material';
 
@@ -35,10 +35,10 @@ const RelatedProducts = () => {
 
   return (
     <Carousel>
+      {/* <RelatedCard/>
       <RelatedCard/>
       <RelatedCard/>
-      <RelatedCard/>
-      <RelatedCard/>
+      <RelatedCard/> */}
     </Carousel>
   );
 };

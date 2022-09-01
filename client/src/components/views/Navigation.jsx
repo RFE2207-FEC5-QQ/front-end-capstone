@@ -1,53 +1,60 @@
-import React from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Typography,
-  Button,
-  Divider,
-  FormControlLabel,
-  Switch,
-} from '@mui/material';
+import React, { useState, useEffect } from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
-const Navigation = ({ mode, onChange }) => {
+const Navigation = ({ modes, toggleTheme }) => {
+  const { darkMode, punkMode, psychMode } = modes;
+  const { toggleDark, toggleGod, togglePunk, toggleLudi, togglePsych } = toggleTheme;
 
+  let onPsych = '';
+  let punkedOut = '';
+
+  if (psychMode) {
+    onPsych = 'psychedelic-mode';
+  } else {
+    onPsych = '';
+  }
+
+  if (punkMode) {
+    punkedOut = 'punk-mode layer glitch';
+  } else {
+    punkedOut = '';
+  }
+
+  console.log(modes);
   return (
-    <Box className='view-navigation' sx={{ flexGrow: 1 }}>
-      <AppBar
-        position='fixed'
-        elevation={0}>
-        <Box sx={{ display: 'flex', justifyContent: 'end'}}>
-          <FormControlLabel
-            control={<Switch onChange={ onChange } color='default' sx={{ m: 0 }}/>}
-          />
-        </Box>
-        <Typography
-          className='main-header'
-          variant='h2'
-          component='div'
-          sx={{ flexGrow: 1, padding: 0, margin: 'auto', fontWeight: 100}}>
-          <div className='main-header'>ATELIER</div>
-        </Typography>
-        <Divider variant='middle'/>
-        <Typography
-          className='secondary-header'
-          variant='text'
-          component='div'
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            padding: 1,
-          }}>
-          <div>PRODUCT DETAIL</div>
-          <div>RELATED PRODUCTS</div>
-          <div>QUESTIONS</div>
-          <div>REVIEWS</div>
-        </Typography>
-        <Divider variant='middle'/>
-      </AppBar>
-    </Box>
+    <React.Fragment>
+      <div className='nav-bar'>
+        <div className='top-bar-container'>
+          {darkMode
+            ? <DarkModeOutlinedIcon
+              aria-label='dark-icon'
+              className='theme-icon'
+              onClick={ toggleDark }
+            />
+            : <LightModeOutlinedIcon
+              aria-label='light-icon'
+              className='theme-icon'
+              onClick={ toggleDark }
+            />
+          }
+        </div>
+        <div className={`main-header ${onPsych} ${punkedOut}`}>
+          <div className=''>
+            <span className={punkedOut} onClick={togglePunk}>A</span>
+            t
+            <span className={onPsych} onClick={togglePsych}>e</span>
+            lier</div>
+        </div>
+        <div className={`secondary-header ${onPsych}`}>
+          <div className={punkedOut}>Product Detail</div>
+          <div className={punkedOut}>Related Products</div>
+          <div className={punkedOut}>Questions</div>
+          <div className={punkedOut}>Reviews</div>
+        </div>
+      </div>
+      <div className='bg-color-placeholder'></div>
+    </React.Fragment>
   );
 };
 
