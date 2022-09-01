@@ -78,80 +78,13 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // DEBUG - Using sample review
-      reviews: [
-        {
-          'review_id': 1275440,
-          'rating': 5,
-          'summary': 'This is a summary...',
-          'recommend': true,
-          'response': 'Hey just responding to your review, we love it!',
-          'body': 'Let me tell you about being a cat, it isn\'t always great! Consectetur voluptate sit cillum in occaecat sit. Commodo ipsum ad adipisicing adipisicing. Cupidatat non esse elit proident duis incididunt laborum. Laboris eiusmod in pariatur. Excepteur sint occaecat ullamco cillum ea minim deserunt. Officia labore id sunt consectetur amet eiusmod. Mollit do nisi ipsum aute. Laborum eiusmod occaecat sunt enim enim laborum.',
-          'date': '2022-07-15T00:00:00.000Z',
-          'reviewer_name': 'An Actual Real Life Cat',
-          'helpfulness': 2,
-          'photos': [
-            {
-              'id': 2455345,
-              'url': 'http://res.cloudinary.com/dm84tjpoq/image/upload/v1657918306/vw1hfv268xkgpyfr0i04.jpg'
-            },
-            {
-              'id': 1111111,
-              'url': 'https://i.imgur.com/EPHb3G6.jpeg'
-            },
-            {
-              'id': 1111112,
-              'url': 'https://i.imgur.com/EPHb3G6.jpeg'
-            },
-            {
-              'id': 1111113,
-              'url': 'https://i.imgur.com/EPHb3G6.jpeg'
-            },
-            {
-              'id': 2455346,
-              'url': 'http://res.cloudinary.com/dm84tjpoq/image/upload/v1657918306/vw1hfv268xkgpyfr0i04.jpg'
-            }
-          ]
-        }
-      ],
-      // DEBUG - Using sample review meta
-      reviewMeta: {
-        'product_id': '37311',
-        'ratings': {
-          '1': '10',
-          '2': '20',
-          '3': '30',
-          '4': '40',
-          '5': '50'
-        },
-        'recommended': {
-          'false': '75',
-          'true': '75'
-        },
-        'characteristics': {
-          'Fit': {
-            'id': 125031,
-            'value': '1.5'
-          },
-          'Length': {
-            'id': 125032,
-            'value': '3'
-          },
-          'Comfort': {
-            'id': 125033,
-            'value': '4'
-          },
-          'Quality': {
-            'id': 125034,
-            'value': '5'
-          }
-        }
-      },
+      reviews: [],
+      reviewMeta: {},
       sort: 'relevant',
       count: 2,
       page: 1,
       filter: {},
-      showReviewModal: false // DEBUG: Set to 'false' for production
+      showReviewModal: false
     };
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
@@ -250,9 +183,7 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-    // DEBUG - Uncomment to get reviews on mount
     this.getReviews();
-    // DEBUG - Uncomment to get review meta on mount
     this.getReviewMeta();
   }
 

@@ -7,8 +7,6 @@ import Review from '../cards/Review.jsx';
 
 const ReviewList = ({reviews, sort, getReviews, openReviewModal, handleSortChange, handleMoreReviews, ratingTheme, paletteMap}) => {
 
-  console.log('reviews', reviews); // DEBUG
-
   return (
     <div className='review-list'>
       <div className='review-list-top'>
