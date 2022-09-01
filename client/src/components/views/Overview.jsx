@@ -109,6 +109,12 @@ const Overview = (props) => {
           </Grid>
         </div>
       );
+    } else {
+      return (
+        <div className='waiting'>
+          Loading...
+        </div>
+      )
     }
   } else {
     return (

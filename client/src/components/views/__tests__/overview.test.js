@@ -1,12 +1,17 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react'
-// import userEvent from '@testing-library/user-event'
+import { render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import Overview from '../Overview.jsx';
+import axios from 'axios';
 
-describe('testing', function() {
+axios.defaults.baseURL = 'http://localhost:3000';
+
+describe('Overview', function() {
   render(<Overview />)
-  it('testing', function() {
-    expect(true).toBe(true);
-  })
-})
+
+  test('Should render', () => {
+    let item = document.getElementsByClassName('waiting');
+    expect(item).toHaveLength(1);
+  });
+});
