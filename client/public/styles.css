@@ -12,12 +12,14 @@
 
 /* Place global element variables here */
 :root {
+  /* --bg-theme-color: #fff; */
   --bg-theme-color: #fff;
   --text-theme-color: rgba(0, 0, 0, 1);
   --popup-theme-color: #F8F9F9;
   --shadow-color: rgba(0, 0, 0, 0.15);
   --header-font: 'Elan';
-  --header-divider-color: #F5F5F5;
+  /* --header-divider-color: #F5F5F5; */
+  --header-divider-color: #fef5fd;
   --text-font: 'Helvetica-light';
   --text-size: 0.75rem;
   --text-font-weight: normal;
@@ -30,9 +32,11 @@
 
 /* Apply custom themes and variables here */
 .dark-mode {
-  --bg-theme-color: #23262E;
+  /* --bg-theme-color: #23262E; */
+  --bg-theme-color: #24232e;
   --text-theme-color: rgba(230, 230, 230, 0.87);
-  --header-divider-color: #1f1f23;
+  /* --header-divider-color: #1f1f23; */
+  --header-divider-color: #403A4D;
   --popup-theme-color: #1B1D24;
   --shadow-color: rgba(0, 0, 0, 0.3);
   --text-font-weight: 100;
@@ -105,7 +109,7 @@ a {
 
 /* For hiding or showing navbar during scrolling */
 .scrolled-down {
-  transform: translateY(-100%);
+  transform: translateY(-75%);
   transition: transform 0.5s ease-in-out;
 }
 .scrolled-up {
@@ -129,7 +133,7 @@ a {
   background-color: var(--header-divider-color);
   width: 100%;
   height: 100%;
-  padding: 0.4rem;
+  padding: 0.25rem;
 }
 
 .theme-icon {
@@ -145,6 +149,7 @@ a {
 }
 
 .main-header {
+  width: 100%;
   align-items: center;
   font-family: var(--header-font);
   font-size: var(--header-text-size);
@@ -154,6 +159,8 @@ a {
 }
 
 .title {
+  display: flex;
+  justify-content: center;
   height: 3rem;
 }
 
@@ -161,6 +168,7 @@ a {
   display: flex;
   justify-content: center;
   position: relative;
+  width: 100%;
   gap: 5rem;
   background-color: var(--header-divider-color);
   font-size: 0.9rem;
