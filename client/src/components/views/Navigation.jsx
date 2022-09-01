@@ -21,28 +21,38 @@ const Navigation = ({ modes, toggleTheme }) => {
     punkedOut = '';
   }
 
-  console.log(modes);
   return (
     <React.Fragment>
       <div className='nav-bar'>
         <div className='top-bar-container'>
           {darkMode
-            ? <DarkModeOutlinedIcon className='theme-icon' onClick={ toggleDark }/>
-            : <LightModeOutlinedIcon className='theme-icon'onClick={ toggleDark }/>
+            ? <DarkModeOutlinedIcon
+              aria-label='dark-icon'
+              className='theme-icon'
+              onClick={ toggleDark }
+            />
+            : <LightModeOutlinedIcon
+              aria-label='light-icon'
+              className='theme-icon'
+              onClick={ toggleDark }
+            />
           }
         </div>
         <div className={`main-header ${onPsych} ${punkedOut}`}>
-          <div className=''>
-            <span className={punkedOut} onClick={togglePunk}>A</span>
+          <div className='title'>
+            <span onClick={togglePunk}>A</span>
             t
-            <span className={onPsych} onClick={togglePsych}>e</span>
-            lier</div>
+            <span onClick={togglePsych}>e</span>
+            lier
+          </div>
         </div>
-        <div className={`secondary-header ${onPsych}`}>
-          <div className={punkedOut}>Product Detail</div>
-          <div className={punkedOut}>Related Products</div>
-          <div className={punkedOut}>Questions</div>
-          <div className={punkedOut}>Reviews</div>
+        <div className={`secondary-header secondary-header-pad`}>
+          <div className={`secondary-header ${onPsych}`}>
+            <a href='#overiew' className={`${punkedOut}`}>Product Detail</a>
+            <a href='#related' className={`${punkedOut}`}>Related Products</a>
+            <a href='#questions' className={`${punkedOut}`}>Questions</a>
+            <a href='#reviews' className={`${punkedOut}`}>Reviews</a>
+          </div>
         </div>
       </div>
       <div className='bg-color-placeholder'></div>
