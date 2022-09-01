@@ -11,7 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: 0,
-      darkMode: JSON.parse(window.localStorage.getItem('dark')) ?? false,
+      darkMode: JSON.parse(window.localStorage.getItem('dark')) || false,
       punkMode: false,
       psychMode: false,
     };
@@ -81,7 +81,7 @@ class App extends React.Component {
         <Overview/>
         <RelatedProducts modes={modes}/>
         <QuestionsAnswers/>
-        <Reviews/>
+        <Reviews productId={37311}/>
       </React.Fragment>
     );
   }
