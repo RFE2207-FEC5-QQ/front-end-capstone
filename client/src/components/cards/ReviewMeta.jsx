@@ -5,6 +5,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const ReviewMeta = ({reviewMeta, productId, filterbyRating, paletteMap, characteristicChart}) => {
+
+  if (!reviewMeta) {
+    return null;
+  }
+
   let totalReviews = 0;
   let totalStars = 0;
   for (let key in reviewMeta.ratings) {
