@@ -43,7 +43,7 @@ const RelatedProducts = ({ onClick, productId, modes }) => {
       })
       .then((results) => {
         const relatedIds = [...new Set(results.data)];
-        console.log('relatedIds', relatedIds);
+        // console.log('relatedIds', relatedIds);
         setRelatedList(relatedIds);
       })
       .catch((err) => {
@@ -54,8 +54,8 @@ const RelatedProducts = ({ onClick, productId, modes }) => {
   return (
     <div className='related-products'>
       <div className='related-header'>Related Products</div>
-      {relatedList &&
-        <Carousel className='carousel' responsive={responsive}>
+      {relatedList
+        ? <Carousel className='carousel' responsive={responsive}>
           {relatedList.map((product, i) =>
             <RelatedCard
               onClick={onClick}
@@ -64,6 +64,7 @@ const RelatedProducts = ({ onClick, productId, modes }) => {
               item={product}
               modal='related'/>)}
         </Carousel>
+        : null
       }
     </div>
   );

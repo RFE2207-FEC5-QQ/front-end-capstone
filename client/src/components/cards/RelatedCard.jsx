@@ -110,8 +110,8 @@ const RelatedCard = ({ item, modal, onClick }) => {
 
   return (
     <React.Fragment>
-      {(detail && style && rating) &&
-        <div className='related-card' onClick={handleProductChange}>
+      {(detail && style && rating)
+        ? <div className='related-card' onClick={handleProductChange}>
           {modal === 'outfit'
             ? <CloseIcon
               className='modal-button'
@@ -156,6 +156,7 @@ const RelatedCard = ({ item, modal, onClick }) => {
             </div>
           </div>
         </div>
+        : null
       }
     </React.Fragment>
   );
