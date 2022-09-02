@@ -58,6 +58,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    if (!this.state.productId) {
+      this.setState({
+        productId: 37311,
+        darkMode: this.state.darkMode,
+        punkMode: this.state.punkMode,
+        psychMode: this.state.psychMode,
+      })
+    }
     if (this.state.darkMode) {
       document.body.classList.add('dark-mode');
     } else {

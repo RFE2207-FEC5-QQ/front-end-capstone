@@ -49,14 +49,20 @@ const RelatedProducts = ({ onClick, productId, modes }) => {
       .catch((err) => {
         throw ('Error fetching related products');
       });
-  }, []);
+  }, [productId]);
 
   return (
     <div className='related-products'>
       <div className='related-header'>Related Products</div>
       {relatedList &&
         <Carousel className='carousel' responsive={responsive}>
-          {relatedList.map((product, i) => <RelatedCard psychMode={psychMode} key={i} item={product} modal='related'/>)}
+          {relatedList.map((product, i) =>
+            <RelatedCard
+              onClick={onClick}
+              psychMode={psychMode}
+              key={i}
+              item={product}
+              modal='related'/>)}
         </Carousel>
       }
     </div>

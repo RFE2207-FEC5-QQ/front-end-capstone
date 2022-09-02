@@ -6,7 +6,7 @@ import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
 
-const RelatedCard = ({ psychMode, item, modal, onClick }) => {
+const RelatedCard = ({ item, modal, onClick }) => {
   const [detail, setDetail] = useState(null);
   const [style, setStyle] = useState(null);
   const [imgURL, setImgURL] = useState(null);
@@ -14,14 +14,6 @@ const RelatedCard = ({ psychMode, item, modal, onClick }) => {
   const [percentOff, setPercentOff] = useState(null);
   const [origPrice, setOrigPrice] = useState(null);
   const [rating, setRating] = useState(null);
-
-  let onPsych = '';
-
-  if (psychMode) {
-    onPsych = 'psychedelic-mode';
-  } else {
-    onPsych = '';
-  }
 
   const currentStyle = (style) => {
     setStyle(style);
@@ -35,6 +27,10 @@ const RelatedCard = ({ psychMode, item, modal, onClick }) => {
       setPercentOff((origPrice - salePrice) / origPrice);
       // percentOff = discount;
     }
+  };
+
+  const handleProductChange = () => {
+    onClick(item);
   };
 
   useEffect(() => {
@@ -106,7 +102,7 @@ const RelatedCard = ({ psychMode, item, modal, onClick }) => {
         throw ('Error getting product rating');
       });
 
-  }, []);
+  }, [item]);
 
   const handleRemove = () => {
     onClick(item);
@@ -115,7 +111,7 @@ const RelatedCard = ({ psychMode, item, modal, onClick }) => {
   return (
     <React.Fragment>
       {(detail && style && rating) &&
-        <div className='related-card'>
+        <div className='related-card' onClick={handleProductChange}>
           {modal === 'outfit'
             ? <CloseIcon
               className='modal-button'
@@ -131,7 +127,7 @@ const RelatedCard = ({ psychMode, item, modal, onClick }) => {
             ? <div className='img-container'><img className='card-img' src={imgURL}></img></div>
             : <div className='img-container'><ImageNotSupportedIcon className='no-img'/></div>
           }
-          <div className={`card-content ${onPsych}`}>
+          <div className={`card-content`}>
             <div className='card-description'>{detail.category}</div>
             <div className='card-description'>{detail.name}</div>
             {origPrice
