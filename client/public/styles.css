@@ -26,6 +26,7 @@
   --header-font-weight: 900;
   /* --header-divider-color: #F5F5F5; */
   --header-divider-color: #f2e4ea;
+  --header-hover-color: #2d80b8;
   --text-font: 'Helvetica-light';
   --text-size: 0.75rem;
   --text-font-weight: normal;
@@ -44,6 +45,7 @@
   --header-font-weight: 100;
   /* --header-divider-color: #1f1f23; */
   --header-divider-color: #403A4D;
+  --header-hover-color: #37a0e6;
   --popup-theme-color: #1B1D24;
   --shadow-color: rgba(0, 0, 0, 0.3);
   --text-font-weight: 100;
@@ -139,9 +141,8 @@ body {
 } */
 
 .theme-icon {
-  /* margin-right: 2rem; */
   border-radius: 50%;
-  margin: 0;
+  padding-bottom: 0.4rem;
   color: var(--theme-icon-color);
 }
 
@@ -195,27 +196,28 @@ body {
 }
 
 .nav-info {
+  cursor: pointer;
+  outline: none;
   text-decoration: none;
   color: var(--text-theme-color);
   padding-bottom: 0.4rem;
-}
-
-.nav-info {
-  cursor: pointer;
-  outline: none;
   border-bottom: 3px solid transparent;
 }
 
-.secondary-header .nav-info:hover {
+.nav-info:hover {
   cursor: pointer;
   outline: none;
-  border-bottom: 3px solid var(--text-theme-color);
+  color: var(--header-hover-color);
+  border-bottom: 3px solid var(--header-hover-color);
+  /* border-bottom: 3px solid var(--text-theme-color); */
 }
 
 .header-focused {
   cursor: pointer;
   outline: none;
-  border-bottom: 3px solid var(--text-theme-color);
+  color: var(--header-hover-color);
+  /* border-bottom: 3px solid var(--text-theme-color); */
+  border-bottom: 3px solid var(--header-hover-color);
 }
 
 /* Common text size and color formatting for specific headers. */

@@ -25,27 +25,23 @@ const Navigation = ({ modes, toggleTheme }) => {
   }
 
   const toggleFocus = (e) => {
-    if (e.target !== document.getElementById('home-head')) {
-      console.log(e.target.id);
-      setNewFocusedId(e.target.id);
-    }
+    setNewFocusedId(e.target.id);
   };
 
   useEffect(() => {
     const oldHead = document.getElementById(oldFocusedId);
     const currentHead = document.getElementById(newFocusedId);
-    console.log('activated');
+
     if (!currentHead) {
-      oldHead.classList.add('header-focused');
+      oldHead.classList.toggle('header-focused');
       // oldHead.classList.remove('nav-info');
     }
-
     if (currentHead) {
       if (newFocusedId !== oldFocusedId) {
         oldHead.classList.toggle('header-focused');
         currentHead.classList.toggle('header-focused');
+        setOldFocusedId(newFocusedId);
       }
-      setOldFocusedId(newFocusedId);
     }
   }, [newFocusedId]);
 
@@ -97,12 +93,12 @@ const Navigation = ({ modes, toggleTheme }) => {
             {darkMode
               ? <DarkModeOutlinedIcon
                 aria-label='dark-icon'
-                className={`theme-icon nav-info`}
+                className={`theme-icon`}
                 onClick={ toggleDark }
               />
               : <LightModeOutlinedIcon
                 aria-label='light-icon'
-                className={`theme-icon nav-info`}
+                className={`theme-icon`}
                 onClick={ toggleDark }
               />
             }
