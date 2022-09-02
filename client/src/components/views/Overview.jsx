@@ -9,24 +9,25 @@ import Description from '../overview/Description.jsx';
 import Gallery from '../overview/Gallery.jsx';
 // React module is imported if you choose to convert to class component, remove the import if not
 
-const Overview = (props) => {
+const Overview = ({productId}) => {
 
-  const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState({});
   const [defaultView, setDefaultView] = useState(true);
 
-  const getProducts = () => {
+  const getProduct = (id) => {
     var options = {
       method: 'get',
-      url: '/details',
+      url: '/info',
+      params: {
+        id: id
+      }
     }
     axios(options)
       .then(res => {
-        setProducts(res.data);
-        setProduct(res.data[0]);
-        getStyles(res.data[0].id);
+        setProduct(res.data);
+        getStyles(res.data.id);
       })
       .catch(err => {
         console.log(err)
@@ -70,11 +71,11 @@ const Overview = (props) => {
   }
 
   useEffect(() => {
-    getProducts();
+    getProduct(productId);
   }, [])
 
   if (defaultView) {
-    if (products.length && Object.keys(selectedStyle).length) {
+    if (Object.keys(selectedStyle).length) {
       return (
         <div className='view-overview' id='overview'>
           <Grid container spacing={2}>
