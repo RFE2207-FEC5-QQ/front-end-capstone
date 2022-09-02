@@ -5,6 +5,7 @@ import Overview from './components/views/Overview.jsx';
 import RelatedProducts from './components/views/RelatedProducts.jsx';
 import QuestionsAnswers from './components/views/QuestionsAnswers.jsx';
 import Reviews from './components/views/Reviews.jsx';
+import Contact from './components/views/Contact.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -177,7 +178,7 @@ class App extends React.Component {
         <div>Hello</div>
         <div>Hello</div>
         <div id='reviews'>Review</div>
-        <div id='contact'>Contact</div>
+        <Contact/>
       </React.Fragment>
     );
   }

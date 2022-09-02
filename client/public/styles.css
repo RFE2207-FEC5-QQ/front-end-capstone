@@ -18,17 +18,19 @@
 /* Place global element variables here */
 :root {
   /* --bg-theme-color: #fff; */
-  --bg-theme-color: #fff;
+  --bg-theme-color: rgb(255, 255, 255);
   --text-theme-color: rgba(0, 0, 0, 1);
   --popup-theme-color: #F8F9F9;
   --shadow-color: rgba(0, 0, 0, 0.15);
   --header-font: 'Lane';
   --header-font-weight: 900;
   /* --header-divider-color: #F5F5F5; */
-  --header-divider-color: #f2e4ea;
+  /* --header-divider-color: #f2e4ea; */
+  --header-divider-color: #87b3fa;
+  /* --header-divider-color: #f0e5f4; */
   --header-hover-color: #2d80b8;
   --text-font: 'Helvetica-light';
-  --text-size: 0.75rem;
+  --text-size: 1rem;
   --text-font-weight: normal;
   --text-hover-color: #8e8e8e;
   --text-sale-color: #C0392B;
@@ -89,8 +91,9 @@
 
 /* Standard content formatting */
 html {
-  /* Current navbar height is 7rem */
+  /* Current navbar height is 7rem. Change as necessary along with bg-placeholder. */
   margin-top: 11rem;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -947,4 +950,15 @@ body {
 .review-bottomline {
   display: flex;
   justify-content: flex-start;
+}
+
+/* Contact formatting */
+#contact {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background-color: var(--header-divider-color);
+  width: 100%;
+  height: 10%;
+  padding: 2rem;
 }
