@@ -11,25 +11,23 @@ import Gallery from '../overview/Gallery.jsx';
 
 const Overview = ({productId}) => {
 
-  const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState({});
   const [defaultView, setDefaultView] = useState(true);
 
-  const getProducts = () => {
+  const getProduct = (id) => {
     var options = {
       method: 'get',
-      url: '/details',
+      url: '/info',
+      params: {
+        id: id
+      }
     }
     axios(options)
       .then(res => {
-        setProducts(res.data);
-        setProduct(res.data[4]);
-        getStyles(res.data[4].id);
-      })
-      .catch(err => {
-        console.log(err)
+        setProduct(res.data);
+        getStyles(res.data.id);
       })
   }
 
@@ -70,11 +68,11 @@ const Overview = ({productId}) => {
   }
 
   useEffect(() => {
-    getProducts();
+    getProduct(productId);
   }, [])
 
   if (defaultView) {
-    if (products.length && Object.keys(selectedStyle).length) {
+    if (Object.keys(selectedStyle).length) {
       return (
         <div className='view-overview' id='overview'>
           <Grid container spacing={2}>
