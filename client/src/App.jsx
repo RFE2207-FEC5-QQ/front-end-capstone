@@ -120,7 +120,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Navigation modes={modes} toggleTheme={themeTogglers}/>
-        <Overview/>
+        <Overview productId={37311}/>
         <RelatedProducts modes={modes}/>
         <QuestionsAnswers/>
         <Reviews productId={37311}/>

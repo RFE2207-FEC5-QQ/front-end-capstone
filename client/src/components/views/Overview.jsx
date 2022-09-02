@@ -9,7 +9,7 @@ import Description from '../overview/Description.jsx';
 import Gallery from '../overview/Gallery.jsx';
 // React module is imported if you choose to convert to class component, remove the import if not
 
-const Overview = (props) => {
+const Overview = ({productId}) => {
 
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
@@ -76,7 +76,7 @@ const Overview = (props) => {
   if (defaultView) {
     if (products.length && Object.keys(selectedStyle).length) {
       return (
-        <div className='view-overview'>
+        <div className='view-overview' id='overview'>
           <Grid container spacing={2}>
             <Grid item xs={8}>
               <Gallery
