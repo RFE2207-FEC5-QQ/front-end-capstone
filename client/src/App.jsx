@@ -81,7 +81,7 @@ class App extends React.Component {
         <Overview/>
         <RelatedProducts modes={modes}/>
         <QuestionsAnswers/>
-        {/* <Reviews productId={37311}/> */}
+        <Reviews productId={37311}/>
       </React.Fragment>
     );
   }
