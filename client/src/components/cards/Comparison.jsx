@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
-import { Modal, Box } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -13,15 +12,6 @@ const Comparison = ({ mainProduct, currProduct }) => {
 
   return (
     <React.Fragment>
-      {/* <StarBorderOutlinedIcon
-        className='comparison-button'
-        onClick={() => setOpen(open => !open)}
-      /> */}
-      {/* <div className='test'>HI TESTING HERE</div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-      > */}
       <Popup
         trigger={<StarBorderOutlinedIcon
           className='modal-button'
@@ -81,8 +71,6 @@ const Comparison = ({ mainProduct, currProduct }) => {
           </div>
         </div>
       </Popup>
-      {/* </Modal> */}
-
     </React.Fragment>
   );
 };

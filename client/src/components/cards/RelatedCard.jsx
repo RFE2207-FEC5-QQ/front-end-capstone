@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Box,
-  CardMedia,
-  CardActions,
-  Card,
-  CardActionArea,
-  CardContent,
-  Rating,
-  Typography,
-} from '@mui/material';
+import { Rating } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CloseIcon from '@mui/icons-material/Close';
