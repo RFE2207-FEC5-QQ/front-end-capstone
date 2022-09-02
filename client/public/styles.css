@@ -6,6 +6,11 @@
 }
 
 @font-face {
+  font-family: 'ElanBook';
+  src: url('fonts/ElanBook.woff') format('woff');
+}
+
+@font-face {
   font-family: 'Cyberpunk';
   src: url('fonts/Cyberpunk-Regular.woff2') format('woff2');
 }
@@ -17,9 +22,9 @@
   --text-theme-color: rgba(0, 0, 0, 1);
   --popup-theme-color: #F8F9F9;
   --shadow-color: rgba(0, 0, 0, 0.15);
-  --header-font: 'Elan';
+  --header-font: 'ElanBook';
   /* --header-divider-color: #F5F5F5; */
-  --header-divider-color: #fef5fd;
+  --header-divider-color: #f2e4ea;
   --text-font: 'Helvetica-light';
   --text-size: 0.75rem;
   --text-font-weight: normal;
@@ -81,7 +86,7 @@
 /* Standard content formatting */
 html {
   /* Current navbar height is 7rem */
-  margin-top: 7rem;
+  margin-top: 11rem;
 }
 
 body {
@@ -108,12 +113,12 @@ a {
 
 /* For hiding or showing navbar during scrolling */
 .scrolled-down {
-  transform: translateY(-75%);
-  transition: transform 0.5s ease-in-out;
+  transform: translateY(-80%);
+  transition: transform 0.75s ease-in-out;
 }
 .scrolled-up {
   transform: translateY(0);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.75s ease-in-out;
 }
 
 /* Needed to prevent transparent background during psychedelic mode. */
@@ -121,7 +126,7 @@ a {
   position: fixed;
   background-color: var(--bg-theme-color);
   width: 100%;
-  height: 7rem;
+  height: 11rem;
   top: 0;
   z-index: 998;
 }
@@ -155,6 +160,16 @@ a {
   padding-left: 2rem;
   padding-top: 0.25rem;
   /* padding-bottom: 0.25rem; */
+}
+
+.logo {
+  display: flex;
+  margin: auto;
+  filter: invert(0.5) sepia(1) saturate(2);
+  margin-top: 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  z-index: 999;
 }
 
 .title {
@@ -705,7 +720,7 @@ a {
   93% {
     clip-path: none;
   }
-  
+
 }
 
 .reviews-view {

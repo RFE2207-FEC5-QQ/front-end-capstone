@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import Easel from '../../../public/fonts/Easel_small.svg';
 
 const Navigation = ({ modes, toggleTheme }) => {
   const { darkMode, punkMode, psychMode } = modes;
@@ -24,7 +25,22 @@ const Navigation = ({ modes, toggleTheme }) => {
   return (
     <React.Fragment>
       <div className='nav-bar'>
-        <div className='top-bar-container'>
+        <div className={`main-header ${onPsych} ${punkedOut}`}>
+          <img className='logo' alt='logo' src={Easel}></img>
+          <div className='title'>
+            <span onClick={togglePunk}>A</span>
+            T
+            <span onClick={togglePsych}>E</span>
+            LIER
+          </div>
+        </div>
+        <div className={`secondary-header secondary-header-pad`}>
+          <div className={`secondary-header ${onPsych}`}>
+            <a href='#overiew' className={`${punkedOut}`}>Product Detail</a>
+            <a href='#related' className={`${punkedOut}`}>Related Products</a>
+            <a href='#questions' className={`${punkedOut}`}>Questions</a>
+            <a href='#reviews' className={`${punkedOut}`}>Reviews</a>
+            {/* <div className='top-bar-container'> */}
           {darkMode
             ? <DarkModeOutlinedIcon
               aria-label='dark-icon'
@@ -37,21 +53,7 @@ const Navigation = ({ modes, toggleTheme }) => {
               onClick={ toggleDark }
             />
           }
-        </div>
-        <div className={`main-header ${onPsych} ${punkedOut}`}>
-          <div className='title'>
-            <span onClick={togglePunk}>A</span>
-            t
-            <span onClick={togglePsych}>e</span>
-            lier
-          </div>
-        </div>
-        <div className={`secondary-header secondary-header-pad`}>
-          <div className={`secondary-header ${onPsych}`}>
-            <a href='#overiew' className={`${punkedOut}`}>Product Detail</a>
-            <a href='#related' className={`${punkedOut}`}>Related Products</a>
-            <a href='#questions' className={`${punkedOut}`}>Questions</a>
-            <a href='#reviews' className={`${punkedOut}`}>Reviews</a>
+        {/* </div> */}
           </div>
         </div>
       </div>
