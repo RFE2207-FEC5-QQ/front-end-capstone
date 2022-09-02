@@ -78,8 +78,8 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
-      reviewMeta: {},
+      reviews: null,
+      reviewMeta: null,
       sort: 'relevant',
       count: 2,
       page: 1,

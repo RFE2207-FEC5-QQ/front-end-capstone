@@ -6,36 +6,37 @@
 }
 
 @font-face {
-  font-family: 'CooperHewitt-Book';
-  src: url('fonts/CooperHewitt-Book.woff') format('woff');
-}
-
-@font-face {
   font-family: 'Cyberpunk';
   src: url('fonts/Cyberpunk-Regular.woff2') format('woff2');
 }
 
 /* Place global element variables here */
 :root {
+  /* --bg-theme-color: #fff; */
   --bg-theme-color: #fff;
   --text-theme-color: rgba(0, 0, 0, 1);
   --popup-theme-color: #F8F9F9;
   --shadow-color: rgba(0, 0, 0, 0.15);
   --header-font: 'Elan';
-  --header-divider-color: #F5F5F5;
-  --text-font: 'CooperHewitt-Book';
+  /* --header-divider-color: #F5F5F5; */
+  --header-divider-color: #fef5fd;
+  --text-font: 'Helvetica-light';
   --text-size: 0.75rem;
   --text-font-weight: normal;
   --text-hover-color: #6D6D6D;
   --text-sale-color: #C0392B;
   --theme-icon-color: #282828;
+  --header-text-size: 2rem;
+  --secondary-header-text-size: 0.9rem;
 }
 
 /* Apply custom themes and variables here */
 .dark-mode {
-  --bg-theme-color: #23262E;
+  /* --bg-theme-color: #23262E; */
+  --bg-theme-color: #24232e;
   --text-theme-color: rgba(230, 230, 230, 0.87);
-  --header-divider-color: #1f1f23;
+  /* --header-divider-color: #1f1f23; */
+  --header-divider-color: #403A4D;
   --popup-theme-color: #1B1D24;
   --shadow-color: rgba(0, 0, 0, 0.3);
   --text-font-weight: 100;
@@ -46,6 +47,7 @@
 
 .punk-mode {
   --header-font: 'Cyberpunk';
+  --secondary-header-text-size: 0.8rem;
 }
 
 .psychedelic-mode {
@@ -66,6 +68,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 100% 100%;
+  background-attachment: fixed;
   animation: rainbow 35s infinite linear;
 }
 
@@ -86,6 +89,12 @@ body {
   color: var(--text-theme-color);
   font-family: var(--text-font);
   font-size: var(--text-size);
+  margin-left: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-theme-color);
 }
 
 .nav-bar {
@@ -94,6 +103,17 @@ body {
   width: 100%;
   top: 0;
   z-index: 999;
+  transition: all 0s;
+}
+
+/* For hiding or showing navbar during scrolling */
+.scrolled-down {
+  transform: translateY(-75%);
+  transition: transform 0.5s ease-in-out;
+}
+.scrolled-up {
+  transform: translateY(0);
+  transition: transform 0.5s ease-in-out;
 }
 
 /* Needed to prevent transparent background during psychedelic mode. */
@@ -110,6 +130,8 @@ body {
   display: flex;
   justify-content: end;
   background-color: var(--header-divider-color);
+  width: 100%;
+  height: 100%;
   padding: 0.25rem;
 }
 
@@ -126,24 +148,37 @@ body {
 }
 
 .main-header {
+  width: 100%;
+  align-items: center;
   font-family: var(--header-font);
-  font-size: 2rem;
+  font-size: var(--header-text-size);
   padding-left: 2rem;
+  padding-top: 0.25rem;
+  /* padding-bottom: 0.25rem; */
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  height: 3rem;
 }
 
 .secondary-header {
   display: flex;
   justify-content: center;
+  position: relative;
+  width: 100%;
   gap: 5rem;
-  /* font-family: var(--header-font); */
-  font-family: var(--text-font);
-  font-size: 0.9rem;
-  padding-top: 0.8rem;
-  padding-bottom: 0.5rem;
   background-color: var(--header-divider-color);
+  font-size: 0.9rem;
 }
 
-.secondary-header div:hover {
+.secondary-header-pad {
+  padding-top: 0.75rem;
+  padding-bottom: 0.5rem;
+}
+
+.secondary-header a:hover {
   cursor: pointer;
   color: var(--text-hover-color);
 }
@@ -670,6 +705,7 @@ body {
   93% {
     clip-path: none;
   }
+
 }
 
 .reviews-view {
