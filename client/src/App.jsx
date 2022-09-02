@@ -87,7 +87,7 @@ class App extends React.Component {
         navPlaceHolder.classList.remove("scrolled-up");
       }
       lastScroll = currentScroll;
-    })
+    });
 
   }
 
@@ -126,58 +126,7 @@ class App extends React.Component {
         <Overview/>
         <RelatedProducts modes={modes}/>
         <QuestionsAnswers/>
-        {/* <Reviews productId={37311}/> */}
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
-        <div id='reviews'>Review</div>
+        <Reviews productId={37311}/>
         <Contact/>
       </React.Fragment>
     );
