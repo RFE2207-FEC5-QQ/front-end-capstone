@@ -60,12 +60,14 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    // Set theme on page load
     if (this.state.darkMode) {
       document.body.classList.add('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
     }
 
+    // Enable psychedelic background scrolling
     let lastScroll = 0;
     const navBar = document.querySelector('.nav-bar');
     const navPlaceHolder = document.querySelector('.bg-color-placeholder');
@@ -174,8 +176,8 @@ class App extends React.Component {
         <div>Hello</div>
         <div>Hello</div>
         <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
+        <div id='reviews'>Review</div>
+        <div id='contact'>Contact</div>
       </React.Fragment>
     );
   }
