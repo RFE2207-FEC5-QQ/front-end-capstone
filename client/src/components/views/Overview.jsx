@@ -25,8 +25,8 @@ const Overview = (props) => {
     axios(options)
       .then(res => {
         setProducts(res.data);
-        setProduct(res.data[4]);
-        getStyles(res.data[4].id);
+        setProduct(res.data[0]);
+        getStyles(res.data[0].id);
       })
       .catch(err => {
         console.log(err)
@@ -76,7 +76,7 @@ const Overview = (props) => {
   if (defaultView) {
     if (products.length && Object.keys(selectedStyle).length) {
       return (
-        <div className='view-overview'>
+        <div className='view-overview' id='overview'>
           <Grid container spacing={2}>
             <Grid item xs={8}>
               <Gallery

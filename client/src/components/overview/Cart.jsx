@@ -79,13 +79,14 @@ const Cart = ({ selectedStyle, skus }) => {
           </div>
           }
           <FormControl className='overview-select'>
-            <InputLabel>
+            <InputLabel id='cart-label'>
               Select Size
             </InputLabel>
             <Select
               value={size}
               label="Select"
               onChange={updateSize}
+              id='select-label'
               >
               {sizes.map(size => {
                 return <MenuItem value={size} key={size}>{size}</MenuItem>
@@ -95,7 +96,7 @@ const Cart = ({ selectedStyle, skus }) => {
         </div>
         <div className='overview-select'>
           <FormControl className='overview-select'>
-            <InputLabel>
+            <InputLabel id='cart-label'>
               -
             </InputLabel>
             <Select
@@ -126,7 +127,7 @@ const Cart = ({ selectedStyle, skus }) => {
       <div className='overview-cart'>
         <div className='overview-select'>
           <FormControl className='overview-select'>
-            <InputLabel>
+            <InputLabel id='cart-label'>
               OUT OF STOCK
             </InputLabel>
             <Select
