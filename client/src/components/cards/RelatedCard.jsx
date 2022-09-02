@@ -23,6 +23,20 @@ const RelatedCard = ({ psychMode, item, modal, onClick }) => {
     onPsych = '';
   }
 
+  const currentStyle = (style) => {
+    setStyle(style);
+    console.log(style);
+    if (style.photos.length) {
+      setImgURL(style.photos[0].thumbnail_url);
+      console.log(style.photos[0].thumbnail_url);
+    }
+    if (style.sale_price) {
+      setSalePrice(style.sale_price);
+      setPercentOff((origPrice - salePrice) / origPrice);
+      // percentOff = discount;
+    }
+  };
+
   useEffect(() => {
     axios
       .get('/details', {
@@ -32,7 +46,7 @@ const RelatedCard = ({ psychMode, item, modal, onClick }) => {
       })
       .then((results) => {
         const productDetail = results.data;
-        console.log('productDetail', productDetail);
+        // console.log('productDetail', productDetail);
         setDetail(productDetail);
         setOrigPrice(productDetail.default_price);
       })
@@ -48,25 +62,15 @@ const RelatedCard = ({ psychMode, item, modal, onClick }) => {
       })
       .then((results) => {
         const productStyle = results.data;
-        // console.log('productStyle', productStyle);
+        console.log('productStyle', productStyle);
         const defaultStyle = productStyle
           .results
           .find(eachStyle => eachStyle['default?'] === true);
         // console.log('defaultStyle', defaultStyle);
         if (defaultStyle) {
-          setStyle(defaultStyle);
-          if (defaultStyle.photos[0].thumbnail_url) {
-            setImgURL(defaultStyle.photos[0].thumbnail_url);
-          }
-          if (defaultStyle.sale_price) {
-            setSalePrice(defaultStyle.sale_price);
-            const discount = (origPrice - salePrice) / origPrice;
-            setPercentOff(discount);
-          }
+          currentStyle(defaultStyle);
         } else {
-          // Need to determine with Daniel what to do if default style not set in API.
-          setStyle(productStyle.results[0]);
-          setImgURL(productStyle.results[0].photos[0].thumbnail_url);
+          currentStyle(productStyle.results[0]);
         }
       })
       .catch((err) => {
@@ -93,7 +97,6 @@ const RelatedCard = ({ psychMode, item, modal, onClick }) => {
           avgRating = sumRatings / numRatings;
           setRating([avgRating, numRatings]);
         } else {
-          // Decide whether to modify state differently later.
           setRating([0, 0]);
         }
         // console.log('productRating', productRatings);

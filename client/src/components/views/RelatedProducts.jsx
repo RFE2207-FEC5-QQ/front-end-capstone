@@ -28,7 +28,7 @@ const responsive = {
   }
 };
 
-const RelatedProducts = ({ modes }) => {
+const RelatedProducts = ({ onClick, productId, modes }) => {
   const [relatedList, setRelatedList] = useState(null);
   const modalIcon = StarBorderOutlinedIcon;
   const { psychMode } = modes;
@@ -38,7 +38,7 @@ const RelatedProducts = ({ modes }) => {
       .get('/related', {
         params: {
           // Placeholder productId for now.
-          productId: 37319,
+          productId,
         }
       })
       .then((results) => {

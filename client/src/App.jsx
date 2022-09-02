@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 0,
+      productId: 37311,
       darkMode: JSON.parse(window.localStorage.getItem('dark')) ?? false,
       punkMode: false,
       psychMode: false,
@@ -19,6 +19,16 @@ class App extends React.Component {
     this.darkMode = this.darkMode.bind(this);
     this.punkMode = this.punkMode.bind(this);
     this.psychMode = this.psychMode.bind(this);
+    this.changeProduct = this.changeProduct.bind(this);
+  }
+
+  changeProduct(item) {
+    this.setState({
+      productId: item,
+      darkMode: this.state.darkMode,
+      punkMode: this.state.punkMode,
+      psychMode: this.state.psychMode,
+    })
   }
 
   darkMode() {
@@ -79,10 +89,13 @@ class App extends React.Component {
       <React.Fragment>
         <Navigation modes={modes} toggleTheme={themeTogglers}/>
         <Overview/>
-        <RelatedProducts modes={modes}/>
+        <RelatedProducts
+          onClick={this.changeProduct}
+          productId={this.state.productId}
+          modes={modes}/>
         <Outfit/>
         <QuestionsAnswers/>
-        {/* <Reviews/> */}
+        <Reviews productId={this.state.productId}/>
       </React.Fragment>
     );
   }
