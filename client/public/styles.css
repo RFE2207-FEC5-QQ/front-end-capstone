@@ -1,8 +1,13 @@
 /* Apply any custom fonts here */
 /* Elan is for main header logo */
 @font-face {
-  font-family: 'Elan';
-  src: url('fonts/Elan_Thin.woff') format('woff');
+  font-family: 'Lane';
+  src: url('fonts/Lane-Narrow.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'ElanBook';
+  src: url('fonts/ElanBook.woff') format('woff');
 }
 
 @font-face {
@@ -13,17 +18,22 @@
 /* Place global element variables here */
 :root {
   /* --bg-theme-color: #fff; */
-  --bg-theme-color: #fff;
+  --bg-theme-color: rgb(255, 255, 255);
   --text-theme-color: rgba(0, 0, 0, 1);
   --popup-theme-color: #F8F9F9;
   --shadow-color: rgba(0, 0, 0, 0.15);
-  --header-font: 'Elan';
+  --header-font: 'Lane';
+  --header-font-weight: 900;
   /* --header-divider-color: #F5F5F5; */
-  --header-divider-color: #fef5fd;
+  --header-divider-color: #f2e4ea;
+  /* --header-divider-color: #87b3fa; */
+  /* --header-divider-color: #f0e5f4; */
+  --header-hover-color: #2d80b8;
   --text-font: Helvetica-light, Helvetica;
+
   --text-size: 1rem;
   --text-font-weight: normal;
-  --text-hover-color: #6D6D6D;
+  --text-hover-color: #8e8e8e;
   --text-sale-color: #C0392B;
   --theme-icon-color: #282828;
   --header-text-size: 2rem;
@@ -35,8 +45,10 @@
   /* --bg-theme-color: #23262E; */
   --bg-theme-color: #24232e;
   --text-theme-color: rgba(230, 230, 230, 0.87);
+  --header-font-weight: 100;
   /* --header-divider-color: #1f1f23; */
   --header-divider-color: #403A4D;
+  --header-hover-color: #37a0e6;
   --popup-theme-color: #1B1D24;
   --shadow-color: rgba(0, 0, 0, 0.3);
   --text-font-weight: 100;
@@ -80,8 +92,9 @@
 
 /* Standard content formatting */
 html {
-  /* Current navbar height is 7rem */
-  margin-top: 7rem;
+  /* Current navbar height is 7rem. Change as necessary along with bg-placeholder. */
+  margin-top: 11rem;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -90,11 +103,6 @@ body {
   font-family: var(--text-font);
   font-size: var(--text-size);
   margin-left: 0;
-}
-
-a {
-  text-decoration: none;
-  color: var(--text-theme-color);
 }
 
 .nav-bar {
@@ -108,12 +116,12 @@ a {
 
 /* For hiding or showing navbar during scrolling */
 .scrolled-down {
-  transform: translateY(-75%);
-  transition: transform 0.5s ease-in-out;
+  transform: translateY(-70%);
+  transition: transform 0.75s ease-in-out;
 }
 .scrolled-up {
   transform: translateY(0);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.75s ease-in-out;
 }
 
 /* Needed to prevent transparent background during psychedelic mode. */
@@ -121,29 +129,29 @@ a {
   position: fixed;
   background-color: var(--bg-theme-color);
   width: 100%;
-  height: 7rem;
+  height: 11rem;
   top: 0;
   z-index: 998;
 }
 
-.top-bar-container {
+/* .top-bar-container {
   display: flex;
   justify-content: end;
+  align-items: center;
   background-color: var(--header-divider-color);
   width: 100%;
   height: 100%;
   padding: 0.25rem;
-}
+} */
 
 .theme-icon {
-  padding: 0.1rem;
-  margin-right: 2rem;
   border-radius: 50%;
+  padding-bottom: 0.4rem;
   color: var(--theme-icon-color);
 }
 
 .theme-icon:hover {
-  background-color: var(--bg-theme-color);
+  color: var(--text-hover-color);
   cursor: pointer;
 }
 
@@ -157,30 +165,63 @@ a {
   /* padding-bottom: 0.25rem; */
 }
 
+.logo {
+  display: flex;
+  margin: auto;
+  filter: invert(0.5) sepia(1) saturate(2) opacity(87%);
+  margin-top: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 999;
+}
+
 .title {
   display: flex;
   justify-content: center;
   height: 3rem;
+  font-weight: var(--header-font-weight);
 }
 
 .secondary-header {
+  /* border: 1px solid black; */
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
   width: 100%;
   gap: 5rem;
   background-color: var(--header-divider-color);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .secondary-header-pad {
-  padding-top: 0.75rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.65rem;
+  /* padding-bottom: 0.3rem; */
 }
 
-.secondary-header a:hover {
+.nav-info {
   cursor: pointer;
-  color: var(--text-hover-color);
+  outline: none;
+  text-decoration: none;
+  color: var(--text-theme-color);
+  padding-bottom: 0.4rem;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-info:hover {
+  cursor: pointer;
+  outline: none;
+  color: var(--header-hover-color);
+  border-bottom: 3px solid var(--header-hover-color);
+  /* border-bottom: 3px solid var(--text-theme-color); */
+}
+
+.header-focused {
+  cursor: pointer;
+  outline: none;
+  color: var(--header-hover-color);
+  /* border-bottom: 3px solid var(--text-theme-color); */
+  border-bottom: 3px solid var(--header-hover-color);
 }
 
 /* Common text size and color formatting for specific headers. */
@@ -910,6 +951,17 @@ a {
 .review-bottomline {
   display: flex;
   justify-content: flex-start;
+}
+
+/* Contact formatting */
+#contact {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background-color: var(--header-divider-color);
+  width: 100%;
+  height: 10%;
+  padding: 2rem;
 }
 
 /* Image Gallery */

@@ -5,6 +5,7 @@ import Overview from './components/views/Overview.jsx';
 import RelatedProducts from './components/views/RelatedProducts.jsx';
 import QuestionsAnswers from './components/views/QuestionsAnswers.jsx';
 import Reviews from './components/views/Reviews.jsx';
+import Contact from './components/views/Contact.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -60,12 +61,14 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    // Set theme on page load
     if (this.state.darkMode) {
       document.body.classList.add('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
     }
 
+    // Enable psychedelic background scrolling
     let lastScroll = 0;
     const navBar = document.querySelector('.nav-bar');
     const navPlaceHolder = document.querySelector('.bg-color-placeholder');
@@ -123,7 +126,59 @@ class App extends React.Component {
         <Overview/>
         <RelatedProducts modes={modes}/>
         <QuestionsAnswers/>
-        <Reviews productId={37311}/>
+        {/* <Reviews productId={37311}/> */}
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div>Hello</div>
+        <div id='reviews'>Review</div>
+        <Contact/>
       </React.Fragment>
     );
   }
