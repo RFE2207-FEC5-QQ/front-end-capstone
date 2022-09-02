@@ -21,6 +21,8 @@ const RelatedCard = ({ item, modal, onClick }) => {
     if (style.photos.length) {
       setImgURL(style.photos[0].thumbnail_url);
       console.log(style.photos[0].thumbnail_url);
+    } else {
+      setImgURL(false);
     }
     if (style.sale_price) {
       setSalePrice(style.sale_price);
@@ -93,7 +95,7 @@ const RelatedCard = ({ item, modal, onClick }) => {
           avgRating = sumRatings / numRatings;
           setRating([avgRating, numRatings]);
         } else {
-          setRating([0, 0]);
+          setRating([0, 'No ratings yet']);
         }
         // console.log('productRating', productRatings);
         // console.log('avgRating', avgRating);
@@ -110,7 +112,7 @@ const RelatedCard = ({ item, modal, onClick }) => {
 
   return (
     <React.Fragment>
-      {(detail && style && rating)
+      {(detail && style && (rating !== null) && (imgURL !== null))
         ? <div className='related-card' onClick={handleProductChange}>
           {modal === 'outfit'
             ? <CloseIcon
@@ -149,6 +151,7 @@ const RelatedCard = ({ item, modal, onClick }) => {
                 className='card-rating'
                 name="quarter-rating"
                 value={rating[0]}
+                // value={rating[0]}
                 precision={0.25}
                 size='small'
                 readOnly/>

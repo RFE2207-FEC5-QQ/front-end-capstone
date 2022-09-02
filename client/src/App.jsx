@@ -101,7 +101,9 @@ class App extends React.Component {
           onClick={this.changeProduct}
           productId={this.state.productId}
           modes={modes}/>
-        <Outfit/>
+        <Outfit
+          productId={this.state.productId}
+        />
         <QuestionsAnswers/>
         <Reviews productId={this.state.productId}/>
       </React.Fragment>

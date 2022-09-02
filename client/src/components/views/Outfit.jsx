@@ -28,7 +28,7 @@ const responsive = {
   }
 };
 
-const Outfit = () => {
+const Outfit = ({ productId }) => {
   const [outfits, setOutfits] = useState([]);
   const modalIcon = CloseIcon;
 
@@ -41,9 +41,9 @@ const Outfit = () => {
   }, []);
 
   const addOutfit = () => {
-    if (!outfits.includes(37316)) {
-      localStorage.setItem('outfits', JSON.stringify([...outfits, 37316]));
-      setOutfits([...outfits, 37316]);
+    if (!outfits.includes(productId)) {
+      localStorage.setItem('outfits', JSON.stringify([...outfits, productId]));
+      setOutfits([...outfits, productId]);
     }
   };
 
