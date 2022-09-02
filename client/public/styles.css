@@ -20,7 +20,7 @@
   --header-font: 'Elan';
   /* --header-divider-color: #F5F5F5; */
   --header-divider-color: #fef5fd;
-  --text-font: 'Helvetica-light';
+  --text-font: Helvetica-light, Helvetica;
   --text-size: 1rem;
   --text-font-weight: normal;
   --text-hover-color: #6D6D6D;
