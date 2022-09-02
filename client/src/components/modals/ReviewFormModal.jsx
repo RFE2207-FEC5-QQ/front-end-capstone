@@ -8,6 +8,10 @@ import ReviewForm from '../forms/ReviewForm.jsx';
 // You show / hide the component
 const ReviewFormModal = ({metaCharacteristics, characteristicChart, productId, closeReviewModal, paletteMap}) => {
 
+  if (!metaCharacteristics) {
+    return null;
+  }
+
   return (
     <div className='review-form-modal'>
       <Dialog open={true} onClose={closeReviewModal}>
