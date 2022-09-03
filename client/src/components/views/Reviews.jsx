@@ -131,7 +131,7 @@ class Reviews extends React.Component {
         'characteristics': {
           'Fit': {
             'id': 125031,
-            'value': '1.5'
+            'value': '1.2'
           },
           'Length': {
             'id': 125032,

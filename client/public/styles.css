@@ -83,7 +83,12 @@
   margin-bottom: 20px;
 }
 
-.review-meta-characteristics-labels {
+.review-meta-characteristics-entry .MuiSlider-thumb {
+  /* color:red;
+  background-image: url('') */
+}
+
+.review-meta-characteristic-labels {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;

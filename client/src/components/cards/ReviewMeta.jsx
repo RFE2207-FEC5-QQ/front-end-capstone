@@ -1,5 +1,5 @@
 import React from 'react';
-import { Rating, LinearProgress, Slider } from '@mui/material';
+import { Rating, LinearProgress } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
