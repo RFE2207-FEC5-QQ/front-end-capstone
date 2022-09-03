@@ -6,21 +6,37 @@ import CloseIcon from '@mui/icons-material/Close';
 const Comparison = ({ mainProduct, currProduct }) => {
   const [open, setOpen] = useState(false);
   const [features, setFeatures] = useState([]);
-
-  // useEffect(() => {
   const allFeatures = new Set();
+  const currFeatures = [];
+  const mainFeatures = [];
+  const currValues = [];
+  const mainValues = [];
 
   mainProduct.features.forEach((featureObj) => {
-    // console.log('feature me', feature);
     allFeatures.add(featureObj.feature);
+    mainFeatures.push(featureObj.feature);
   });
   currProduct.features.forEach((featureObj) => {
     allFeatures.add(featureObj.feature);
+    currFeatures.push(featureObj.feature);
   });
 
-  // console.log(allFeatures);
-  // setFeatures(allFeatures);
-  // }, [mainProduct]);
+  const arrFeatures = Array.from(allFeatures);
+
+  arrFeatures.forEach((feature) => {
+    const mainIndex = mainFeatures.indexOf(feature);
+    const currIndex = currFeatures.indexOf(feature);
+    if (mainIndex !== -1) {
+      mainValues.push(mainProduct.features[mainIndex].value);
+    } else {
+      mainValues.push('N/A');
+    }
+    if (currIndex !== -1) {
+      currValues.push(currProduct.features[currIndex].value);
+    } else {
+      currValues.push('N/A');
+    }
+  });
 
   const handleClose = () => setOpen(false);
 
@@ -48,13 +64,13 @@ const Comparison = ({ mainProduct, currProduct }) => {
           </div>
           <div className='comparison-content'>
             <div className='product-current'>
-              <div>{currProduct.category}</div>
+              {currValues.map((value) => <div>{value}</div>)}
             </div>
             <div className='product-comparator'>
               {Array.from(allFeatures).map((feature) => <div>{feature}</div>)}
             </div>
             <div className='product-main'>
-
+              {mainValues.map((value) => <div>{value}</div>)}
             </div>
           </div>
         </div>
