@@ -32,16 +32,31 @@ const Comparison = ({ mainProduct, currProduct }) => {
       const mainIndex = mainFeatures.indexOf(feature);
       const currIndex = currFeatures.indexOf(feature);
       if (mainIndex !== -1) {
-        mainValues.push(mainProduct.features[mainIndex].value);
+        if (mainProduct.features[mainIndex].value === null) {
+          mainValues.push('N/A');
+        } else {
+          mainValues.push(mainProduct.features[mainIndex].value);
+        }
       } else {
         mainValues.push('N/A');
       }
       if (currIndex !== -1) {
-        currValues.push(currProduct.features[currIndex].value);
+        if (currProduct.features[currIndex].value === null) {
+          currValues.push('N/A');
+        } else {
+          currValues.push(currProduct.features[currIndex].value);
+        }
       } else {
         currValues.push('N/A');
       }
     });
+
+    console.log('arrfeatures', arrFeatures)
+    console.log('currFeatures', currFeatures);
+    console.log('currValues', currValues);
+    console.log('mainFeatures', mainFeatures);
+    console.log('mainValues', mainValues);
+
 
     setMainValues(mainValues);
     setCurrValues(currValues);
