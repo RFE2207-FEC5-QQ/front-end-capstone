@@ -30,7 +30,7 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
             // console.log('imgDimensions real:', imgDimensions);
             imgDimensions.push([style.photos[i].thumbnail_url, height / width]);
             if (i === style.photos.length - 1) {
-              const optimizedImgs = imgDimensions.sort((a, b) => Math.abs(a[1] - 1) - Math.abs(b[1] - 1));
+              const optimizedImgs = imgDimensions.sort((a, b) => Math.abs(a[1] - 1) - Math.abs(b[1] - 1) + 0.16);
               setOrderedImgs(optimizedImgs);
               setImgURL(optimizedImgs[0][0]);
             }
