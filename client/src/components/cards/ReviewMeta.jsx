@@ -42,7 +42,8 @@ const ReviewMeta = ({reviewMeta, productId, filterbyRating, paletteMap, characte
         </div>
       </div>
       <div className='review-meta-avg-rating-breakdown'>
-        <h2>Rating Breakdown</h2>
+        <h2 className='review-meta-title'>Rating Breakdown</h2>
+        {/* {TODO: ADD 'FILTERS APPLIED' SECTION} */}
         {Object.keys(reviewMeta.ratings).map((key) => (
           <div key={key} className='review-meta-avg-rating-breakdown-entry' onClick={() => filterbyRating(key)}>
             <div className='review-meta-avg-rating-breakdown-stars'>

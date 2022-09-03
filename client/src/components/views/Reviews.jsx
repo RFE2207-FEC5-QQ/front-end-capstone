@@ -251,16 +251,16 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     // DEBUG - Uncomment to get reviews on mount
-    this.getReviews();
+    // this.getReviews();
     // DEBUG - Uncomment to get review meta on mount
-    this.getReviewMeta();
+    // this.getReviewMeta();
   }
 
 
   render() {
     return (
       <div id='reviews' className='reviews-view'>
-        <h2>{'Ratings & Reviews'}</h2>
+        <h1 id='reviews-title'>{'Ratings & Reviews'}</h1>
         <div className='reviews-panels'>
           <ReviewMeta
             reviewMeta={this.state.reviewMeta}
