@@ -31,7 +31,7 @@ const RelatedCard = ({ item, modal, onClick }) => {
     }
   };
 
-  const handleProductChange = () => {
+  let handleProductChange = () => {
     onClick(item);
   };
 
@@ -110,6 +110,10 @@ const RelatedCard = ({ item, modal, onClick }) => {
     onClick(item);
   };
 
+  if (modal === 'outfit') {
+    handleProductChange = null;
+  }
+
   return (
     <React.Fragment>
       {(detail && style && (rating !== null) && (imgURL !== null))
@@ -129,7 +133,7 @@ const RelatedCard = ({ item, modal, onClick }) => {
             ? <div className='img-container'><img className='card-img' src={imgURL}></img></div>
             : <div className='img-container'><ImageNotSupportedIcon className='no-img'/></div>
           }
-          <div className={`card-content`}>
+          <div className='card-content'>
             <div className='card-description'>{detail.category}</div>
             <div className='card-description'>{detail.name}</div>
             {origPrice
