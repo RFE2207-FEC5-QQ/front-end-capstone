@@ -37,9 +37,9 @@ class App extends React.Component {
   darkMode() {
     this.setState({
       productId: this.state.productId,
-      productDetail: this.state.products,
+      productDetail: this.state.productDetail,
       darkMode: !this.state.darkMode,
-      punkMode: !this.state.punkMode,
+      punkMode: this.state.punkMode,
       psychMode: this.state.psychMode,
     });
   }
@@ -47,7 +47,7 @@ class App extends React.Component {
   punkMode() {
     this.setState({
       productId: this.state.productId,
-      productDetail: this.state.products,
+      productDetail: this.state.productDetail,
       darkMode: this.state.darkMode,
       punkMode: !this.state.punkMode,
       psychMode: this.state.psychMode,
@@ -57,7 +57,7 @@ class App extends React.Component {
   psychMode() {
     this.setState({
       productId: this.state.productId,
-      productDetail: this.state.products,
+      productDetail: this.state.productDetail,
       darkMode: this.state.darkMode,
       punkMode: this.state.punkMode,
       psychMode: !this.state.psychMode,
