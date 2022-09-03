@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import CloseIcon from '@mui/icons-material/Close';
@@ -9,6 +9,7 @@ const Comparison = ({ mainProduct, currProduct }) => {
 
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+
 
   return (
     <React.Fragment>

@@ -21,12 +21,12 @@ const RelatedCard = ({ item, modal, onClick }) => {
   // For customizing image display by aspect ratio.
   const currentStyle = (style) => {
     setStyle(style);
-    console.log('style', style, 'item,', item);
+    // console.log('style', style, 'item,', item);
     if (style.photos[0].thumbnail_url) {
       for (let i = 0; i < style.photos.length; i++) {
         reactImageSize(style.photos[i].thumbnail_url)
           .then(({width, height}) => {
-            console.log('imgDimensions real:', imgDimensions);
+            // console.log('imgDimensions real:', imgDimensions);
             imgDimensions.push([style.photos[i].thumbnail_url, height / width]);
             if (i === style.photos.length - 1) {
               const optimizedImgs = imgDimensions.sort((a, b) => Math.abs(a[1] - 1) - Math.abs(b[1] - 1));
@@ -67,9 +67,9 @@ const RelatedCard = ({ item, modal, onClick }) => {
 
   useEffect(() => {
     axios
-      .get('/details', {
+      .get('/info', {
         params: {
-          productId: item,
+          id: item,
         }
       })
       .then((results) => {
@@ -85,12 +85,12 @@ const RelatedCard = ({ item, modal, onClick }) => {
     axios
       .get('/styles', {
         params: {
-          productId: item,
+          id: item,
         }
       })
       .then((results) => {
         const productStyle = results.data;
-        console.log('productStyle', productStyle);
+        // console.log('productStyle', productStyle);
         const defaultStyle = productStyle
           .results
           .find(eachStyle => eachStyle['default?'] === true);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import axios from 'axios';
 import Navigation from './components/views/Navigation.jsx';
 import Overview from './components/views/Overview.jsx';
 import RelatedProducts from './components/views/RelatedProducts.jsx';
@@ -11,7 +12,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 37311,
+      productId: null,
+      product: null,
       darkMode: JSON.parse(window.localStorage.getItem('dark')) ?? false,
       punkMode: false,
       psychMode: false,
@@ -25,6 +27,7 @@ class App extends React.Component {
   changeProduct(item) {
     this.setState({
       productId: item,
+      products: this.state.products,
       darkMode: this.state.darkMode,
       punkMode: this.state.punkMode,
       psychMode: this.state.psychMode,
@@ -34,7 +37,9 @@ class App extends React.Component {
   darkMode() {
     this.setState({
       productId: this.state.productId,
+      products: this.state.products,
       darkMode: !this.state.darkMode,
+      punkMode: !this.state.punkMode,
       psychMode: this.state.psychMode,
     });
   }
@@ -42,6 +47,7 @@ class App extends React.Component {
   punkMode() {
     this.setState({
       productId: this.state.productId,
+      products: this.state.products,
       darkMode: this.state.darkMode,
       punkMode: !this.state.punkMode,
       psychMode: this.state.psychMode,
@@ -51,6 +57,7 @@ class App extends React.Component {
   psychMode() {
     this.setState({
       productId: this.state.productId,
+      products: this.state.products,
       darkMode: this.state.darkMode,
       punkMode: this.state.punkMode,
       psychMode: !this.state.psychMode,
@@ -58,14 +65,29 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.state.productId) {
-      this.setState({
-        productId: 37311,
-        darkMode: this.state.darkMode,
-        punkMode: this.state.punkMode,
-        psychMode: this.state.psychMode,
-      })
-    }
+    // Same as overview getProducts axios request. Pass down as props if warranted.
+    // Upon mount, API call to get back all products. By default state will be set
+    // as first product in the list (allProducts[0]).
+    // Change array index to change product.
+      const options = {
+        method: 'get',
+        url: '/details',
+      }
+      axios(options)
+        .then(res => {
+          const allProducts = res.data;
+          this.setState({
+            productId: allProducts[0].id,
+            product: allProducts[0],
+            darkMode: this.state.darkMode,
+            punkMode: this.state.punkMode,
+            psychMode: this.state.psychMode,
+          })
+        })
+        .catch(err => {
+          console.log('error getting products', err)
+        })
+
     if (this.state.darkMode) {
       document.body.classList.add('dark-mode');
     } else {
@@ -77,6 +99,31 @@ class App extends React.Component {
     if (this.state.darkMode !== prevState.darkMode) {
       window.localStorage.setItem('dark', JSON.stringify(this.state.darkMode));
       document.body.classList.toggle('dark-mode');
+    }
+
+    // ProductId will change when related product card is clicked.
+    // When productId changes, product state will change to include product info.
+    if (this.state.productId !== prevState.productId) {
+      const options = {
+        method: 'get',
+        url: '/info',
+        params: { id: this.state.productId },
+      }
+      axios(options)
+        .then(res => {
+          const currentProduct = res.data;
+          // console.log('current product', currentProduct)
+          this.setState({
+            productId: this.state.productId,
+            product: currentProduct,
+            darkMode: this.state.darkMode,
+            punkMode: this.state.punkMode,
+            psychMode: this.state.psychMode,
+          })
+        })
+        .catch(err => {
+          console.log('error getting updated product', err)
+        })
     }
   }
 
