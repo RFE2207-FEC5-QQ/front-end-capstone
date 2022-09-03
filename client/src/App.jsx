@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: null,
-      product: null,
+      productDetail: null,
       darkMode: JSON.parse(window.localStorage.getItem('dark')) ?? false,
       punkMode: false,
       psychMode: false,
@@ -27,7 +27,7 @@ class App extends React.Component {
   changeProduct(item) {
     this.setState({
       productId: item,
-      products: this.state.products,
+      productDetail: this.state.products,
       darkMode: this.state.darkMode,
       punkMode: this.state.punkMode,
       psychMode: this.state.psychMode,
@@ -37,7 +37,7 @@ class App extends React.Component {
   darkMode() {
     this.setState({
       productId: this.state.productId,
-      products: this.state.products,
+      productDetail: this.state.products,
       darkMode: !this.state.darkMode,
       punkMode: !this.state.punkMode,
       psychMode: this.state.psychMode,
@@ -47,7 +47,7 @@ class App extends React.Component {
   punkMode() {
     this.setState({
       productId: this.state.productId,
-      products: this.state.products,
+      productDetail: this.state.products,
       darkMode: this.state.darkMode,
       punkMode: !this.state.punkMode,
       psychMode: this.state.psychMode,
@@ -57,7 +57,7 @@ class App extends React.Component {
   psychMode() {
     this.setState({
       productId: this.state.productId,
-      products: this.state.products,
+      productDetail: this.state.products,
       darkMode: this.state.darkMode,
       punkMode: this.state.punkMode,
       psychMode: !this.state.psychMode,
@@ -78,7 +78,7 @@ class App extends React.Component {
           const allProducts = res.data;
           this.setState({
             productId: allProducts[0].id,
-            product: allProducts[0],
+            productDetail: allProducts[0],
             darkMode: this.state.darkMode,
             punkMode: this.state.punkMode,
             psychMode: this.state.psychMode,
@@ -115,7 +115,7 @@ class App extends React.Component {
           // console.log('current product', currentProduct)
           this.setState({
             productId: this.state.productId,
-            product: currentProduct,
+            productDetail: currentProduct,
             darkMode: this.state.darkMode,
             punkMode: this.state.punkMode,
             psychMode: this.state.psychMode,
