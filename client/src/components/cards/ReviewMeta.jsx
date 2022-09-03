@@ -1,8 +1,9 @@
 import React from 'react';
-import axios from 'axios';
-import { Rating, LinearProgress } from '@mui/material';
+import { Rating, LinearProgress, Slider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
+import ReviewMetaCharacteristicsList from '../lists/ReviewMetaCharacteristicsList.jsx';
 
 const ReviewMeta = ({reviewMeta, productId, filterbyRating, paletteMap, characteristicChart}) => {
   let totalReviews = 0;
@@ -72,24 +73,7 @@ const ReviewMeta = ({reviewMeta, productId, filterbyRating, paletteMap, characte
           </div>
         ))}
       </div>
-      <div className='review-meta-characteristics'>
-        {Object.keys(reviewMeta.characteristics).map((key) => (
-          <div key={key} className='review-meta-characteristics-entry'>
-            <div className='review-meta-characteristics-labels'>
-              <span id='review-meta-characteristic-left'>{characteristicChart[key][1]}</span>
-              <span id='review-meta-characteristic-center'>{key}</span>
-              <span id='review-meta-characteristic-right'>{characteristicChart[key][5]}</span>
-            </div>
-            <LinearProgress
-              sx={{
-                p: 0.6
-              }}
-              variant='determinate'
-              value={((parseFloat(reviewMeta.characteristics[key]['value']) - 1) / 4) * 100}
-            />
-          </div>
-        ))}
-      </div>
+      <ReviewMetaCharacteristicsList characteristics={reviewMeta.characteristics} characteristicChart={characteristicChart}/>
     </div>
   );
 

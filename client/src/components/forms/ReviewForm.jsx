@@ -203,7 +203,7 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {`Max characters left: ${(60 - this.state.summary.length).toString()}`}
+            <small>{`Max characters left: ${(60 - this.state.summary.length).toString()}`}</small>
           </label>
         </div>
         <div className='review-form-body'>
@@ -220,8 +220,8 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {this.state.bodyValid ? 'Minimum reached' : `Minimum required characters left: [${(50 - this.state.body.length).toString()}]`}
-            {`Max characters left: ${(1000 - this.state.body.length).toString()}`}
+            <small>{this.state.bodyValid ? 'Minimum reached' : `Minimum required characters left: [${(50 - this.state.body.length).toString()}]`}</small>
+            <small>{`Max characters left: ${(1000 - this.state.body.length).toString()}`}</small>
           </label>
         </div>
         <div className='review-form-photos'>
@@ -245,8 +245,8 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {`Max characters left: ${(60 - this.state.name.length).toString()}`}
-            {'For privacy reasons, do not use your full name or email address'}
+            <small>{`Max characters left: ${(60 - this.state.name.length).toString()}`}</small>
+            <small>{'For privacy reasons, do not use your full name or email address'}</small>
           </label>
         </div>
         <div className='review-form-email'>
@@ -264,8 +264,8 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {`Max characters left: ${(60 - this.state.email.length).toString()}`}
-            {'For authentication reasons, you will not be emailed'}
+            <small>{`Max characters left: ${(60 - this.state.email.length).toString()}`}</small>
+            <small>{'For authentication reasons, you will not be emailed'}</small>
           </label>
         </div>
         <input
@@ -289,7 +289,7 @@ export default class ReviewForm extends React.Component {
             )
           }
         />
-        <div className='review-form-error'>
+        <div id='review-form-error'>
           {this.state.errorMessage}
         </div>
       </form>
