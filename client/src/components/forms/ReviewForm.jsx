@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Rating } from '@mui/material';
 
 import ReviewFormImageModal from '../modals/ReviewFormImageModal.jsx';
-import ReviewImage from '../cards/ReviewImage.jsx';
+import ReviewImageList from '../lists/ReviewImageList.jsx';
 
 // TODO: Should actually refactor this and the other modal (anything with toggled visibility)
 // to store their visibility within the component, that way you don't re-render the parent every time
@@ -227,15 +227,7 @@ export default class ReviewForm extends React.Component {
         <div className='review-form-photos'>
           {'Photos '}
           <button onClick={this.openFormImageModal}>Add Photos</button>
-          {this.state.photos.length > 0 &&
-            <div className='review-images'>
-              {this.state.photos.map((photo, index) => {
-                return (
-                  <ReviewImage id={photo} url={photo} key={index}/>
-                );
-              })}
-            </div>
-          }
+          {this.state.photos.length > 0 && <ReviewImageList photoUrls={this.state.photos}/>}
           {this.state.showFormImageModal && <ReviewFormImageModal photos={this.state.photos} submitPhoto={this.submitPhoto} closeModal={this.closeFormImageModal}/>}
         </div>
         <div className='review-form-name'>
