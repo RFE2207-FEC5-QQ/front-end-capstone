@@ -19,7 +19,7 @@ axios.defaults.baseURL = 'https://localhost:3000';
 //   }]
 // }))
 
-describe('Overview', function() {
+xdescribe('Overview', function() {
   const user = userEvent.setup();
   render(<Overview productId={37311}/>);
 

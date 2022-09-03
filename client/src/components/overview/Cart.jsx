@@ -3,6 +3,9 @@ import { FormControl, InputLabel, Select, MenuItem, Button, Alert } from '@mui/m
 
 const Cart = ({ selectedStyle, skus }) => {
 
+  console.log('style: ', selectedStyle)
+  console.log('skus: ', skus)
+
   const [sizes, setSizes] = useState([]);
   const [size, setSize] = useState('');
   const [qtys, setQtys] = useState([]);
