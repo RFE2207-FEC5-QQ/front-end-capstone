@@ -7,7 +7,6 @@ import RelatedProducts from './components/views/RelatedProducts.jsx';
 import Outfit from './components/views/Outfit.jsx';
 import QuestionsAnswers from './components/views/QuestionsAnswers.jsx';
 import Reviews from './components/views/Reviews.jsx';
-import Contact from './components/views/Contact.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +22,6 @@ class App extends React.Component {
     this.punkMode = this.punkMode.bind(this);
     this.psychMode = this.psychMode.bind(this);
     this.changeProduct = this.changeProduct.bind(this);
-    this.useRainbow = this.useRainbow.bind(this);
   }
 
   changeProduct(item) {
@@ -65,17 +63,6 @@ class App extends React.Component {
       psychMode: !this.state.psychMode,
     });
   }
-  
-  useRainbow() {
-    const viewportHeight = window.innerHeight;
-    const contentHeight = document.body.getBoundingClientRect().height;
-    const viewportsPerRotation = Math.min(3, contentHeight / viewportHeight);
-    const from = 51;
-    const progress = window.scrollY / (viewportHeight * viewportsPerRotation);
-    const h = (from + 360 * progress) % 360;
-    document.body.style.backgroundColor = `hsl(${h}deg, 100%, 50%)`;
-  };
-
 
   componentDidMount() {
     // Same as overview getProducts axios request. Pass down as props if warranted.
@@ -100,33 +87,12 @@ class App extends React.Component {
         .catch(err => {
           console.log('error getting products', err)
         })
-        
+
     if (this.state.darkMode) {
       document.body.classList.add('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
     }
-
-    // Enable psychedelic background scrolling
-    let lastScroll = 0;
-    const navBar = document.querySelector('.nav-bar');
-    const navPlaceHolder = document.querySelector('.bg-color-placeholder');
-
-    window.addEventListener("scroll", () => {
-      let currentScroll = window.scrollY;
-      if (currentScroll - lastScroll > 0) {
-        navBar.classList.add("scrolled-down");
-        navPlaceHolder.classList.add("scrolled-down");
-        navBar.classList.remove("scrolled-up");
-        navPlaceHolder.classList.remove("scrolled-up");
-      } else {
-        navBar.classList.add("scrolled-up");
-        navPlaceHolder.classList.add("scrolled-down");
-        navBar.classList.remove("scrolled-down");
-        navPlaceHolder.classList.remove("scrolled-up");
-      }
-      lastScroll = currentScroll;
-    })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -158,14 +124,6 @@ class App extends React.Component {
         .catch(err => {
           console.log('error getting updated product', err)
         })
-
-    if (this.state.psychMode !== prevState.psychMode) {
-      if (this.state.psychMode) {
-        window.addEventListener('scroll', this.useRainbow, { passive: true });
-      } else {
-        window.removeEventListener('scroll', this.useRainbow);
-        document.body.style.backgroundColor = '';
-      }
     }
   }
 
@@ -196,8 +154,7 @@ class App extends React.Component {
           product={this.state.productDetail}
         />
         <QuestionsAnswers/>
-        <Reviews productId={37311}/>
-        <Contact/>
+        <Reviews productId={this.state.productId}/>
       </React.Fragment>
     );
   }
