@@ -223,6 +223,12 @@
   margin-top: 10px
 }
 
+.review-image-preview:hover {
+  outline-style: solid;
+  outline-width: 1px;
+  outline-offset: -1px;
+}
+
 .review-bottomline {
   display: flex;
   justify-content: flex-start;

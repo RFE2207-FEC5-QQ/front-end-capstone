@@ -147,6 +147,8 @@ class Reviews extends React.Component {
           }
         }
       },
+      // reviews: [],
+      // reviewMeta: null,
       sort: 'relevant',
       count: 2,
       page: 1,

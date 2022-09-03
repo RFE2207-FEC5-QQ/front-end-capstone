@@ -6,7 +6,6 @@ const ReviewMetaCharacteristicsList = ({characteristics, characteristicChart}) =
 
   return (
     <div className='review-meta-characteristics'>
-      <h2 className='review-meta-title'>Characteristics</h2>
       {Object.keys(characteristics).map((key) => (
         <ReviewMetaCharacteristic
           key={key}
