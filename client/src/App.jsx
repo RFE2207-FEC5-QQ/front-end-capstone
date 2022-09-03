@@ -147,9 +147,11 @@ class App extends React.Component {
         <RelatedProducts
           onClick={this.changeProduct}
           productId={this.state.productId}
+          product={this.state.productDetail}
           modes={modes}/>
         <Outfit
           productId={this.state.productId}
+          product={this.state.productDetail}
         />
         <QuestionsAnswers/>
         <Reviews productId={this.state.productId}/>

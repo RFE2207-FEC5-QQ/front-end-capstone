@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
 import reactImageSize from 'react-image-size';
 
-const RelatedCard = ({ item, modal, onClick }) => {
+const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
   const [detail, setDetail] = useState(null);
   const [style, setStyle] = useState(null);
   const [imgURL, setImgURL] = useState(null);
@@ -155,8 +155,8 @@ const RelatedCard = ({ item, modal, onClick }) => {
             />
             : <Comparison
               className='comparison'
-              mainProduct={item}
-              currProduct={{detail, salePrice, origPrice, rating}}
+              mainProduct={mainProduct}
+              currProduct={detail}
             />
           }
           {imgURL
@@ -166,10 +166,10 @@ const RelatedCard = ({ item, modal, onClick }) => {
           <div className='card-content'>
             <div className='card-description'>{detail.category}</div>
             <div className='card-description'>{detail.name}</div>
-            {origPrice
+            {salePrice
               ? <React.Fragment>
                 <div className='card-description'>
-                  <span className='sale-price'>${origPrice}&nbsp;&nbsp;</span>
+                  <span className='sale-price'>${salePrice}&nbsp;&nbsp;</span>
                   <span className='strike-original-price'>${origPrice}</span>
                 </div>
               </React.Fragment>
@@ -179,13 +179,11 @@ const RelatedCard = ({ item, modal, onClick }) => {
                 </div>
               </React.Fragment>
             }
-            {/* Currently rating is not at correct precision. Fix later. */}
             <div className='card-rating'>
               <Rating
                 className='card-rating'
                 name="quarter-rating"
                 value={rating[0]}
-                // value={rating[0]}
                 precision={0.25}
                 size='small'
                 readOnly/>

@@ -28,7 +28,7 @@ const responsive = {
   }
 };
 
-const RelatedProducts = ({ onClick, productId, modes }) => {
+const RelatedProducts = ({ onClick, productId, product, modes }) => {
   const [relatedList, setRelatedList] = useState(null);
   const modalIcon = StarBorderOutlinedIcon;
   const { psychMode } = modes;
@@ -43,11 +43,11 @@ const RelatedProducts = ({ onClick, productId, modes }) => {
       })
       .then((results) => {
         const relatedIds = [...new Set(results.data)];
-        // console.log('relatedIds', relatedIds);
+        console.log('relatedIds', relatedIds);
         setRelatedList(relatedIds);
       })
       .catch((err) => {
-        throw ('Error fetching related products');
+        throw ('Error fetching related products', productId);
       });
   }, [productId]);
 
@@ -56,12 +56,13 @@ const RelatedProducts = ({ onClick, productId, modes }) => {
       <div className='related-header'>Related Products</div>
       {relatedList
         ? <Carousel className='carousel' responsive={responsive}>
-          {relatedList.map((product, i) =>
+          {relatedList.map((relProduct, i) =>
             <RelatedCard
               onClick={onClick}
               psychMode={psychMode}
               key={i}
-              item={product}
+              item={relProduct}
+              mainProduct={product}
               modal='related'/>)}
         </Carousel>
         : null
