@@ -5,6 +5,7 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
+import reactImageSize from 'react-image-size';
 
 const RelatedCard = ({ item, modal, onClick }) => {
   const [detail, setDetail] = useState(null);
@@ -14,22 +15,51 @@ const RelatedCard = ({ item, modal, onClick }) => {
   const [percentOff, setPercentOff] = useState(null);
   const [origPrice, setOrigPrice] = useState(null);
   const [rating, setRating] = useState(null);
+  const [orderedImgs, setOrderedImgs] = useState(null);
+  let imgDimensions = [];
 
+  // For customizing image display by aspect ratio.
   const currentStyle = (style) => {
     setStyle(style);
-    console.log(style);
-    if (style.photos.length) {
-      setImgURL(style.photos[0].thumbnail_url);
-      console.log(style.photos[0].thumbnail_url);
+    console.log('style', style, 'item,', item);
+    if (style.photos[0].thumbnail_url) {
+      for (let i = 0; i < style.photos.length; i++) {
+        reactImageSize(style.photos[i].thumbnail_url)
+          .then(({width, height}) => {
+            console.log('imgDimensions real:', imgDimensions);
+            imgDimensions.push([style.photos[i].thumbnail_url, height / width]);
+            if (i === style.photos.length - 1) {
+              const optimizedImgs = imgDimensions.sort((a, b) => Math.abs(a[1] - 1) - Math.abs(b[1] - 1));
+              setOrderedImgs(optimizedImgs);
+              setImgURL(optimizedImgs[0][0]);
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+      console.log('style photos0', style.photos[0].thumbnail_url);
     } else {
       setImgURL(false);
     }
     if (style.sale_price) {
       setSalePrice(style.sale_price);
       setPercentOff((origPrice - salePrice) / origPrice);
-      // percentOff = discount;
     }
   };
+
+  // For regular image display. No algorithm applied to sort by dimensions.
+  // const currentStyle = (style) => {
+  //   setStyle(style);
+  //   console.log('style', style, 'item,', item);
+  //   if (style.photos[0].thumbnail_url) {
+  //     setImgURL(style.photos[0].thumbnail_url);
+  //   } else {
+  //     setImgURL(false);
+  //   }
+  //   if (style.sale_price) {
+  //     setSalePrice(style.sale_price);
+  //     setPercentOff((origPrice - salePrice) / origPrice);
+  //   }
+  // };
 
   let handleProductChange = () => {
     onClick(item);
