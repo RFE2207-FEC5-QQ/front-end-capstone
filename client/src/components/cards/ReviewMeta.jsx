@@ -23,7 +23,7 @@ const ReviewMeta = ({reviewMeta, productId, filterbyRating, paletteMap, characte
 
   return (
     <div className='review-meta'>
-      {!reviewMeta ? <Skeleton variant="rectangular" height='100px'/>
+      {!reviewMeta ? <Skeleton sx={{mt: 1}} variant="rectangular" height='100px'/>
         :
         <div className='review-meta-topbar'>
           <div className='review-meta-avg-rating'>

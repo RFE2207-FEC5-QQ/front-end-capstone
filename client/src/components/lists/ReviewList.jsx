@@ -26,17 +26,20 @@ const ReviewList = ({reviews, sort, getReviews, openReviewModal, handleSortChang
           <MenuItem value={'relevant'}>relevance</MenuItem>
         </Select>
       </div>
-      <div className='review-list-entries'>
-        {
-          reviews.length === 0 ? <Skeleton variant='rectangular' height='500px'/>
-            : reviews.map((review) => (
-              <Review review={review} getReviews={getReviews} ratingTheme={ratingTheme} paletteMap={paletteMap} key={review.review_id}/>
-            ))
-        }
+      {reviews.length === 0 ? <Skeleton sx={{mt: 2}} variant='rectangular' height='500px'/>
+        :
+        <div className='review-list-entries'>
+          {reviews.map((review) => (
+            <Review review={review} getReviews={getReviews} ratingTheme={ratingTheme} paletteMap={paletteMap} key={review.review_id}/>
+          ))}
+        </div>
+      }
+      {reviews.length === 0 ? <Skeleton variant='rectangular' height='100px'/>
+        :
         <div className='review-buttons'>
           <button onClick={handleMoreReviews}>More Reviews</button> <button onClick={openReviewModal}>Add a Review +</button>
         </div>
-      </div>
+      }
     </div>
   );
 
