@@ -31,31 +31,45 @@ var mockStyle = {
 
 describe('Gallery Default View', function() {
   test('should render all images', () => {
-    render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={true}/>)
+    render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={true}/>);
     expect(screen.getAllByRole('img')).toHaveLength(5);
   })
 })
 
 describe('Gallery Expanded View', function() {
   test('should render 1 image', () => {
-    render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={false}/>)
+    render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={false}/>);
     expect(screen.getByRole('img')).toBeInTheDocument();
   })
 })
 
 describe('Gallery Zoomed View', function() {
   var user = userEvent.setup();
-  test('should render 1 image', () => {
-    render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={false}/>)
+  test('should be zoomed on click and unzoomed on another click', () => {
+    render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={false}/>);
     return user.click(screen.getByRole('img'))
       .then(() => {
         expect(document.getElementsByClassName('zoom-image-container')).toHaveLength(1);
       })
       .then(() => {
-        user.click(screen.getByRole('img'))
+        user.click(document.getElementsByClassName('zoom-image-container')[0])
           .then(() => {
             expect(document.getElementsByClassName('expanded-image-container')).toHaveLength(1);
           })
+      })
+  })
+})
+
+describe('Gallery Clicking Arrows', function() {
+  var user = userEvent.setup();
+  test('should increase index when clicking right arrow', () => {
+    render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={true}/>);
+    var images = screen.getAllByRole('img');
+    var arrows =
+    expect(images[0]).toHaveClass('carousel-image');
+    user.click(screen.getByTestId('ArrowForwardIcon'))
+      .then(() => {
+        expect(images[1]).toHaveClass('selected-carousel-image');
       })
   })
 })
