@@ -27,7 +27,7 @@ class App extends React.Component {
   changeProduct(item) {
     this.setState({
       productId: item,
-      productDetail: this.state.products,
+      productDetail: this.state.productDetail,
       darkMode: this.state.darkMode,
       punkMode: this.state.punkMode,
       psychMode: this.state.psychMode,

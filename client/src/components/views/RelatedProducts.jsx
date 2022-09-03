@@ -43,13 +43,16 @@ const RelatedProducts = ({ onClick, productId, product, modes }) => {
       })
       .then((results) => {
         const relatedIds = [...new Set(results.data)];
-        console.log('relatedIds', relatedIds);
+        if (relatedIds.includes(productId)) {
+          relatedIds.splice(relatedIds.indexOf(productId), 1);
+        }
+        // console.log('relatedIds', relatedIds);
         setRelatedList(relatedIds);
       })
       .catch((err) => {
         throw ('Error fetching related products', productId);
       });
-  }, [productId]);
+  }, [productId, product]);
 
   return (
     <div className='related-products'>
