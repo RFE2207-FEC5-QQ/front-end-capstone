@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { Rating } from '@mui/material';
 
+import ReviewFormImageModal from '../modals/ReviewFormImageModal.jsx';
+import ReviewImage from '../cards/ReviewImage.jsx';
+
 // TODO: Should actually refactor this and the other modal (anything with toggled visibility)
 // to store their visibility within the component, that way you don't re-render the parent every time
 // You show / hide the component
@@ -47,10 +50,14 @@ export default class ReviewForm extends React.Component {
       email: '', // A text input allowing up to 60 characters.
       // Placeholder text should read: “Example: jackson11@email.com”.
       // Below this field, the text “For authentication reasons, you will not be emailed” will appear.
-      emailValid: false
+      emailValid: false,
+      showFormImageModal: false
     };
     this.postReview = this.postReview.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.submitPhoto = this.submitPhoto.bind(this);
+    this.openFormImageModal = this.openFormImageModal.bind(this);
+    this.closeFormImageModal = this.closeFormImageModal.bind(this);
   }
 
   postReview() {
@@ -77,6 +84,22 @@ export default class ReviewForm extends React.Component {
   submitForm(e) {
     e.preventDefault();
     this.postReview();
+  }
+
+  submitPhoto(photoUrl) {
+    let photos = this.state.photos.slice();
+    photos.push(photoUrl);
+    this.setState({photos});
+  }
+
+  openFormImageModal(e) {
+    e.preventDefault();
+    this.setState({showFormImageModal: true});
+  }
+
+  closeFormImageModal(e) {
+    e.preventDefault();
+    this.setState({showFormImageModal: false});
   }
 
   render() {
@@ -202,7 +225,18 @@ export default class ReviewForm extends React.Component {
           </label>
         </div>
         <div className='review-form-photos'>
-          {'Photos (optional)'}
+          {'Photos '}
+          <button onClick={this.openFormImageModal}>Add Photos</button>
+          {this.state.photos.length > 0 &&
+            <div className='review-images'>
+              {this.state.photos.map((photo, index) => {
+                return (
+                  <ReviewImage id={photo} url={photo} key={index}/>
+                );
+              })}
+            </div>
+          }
+          {this.state.showFormImageModal && <ReviewFormImageModal photos={this.state.photos} submitPhoto={this.submitPhoto} closeModal={this.closeFormImageModal}/>}
         </div>
         <div className='review-form-name'>
           <label>
