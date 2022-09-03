@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Rating } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import CircularProgress from '@mui/material/CircularProgress';
 import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
 import reactImageSize from 'react-image-size';
@@ -191,7 +192,9 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
             </div>
           </div>
         </div>
-        : null
+        : <div className='progress-icon'>
+          <CircularProgress/>
+        </div>
       }
     </React.Fragment>
   );

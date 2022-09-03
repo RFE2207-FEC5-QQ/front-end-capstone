@@ -63,14 +63,13 @@ const Comparison = ({ mainProduct, currProduct }) => {
         onClose={handleClose}
         closeOnDocumentClick
         position='bottom right'>
-        {/* <div> */}
         <div className="comparison-modal theme">
           <div className='comparison-header-container'>
             <div className='comparison-title'>COMPARING</div>
             <div className='comparison-content product-name'>
-              {/* <div>{currProduct.name}</div>
+              <div>{currProduct.name}</div>
               <div></div>
-              <div>{mainProduct.name}</div> */}
+              <div>{mainProduct.name}</div>
             </div>
           </div>
           <div className='comparison-content'>
@@ -78,7 +77,7 @@ const Comparison = ({ mainProduct, currProduct }) => {
               {currValues.map((value) => <div>{value}</div>)}
             </div>
             <div className='product-comparator'>
-              {Array.from(features).map((feature) => <div>{feature}</div>)}
+              {features.map((feature) => <div>{feature}</div>)}
             </div>
             <div className='product-main'>
               {mainValues.map((value) => <div>{value}</div>)}
