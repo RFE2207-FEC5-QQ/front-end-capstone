@@ -7,7 +7,7 @@
 1. [Description](#description)
 2. [Installation](#installation)
 3. [Usage](#usage)
-4. [Team](#usage)
+4. [Team](#team)
 
 # Description
 > The redesigned Atelier user interface will allow customers to browse and search products, add desired products to their cart, and finally checkout the products in the cart. The interface consists of a ‘Product Details’ page, which contains three main features:
