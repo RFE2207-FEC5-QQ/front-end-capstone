@@ -19,15 +19,17 @@ const Style = ({ styles, updateStyle, selectedStyle }) => {
 
     return(
       <div className='overview-styles'>
-        <span className='style-selector'>
-          STYLE
-        </span>
-          <ArrowRightRoundedIcon
-            className='style-arrow'
-          />
-        <span className='selected-style'>
-          {selectedStyle.name}
-        </span>
+        <div className='style-heading'>
+          <span className='style-selector'>
+            STYLE
+          </span>
+            <ArrowRightRoundedIcon
+              className='style-arrow'
+            />
+          <span className='selected-style'>
+            {selectedStyle.name}
+          </span>
+        </div>
         <Grid container spacing={1}>
           {styles.map(style => {
             if (style.photos[0].thumbnail_url) {

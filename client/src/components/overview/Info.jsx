@@ -50,7 +50,7 @@ const Info = ({ product, selectedStyle }) => {
             precision={0.25}
             readOnly
           />
-          <a href='.view-reviews' className='read-all-reviews'>
+          <a href='#reviews' className='read-all-reviews'>
             {`Read All [${reviews}] Reviews`}
           </a>
         </div>

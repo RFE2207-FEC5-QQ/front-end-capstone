@@ -38,6 +38,10 @@
   --theme-icon-color: #282828;
   --header-text-size: 2rem;
   --secondary-header-text-size: 0.9rem;
+  --gallery-background-color: #E8E8E8;
+  --images-border: black;
+  --selected-image: #277BC0;
+  --select-label: black;
 }
 
 /* Apply custom themes and variables here */
@@ -55,6 +59,10 @@
   --text-hover-color: rgba(255, 255, 255, 1);
   --text-sale-color: rgba(231, 76, 70, 0.87);
   --theme-icon-color: rgba(230, 230, 230, 0.87);
+  --gallery-background-color: #1B2430;
+  --images-border: lightgray;
+  --selected-image: #774360;
+  --select-label: white;
 }
 
 .punk-mode {
@@ -967,7 +975,7 @@ body {
 /* Image Gallery */
 /* Expanded View */
 .expanded-view {
-  background-color: #E8E8E8;
+  background-color: var(--gallery-background-color);
   position: relative;
   width: 1400px;
   height: 600px;
@@ -982,7 +990,7 @@ body {
   height: 600px;
   object-fit: cover;
   border-radius: 5px;
-  border: solid black 1px;
+  border: solid 1px var(--images-border);
   transition: 0.5s;
   cursor: crosshair;
 }
@@ -999,12 +1007,21 @@ body {
   transition: 0.5s;
 }
 
+.expanded-left-arrow:hover {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 105px;
+  top: 297px;
+  cursor: pointer;
+}
+
 .carousel-icon {
-  color: black
+  color: var(--images-border);
 }
 
 .selected-carousel-icon {
-  color: red;
+  color: var(--selected-image);
 }
 
 .expanded-up-arrow {
@@ -1013,7 +1030,7 @@ body {
 
 /* Default View */
 .overview-gallery {
-  background-color: #E8E8E8;
+  background-color: var(--gallery-background-color);
   position: relative;
   width: 900px;
   height: 600px;
@@ -1028,7 +1045,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-right: 20px;
-  border-right: solid black 2px;
+  border-right: solid 2px var(--images-border);
 }
 
 .selected-image-container {
@@ -1045,7 +1062,7 @@ body {
   height: 600px;
   object-fit: cover;
   border-radius: 5px;
-  border: solid black 1px;
+  border: solid 1px var(--images-border);
   transition: 0.5s;
   cursor: zoom-in;
 }
@@ -1060,7 +1077,7 @@ body {
 
 .left-arrow {
   position: absolute;
-  left: 10px;
+  left: 30px;
   top: 300px;
   cursor: pointer;
   transition: 1s;
@@ -1077,7 +1094,7 @@ body {
   width: 30px;
   height: 30px;
   top: 297px;
-  left: 5px;
+  left: 25px;
 }
 
 .up-arrow {
@@ -1090,16 +1107,16 @@ body {
 
 .carousel-image {
   border: solid lightgray;
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .selected-carousel-image {
-  border: solid black;
-  border-bottom: solid red 6px;
+  border: solid var(--selected-image) 2px;
+  border-bottom: solid var(--selected-image) 7px;
 }
 
 .crop-icon {
@@ -1120,6 +1137,7 @@ body {
   margin: 10px;
   position: relative;
   bottom: 6px;
+  color: var(--images-border)
 }
 
 .product-category {
@@ -1132,6 +1150,8 @@ body {
   font-weight: bold;
   font-size: 50px;
   margin-left: -3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .product-price {
@@ -1146,12 +1166,15 @@ body {
   text-decoration: line-through;
 }
 .sale-price {
-  color: red;
+  color: #fd0505;
   display: inline;
   margin: 5px;
 }
 
 /* Style Selector */
+.style-heading {
+  position: relative;
+}
 .style-selector {
   font-weight: bold;
   position: relative;
@@ -1164,10 +1187,12 @@ body {
 
 .style-arrow {
   position: absolute;
+  left: 53px;
+  bottom: -3px;
 }
 
 .style-image {
-  border: 2px solid rgba(0,0,0,0);
+  border: 1px solid var(--images-border);
   border-radius: 50%;
   margin: 2px;
   cursor: pointer;
@@ -1187,6 +1212,7 @@ body {
 .checked-image {
   border-radius: 50%;
   background-color: white;
+  color: black;
   border: solid black;
   position: relative;
   left: 50px;
@@ -1212,6 +1238,10 @@ body {
 
 .size-warning {
   padding-bottom: 5px;
+}
+
+#cart-label {
+  color: var(--select-label);
 }
 
 /* Description */
