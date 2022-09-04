@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Box,
-  CardMedia,
-  CardActions,
-  Card,
-  CardActionArea,
-  CardContent,
-  Rating,
-  Typography,
-} from '@mui/material';
+import { Rating } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import CircularProgress from '@mui/material/CircularProgress';
+import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
+import reactImageSize from 'react-image-size';
 
-const RelatedCard = ({ item }) => {
-
+const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
   const [detail, setDetail] = useState(null);
   const [style, setStyle] = useState(null);
   const [imgURL, setImgURL] = useState(null);
@@ -23,18 +16,66 @@ const RelatedCard = ({ item }) => {
   const [percentOff, setPercentOff] = useState(null);
   const [origPrice, setOrigPrice] = useState(null);
   const [rating, setRating] = useState(null);
+  const [orderedImgs, setOrderedImgs] = useState(null);
+  let imgDimensions = [];
+
+  // For customizing image display by aspect ratio.
+  const currentStyle = (style) => {
+    setStyle(style);
+    // console.log('style', style, 'item,', item);
+    if (style.photos[0].thumbnail_url) {
+      for (let i = 0; i < style.photos.length; i++) {
+        reactImageSize(style.photos[i].thumbnail_url)
+          .then(({width, height}) => {
+            // console.log('imgDimensions real:', imgDimensions);
+            imgDimensions.push([style.photos[i].thumbnail_url, height / width]);
+            if (i === style.photos.length - 1) {
+              const optimizedImgs = imgDimensions.sort((a, b) => Math.abs(a[1] - 1) - Math.abs(b[1] - 1) + 0.16);
+              setOrderedImgs(optimizedImgs);
+              setImgURL(optimizedImgs[0][0]);
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+      console.log('style photos0', style.photos[0].thumbnail_url);
+    } else {
+      setImgURL(false);
+    }
+    if (style.sale_price) {
+      setSalePrice(style.sale_price);
+      setPercentOff((origPrice - salePrice) / origPrice);
+    }
+  };
+
+  // For regular image display. No algorithm applied to sort by dimensions.
+  // const currentStyle = (style) => {
+  //   setStyle(style);
+  //   console.log('style', style, 'item,', item);
+  //   if (style.photos[0].thumbnail_url) {
+  //     setImgURL(style.photos[0].thumbnail_url);
+  //   } else {
+  //     setImgURL(false);
+  //   }
+  //   if (style.sale_price) {
+  //     setSalePrice(style.sale_price);
+  //     setPercentOff((origPrice - salePrice) / origPrice);
+  //   }
+  // };
+
+  let handleProductChange = () => {
+    onClick(item);
+  };
 
   useEffect(() => {
-
     axios
-      .get('/details', {
+      .get('/info', {
         params: {
-          productId: item,
+          id: item,
         }
       })
       .then((results) => {
         const productDetail = results.data;
-        console.log('productDetail', productDetail);
+        // console.log('productDetail', productDetail);
         setDetail(productDetail);
         setOrigPrice(productDetail.default_price);
       })
@@ -45,7 +86,7 @@ const RelatedCard = ({ item }) => {
     axios
       .get('/styles', {
         params: {
-          productId: item,
+          id: item,
         }
       })
       .then((results) => {
@@ -56,19 +97,9 @@ const RelatedCard = ({ item }) => {
           .find(eachStyle => eachStyle['default?'] === true);
         // console.log('defaultStyle', defaultStyle);
         if (defaultStyle) {
-          setStyle(defaultStyle);
-          if (defaultStyle.photos[0].thumbnail_url) {
-            setImgURL(defaultStyle.photos[0].thumbnail_url);
-          }
-          if (defaultStyle.sale_price) {
-            setSalePrice(defaultStyle.sale_price);
-            const discount = (origPrice - salePrice) / origPrice;
-            setPercentOff(discount);
-          }
+          currentStyle(defaultStyle);
         } else {
-          // Need to determine with Daniel what to do if default style not set in API.
-          setStyle(productStyle.results[0]);
-          setImgURL(productStyle.results[0].photos[0].thumbnail_url);
+          currentStyle(productStyle.results[0]);
         }
       })
       .catch((err) => {
@@ -95,8 +126,7 @@ const RelatedCard = ({ item }) => {
           avgRating = sumRatings / numRatings;
           setRating([avgRating, numRatings]);
         } else {
-          // Decide whether to modify state differently later.
-          setRating([0, 0]);
+          setRating([0, 'No ratings yet']);
         }
         // console.log('productRating', productRatings);
         // console.log('avgRating', avgRating);
@@ -105,29 +135,42 @@ const RelatedCard = ({ item }) => {
         throw ('Error getting product rating');
       });
 
-  }, []);
+  }, [item]);
 
+  const handleRemove = () => {
+    onClick(item);
+  };
+
+  if (modal === 'outfit') {
+    handleProductChange = null;
+  }
 
   return (
     <React.Fragment>
-      {(detail && style && rating) &&
-        <div className='related-card'>
-          <Comparison
-            className='comparison'
-            mainProduct={item}
-            currProduct={{detail, salePrice, origPrice, rating}}
-          />
+      {(detail && style && (rating !== null) && (imgURL !== null))
+        ? <div className='related-card' onClick={handleProductChange}>
+          {modal === 'outfit'
+            ? <CloseIcon
+              className='modal-button'
+              onClick={handleRemove}
+            />
+            : <Comparison
+              className='comparison'
+              mainProduct={mainProduct}
+              currProduct={detail}
+            />
+          }
           {imgURL
             ? <div className='img-container'><img className='card-img' src={imgURL}></img></div>
-            : <div className='img-container'><ImageNotSupportedIcon className='card-img' sx={{border: 'solid 1px red'}}/></div>
+            : <div className='img-container'><ImageNotSupportedIcon className='no-img'/></div>
           }
           <div className='card-content'>
             <div className='card-description'>{detail.category}</div>
             <div className='card-description'>{detail.name}</div>
-            {origPrice
+            {salePrice
               ? <React.Fragment>
                 <div className='card-description'>
-                  <span className='sale-price'>${origPrice}&nbsp;&nbsp;</span>
+                  <span className='sale-price'>${salePrice}&nbsp;&nbsp;</span>
                   <span className='strike-original-price'>${origPrice}</span>
                 </div>
               </React.Fragment>
@@ -137,7 +180,6 @@ const RelatedCard = ({ item }) => {
                 </div>
               </React.Fragment>
             }
-            {/* Currently rating is not at correct precision. Fix later. */}
             <div className='card-rating'>
               <Rating
                 className='card-rating'
@@ -149,6 +191,9 @@ const RelatedCard = ({ item }) => {
               <div className='num-ratings'>&nbsp;&nbsp;&#40;{rating[1]}&#41;</div>
             </div>
           </div>
+        </div>
+        : <div className='progress-icon'>
+          <CircularProgress/>
         </div>
       }
     </React.Fragment>
