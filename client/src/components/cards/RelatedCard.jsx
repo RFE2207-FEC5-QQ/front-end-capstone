@@ -6,7 +6,7 @@ import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CircularProgress from '@mui/material/CircularProgress';
 import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
-import reactImageSize from 'react-image-size';
+// import reactImageSize from 'react-image-size';
 
 const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
   const [detail, setDetail] = useState(null);
@@ -103,7 +103,7 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
         }
       })
       .catch((err) => {
-        throw ('Error fetching product image');
+        throw ('Error fetching product style');
       });
 
     axios
@@ -152,6 +152,7 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
           {modal === 'outfit'
             ? <CloseIcon
               className='modal-button'
+              aria-label='close-outfit-card'
               onClick={handleRemove}
             />
             : <Comparison
@@ -161,7 +162,7 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
             />
           }
           {imgURL
-            ? <div className='img-container'><img className='card-img' src={imgURL}></img></div>
+            ? <div className='img-container'><img className='card-img' alt={detail.name} src={imgURL}></img></div>
             : <div className='img-container'><ImageNotSupportedIcon className='no-img'/></div>
           }
           <div className='card-content'>
@@ -192,7 +193,7 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
             </div>
           </div>
         </div>
-        : <div className='progress-icon'>
+        : <div aria-label='progress-icon' className='progress-icon'>
           <CircularProgress/>
         </div>
       }
