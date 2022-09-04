@@ -6,6 +6,8 @@ import Easel from '../../../public/icons/Easel_gold.svg';
 const Navigation = ({ modes, toggleTheme }) => {
   const { darkMode, punkMode, psychMode } = modes;
   const { toggleDark, toggleGod, togglePunk, toggleLudi, togglePsych } = toggleTheme;
+  const [oldFocusedId, setOldFocusedId] = useState('home-head');
+  const [newFocusedId, setNewFocusedId] = useState('');
 
   let onPsych = '';
   let punkedOut = '';
@@ -22,7 +24,27 @@ const Navigation = ({ modes, toggleTheme }) => {
     punkedOut = '';
   }
 
-  console.log(modes);
+  const toggleFocus = (e) => {
+    setNewFocusedId(e.target.id);
+  };
+
+  useEffect(() => {
+    const oldHead = document.getElementById(oldFocusedId);
+    const currentHead = document.getElementById(newFocusedId);
+
+    if (!currentHead) {
+      oldHead.classList.toggle('header-focused');
+      // oldHead.classList.remove('nav-info');
+    }
+    if (currentHead) {
+      if (newFocusedId !== oldFocusedId) {
+        oldHead.classList.toggle('header-focused');
+        currentHead.classList.toggle('header-focused');
+        setOldFocusedId(newFocusedId);
+      }
+    }
+  }, [newFocusedId]);
+
   return (
     <React.Fragment>
       <div className='nav-bar'>
