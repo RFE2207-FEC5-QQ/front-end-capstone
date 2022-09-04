@@ -24,14 +24,31 @@ describe('Testing RelatedCard render', () => {
     jest.clearAllMocks();
   });
 
-  // it('Should not render card if product info not fetched', async () => {
-  //   jest.spyOn(axios, 'get').mockResolvedValue({data: null});
-  //   render(<RelatedCard onClick={clickHandler} modal='related'/>);
+  it('Should not render card if no product info or styles are fetched', async () => {
+    jest.spyOn(axios, 'get').mockResolvedValue({data: null});
+    render(<RelatedCard onClick={clickHandler} modal='related'/>);
 
-  //   await waitFor(() => expect(screen.getByLabelText('progress-icon')).toBeInTheDocument());
-  //   await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(3));
-  //   await waitFor(() => expect(screen.queryByText('Yong')).not.toBeInTheDocument());
-  // });
+    await waitFor(() => expect(screen.getByLabelText('progress-icon')).toBeInTheDocument());
+    await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(3));
+    await waitFor(() => expect(screen.queryByText('Yong')).not.toBeInTheDocument());
+  });
+
+  it('Should not render card if no styles info is fetched', async () => {
+    jest.spyOn(axios, 'get').mockResolvedValue({
+      data: {
+        name: 'Yong',
+        default_price: 500,
+        results: [{photos: [{
+          thumbnail_url: null,
+        }]}],
+        ratings: {5: 1},
+      }
+    });
+
+    await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(3));
+    await waitFor(() => expect(screen.queryByText('Yong')).not.toBeInTheDocument());
+  });
+
 
   it('Should render card if product info, styles, and ratings are all fetched', async () => {
     jest.spyOn(axios, 'get').mockResolvedValue({
@@ -47,7 +64,6 @@ describe('Testing RelatedCard render', () => {
 
     render(<RelatedCard onClick={clickHandler} modal='related'/>);
 
-    await waitFor(() => expect(screen.getByLabelText('progress-icon')).toBeInTheDocument());
     await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(3));
     await waitFor(() => {
       screen.debug();
