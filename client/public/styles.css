@@ -1,13 +1,13 @@
 /* Apply any custom fonts here */
 /* Elan is for main header logo */
 @font-face {
-  font-family: 'Lane';
-  src: url('fonts/Lane-Narrow.woff2') format('woff2');
+  font-family: 'Elan';
+  src: url('fonts/Elan_Thin.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'ElanBook';
-  src: url('fonts/ElanBook.woff') format('woff');
+  font-family: 'CooperHewitt-Book';
+  src: url('fonts/CooperHewitt-Book.woff') format('woff');
 }
 
 @font-face {
@@ -17,57 +17,35 @@
 
 /* Place global element variables here */
 :root {
-  /* --bg-theme-color: #fff; */
-  --bg-theme-color: rgb(255, 255, 255);
+  --bg-theme-color: #fff;
   --text-theme-color: rgba(0, 0, 0, 1);
   --popup-theme-color: #F8F9F9;
   --shadow-color: rgba(0, 0, 0, 0.15);
-  --header-font: 'Lane';
-  --header-font-weight: 900;
-  /* --header-divider-color: #F5F5F5; */
-  --header-divider-color: #f2e4ea;
-  /* --header-divider-color: #87b3fa; */
-  /* --header-divider-color: #f0e5f4; */
-  --header-hover-color: #2d80b8;
-  --text-font: Helvetica-light, Helvetica;
-
-  --text-size: 1rem;
+  --header-font: 'Elan';
+  --header-divider-color: #F5F5F5;
+  --text-font: 'Helvetica-light';
+  --text-size: 0.75rem;
   --text-font-weight: normal;
-  --text-hover-color: #8e8e8e;
+  --text-hover-color: #6D6D6D;
   --text-sale-color: #C0392B;
   --theme-icon-color: #282828;
-  --header-text-size: 2rem;
-  --secondary-header-text-size: 0.9rem;
-  --gallery-background-color: #E8E8E8;
-  --images-border: black;
-  --selected-image: #277BC0;
-  --select-label: black;
 }
 
 /* Apply custom themes and variables here */
 .dark-mode {
-  /* --bg-theme-color: #23262E; */
-  --bg-theme-color: #24232e;
+  --bg-theme-color: #23262E;
   --text-theme-color: rgba(230, 230, 230, 0.87);
-  --header-font-weight: 100;
-  /* --header-divider-color: #1f1f23; */
-  --header-divider-color: #403A4D;
-  --header-hover-color: #37a0e6;
+  --header-divider-color: #1f1f23;
   --popup-theme-color: #1B1D24;
   --shadow-color: rgba(0, 0, 0, 0.3);
   --text-font-weight: 100;
   --text-hover-color: rgba(255, 255, 255, 1);
   --text-sale-color: rgba(231, 76, 70, 0.87);
   --theme-icon-color: rgba(230, 230, 230, 0.87);
-  --gallery-background-color: #1B2430;
-  --images-border: lightgray;
-  --selected-image: #774360;
-  --select-label: white;
 }
 
 .punk-mode {
   --header-font: 'Cyberpunk';
-  --secondary-header-text-size: 0.8rem;
 }
 
 .psychedelic-mode {
@@ -88,7 +66,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 100% 100%;
-  background-attachment: fixed;
   animation: rainbow 35s infinite linear;
 }
 
@@ -100,9 +77,8 @@
 
 /* Standard content formatting */
 html {
-  /* Current navbar height is 7rem. Change as necessary along with bg-placeholder. */
-  margin-top: 11rem;
-  scroll-behavior: smooth;
+  /* Current navbar height is 7rem */
+  margin-top: 7rem;
 }
 
 body {
@@ -110,7 +86,6 @@ body {
   color: var(--text-theme-color);
   font-family: var(--text-font);
   font-size: var(--text-size);
-  margin-left: 0;
 }
 
 .nav-bar {
@@ -119,17 +94,6 @@ body {
   width: 100%;
   top: 0;
   z-index: 999;
-  transition: all 0s;
-}
-
-/* For hiding or showing navbar during scrolling */
-.scrolled-down {
-  transform: translateY(-70%);
-  transition: transform 0.75s ease-in-out;
-}
-.scrolled-up {
-  transform: translateY(0);
-  transition: transform 0.75s ease-in-out;
 }
 
 /* Needed to prevent transparent background during psychedelic mode. */
@@ -137,99 +101,51 @@ body {
   position: fixed;
   background-color: var(--bg-theme-color);
   width: 100%;
-  height: 11rem;
+  height: 7rem;
   top: 0;
   z-index: 998;
 }
 
-/* .top-bar-container {
+.top-bar-container {
   display: flex;
   justify-content: end;
-  align-items: center;
   background-color: var(--header-divider-color);
-  width: 100%;
-  height: 100%;
   padding: 0.25rem;
-} */
+}
 
 .theme-icon {
+  padding: 0.1rem;
+  margin-right: 2rem;
   border-radius: 50%;
-  padding-bottom: 0.4rem;
   color: var(--theme-icon-color);
 }
 
 .theme-icon:hover {
-  color: var(--text-hover-color);
+  background-color: var(--bg-theme-color);
   cursor: pointer;
 }
 
 .main-header {
-  width: 100%;
-  align-items: center;
   font-family: var(--header-font);
-  font-size: var(--header-text-size);
+  font-size: 2rem;
   padding-left: 2rem;
-  padding-top: 0.25rem;
-  /* padding-bottom: 0.25rem; */
-}
-
-.logo {
-  display: flex;
-  margin: auto;
-  filter: invert(0.5) sepia(1) saturate(2) opacity(87%);
-  margin-top: 0.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  z-index: 999;
-}
-
-.title {
-  display: flex;
-  justify-content: center;
-  height: 3rem;
-  font-weight: var(--header-font-weight);
 }
 
 .secondary-header {
-  /* border: 1px solid black; */
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 100%;
   gap: 5rem;
+  /* font-family: var(--header-font); */
+  font-family: var(--text-font);
+  font-size: 0.9rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
   background-color: var(--header-divider-color);
-  font-size: 1rem;
 }
 
-.secondary-header-pad {
-  padding-top: 0.65rem;
-  /* padding-bottom: 0.3rem; */
-}
-
-.nav-info {
+.secondary-header div:hover {
   cursor: pointer;
-  outline: none;
-  text-decoration: none;
-  color: var(--text-theme-color);
-  padding-bottom: 0.4rem;
-  border-bottom: 3px solid transparent;
-}
-
-.nav-info:hover {
-  cursor: pointer;
-  outline: none;
-  color: var(--header-hover-color);
-  border-bottom: 3px solid var(--header-hover-color);
-  /* border-bottom: 3px solid var(--text-theme-color); */
-}
-
-.header-focused {
-  cursor: pointer;
-  outline: none;
-  color: var(--header-hover-color);
-  /* border-bottom: 3px solid var(--text-theme-color); */
-  border-bottom: 3px solid var(--header-hover-color);
+  color: var(--text-hover-color);
 }
 
 /* Common text size and color formatting for specific headers. */
@@ -265,7 +181,7 @@ body {
   border-radius: 2%;
   position: relative;
   width: 220px;
-  height: 300px;
+  height: 320px;
   margin: 5px;
   background-color: var(--bg-theme-color);
 }
@@ -302,8 +218,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* width: 100%; */
   width: 100%;
-  height: 70%;
+  height: 65%;
   margin: auto;
 }
 
@@ -465,6 +382,17 @@ body {
   color: #909497;
   /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2)) */
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /* Glitch animation for punk mode */
 .layers {
@@ -754,525 +682,4 @@ body {
   93% {
     clip-path: none;
   }
-
-}
-
-.reviews-view {
-  padding: 10px;
-}
-
-.reviews-panels {
-  display: flex;
-  justify-content: flex-start;
-  min-width: 500px;
-  gap: 20px;
-}
-
-.review-meta {
-  width: 35%;
-}
-
-.review-meta-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.review-meta-avg-rating {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-#review-meta-avg-rating-number {
-  font-size: 3em;
-  margin-right: 10px;
-}
-
-.review-meta-avg-rating-stars-amount {
-  line-height: 1.1;
-}
-
-#review-meta-total-rating-count {
-  font-size: 0.9em;
-}
-
-.review-meta-recommended {
-  gap: 5px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-/*
-.review-meta-avg-rating-breakdown {
-}
- */
-
-.review-meta-avg-rating-breakdown-entry {
-  margin-bottom: 20px;
-}
-
-.review-meta-avg-rating-breakdown-stars {
-  display: flex;
-  justify-content: flex-start;
-  gap: 5px;
-  align-items: center;
-}
-
-#review-meta-avg-rating-breakdown-stars-count:hover {
-  text-decoration: underline;
-}
-
-#review-meta-avg-rating-breakdown-stars-amount {
-  line-height: 0;
-}
-
-
-.review-meta-characteristics {
-  margin-top: 40px;
-}
-
-.review-meta-characteristics-entry {
-  margin-bottom: 20px;
-}
-
-.review-meta-characteristics-labels {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  align-items: center;
-  /* word-break: break-word; */
-}
-
-#review-meta-characteristic-left {
-  text-align: left;
-}
-
-#review-meta-characteristic-center {
-  text-align: center;
-  font-size: 1.2em;
-}
-
-#review-meta-characteristic-right {
-  text-align: right;
-}
-
-.review-list {
-  width: 65%;
-  padding: 0px 10px 10px 10px;
-}
-
-.review-list-entries {
-  height: 605px;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-}
-
-.review {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-style: solid;
-  border-width: 0 0 2px 0;
-}
-
-.review-topline {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-/*
-.review-rating {
-}
- */
-.review-name-date {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.review-name {
-  font-weight: bold;
-  margin-right: 10px;
-}
-/*
-.review-date {
-}
- */
-.review-rating {
-  margin-right: 10px;
-}
-
-.review-recommended {
-  gap: 5px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.review-response {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: #333333;
-}
-
-.review-helpful {
-  margin-right: 10px;
-}
-
-#helpful-text {
-  text-decoration: underline;
-}
-
-.review-report {
-  margin-left: 10px;
-}
-
-#report-text {
-  text-decoration: underline;
-}
-
-.review-images {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.review-image-preview {
-  object-fit: cover;
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-  margin-top: 10px
-}
-
-.review-bottomline {
-  display: flex;
-  justify-content: flex-start;
-}
-
-/* Contact formatting */
-#contact {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  background-color: var(--header-divider-color);
-  width: 100%;
-  height: 10%;
-  padding: 2rem;
-}
-
-/* Image Gallery */
-/* Expanded View */
-.expanded-view {
-  background-color: var(--gallery-background-color);
-  position: relative;
-  width: 1400px;
-  height: 600px;
-  border-radius: 5px;
-  transition: 0.5s;
-}
-
-.expanded-image {
-  position: absolute;
-  left: 400px;
-  width: 600px;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 5px;
-  border: solid 1px var(--images-border);
-  transition: 0.5s;
-  cursor: crosshair;
-}
-
-.zoom-image-container {
-  cursor: zoom-out;
-}
-
-.expanded-left-arrow {
-  position: absolute;
-  left: 110px;
-  top: 300px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-.expanded-left-arrow:hover {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  left: 105px;
-  top: 297px;
-  cursor: pointer;
-}
-
-.carousel-icon {
-  color: var(--images-border);
-}
-
-.selected-carousel-icon {
-  color: var(--selected-image);
-}
-
-.expanded-up-arrow {
-  margin-left: 0px;
-}
-
-/* Default View */
-.overview-gallery {
-  background-color: var(--gallery-background-color);
-  position: relative;
-  width: 900px;
-  height: 600px;
-  border-radius: 5px;
-  transition: 0.5s;
-}
-
-.gallery-carousel {
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  display: flex;
-  flex-direction: column;
-  padding-right: 20px;
-  border-right: solid 2px var(--images-border);
-}
-
-.selected-image-container {
-  position: absolute;
-  left: 100px;
-  width: 800px;
-  height: 600px;
-}
-
-.selected-image {
-  position: absolute;
-  left: 100px;
-  width: 600px;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 5px;
-  border: solid 1px var(--images-border);
-  transition: 0.5s;
-  cursor: zoom-in;
-}
-
-.right-arrow {
-  position: absolute;
-  right: 10px;
-  top: 300px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-.left-arrow {
-  position: absolute;
-  left: 30px;
-  top: 300px;
-  cursor: pointer;
-  transition: 1s;
-}
-
-.right-arrow:hover {
-  width: 30px;
-  height: 30px;
-  top: 297px;
-  right: 5px;
-}
-
-.left-arrow:hover {
-  width: 30px;
-  height: 30px;
-  top: 297px;
-  left: 25px;
-}
-
-.up-arrow {
-  margin-left: 18px;
-}
-
-.no-arrow {
-  opacity: 0;
-}
-
-.carousel-image {
-  border: solid lightgray;
-  width: 55px;
-  height: 55px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.selected-carousel-image {
-  border: solid var(--selected-image) 2px;
-  border-bottom: solid var(--selected-image) 7px;
-}
-
-.crop-icon {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  cursor: pointer;
-  transition: 1s;
-}
-
-.crop-icon:hover {
-  width: 25px;
-  height: 25px;
-}
-
-/* Product Info */
-.read-all-reviews {
-  margin: 10px;
-  position: relative;
-  bottom: 6px;
-  color: var(--images-border)
-}
-
-.product-category {
-  margin-top: 8px;
-  color: grey;
-  font-size: 20px;
-}
-
-.product-name {
-  font-weight: bold;
-  font-size: 50px;
-  margin-left: -3px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.product-price {
-  margin-bottom: 10px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.original-price {
-  font: bold;
-  display: inline;
-  text-decoration: line-through;
-}
-.sale-price {
-  color: #fd0505;
-  display: inline;
-  margin: 5px;
-}
-
-/* Style Selector */
-.style-heading {
-  position: relative;
-}
-.style-selector {
-  font-weight: bold;
-  position: relative;
-}
-
-.selected-style {
-  color: grey;
-  padding-left: 25px;
-}
-
-.style-arrow {
-  position: absolute;
-  left: 53px;
-  bottom: -3px;
-}
-
-.style-image {
-  border: 1px solid var(--images-border);
-  border-radius: 50%;
-  margin: 2px;
-  cursor: pointer;
-  height: 68px;
-  width: 68px;
-  object-fit: cover;
-  margin-bottom: -10px;
-}
-
-.unchecked-image {
-  position: relative;
-  left: 50px;
-  top: 22px;
-  opacity: 0
-}
-
-.checked-image {
-  border-radius: 50%;
-  background-color: white;
-  color: black;
-  border: solid black;
-  position: relative;
-  left: 50px;
-  top: 30px;
-}
-
-/* Cart */
-.overview-cart {
-  padding-top: 20px;
-  margin-top: 20px;
-}
-.overview-select {
-  width: 200px;
-  padding-right: 10px;
-  display: inline;
-}
-
-.add-to-cart {
-  width: 200px;
-  height: 50px;
-  padding-top: 10px;
-}
-
-.size-warning {
-  padding-bottom: 5px;
-}
-
-#cart-label {
-  color: var(--select-label);
-}
-
-/* Description */
-#description-grid {
-  padding-top: 50px;
-  padding-left: 100px;
-}
-
-.slogan-description {
-  border-right: solid grey 5px;
-}
-
-.product-slogan {
-  font-style: italic;
-  font-weight: bold;
-  font-size: 20px;
-  padding-bottom: 10px;
-}
-
-.product-description {
-  font-style: italic;
-}
-
-.product-features {
-  margin-left: 10px;
-  margin-top: 0;
-  position: relative;
-}
-
-.feature-value {
-  margin-left: 5px;
-  position: absolute;
-}
-
-.product-social {
-  margin: 5px;
 }

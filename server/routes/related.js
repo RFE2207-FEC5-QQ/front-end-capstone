@@ -26,6 +26,9 @@ router.get('/related', (req, res, next) => {
     });
 });
 
+router.post('/related', (req, res, next) => {
+
+});
 
 // // Temporary. Will use Daniel's router in final version.
 // router.get('/styles', (req, res, next) => {
