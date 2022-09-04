@@ -5,7 +5,7 @@ import Overview from './components/views/Overview.jsx';
 import RelatedProducts from './components/views/RelatedProducts.jsx';
 import QuestionsAnswers from './components/views/QuestionsAnswers.jsx';
 import Reviews from './components/views/Reviews.jsx';
-import Contact from './components/views/Contact.jsx';
+// import Contact from './components/views/Contact.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -123,6 +123,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         {/* ADD COMPONENT(S) TO FEATURE */}
+        <Overview productId={37311}/>
       </React.Fragment>
     );
   }
