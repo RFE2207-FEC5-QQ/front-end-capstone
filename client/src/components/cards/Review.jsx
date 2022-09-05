@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Rating } from '@mui/material';
+import { Rating, Divider, Chip } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 import ReviewImage from '../cards/ReviewImage.jsx';
 
-const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
+const Review = ({review, paletteMap}) => {
 
   const [reviewBodyExpanded, setReviewBodyExpanded] = useState(false);
+  const [markedHelpful, setMarkedHelpful] = useState(false);
+  const [helpfulRating, setHelpfulRating] = useState(review.helpfulness);
+  const [reported, setReported] = useState(false);
+
+  if (reported) { return null; }
 
   // TODO: Only allow someone to mark a review as helpful once
   // Cache session with cookies to get their marked reviews
@@ -16,7 +21,8 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       reviewId: review.review_id
     })
       .then((success) => {
-        getReviews();
+        setMarkedHelpful(true);
+        setHelpfulRating(helpfulRating + 1);
       })
       .catch((error) => {
         console.log(error);
@@ -28,7 +34,7 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       reviewId: review.review_id
     })
       .then((success) => {
-        getReviews();
+        setReported(true);
       })
       .catch((error) => {
         console.log(error);
@@ -54,20 +60,32 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
         </span>
         <div className='review-name-date'>
           <span className='review-name'>{review.reviewer_name}</span>
-          <span className='review-date'>{new Date(review.date).toDateString()}</span>
+          <span className='review-date'>{function() {
+            let date = new Date(review.date).toDateString().split(' ');
+            return date.slice(1, date.length).join(' ');
+          }()}
+          </span>
         </div>
       </div>
       <p className='review-summary'>
         {review.summary.slice(0, 60)}
       </p>
-      <p className='review-body'>
-        {review.body.length < 250 ? review.body.slice(0, 1000) :
-          <span id='review-body-long'>
-            {reviewBodyExpanded ? review.body.slice(0, 1000) : review.body.slice(0, 250)}
-            <button onClick={toggleReviewBodyExpanded}>{reviewBodyExpanded ? 'Show less' : 'Show more'}</button>
-          </span>
-        }
-      </p>
+      {review.body.length < 250 ? <div className='review-body-short'>{review.body.slice(0, 1000)}</div> :
+        <div className='review-body-long'>
+          {reviewBodyExpanded ? review.body.slice(0, 1000) : review.body.slice(0, 250) + '...'}
+          <Divider>
+            <Chip
+              sx={{
+                mt: 1,
+                mb: 1
+              }}
+              label={reviewBodyExpanded ? 'Show less' : 'Show more'}
+              onClick={toggleReviewBodyExpanded}
+              variant={reviewBodyExpanded ? 'outlined' : 'solid'}
+            />
+          </Divider>
+        </div>
+      }
       {review.photos.length > 0 &&
         <div className='review-images'>
           {review.photos.slice(0, 5).map((photo) => {
@@ -91,7 +109,11 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       )}
       <div className='review-bottomline'>
         <span className='review-helpful'>
-          <span id='helpful-text' onClick={markHelpful}>Helpful</span> ({review.helpfulness})
+          {markedHelpful ?
+            <span id='helpful-text'><i>Rated Helpful</i>{` (${helpfulRating})`}</span>
+            :
+            <span id='helpful-text' onClick={markHelpful}><u>Helpful</u>{` (${helpfulRating})`}</span>
+          }
         </span>
         <span> | </span>
         <span className='review-report'>

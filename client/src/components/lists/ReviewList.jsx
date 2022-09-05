@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InputLabel, MenuItem, FormControl } from '@mui/material';
+import { InputLabel, MenuItem, FormControl, Skeleton } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
@@ -28,16 +28,20 @@ const ReviewList = ({reviews, sort, getReviews, openReviewModal, handleSortChang
           <MenuItem value={'relevant'}>relevance</MenuItem>
         </Select>
       </div>
-      <div className='review-list-entries'>
-        {
-          reviews.length === 0 ? 'Reviews Not Found' : reviews.map((review) => (
-            <Review review={review} getReviews={getReviews} ratingTheme={ratingTheme} paletteMap={paletteMap} key={review.review_id}/>
-          ))
-        }
+      {reviews.length === 0 ? <Skeleton sx={{mt: 2}} variant='rectangular' height='500px'/>
+        :
+        <div className='review-list-entries'>
+          {reviews.map((review) => (
+            <Review review={review} paletteMap={paletteMap} key={review.review_id}/>
+          ))}
+        </div>
+      }
+      {reviews.length === 0 ? <Skeleton variant='rectangular' height='100px'/>
+        :
         <div className='review-buttons'>
           <button onClick={handleMoreReviews}>More Reviews</button> <button onClick={openReviewModal}>Add a Review +</button>
         </div>
-      </div>
+      }
     </div>
   );
 

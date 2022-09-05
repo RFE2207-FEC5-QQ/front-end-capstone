@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Rating } from '@mui/material';
 
 import ReviewFormImageModal from '../modals/ReviewFormImageModal.jsx';
-import ReviewImage from '../cards/ReviewImage.jsx';
+import ReviewImageList from '../lists/ReviewImageList.jsx';
 
 // TODO: Should actually refactor this and the other modal (anything with toggled visibility)
 // to store their visibility within the component, that way you don't re-render the parent every time
@@ -203,7 +203,7 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {`Max characters left: ${(60 - this.state.summary.length).toString()}`}
+            <small>{`Max characters left: ${(60 - this.state.summary.length).toString()}`}</small>
           </label>
         </div>
         <div className='review-form-body'>
@@ -220,22 +220,14 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {this.state.bodyValid ? 'Minimum reached' : `Minimum required characters left: [${(50 - this.state.body.length).toString()}]`}
-            {`Max characters left: ${(1000 - this.state.body.length).toString()}`}
+            <small>{this.state.bodyValid ? 'Minimum reached' : `Minimum required characters left: [${(50 - this.state.body.length).toString()}]`}</small>
+            <small>{`Max characters left: ${(1000 - this.state.body.length).toString()}`}</small>
           </label>
         </div>
         <div className='review-form-photos'>
           {'Photos '}
           <button onClick={this.openFormImageModal}>Add Photos</button>
-          {this.state.photos.length > 0 &&
-            <div className='review-images'>
-              {this.state.photos.map((photo, index) => {
-                return (
-                  <ReviewImage id={photo} url={photo} key={index}/>
-                );
-              })}
-            </div>
-          }
+          {this.state.photos.length > 0 && <ReviewImageList photoUrls={this.state.photos}/>}
           {this.state.showFormImageModal && <ReviewFormImageModal photos={this.state.photos} submitPhoto={this.submitPhoto} closeModal={this.closeFormImageModal}/>}
         </div>
         <div className='review-form-name'>
@@ -253,8 +245,8 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {`Max characters left: ${(60 - this.state.name.length).toString()}`}
-            {'For privacy reasons, do not use your full name or email address'}
+            <small>{`Max characters left: ${(60 - this.state.name.length).toString()}`}</small>
+            <small>{'For privacy reasons, do not use your full name or email address'}</small>
           </label>
         </div>
         <div className='review-form-email'>
@@ -272,8 +264,8 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            {`Max characters left: ${(60 - this.state.email.length).toString()}`}
-            {'For authentication reasons, you will not be emailed'}
+            <small>{`Max characters left: ${(60 - this.state.email.length).toString()}`}</small>
+            <small>{'For authentication reasons, you will not be emailed'}</small>
           </label>
         </div>
         <input
@@ -297,7 +289,7 @@ export default class ReviewForm extends React.Component {
             )
           }
         />
-        <div className='review-form-error'>
+        <div id='review-form-error'>
           {this.state.errorMessage}
         </div>
       </form>
