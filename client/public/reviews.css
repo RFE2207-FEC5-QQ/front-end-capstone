@@ -112,7 +112,7 @@
 }
 
 .review-list-entries {
-  height: 605px;
+  max-height: 605px;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }

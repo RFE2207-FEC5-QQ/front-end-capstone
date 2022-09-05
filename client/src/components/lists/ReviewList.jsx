@@ -5,7 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
 
-const ReviewList = ({reviews, sort, getReviews, openReviewModal, handleSortChange, handleMoreReviews, ratingTheme, paletteMap}) => {
+const ReviewList = ({reviews, sort, getReviews, openReviewModal, handleSortChange, handleMoreReviews, paletteMap}) => {
 
   console.log('reviews', reviews); // DEBUG
 

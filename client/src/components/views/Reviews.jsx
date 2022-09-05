@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import ReviewList from '../lists/ReviewList.jsx';
 import ReviewMeta from '../cards/ReviewMeta.jsx';
@@ -51,26 +50,12 @@ const characteristicChart = {
   }
 };
 
-const ratingTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#333333',
-    },
-    neutral: {
-      main: '#dfcc97',
-    },
-    success: {
-      main: '#90ee90',
-    },
-  },
-});
-
 const paletteMap = {
-  '1': ['error', '#ff3333'],
-  '2': ['warning', '#ff9966'],
-  '3': ['neutral', '#dfcc97'],
-  '4': ['info', '#66cce6'],
-  '5': ['success', '#90ee90']
+  '1': '#ff3333',
+  '2': '#ff9966',
+  '3': '#dfcc97',
+  '4': '#66cce6',
+  '5': '#90ee90'
 };
 
 class Reviews extends React.Component {
@@ -152,7 +137,7 @@ class Reviews extends React.Component {
       sort: 'relevant',
       page: 1,
       filter: {},
-      showReviewModal: false // DEBUG: Set to 'false' for production
+      showReviewModal: false
     };
     this.count = 2; // Changed this to non-state property
     this.handleSortChange = this.handleSortChange.bind(this);
@@ -252,12 +237,16 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-    // DEBUG - Uncomment to get reviews on mount
-    // this.getReviews();
-    // DEBUG - Uncomment to get review meta on mount
-    // this.getReviewMeta();
+    this.getReviews();
+    this.getReviewMeta();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.productId !== prevProps.productId) {
+      this.getReviews();
+      this.getReviewMeta();
+    }
+  }
 
   render() {
     return (
@@ -278,7 +267,6 @@ class Reviews extends React.Component {
             openReviewModal={this.openReviewModal}
             handleSortChange={this.handleSortChange}
             handleMoreReviews={this.handleMoreReviews}
-            ratingTheme={ratingTheme}
             paletteMap={paletteMap}
           />
           {this.state.showReviewModal &&

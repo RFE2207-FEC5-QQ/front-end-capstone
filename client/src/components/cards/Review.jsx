@@ -51,7 +51,7 @@ const Review = ({review, paletteMap}) => {
         <span className='review-rating'>
           <Rating
             sx={{
-              color: paletteMap[review.rating][1]
+              color: paletteMap[review.rating]
             }}
             name="rating"
             value={review.rating}
