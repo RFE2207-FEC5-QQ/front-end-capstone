@@ -13,7 +13,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 37311,
+      productId: 0,
+      productDetail: null,
       darkMode: JSON.parse(window.localStorage.getItem('dark')) || false,
       punkMode: false,
       psychMode: false,

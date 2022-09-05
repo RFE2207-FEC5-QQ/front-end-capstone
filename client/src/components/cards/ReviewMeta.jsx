@@ -32,7 +32,7 @@ const ReviewMeta = ({reviewMeta, productId, filterByRating, paletteMap, characte
             <div className='review-meta-avg-rating-stars-amount'>
               <Rating
                 sx={{
-                  color: paletteMap[Math.round(averageRating)][1]
+                  color: paletteMap[Math.round(averageRating)]
                 }}
                 name='avg-rating'
                 value={averageRating}

@@ -66,11 +66,11 @@ const ratingTheme = createTheme({
 });
 
 const paletteMap = {
-  '1': ['error', '#ff3333'],
-  '2': ['warning', '#ff9966'],
-  '3': ['neutral', '#dfcc97'],
-  '4': ['info', '#66cce6'],
-  '5': ['success', '#90ee90']
+  '1': '#ff3333',
+  '2': '#ff9966',
+  '3': '#dfcc97',
+  '4': '#66cce6',
+  '5': '#90ee90'
 };
 
 class Reviews extends React.Component {
@@ -187,6 +187,12 @@ class Reviews extends React.Component {
     this.getReviewMeta();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.productId !== prevProps.productId) {
+      this.getReviews();
+      this.getReviewMeta();
+    }
+  }
 
   render() {
     return (
@@ -207,7 +213,6 @@ class Reviews extends React.Component {
             openReviewModal={this.openReviewModal}
             handleSortChange={this.handleSortChange}
             handleMoreReviews={this.handleMoreReviews}
-            ratingTheme={ratingTheme}
             paletteMap={paletteMap}
           />
           {this.state.showReviewModal &&
