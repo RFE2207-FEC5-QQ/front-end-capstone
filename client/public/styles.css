@@ -65,15 +65,17 @@
 }
 
 .review-meta-avg-rating-breakdown-entry {
-  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.review-meta-avg-rating-breakdown-entry:hover {
+  color: #121212;
+  background-color: lightyellow;
 }
 
 .review-meta-avg-rating-breakdown-stars {
   margin-bottom: 2px;
-}
-
-.review-meta-avg-rating-breakdown-stars:hover {
-  text-decoration: underline;
 }
 
 .review-meta-characteristics-entry {

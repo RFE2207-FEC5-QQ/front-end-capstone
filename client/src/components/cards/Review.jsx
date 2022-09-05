@@ -5,10 +5,14 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import ReviewImage from '../cards/ReviewImage.jsx';
 
-const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
+const Review = ({review, paletteMap}) => {
 
   const [reviewBodyExpanded, setReviewBodyExpanded] = useState(false);
   const [markedHelpful, setMarkedHelpful] = useState(false);
+  const [helpfulRating, setHelpfulRating] = useState(review.helpfulness);
+  const [reported, setReported] = useState(false);
+
+  if (reported) { return null; }
 
   // TODO: Only allow someone to mark a review as helpful once
   // Cache session with cookies to get their marked reviews
@@ -17,8 +21,8 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       reviewId: review.review_id
     })
       .then((success) => {
-        getReviews()
-          .then(() => setMarkedHelpful(true));
+        setMarkedHelpful(true);
+        setHelpfulRating(helpfulRating + 1);
       })
       .catch((error) => {
         console.log(error);
@@ -30,7 +34,7 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       reviewId: review.review_id
     })
       .then((success) => {
-        getReviews();
+        setReported(true);
       })
       .catch((error) => {
         console.log(error);
@@ -106,9 +110,9 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       <div className='review-bottomline'>
         <span className='review-helpful'>
           {markedHelpful ?
-            <span id='helpful-text'><i>Rated Helpful</i>{` (${review.helpfulness})`}</span>
+            <span id='helpful-text'><i>Rated Helpful</i>{` (${helpfulRating})`}</span>
             :
-            <span id='helpful-text' onClick={markHelpful}><u>Helpful</u>{` (${review.helpfulness})`}</span>
+            <span id='helpful-text' onClick={markHelpful}><u>Helpful</u>{` (${helpfulRating})`}</span>
           }
         </span>
         <span> | </span>
