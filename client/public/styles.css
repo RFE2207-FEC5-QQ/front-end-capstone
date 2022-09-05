@@ -69,23 +69,11 @@
 }
 
 .review-meta-avg-rating-breakdown-stars {
-  display: flex;
-  justify-content: flex-start;
-  gap: 5px;
-  align-items: center;
+  margin-bottom: 2px;
 }
 
-#review-meta-avg-rating-breakdown-stars-count:hover {
+.review-meta-avg-rating-breakdown-stars:hover {
   text-decoration: underline;
-}
-
-#review-meta-avg-rating-breakdown-stars-amount {
-  line-height: 0;
-}
-
-
-.review-meta-characteristics {
-  margin-top: 40px;
 }
 
 .review-meta-characteristics-entry {

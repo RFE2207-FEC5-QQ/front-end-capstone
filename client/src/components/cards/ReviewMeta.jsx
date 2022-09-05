@@ -4,8 +4,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import ReviewMetaCharacteristicsList from '../lists/ReviewMetaCharacteristicsList.jsx';
+import ReviewMetaStarBreakdown from '../cards/ReviewMetaStarBreakdown.jsx';
 
-const ReviewMeta = ({reviewMeta, productId, filterbyRating, paletteMap, characteristicChart}) => {
+const ReviewMeta = ({reviewMeta, productId, filterByRating, paletteMap, characteristicChart}) => {
 
   let averageRating = 0;
   let totalReviews = 0;
@@ -49,47 +50,8 @@ const ReviewMeta = ({reviewMeta, productId, filterbyRating, paletteMap, characte
           </div>
         </div>
       }
-      <div className='review-meta-avg-rating-breakdown'>
-        <h2 className='review-meta-title'>Rating Breakdown</h2>
-        {/* {TODO: ADD 'FILTERS APPLIED' SECTION} */}
-        {!reviewMeta ? <Skeleton variant="rectangular" height='200px'/>
-          :
-          Object.keys(reviewMeta.ratings).map((key) => (
-            <div key={key} className='review-meta-avg-rating-breakdown-entry' onClick={() => filterbyRating(key)}>
-              <div className='review-meta-avg-rating-breakdown-stars'>
-                <span id='review-meta-avg-rating-breakdown-stars-amount'>
-                  <Rating
-                    // sx={{
-                    //   color: paletteMap[key][1]
-                    // }}
-                    name={`${key} stars`}
-                    value={parseInt(key)}
-                    readOnly
-                    size='small'
-                  />
-                </span>
-                <span id='review-meta-avg-rating-breakdown-stars-count'>({reviewMeta.ratings[key]})</span>
-              </div>
-              <span className='review-meta-avg-rating-breakdown-bar'>
-                <LinearProgress
-                  sx={{
-                    bgcolor: '#333333',
-                    p: 0.3
-                  }}
-                  variant='determinate'
-                  value={(parseInt(reviewMeta.ratings[key]) / totalReviews) * 100}
-                  color={'success'}
-                />
-              </span>
-            </div>
-          ))
-        }
-      </div>
-      <h2 className='review-meta-title'>Characteristics</h2>
-      {!reviewMeta ? <Skeleton variant="rectangular" height='200px'/>
-        :
-        <ReviewMetaCharacteristicsList characteristics={reviewMeta.characteristics} characteristicChart={characteristicChart}/>
-      }
+      <ReviewMetaStarBreakdown reviewMeta={reviewMeta} filterByRating={filterByRating} totalReviews={totalReviews}/>
+      <ReviewMetaCharacteristicsList reviewMeta={reviewMeta} characteristicChart={characteristicChart}/>
     </div>
   );
 

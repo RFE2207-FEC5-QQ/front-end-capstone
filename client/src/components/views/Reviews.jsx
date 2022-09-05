@@ -267,7 +267,7 @@ class Reviews extends React.Component {
           <ReviewMeta
             reviewMeta={this.state.reviewMeta}
             productId={this.props.productId}
-            filterbyRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
+            filterByRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
             paletteMap={paletteMap}
             characteristicChart={characteristicChart}
           />
