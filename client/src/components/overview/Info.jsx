@@ -57,7 +57,7 @@ const Info = ({ product, selectedStyle }) => {
         <div className='product-category'>
           {product.category}
         </div>
-        <div className='product-name'>
+        <div className='overview-product-name'>
           {product.name}
         </div>
         <div className='product-price'>
@@ -87,7 +87,7 @@ const Info = ({ product, selectedStyle }) => {
         <div className='product-category'>
           {product.category}
         </div>
-        <div className='product-name'>
+        <div className='overview-product-name'>
           {product.name}
         </div>
         <div className='product-price' id='product-price'>
