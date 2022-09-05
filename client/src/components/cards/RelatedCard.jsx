@@ -157,6 +157,7 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
             />
             : <Comparison
               className='comparison'
+              aria-label='comparison-modal'
               mainProduct={mainProduct}
               currProduct={detail}
             />

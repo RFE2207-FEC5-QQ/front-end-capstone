@@ -9,7 +9,7 @@
     "client-dev-serverless": "webpack serve",
     "server-dev": "npx nodemon server/index.js",
     "dev": "npm run client-dev & npm run server-dev",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
