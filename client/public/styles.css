@@ -783,6 +783,11 @@ body {
   padding: 2rem;
 }
 
+/* Overview */
+.view-overview {
+  margin-bottom: 30px;
+}
+
 /* Image Gallery */
 /* Expanded View */
 .expanded-view {
