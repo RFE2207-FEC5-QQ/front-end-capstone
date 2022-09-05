@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Gallery from '../Gallery.jsx';
@@ -23,6 +23,10 @@ var mockStyle = {
     {thumbnail_url: 'https://images.unsplash.com/photo-1544441892-79416…be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80', url: 'https://images.unsplash.com/photo-1544441892-79416…e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'},
     {thumbnail_url: 'https://images.unsplash.com/photo-1514590734052-34…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: 'https://images.unsplash.com/photo-1514590734052-34…cHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'},
     {thumbnail_url: 'https://images.unsplash.com/photo-1514590734052-34…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: 'https://images.unsplash.com/photo-1514590734052-34…cHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'},
+    {thumbnail_url: 'https://images.unsplash.com/photo-1514590734052-34…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: 'https://images.unsplash.com/photo-1514590734052-34…cHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'},
+    {thumbnail_url: 'https://images.unsplash.com/photo-1544441892-79416…be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80', url: 'https://images.unsplash.com/photo-1544441892-79416…e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'},
+    {thumbnail_url: 'https://images.unsplash.com/photo-1514590734052-34…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: 'https://images.unsplash.com/photo-1514590734052-34…cHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'},
+    {thumbnail_url: 'https://images.unsplash.com/photo-1514590734052-34…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: 'https://images.unsplash.com/photo-1514590734052-34…cHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'},
     {thumbnail_url: 'https://images.unsplash.com/photo-1514590734052-34…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: 'https://images.unsplash.com/photo-1514590734052-34…cHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'}
   ],
   sale_price: null,
@@ -32,7 +36,7 @@ var mockStyle = {
 describe('Gallery Default View', function() {
   test('should render all images', () => {
     render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={true}/>);
-    expect(screen.getAllByRole('img')).toHaveLength(5);
+    expect(screen.getAllByRole('img')).toHaveLength(8);
   })
 })
 
@@ -45,31 +49,41 @@ describe('Gallery Expanded View', function() {
 
 describe('Gallery Zoomed View', function() {
   var user = userEvent.setup();
-  test('should be zoomed on click and unzoomed on another click', () => {
+
+  test('should be zoomed on click and unzoomed on another click', async () => {
     render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={false}/>);
-    return user.click(screen.getByRole('img'))
-      .then(() => {
-        expect(document.getElementsByClassName('zoom-image-container')).toHaveLength(1);
-      })
-      .then(() => {
-        user.click(document.getElementsByClassName('zoom-image-container')[0])
-          .then(() => {
-            expect(document.getElementsByClassName('expanded-image-container')).toHaveLength(1);
-          })
-      })
+    await user.click(screen.getByRole('img'))
+    expect(document.getElementsByClassName('zoom-image-container')).toHaveLength(1);
+    await user.click(document.getElementsByClassName('zoom-image-container')[0])
+    expect(document.getElementsByClassName('expanded-image-container')).toHaveLength(1);
   })
 })
 
 describe('Gallery Clicking Arrows', function() {
   var user = userEvent.setup();
-  test('should increase index when clicking right arrow', () => {
+
+  test('click forward and back', async () => {
     render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={true}/>);
     var images = screen.getAllByRole('img');
-    var arrows =
-    expect(images[0]).toHaveClass('carousel-image');
-    user.click(screen.getByTestId('ArrowForwardIcon'))
-      .then(() => {
-        expect(images[1]).toHaveClass('selected-carousel-image');
-      })
+    expect(images[0]).toHaveClass('selected-carousel-image');
+
+    await user.click(screen.getByTestId('ArrowForwardIcon'))
+    expect(images[1]).toHaveClass('selected-carousel-image');
+
+    await user.click(screen.getByTestId('ArrowBackIcon'))
+    expect(images[0]).toHaveClass('selected-carousel-image');
+  })
+
+  test('click up and down', async () => {
+    render(<Gallery product={mockProduct} selectedStyle={mockStyle} updateView={() => {}} defaultView={true}/>);
+    var images = screen.getAllByRole('img');
+    expect(images).toHaveLength(8);
+
+    var upArrow = screen.getByTestId('KeyboardArrowUpIcon');
+    var downArrow = screen.getByTestId('KeyboardArrowDownIcon');
+
+    await user.click(downArrow)
+    images = screen.getAllByRole('img');
+    expect(images).toHaveLength(2);
   })
 })

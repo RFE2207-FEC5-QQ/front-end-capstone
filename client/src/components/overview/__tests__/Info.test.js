@@ -1,8 +1,18 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Info from '../Info.jsx';
+import axios from 'axios';
+
+jest.mock('axios');
+var result = {
+  data: {
+    ratings: {1: '33', 2: '7', 3: '19', 4: '14', 5: '17'}
+  }
+}
+axios.mockImplementation(() => Promise.resolve(result));
 
 var mockProduct = {
   campus: "hr-rfe",
@@ -45,14 +55,27 @@ var mockSaleStyle = {
 
 describe('Info with no sale', function() {
   test('should render with original price', () => {
-    render(<Info product={mockProduct} selectedStyle={mockStyle} />);
+    act(() => {
+      render(<Info product={mockProduct} selectedStyle={mockStyle} />);
+    })
     expect(screen.getByText('$99.00')).toBeInTheDocument();
   })
 })
 
 describe('Info with sale', function() {
   test('should render with sale price', () => {
-    render(<Info product={mockProduct} selectedStyle={mockSaleStyle} />);
+    act(() => {
+      render(<Info product={mockProduct} selectedStyle={mockSaleStyle} />);
+    })
     expect(screen.getByText('$40.00')).toBeInTheDocument();
+  })
+})
+
+describe('axios testing', function() {
+  test('should test for ratings', () => {
+    act(() => {
+      render(<Info product={mockProduct} selectedStyle={mockStyle} />)
+    })
+    expect((screen.getByRole('link'))).toBeInTheDocument();
   })
 })
