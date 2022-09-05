@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Cart from '../Cart.jsx';
@@ -34,12 +34,22 @@ var mockSkus2 = {
 };
 
 describe('Cart', function() {
+  var user = userEvent.setup();
   test('Should have Add to Cart button with skus', () => {
     render(<Cart selectedStyle={mockStyle} skus={mockSkus}/>);
     expect(screen.getByText('Add to Cart')).toBeInTheDocument();
   })
+
   test('Should have Out of Stock button without skus', () => {
     render(<Cart selectedStyle={mockStyle} skus={mockSkus2} />);
     expect(screen.getByText('OUT OF STOCK')).toBeInTheDocument();
+  })
+
+  test('Update size', () => {
+    render(<Cart selectedStyle={mockStyle} skus={mockSkus}/>);
+
+    let selectValue = screen.getAllByDisplayValue('')[0];
+    fireEvent.change(selectValue, {target: {value: '7.5'}});
+    expect(selectValue.value).toBe('7.5');
   })
 })
