@@ -8,6 +8,7 @@ import ReviewImage from '../cards/ReviewImage.jsx';
 const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
 
   const [reviewBodyExpanded, setReviewBodyExpanded] = useState(false);
+  const [markedHelpful, setMarkedHelpful] = useState(false);
 
   // TODO: Only allow someone to mark a review as helpful once
   // Cache session with cookies to get their marked reviews
@@ -16,7 +17,8 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       reviewId: review.review_id
     })
       .then((success) => {
-        getReviews();
+        getReviews()
+          .then(() => setMarkedHelpful(true));
       })
       .catch((error) => {
         console.log(error);
@@ -99,7 +101,11 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
       )}
       <div className='review-bottomline'>
         <span className='review-helpful'>
-          <span id='helpful-text' onClick={markHelpful}>Helpful</span> ({review.helpfulness})
+          {markedHelpful ?
+            <span id='helpful-text'><i>Rated Helpful</i>{` (${review.helpfulness})`}</span>
+            :
+            <span id='helpful-text' onClick={markHelpful}><u>Helpful</u>{` (${review.helpfulness})`}</span>
+          }
         </span>
         <span> | </span>
         <span className='review-report'>
