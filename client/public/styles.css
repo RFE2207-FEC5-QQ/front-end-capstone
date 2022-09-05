@@ -155,11 +155,8 @@
   margin-right: 10px;
 }
 
-.review-recommended {
-  gap: 5px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+.review-summary {
+  font-weight: bold;
 }
 
 .review-body-short {
@@ -178,6 +175,13 @@
   padding-top: 5px;
   padding-bottom: 5px;
   background-color: #333333;
+}
+
+.review-recommended {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .review-helpful {

@@ -56,7 +56,11 @@ const Review = ({review, getReviews, ratingTheme, paletteMap}) => {
         </span>
         <div className='review-name-date'>
           <span className='review-name'>{review.reviewer_name}</span>
-          <span className='review-date'>{new Date(review.date).toDateString()}</span>
+          <span className='review-date'>{function() {
+            let date = new Date(review.date).toDateString().split(' ');
+            return date.slice(1, date.length).join(' ');
+          }()}
+          </span>
         </div>
       </div>
       <p className='review-summary'>
