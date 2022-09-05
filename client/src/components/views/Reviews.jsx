@@ -150,11 +150,11 @@ class Reviews extends React.Component {
       // reviews: [],
       // reviewMeta: null,
       sort: 'relevant',
-      count: 2,
       page: 1,
       filter: {},
       showReviewModal: false // DEBUG: Set to 'false' for production
     };
+    this.count = 2; // Changed this to non-state property
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
@@ -170,8 +170,8 @@ class Reviews extends React.Component {
   }
 
   handleMoreReviews() {
-    // After state is set, use getReviews as a callback to get list of reviews
-    this.setState({count: this.state.count + 2}, this.getReviews);
+    this.count += 2;
+    this.getReviews();
   }
 
   setFilter(key, value) {
@@ -198,7 +198,7 @@ class Reviews extends React.Component {
       params: {
         productId: this.props.productId,
         sort: this.state.sort,
-        count: this.state.count,
+        count: this.count,
         page: this.state.page
       }
     })

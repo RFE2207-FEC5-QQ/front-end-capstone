@@ -30,7 +30,7 @@ const ReviewList = ({reviews, sort, getReviews, openReviewModal, handleSortChang
         :
         <div className='review-list-entries'>
           {reviews.map((review) => (
-            <Review review={review} getReviews={getReviews} paletteMap={paletteMap} key={review.review_id}/>
+            <Review review={review} paletteMap={paletteMap} key={review.review_id}/>
           ))}
         </div>
       }
