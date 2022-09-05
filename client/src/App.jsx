@@ -1,8 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import axios from 'axios';
 import Navigation from './components/views/Navigation.jsx';
 import Overview from './components/views/Overview.jsx';
 import RelatedProducts from './components/views/RelatedProducts.jsx';
+import Outfit from './components/views/Outfit.jsx';
 import QuestionsAnswers from './components/views/QuestionsAnswers.jsx';
 import Reviews from './components/views/Reviews.jsx';
 import Contact from './components/views/Contact.jsx';
@@ -20,11 +22,23 @@ class App extends React.Component {
     this.punkMode = this.punkMode.bind(this);
     this.psychMode = this.psychMode.bind(this);
     this.useRainbow = this.useRainbow.bind(this);
+    this.changeProduct = this.changeProduct.bind(this);
+  }
+
+  changeProduct(item) {
+    this.setState({
+      productId: item,
+      productDetail: this.state.productDetail,
+      darkMode: this.state.darkMode,
+      punkMode: this.state.punkMode,
+      psychMode: this.state.psychMode,
+    });
   }
 
   darkMode() {
     this.setState({
       productId: this.state.productId,
+      productDetail: this.state.productDetail,
       darkMode: !this.state.darkMode,
       punkMode: this.state.punkMode,
       psychMode: this.state.psychMode,
@@ -34,6 +48,7 @@ class App extends React.Component {
   punkMode() {
     this.setState({
       productId: this.state.productId,
+      productDetail: this.state.productDetail,
       darkMode: this.state.darkMode,
       punkMode: !this.state.punkMode,
       psychMode: this.state.psychMode,
@@ -43,6 +58,7 @@ class App extends React.Component {
   psychMode() {
     this.setState({
       productId: this.state.productId,
+      productDetail: this.state.productDetail,
       darkMode: this.state.darkMode,
       punkMode: this.state.punkMode,
       psychMode: !this.state.psychMode,
@@ -67,6 +83,30 @@ class App extends React.Component {
     } else {
       document.body.classList.remove('dark-mode');
     }
+
+    // Same as overview getProducts axios request. Pass down as props if warranted.
+    // Upon mount, API call to get back all products. By default state will be set
+    // as first product in the list (allProducts[0]).
+    // Change array index to change product.
+    const options = {
+      method: 'get',
+      url: '/details',
+    };
+    axios(options)
+      .then(res => {
+        const allProducts = res.data;
+        this.setState({
+          productId: allProducts[0].id,
+          productDetail: allProducts[0],
+          darkMode: this.state.darkMode,
+          punkMode: this.state.punkMode,
+          psychMode: this.state.psychMode,
+        });
+      })
+      .catch(err => {
+        console.log('error getting products', err);
+      });
+
 
     // Enable psychedelic background scrolling
     let lastScroll = 0;
@@ -105,6 +145,31 @@ class App extends React.Component {
         document.body.style.backgroundColor = '';
       }
     }
+
+    // ProductId will change when related product card is clicked.
+    // When productId changes, product state will change to include product info.
+    if (this.state.productId !== prevState.productId) {
+      const options = {
+        method: 'get',
+        url: '/info',
+        params: { id: this.state.productId },
+      };
+      axios(options)
+        .then(res => {
+          const currentProduct = res.data;
+          // console.log('current product', currentProduct)
+          this.setState({
+            productId: this.state.productId,
+            productDetail: currentProduct,
+            darkMode: this.state.darkMode,
+            punkMode: this.state.punkMode,
+            psychMode: this.state.psychMode,
+          });
+        })
+        .catch(err => {
+          console.log('error getting updated product', err);
+        });
+    }
   }
 
   render() {
@@ -124,7 +189,15 @@ class App extends React.Component {
       <React.Fragment>
         <Navigation modes={modes} toggleTheme={themeTogglers}/>
         <Overview productId={37315}/>
-        <RelatedProducts modes={modes}/>
+        <RelatedProducts
+          onClick={this.changeProduct}
+          productId={this.state.productId}
+          product={this.state.productDetail}
+          modes={modes}/>
+        <Outfit
+          productId={this.state.productId}
+          product={this.state.productDetail}
+        />
         <QuestionsAnswers/>
         <Reviews productId={37311}/>
         <Contact/>
