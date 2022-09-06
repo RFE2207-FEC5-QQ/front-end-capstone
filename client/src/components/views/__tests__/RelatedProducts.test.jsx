@@ -5,13 +5,16 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import RelatedProducts from '../RelatedProducts.jsx';
 
-jest.mock('react-multi-carousel', () => (
-  () => (
-    <div className='carousel'>Testing Carousel</div>
-  )));
+jest.mock('../../cards/RelatedCard.jsx');
 
 beforeEach(() => {
   jest.clearAllMocks();
+
+  Object.defineProperties(window.HTMLElement.prototype, {
+    offsetWidth: {
+      get: () => 100,
+    },
+  });
 });
 
 const clickHandler = jest.fn();
@@ -29,10 +32,8 @@ describe('Testing related products functionality)', () => {
 
     render(<RelatedProducts onClick={clickHandler} modes={modes}/>);
 
-    expect(document.querySelector('.carousel')).not.toBeInTheDocument();
     await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(document.querySelector('.carousel')).toBeInTheDocument());
-    screen.debug();
+    await waitFor(() => expect(screen.getAllByText('Related Cards Mock').length).toBe(3));
   });
 
 });
