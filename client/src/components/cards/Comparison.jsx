@@ -68,7 +68,7 @@ const Comparison = ({ mainProduct, currProduct }) => {
     for (let i = 0; i < arrFeatures.length; i++) {
       combined.push(<div>{mapCurrValues[i]} {mapFeatures[i]} {mapMainValues[i]}</div>);
     }
-    console.log(combined);
+    // console.log(combined);
     setCombinedVal(combined);
     // setMainValues(mainValues);
     // setCurrValues(currValues);
@@ -82,6 +82,7 @@ const Comparison = ({ mainProduct, currProduct }) => {
     <React.Fragment>
       <Popup
         trigger={<StarBorderOutlinedIcon
+          aria-label='star-icon'
           className='modal-button'
           onClick={() => setOpen(open => !open)}
         />
