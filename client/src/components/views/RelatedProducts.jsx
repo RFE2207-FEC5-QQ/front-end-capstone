@@ -53,7 +53,7 @@ const RelatedProducts = ({ onClick, productId, product, modes }) => {
   }, [productId, product]);
 
   return (
-    <div className='related-products'>
+    <div id='related' className='related-products'>
       <div className='related-header'>Related Products</div>
       {relatedList
         ? <Carousel className='carousel' responsive={responsive}>
