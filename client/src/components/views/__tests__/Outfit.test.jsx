@@ -5,22 +5,31 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Outfit from '../Outfit.jsx';
 
-// jest.mock('react-multi-carousel', () => (
-//   () => (
-//     <div className='carousel'>Testing Carousel</div>
-//   )));
+jest.mock('../../cards/RelatedCard.jsx');
+const user = userEvent.setup();
+
+beforeEach(() => {
+  Object.defineProperties(window.HTMLElement.prototype, {
+    offsetWidth: {
+      get: () => 100,
+    },
+  });
+
+  render(<Outfit productId={37311}/>);
+});
 
 describe('Testing outfit functionality', () => {
 
-  it('Should render Outfit Carousel', async () => {
-    render(<Outfit productId={37311}/>);
-    screen.debug();
-    await waitFor(() => expect(document.querySelector('.carousel')).toBeInTheDocument());
+  it('Should render Outfit Carousel and add button', async () => {
+    await waitFor(() => expect(screen.getByLabelText('add-outfit')).toBeInTheDocument());
   });
 
-  it('Should render Outfit Carousel', async () => {
-    render(<Outfit productId={37311}/>);
-    await waitFor(() => expect(document.querySelector('.carousel')).toBeInTheDocument());
+  it('Should add outfit when user clicks on add button', async () => {
+    const addButton = screen.getByLabelText('add-outfit');
+    return user.click(addButton)
+      .then(async () => {
+        await waitFor(() => expect(screen.getByText('Related Cards Mock')).toBeInTheDocument());
+      });
   });
 
 });
