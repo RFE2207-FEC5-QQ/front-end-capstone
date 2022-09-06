@@ -57,15 +57,15 @@ describe('Test render of Related Cards', () => {
     await waitFor(() => expect(screen.queryByText('Yong')).not.toBeInTheDocument());
   });
 
-  it('Should not render card if APi calls are rejected', async () => {
-    // jest.spyOn(axios, 'get').mockRejectedValue(new Error('Async fetch error'));
-    jest.spyOn(axios, 'get').mockImplementation(() => Promise.reject(new Error('Error')));
+  // it('Should not render card if APi calls are rejected', async () => {
+  //   // jest.spyOn(axios, 'get').mockRejectedValue(new Error('Async fetch error'));
+  //   jest.spyOn(axios, 'get').mockImplementation(() => Promise.reject(new Error('Error')));
 
-    render(<RelatedCard onClick={clickHandler} modal='related'/>);
+  //   render(<RelatedCard onClick={clickHandler} modal='related'/>);
 
-    await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(3));
-    // expect(screen.getByLabelText('progress-icon')).toBeInTheDocument();
-    // await waitFor(() => expect(screen.queryByText('Yong')).not.toBeInTheDocument());
-  });
+  //   await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(3));
+  //   // expect(screen.getByLabelText('progress-icon')).toBeInTheDocument();
+  //   // await waitFor(() => expect(screen.queryByText('Yong')).not.toBeInTheDocument());
+  // });
 
 });
