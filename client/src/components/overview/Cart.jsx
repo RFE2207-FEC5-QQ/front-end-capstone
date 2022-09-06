@@ -84,7 +84,7 @@ const Cart = ({ selectedStyle, skus }) => {
           <div className='size-warning'>
             <Alert
               severity="error"
-              sx={{width: '200px'}}
+              sx={{width: '168px'}}
             >Please Select Size
             </Alert>
           </div>
