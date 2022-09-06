@@ -27,6 +27,7 @@ describe('Testing related products functionality)', () => {
     expect(document.querySelector('.carousel')).not.toBeInTheDocument();
     await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(document.querySelector('.carousel')).toBeInTheDocument());
+    screen.debug();
   });
 
 });

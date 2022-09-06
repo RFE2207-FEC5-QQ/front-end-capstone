@@ -56,7 +56,7 @@ const Outfit = ({ productId }) => {
 
   const outfitCards = [
     <div className='add-outfits-btn-container related-card'>
-      <AddBoxIcon className='add-outfits-btn' fontSize='large' onClick={addOutfit}/>
+      <AddBoxIcon aria-label='add-outfit' className='add-outfits-btn' fontSize='large' onClick={addOutfit}/>
     </div>,
     ...outfits.map((product, i) => (
       <RelatedCard key={i} item={product} modal='outfit' onClick={removeOutfit}/>))
