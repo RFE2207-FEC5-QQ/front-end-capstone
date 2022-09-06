@@ -1039,7 +1039,7 @@ body {
   height: 600px;
   margin-left: 3%;
   border-radius: 5px;
-  transition: 0.5s;
+  /* transition: 0.5s; */
 }
 
 .gallery-carousel {
@@ -1067,8 +1067,8 @@ body {
   object-fit: cover;
   border-radius: 5px;
   border: solid 1px var(--images-border);
-  transition: 0.5s;
   cursor: zoom-in;
+  /* transition: 0.5s; */
 }
 
 .right-arrow {
@@ -1076,7 +1076,7 @@ body {
   right: 1%;
   top: 50%;
   cursor: pointer;
-  transition: 0.5s;
+  /* transition: 0.5s; */
 }
 
 .left-arrow {
@@ -1084,7 +1084,7 @@ body {
   left: 4%;
   top: 50%;
   cursor: pointer;
-  transition: 1s;
+  /* transition: 1s; */
 }
 
 .right-arrow:hover {
@@ -1128,7 +1128,7 @@ body {
   right: 10px;
   top: 10px;
   cursor: pointer;
-  transition: 1s;
+  /* transition: 1s; */
 }
 
 .crop-icon:hover {
