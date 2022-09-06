@@ -5,11 +5,10 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import RelatedProducts from '../RelatedProducts.jsx';
 
-// jest.mock('../../cards/RelatedCard.jsx');
-
 beforeEach(() => {
   jest.clearAllMocks();
 });
+
 const clickHandler = jest.fn();
 const user = userEvent.setup();
 const modes = {
