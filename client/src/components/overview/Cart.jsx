@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { FormControl, InputLabel, Select, MenuItem, Button, Alert } from '@mui/material'
 
 const Cart = ({ selectedStyle, skus }) => {
@@ -7,8 +8,8 @@ const Cart = ({ selectedStyle, skus }) => {
   const [size, setSize] = useState('');
   const [qtys, setQtys] = useState([]);
   const [qty, setQty] = useState('');
+  const [skuKey, setSkuKey] = useState(null);
   const [sizeNotSelected, setSizeNotSelected] = useState('');
-  const [cart, setCart] = useState(false);
 
   const getSizes = () => {
     var sizeArr = [];
@@ -27,6 +28,7 @@ const Cart = ({ selectedStyle, skus }) => {
     for (var key in skus) {
       if (skus[key].size === e.target.value) {
         quantity = skus[key].quantity;
+        setSkuKey(Number(key));
       }
     }
     for (var i = 1; i <= quantity; i++) {
@@ -45,10 +47,19 @@ const Cart = ({ selectedStyle, skus }) => {
   const addToCart = () => {
     if (size === '') {
       setSizeNotSelected(true);
-      setCart(true);
     } else {
       setSizeNotSelected(false);
-      console.log('add to cart button clicked: ', selectedStyle, size, qty);
+      let cartItems = {
+        sku_id: skuKey,
+        count: qty
+      }
+      axios.post('/cart', cartItems)
+      .then(() => {
+        alert('Added to Cart')
+      })
+      .catch(() => {
+        alert('Failed to Add to Cart')
+      })
     }
   }
 
@@ -73,7 +84,7 @@ const Cart = ({ selectedStyle, skus }) => {
           <div className='size-warning'>
             <Alert
               severity="error"
-              sx={{width: '200px'}}
+              sx={{width: '168px'}}
             >Please Select Size
             </Alert>
           </div>
