@@ -979,6 +979,7 @@ body {
   position: relative;
   width: 1400px;
   height: 600px;
+  margin-left: 2%;
   border-radius: 5px;
   transition: 0.5s;
 }
@@ -1034,6 +1035,7 @@ body {
   position: relative;
   width: 900px;
   height: 600px;
+  margin-left: 3%;
   border-radius: 5px;
   transition: 0.5s;
 }
