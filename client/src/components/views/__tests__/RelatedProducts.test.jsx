@@ -5,6 +5,11 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import RelatedProducts from '../RelatedProducts.jsx';
 
+jest.mock('react-multi-carousel', () => (
+  () => (
+    <div className='carousel'>Testing Carousel</div>
+  )));
+
 beforeEach(() => {
   jest.clearAllMocks();
 });

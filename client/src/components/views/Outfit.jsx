@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
 import axios from 'axios';
-// import { Swiper, SwiperSlide } from 'swiper/react';
 import { Paper, Button, Box } from '@mui/material';
 import RelatedCard from '../cards/RelatedCard.jsx';
 import Carousel from 'react-multi-carousel';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import CloseIcon from '@mui/icons-material/Close';
-// import 'react-multi-carousel/lib/styles.css';
+import 'react-multi-carousel/lib/styles.css';
 
 const responsive = {
   // superLargeDesktop: {
