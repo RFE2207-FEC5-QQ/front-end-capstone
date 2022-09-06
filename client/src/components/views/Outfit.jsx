@@ -33,7 +33,7 @@ const Outfit = ({ productId }) => {
 
   useEffect(() => {
     const storedOutfit = JSON.parse(localStorage.getItem('outfits'));
-    console.log('local stored outfit data:', storedOutfit);
+    // console.log('local stored outfit data:', storedOutfit);
     if (storedOutfit) {
       setOutfits(storedOutfit);
     }
@@ -54,8 +54,12 @@ const Outfit = ({ productId }) => {
   };
 
   const outfitCards = [
-    <div className='add-outfits-btn-container related-card'>
-      <AddBoxIcon aria-label='add-outfit' className='add-outfits-btn' fontSize='large' onClick={addOutfit}/>
+    <div key='add-outfit' className='add-outfits-btn-container related-card'>
+      <AddBoxIcon
+        aria-label='add-outfit'
+        className='add-outfits-btn'
+        fontSize='large'
+        onClick={addOutfit}/>
     </div>,
     ...outfits.map((product, i) => (
       <RelatedCard key={i} item={product} modal='outfit' onClick={removeOutfit}/>))

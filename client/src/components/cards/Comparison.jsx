@@ -66,7 +66,7 @@ const Comparison = ({ mainProduct, currProduct }) => {
 
 
     for (let i = 0; i < arrFeatures.length; i++) {
-      combined.push(<div>{mapCurrValues[i]} {mapFeatures[i]} {mapMainValues[i]}</div>);
+      combined.push(<div key={i}>{mapCurrValues[i]} {mapFeatures[i]} {mapMainValues[i]}</div>);
     }
     // console.log(combined);
     setCombinedVal(combined);
