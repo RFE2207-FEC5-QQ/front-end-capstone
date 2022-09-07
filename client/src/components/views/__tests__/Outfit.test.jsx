@@ -32,4 +32,16 @@ describe('Testing outfit functionality', () => {
       });
   });
 
+  // Not working yet.
+
+  // it('Should remove outfit when user clicks on close button', async () => {
+  //   const removeButton = screen.getByRole('button', {name: 'Related Cards Mock'});
+  //   expect(removeButton).toBeInTheDocument();
+  //   return user.click(removeButton)
+  //     .then(async () => {
+  //       await waitFor(() => expect(screen.getByText('Related Cards Mock')).not.toBeInTheDocument());
+  //     });
+  // });
+
+
 });
