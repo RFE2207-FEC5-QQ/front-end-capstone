@@ -13,8 +13,6 @@ const ReviewFormModal = ({metaCharacteristics, characteristicChart, productId, c
       <Dialog
         open={true}
         onClose={closeReviewModal}
-        fullWidth={true}
-        maxWidth='md'
       >
         <DialogContent>
           <ReviewForm

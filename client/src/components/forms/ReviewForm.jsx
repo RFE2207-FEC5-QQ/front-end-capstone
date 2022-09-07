@@ -26,11 +26,10 @@ export default class ReviewForm extends React.Component {
       ratingValid: false,
       recommend: null,
       recommendValid: false,
-      characteristics: {},
-      characteristicsValid: function(metaCharacteristics) {
+      characteristics: function(mc) {
         let output = {};
-        for (let key in metaCharacteristics) {
-          output[key] = false;
+        for (let key in mc) {
+          output[mc[key].id] = 3;
         }
         return output;
       }(this.props.metaCharacteristics),
@@ -99,16 +98,12 @@ export default class ReviewForm extends React.Component {
     let characteristics = this.state.characteristics;
     characteristics[this.props.metaCharacteristics[characteristic].id] = parseInt(value);
     this.setState({characteristics});
-    if (!this.state.characteristicsValid[characteristic]) {
-      let characteristicsValid = this.state.characteristicsValid;
-      characteristicsValid[characteristic] = true;
-      this.setState({characteristicsValid});
-    }
   }
 
   render() {
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
+        <h2>Leave a Review</h2>
         <div className='review-form-rating'>
           {'Rating '}
           <Rating
@@ -116,6 +111,7 @@ export default class ReviewForm extends React.Component {
               color: this.props.paletteMap[this.state.rating || 3]
             }}
             name="rating"
+            size='large'
             value={this.state.rating}
             onChange={(e) =>
               this.setState({rating: parseInt(e.target.value)}, () => {
@@ -128,41 +124,42 @@ export default class ReviewForm extends React.Component {
         </div>
         <div className='review-form-recommend'>
           {'Do you recommend this product?'}
-          <label>
-            <input
-              type='radio'
-              name='recommend-true'
-              value='true'
-              checked={this.state.recommend === true}
-              onChange={(e) =>
-                this.setState({recommend: true}, () => {
-                  if (!this.state.recommendValid) {
-                    this.setState({recommendValid: true});
-                  }
-                })
-              }
-            />
-            Yes
-          </label>
-          <label>
-            <input
-              type='radio'
-              name='recommend-false'
-              value='false'
-              checked={this.state.recommend === false}
-              onChange={(e) =>
-                this.setState({recommend: false}, () => {
-                  if (!this.state.recommendValid) {
-                    this.setState({recommendValid: true});
-                  }
-                })
-              }
-            />
-            No
-          </label>
+          <div>
+            <label>
+              <input
+                type='radio'
+                name='recommend-true'
+                value='true'
+                checked={this.state.recommend === true}
+                onChange={(e) =>
+                  this.setState({recommend: true}, () => {
+                    if (!this.state.recommendValid) {
+                      this.setState({recommendValid: true});
+                    }
+                  })
+                }
+              />
+              Yes
+            </label>
+            <label>
+              <input
+                type='radio'
+                name='recommend-false'
+                value='false'
+                checked={this.state.recommend === false}
+                onChange={(e) =>
+                  this.setState({recommend: false}, () => {
+                    if (!this.state.recommendValid) {
+                      this.setState({recommendValid: true});
+                    }
+                  })
+                }
+              />
+              No
+            </label>
+          </div>
         </div>
         <div className='review-form-characteristics'>
-          {'Characteristics'}
           {Object.keys(this.props.metaCharacteristics).map((characteristic) =>
             <ReviewFormCharacteristic
               key={characteristic.toLowerCase()}
@@ -263,16 +260,7 @@ export default class ReviewForm extends React.Component {
               this.state.summaryValid &&
               this.state.bodyValid &&
               this.state.nameValid &&
-              this.state.emailValid &&
-              function(characteristicsValid) {
-                for (let characteristic in characteristicsValid) {
-                  if (!characteristicsValid[characteristic]) {
-                    return false;
-                  }
-                }
-                return true;
-              }(this.state.characteristicsValid)
-            )
+              this.state.emailValid)
           }
         />
         <div id='review-form-error'>

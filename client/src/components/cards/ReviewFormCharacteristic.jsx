@@ -4,37 +4,35 @@ import { Slider } from '@mui/material';
 const ReviewFormCharacteristic = ({metaCharacteristics, characteristic, characteristics, characteristicChart, onCharValueChange}) => {
 
   return (
-    <div className='review-form-characteristics-entry'>
-      {characteristic}
+    <div className='review-form-characteristics-entry' align='center'>
+      <div className='review-meta-characteristic-labels'>
+        <span id='review-form-characteristic-title'>{characteristic}</span>
+      </div>
       <Slider
         sx={{
-          padding: 0
+          maxWidth: 5 / 6
         }}
         min={1}
         max={5}
-        marks
+        defaultValue={3}
+        onChangeCommitted={(e, value) => {
+          onCharValueChange(characteristic, value);
+        }}
         valueLabelDisplay="off"
+        marks={function() {
+          let characteristicValues = Object.keys(characteristicChart[characteristic]);
+          let output = [];
+          for (let i = 0; i < characteristicValues.length; i++) {
+            if (i % 2 === 0) {
+              let label = characteristicChart[characteristic][i + 1];
+              output.push({value: characteristicValues[i], label});
+            } else {
+              output.push({value: characteristicValues[i], label: ''});
+            }
+          }
+          return output;
+        }()}
       />
-      {/* <div className='review-meta-characteristic-labels'>
-        <span id='review-meta-characteristic-left'>{characteristicChart[char][1]}</span>
-        <span id='review-meta-characteristic-right'>{characteristicChart[char][5]}</span>
-      </div> */}
-      {Object.keys(characteristicChart[characteristic]).map((key) => (
-        <div key={`${characteristic.toLowerCase()}-${key}`} className='review-form-characteristics-entry-value'>
-          <label>
-            <input
-              type='radio'
-              name={`characteristic-${characteristic.toLowerCase()}-${key}`}
-              value={key}
-              checked={characteristics[metaCharacteristics[characteristic].id] === parseInt(key)}
-              onChange={(e) => {
-                onCharValueChange(characteristic, e.target.value);
-              }}
-            />
-            {characteristicChart[characteristic][key]}
-          </label>
-        </div>
-      ))}
     </div>
   );
 

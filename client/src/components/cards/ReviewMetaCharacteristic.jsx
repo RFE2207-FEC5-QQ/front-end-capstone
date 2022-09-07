@@ -6,7 +6,7 @@ const ReviewMetaCharacteristic = ({char, characteristics, characteristicChart}) 
   return (
     <div className='review-meta-characteristics-entry'>
       <div className='review-meta-characteristic-labels'>
-        <span id='review-meta-characteristic-center'>{char}</span>
+        <span id='review-meta-characteristic-title'>{char}</span>
       </div>
       <Slider
         sx={{
