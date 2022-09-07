@@ -141,6 +141,7 @@ class Reviews extends React.Component {
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
+    this.removeReview = this.removeReview.bind(this);
     this.openReviewModal = this.openReviewModal.bind(this);
     this.closeReviewModal = this.closeReviewModal.bind(this);
     this.resetRatingFilter = this.resetRatingFilter.bind(this);
@@ -219,6 +220,12 @@ class Reviews extends React.Component {
       });
   }
 
+  removeReview(index) {
+    let reviews = this.state.reviews.slice();
+    reviews.splice(index, 1);
+    this.setState({reviews});
+  }
+
   openReviewModal() {
     this.setState({showReviewModal: true});
   }
@@ -254,6 +261,7 @@ class Reviews extends React.Component {
             reviews={this.state.reviews}
             sort={this.state.sort}
             productId={this.props.productId}
+            removeReview={this.removeReview}
             getReviews={this.getReviews}
             openReviewModal={this.openReviewModal}
             handleSortChange={this.handleSortChange}
