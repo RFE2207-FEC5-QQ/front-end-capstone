@@ -134,7 +134,6 @@ class Reviews extends React.Component {
       // },
       reviews: [],
       sort: 'relevant',
-      page: 1,
       filter: {},
       showReviewModal: false
     };
@@ -191,11 +190,10 @@ class Reviews extends React.Component {
         productId: this.props.productId,
         sort: this.state.sort,
         count: this.count,
-        page: this.state.page
       }
     })
       .then((success) => {
-        let reviews = success.data.results;
+        let reviews = success.data.reviews;
         let filter = this.state.filter;
         // Additive filters
         if (Object.keys(filter).length > 0) {
@@ -255,6 +253,7 @@ class Reviews extends React.Component {
           <ReviewList
             reviews={this.state.reviews}
             sort={this.state.sort}
+            productId={this.props.productId}
             getReviews={this.getReviews}
             openReviewModal={this.openReviewModal}
             handleSortChange={this.handleSortChange}

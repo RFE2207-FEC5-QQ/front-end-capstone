@@ -1,8 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const axios = require('axios');
 const router = express.Router();
-const sortRelevant = require('../helpers/index.js').sortRelevant;
+const model = require('../models/reviewsModel.js');
 
 // Get reviews for productId
 // Expects 'sort' and 'productId' in query
@@ -11,23 +10,8 @@ router.get('/reviews', (req, res, next) => {
     res.sendStatus(404);
     return;
   }
-  axios.get(process.env.API_URL + 'reviews/',
-    {
-      params: {
-        'page': req.query.page || 1,
-        'count': req.query.count || 2,
-        'sort': req.query.sort,
-        'product_id': req.query.productId
-      },
-      headers: { 'Authorization': process.env.GITHUB_AUTH }
-    }
-  )
-    .then((success) => {
-      if (req.query.sort === 'relevant') {
-        success.data.results = sortRelevant(success.data.results);
-      }
-      res.status(200).send(success.data);
-    })
+  model.getSortedReviews(req.query.productId, req.query.sort)
+    .then((reviews) => res.status(200).send({reviews: reviews.slice(0, req.query.count)}))
     .catch((error) => {
       console.log(error);
       res.sendStatus(404);
@@ -39,17 +23,8 @@ router.get('/reviews/meta', (req, res, next) => {
     res.sendStatus(404);
     return;
   }
-  axios.get(process.env.API_URL + 'reviews/meta',
-    {
-      params: {
-        'product_id': req.query.productId
-      },
-      headers: { 'Authorization': process.env.GITHUB_AUTH }
-    }
-  )
-    .then((success) => {
-      res.status(200).send(success.data);
-    })
+  model.getReviewMeta(req.query.productId)
+    .then((reviewMeta) => res.status(200).send(reviewMeta))
     .catch((error) => {
       console.log(error);
       res.sendStatus(404);
@@ -57,23 +32,19 @@ router.get('/reviews/meta', (req, res, next) => {
 });
 
 router.post('/reviews', (req, res, next) => {
-  axios.post(process.env.API_URL + 'reviews/',
-    {
-      'product_id': req.body.productId,
-      'rating': req.body.rating,
-      'summary': req.body.summary,
-      'body': req.body.body,
-      'recommend': req.body.recommend,
-      'name': req.body.name,
-      'email': req.body.email,
-      'photos': req.body.photos,
-      'characteristics': req.body.characteristics
-    },
-    {
-      headers: { 'Authorization': process.env.GITHUB_AUTH }
-    }
-  )
-    .then((success) => {
+  let review = {
+    'productId': req.body.productId,
+    'rating': req.body.rating,
+    'summary': req.body.summary,
+    'body': req.body.body,
+    'recommend': req.body.recommend,
+    'name': req.body.name,
+    'email': req.body.email,
+    'photos': req.body.photos,
+    'characteristics': req.body.characteristics
+  };
+  model.postReview(review)
+    .then(() => {
       res.sendStatus(201);
     })
     .catch((error) => {
@@ -85,39 +56,29 @@ router.post('/reviews', (req, res, next) => {
 // Mark review as helpful
 // Expects 'reviewId' in body
 router.put('/reviews/helpful', (req, res, next) => {
-  if (!req.body.reviewId) {
+  console.log(req.body);
+  if (!req.body.reviewId || !req.body.productId) {
     res.sendStatus(404);
     return;
   }
-  axios.put(`${process.env.API_URL}reviews/${req.body.reviewId}/helpful`,
-    {},
-    {
-      headers: { 'Authorization': process.env.GITHUB_AUTH }
-    }
-  )
-    .then((success) => {
-      res.sendStatus(204);
-    })
+  model.markReviewHelpful(req.body.reviewId, req.body.productId)
+    .then(() => res.sendStatus(204))
     .catch((error) => {
       console.log(error);
       res.sendStatus(500);
     });
+
 });
 
 // Reports review
 // Expects 'reviewId' in body
 router.put('/reviews/report', (req, res, next) => {
-  if (!req.body.reviewId) {
+  if (!req.body.reviewId || !req.body.productId) {
     res.sendStatus(404);
     return;
   }
-  axios.put(`${process.env.API_URL}reviews/${req.body.reviewId}/report`,
-    {},
-    {
-      headers: { 'Authorization': process.env.GITHUB_AUTH }
-    }
-  )
-    .then((success) => {
+  model.reportReview(req.body.reviewId, req.body.productId)
+    .then(() => {
       res.sendStatus(204);
     })
     .catch((error) => {
