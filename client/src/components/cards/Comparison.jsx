@@ -59,19 +59,17 @@ const Comparison = ({ mainProduct, currProduct }) => {
     // console.log('mainFeatures', mainFeatures);
     // console.log('mainValues', mainValues);
 
-    const mapFeatures = arrFeatures.map((value) => <span className='comp-values'>{value}</span>);
+    const mapFeatures = arrFeatures.map((value) => <span className='comp-values comp-category'>{value}</span>);
     const mapCurrValues = currValues.map((value) => <span className='comp-values'>{value}</span>);
     const mapMainValues = mainValues.map((value) => <span className='comp-values'>{value}</span>);
 
 
 
     for (let i = 0; i < arrFeatures.length; i++) {
-      combined.push(<div key={i}>{mapCurrValues[i]} {mapFeatures[i]} {mapMainValues[i]}</div>);
+      combined.push(<div className='comp-values1' key={i}>{mapCurrValues[i]} {mapFeatures[i]} {mapMainValues[i]}</div>);
     }
     // console.log(combined);
     setCombinedVal(combined);
-    // setMainValues(mainValues);
-    // setCurrValues(currValues);
 
   }, [mainProduct, currProduct]);
 
@@ -102,15 +100,6 @@ const Comparison = ({ mainProduct, currProduct }) => {
           </div>
           <div className='comparison-content'>
             {combinedVal}
-            {/* <div className='product-current'>
-              {currValues.map((value) => <div>{value}</div>)}
-            </div>
-            <div className='product-comparator'>
-              {features.map((feature) => <div>{feature}</div>)}
-            </div>
-            <div className='product-main'>
-              {mainValues.map((value) => <div>{value}</div>)}
-            </div> */}
           </div>
         </div>
       </Popup>
