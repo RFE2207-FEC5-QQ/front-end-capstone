@@ -224,7 +224,11 @@ class App extends React.Component {
           product={this.state.productDetail}
         />
         <QuestionsAnswers/>
-        <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta}/>
+        <div id='reviews-section'>
+          <ClickTracker widget={'reviews-section'} render={(handleClick) => (
+            <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta}/>
+          )} />
+        </div>
         <Contact/>
       </React.Fragment>
     );
