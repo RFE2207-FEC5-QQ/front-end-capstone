@@ -144,6 +144,7 @@ class Reviews extends React.Component {
     this.getReviews = this.getReviews.bind(this);
     this.openReviewModal = this.openReviewModal.bind(this);
     this.closeReviewModal = this.closeReviewModal.bind(this);
+    this.resetRatingFilter = this.resetRatingFilter.bind(this);
   }
 
   handleSortChange(e) {
@@ -174,6 +175,15 @@ class Reviews extends React.Component {
     // After state is set, use getReviews as a callback to get filtered list of reviews
     this.setState({filter}, this.getReviews);
   }
+
+  resetRatingFilter() {
+    let filter = this.state.filter;
+    if (filter['rating']) {
+      delete filter['rating'];
+      this.setState({filter}, this.getReviews);
+    }
+  }
+
 
   getReviews() {
     return axios.get('/reviews', {
@@ -236,7 +246,9 @@ class Reviews extends React.Component {
         <div className='reviews-panels'>
           <ReviewMeta
             reviewMeta={this.props.reviewMeta}
+            filter={this.state.filter}
             filterByRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
+            resetRatingFilter={this.resetRatingFilter}
             paletteMap={paletteMap}
             characteristicChart={characteristicChart}
           />

@@ -5,7 +5,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ReviewMetaCharacteristicsList from '../lists/ReviewMetaCharacteristicsList.jsx';
 import ReviewMetaStarBreakdown from '../cards/ReviewMetaStarBreakdown.jsx';
 
-const ReviewMeta = ({reviewMeta, filterByRating, paletteMap, characteristicChart}) => {
+const ReviewMeta = ({reviewMeta, filter, filterByRating, resetRatingFilter, paletteMap, characteristicChart}) => {
 
   let averageRating = 0;
   let totalReviews = 0;
@@ -49,8 +49,17 @@ const ReviewMeta = ({reviewMeta, filterByRating, paletteMap, characteristicChart
           </div>
         </div>
       }
-      <ReviewMetaStarBreakdown reviewMeta={reviewMeta} filterByRating={filterByRating} totalReviews={totalReviews}/>
-      <ReviewMetaCharacteristicsList reviewMeta={reviewMeta} characteristicChart={characteristicChart}/>
+      <ReviewMetaStarBreakdown
+        reviewMeta={reviewMeta}
+        filter={filter}
+        filterByRating={filterByRating}
+        resetRatingFilter={resetRatingFilter}
+        totalReviews={totalReviews}
+      />
+      <ReviewMetaCharacteristicsList
+        reviewMeta={reviewMeta}
+        characteristicChart={characteristicChart}
+      />
     </div>
   );
 
