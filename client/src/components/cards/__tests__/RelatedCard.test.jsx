@@ -32,7 +32,6 @@ describe('Test render of Related Cards', () => {
     render(<RelatedCard onClick={clickHandler} modal='related'/>);
     await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(3));
     await waitFor(() => expect(screen.findByText('Yong')).toBeInTheDocument());
-    // expect(screen.findByText('Yong')).toBeInTheDocument();
   });
 
   it('Should render card if no ratings or photos are fetched', async () => {
