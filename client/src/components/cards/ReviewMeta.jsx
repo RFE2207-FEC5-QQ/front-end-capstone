@@ -5,7 +5,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ReviewMetaCharacteristicsList from '../lists/ReviewMetaCharacteristicsList.jsx';
 import ReviewMetaStarBreakdown from '../cards/ReviewMetaStarBreakdown.jsx';
 
-const ReviewMeta = ({reviewMeta, productId, filterByRating, paletteMap, characteristicChart}) => {
+const ReviewMeta = ({reviewMeta, filterByRating, paletteMap, characteristicChart}) => {
 
   let averageRating = 0;
   let totalReviews = 0;

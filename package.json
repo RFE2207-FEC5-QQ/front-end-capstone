@@ -9,7 +9,7 @@
     "client-dev-serverless": "webpack serve",
     "server-dev": "npx nodemon server/index.js",
     "dev": "npm run client-dev & npm run server-dev",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@jest/globals": "^29.0.2",
     "@mui/icons-material": "^5.10.2",
     "@mui/material": "^5.10.2",
     "axios": "^0.27.2",

@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../app.js');
 
-describe('\'/reviews\' routes', () => {
+xdescribe('\'/reviews\' routes', () => {
 
   let reviewCount = 2;
   test(`Expect ${reviewCount} reviews to be fetched from server`, async () => {
