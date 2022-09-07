@@ -195,7 +195,7 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
           </div>
         </div>
         : <div aria-label='progress-icon' className='progress-icon'>
-          <CircularProgress/>
+          <CircularProgress sx={{ color: 'black' }}/>
         </div>
       }
     </React.Fragment>
