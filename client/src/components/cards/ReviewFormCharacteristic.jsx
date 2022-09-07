@@ -11,7 +11,7 @@ const ReviewFormCharacteristic = ({metaCharacteristics, characteristic, characte
       {/* {TODO: SET DEFAULT TO NULL, ALSO NEEDS TO BE DONE IN REVIEWFORM.JSX} */}
       <Slider
         sx={{
-          maxWidth: 5 / 6
+          maxWidth: 2 / 3
         }}
         min={1}
         max={5}
