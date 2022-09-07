@@ -65,7 +65,6 @@ class Reviews extends React.Component {
     this.state = {
       reviews: [],
       sort: 'relevant',
-      page: 1,
       filter: {},
       showReviewModal: false
     };
@@ -122,7 +121,6 @@ class Reviews extends React.Component {
         productId: this.props.productId,
         sort: this.state.sort,
         count: this.count,
-        page: this.state.page
       }
     })
       .then((success) => {
@@ -187,6 +185,7 @@ class Reviews extends React.Component {
             reviews={this.state.reviews}
             productId={this.props.productId}
             sort={this.state.sort}
+            productId={this.props.productId}
             getReviews={this.getReviews}
             openReviewModal={this.openReviewModal}
             handleSortChange={this.handleSortChange}
