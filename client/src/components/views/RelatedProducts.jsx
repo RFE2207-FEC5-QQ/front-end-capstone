@@ -3,6 +3,7 @@ import axios from 'axios';
 import RelatedCard from '../cards/RelatedCard.jsx';
 import { Paper, Button, Box } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import CircularProgress from '@mui/material/CircularProgress';
 import CloseIcon from '@mui/icons-material/Close';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -65,7 +66,9 @@ const RelatedProducts = ({ onClick, productId, product, modes }) => {
               mainProduct={product}
               modal='related'/>)}
         </Carousel>
-        : null
+        : <div aria-label='progress-icon' className='progress-icon'>
+          <CircularProgress sx={{ color: 'black' }}/>
+        </div>
       }
     </div>
   );
