@@ -126,7 +126,7 @@ class Reviews extends React.Component {
       }
     })
       .then((success) => {
-        let reviews = success.data.results;
+        let reviews = success.data.reviews;
         let filter = this.state.filter;
         // Additive filters
         if (Object.keys(filter).length > 0) {
@@ -185,6 +185,7 @@ class Reviews extends React.Component {
           />
           <ReviewList
             reviews={this.state.reviews}
+            productId={this.props.productId}
             sort={this.state.sort}
             getReviews={this.getReviews}
             openReviewModal={this.openReviewModal}

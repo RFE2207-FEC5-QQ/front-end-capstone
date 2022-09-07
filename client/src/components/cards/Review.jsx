@@ -5,7 +5,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import ReviewImage from '../cards/ReviewImage.jsx';
 
-const Review = ({review, paletteMap}) => {
+const Review = ({review, productId, paletteMap}) => {
 
   const [reviewBodyExpanded, setReviewBodyExpanded] = useState(false);
   const [markedHelpful, setMarkedHelpful] = useState(false);
@@ -17,21 +17,25 @@ const Review = ({review, paletteMap}) => {
   // TODO: Only allow someone to mark a review as helpful once
   // Cache session with cookies to get their marked reviews
   const markHelpful = () => {
-    axios.put('/reviews/helpful', {
-      reviewId: review.review_id
-    })
-      .then((success) => {
-        setMarkedHelpful(true);
-        setHelpfulRating(helpfulRating + 1);
+    if (!markedHelpful) {
+      axios.put('/reviews/helpful', {
+        reviewId: review.review_id,
+        productId
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((success) => {
+          setMarkedHelpful(true);
+          setHelpfulRating(helpfulRating + 1);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const reportReview = () => {
     axios.put('/reviews/report', {
-      reviewId: review.review_id
+      reviewId: review.review_id,
+      productId
     })
       .then((success) => {
         setReported(true);

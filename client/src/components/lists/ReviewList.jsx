@@ -5,7 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
 
-const ReviewList = ({reviews, sort, getReviews, openReviewModal, handleSortChange, handleMoreReviews, paletteMap}) => {
+const ReviewList = ({reviews, productId, sort, getReviews, openReviewModal, handleSortChange, handleMoreReviews, paletteMap}) => {
 
   if (!reviews) {
     return null;
@@ -32,7 +32,7 @@ const ReviewList = ({reviews, sort, getReviews, openReviewModal, handleSortChang
         :
         <div className='review-list-entries'>
           {reviews.map((review) => (
-            <Review review={review} paletteMap={paletteMap} key={review.review_id}/>
+            <Review review={review} productId={productId} paletteMap={paletteMap} key={review.review_id}/>
           ))}
         </div>
       }
