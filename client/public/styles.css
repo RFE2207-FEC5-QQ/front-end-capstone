@@ -54,7 +54,7 @@
   --header-divider-color: #403A4D;
   --header-hover-color: #37a0e6;
   --popup-theme-color: #1B1D24;
-  --shadow-color: rgba(0, 0, 0, 0.3);
+  /* --shadow-color: rgba(0, 0, 0, 0.3); */
   --text-font-weight: 100;
   --text-hover-color: rgba(255, 255, 255, 1);
   --text-sale-color: rgba(231, 76, 70, 0.87);
@@ -272,6 +272,13 @@ body {
   background-color: var(--bg-theme-color);
 }
 
+.progress-icon {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .related-card .img-container {
   /* padding-top: 1rem; */
 }
@@ -422,7 +429,7 @@ body {
   /* border: 2px solid gold; */
   display: flex;
   gap: 0.75rem;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   text-align: center;
 }
 
