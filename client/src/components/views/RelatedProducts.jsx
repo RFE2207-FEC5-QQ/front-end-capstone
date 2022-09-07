@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'; // React module is imported if you choose to convert to class component, remove the import if not
 import axios from 'axios';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import RelatedCard from '../cards/RelatedCard.jsx';
 import { Paper, Button, Box } from '@mui/material';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import CircularProgress from '@mui/material/CircularProgress';
 import CloseIcon from '@mui/icons-material/Close';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -37,7 +37,6 @@ const RelatedProducts = ({ onClick, productId, product, modes }) => {
     axios
       .get('/related', {
         params: {
-          // Placeholder productId for now.
           productId,
         }
       })
@@ -55,20 +54,21 @@ const RelatedProducts = ({ onClick, productId, product, modes }) => {
   }, [productId, product]);
 
   return (
-    <div className='related-products'>
+    <div id='related' className='related-products'>
       <div className='related-header'>Related Products</div>
       {relatedList
         ? <Carousel className='carousel' responsive={responsive}>
           {relatedList.map((relProduct, i) =>
             <RelatedCard
               onClick={onClick}
-              psychMode={psychMode}
               key={i}
               item={relProduct}
               mainProduct={product}
               modal='related'/>)}
         </Carousel>
-        : null
+        : <div aria-label='progress-icon' className='progress-icon'>
+          <CircularProgress sx={{ color: 'black' }}/>
+        </div>
       }
     </div>
   );
