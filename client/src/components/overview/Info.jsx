@@ -57,7 +57,7 @@ const Info = ({ product, selectedStyle }) => {
         <div className='product-category'>
           {product.category}
         </div>
-        <div className='product-name'>
+        <div className='overview-product-name'>
           {product.name}
         </div>
         <div className='product-price'>
@@ -80,14 +80,14 @@ const Info = ({ product, selectedStyle }) => {
             precision={0.25}
             readOnly
           />
-          <a href='#review-section' className='read-all-reviews'>
+          <a href='#reviews' className='read-all-reviews'>
             {`Read All [${reviews}] Reviews`}
           </a>
         </div>
         <div className='product-category'>
           {product.category}
         </div>
-        <div className='product-name'>
+        <div className='overview-product-name'>
           {product.name}
         </div>
         <div className='product-price' id='product-price'>

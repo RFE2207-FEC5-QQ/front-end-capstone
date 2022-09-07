@@ -66,11 +66,11 @@ const ratingTheme = createTheme({
 });
 
 const paletteMap = {
-  '1': ['error', '#ff3333'],
-  '2': ['warning', '#ff9966'],
-  '3': ['neutral', '#dfcc97'],
-  '4': ['info', '#66cce6'],
-  '5': ['success', '#90ee90']
+  '1': '#ff3333',
+  '2': '#ff9966',
+  '3': '#dfcc97',
+  '4': '#66cce6',
+  '5': '#90ee90'
 };
 
 class Reviews extends React.Component {
@@ -81,11 +81,11 @@ class Reviews extends React.Component {
       reviews: null,
       reviewMeta: null,
       sort: 'relevant',
-      count: 2,
       page: 1,
       filter: {},
       showReviewModal: false
     };
+    this.count = 2; // Changed this to non-state property
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
@@ -101,8 +101,8 @@ class Reviews extends React.Component {
   }
 
   handleMoreReviews() {
-    // After state is set, use getReviews as a callback to get list of reviews
-    this.setState({count: this.state.count + 2}, this.getReviews);
+    this.count += 2;
+    this.getReviews();
   }
 
   setFilter(key, value) {
@@ -129,7 +129,7 @@ class Reviews extends React.Component {
       params: {
         productId: this.props.productId,
         sort: this.state.sort,
-        count: this.state.count,
+        count: this.count,
         page: this.state.page
       }
     })
@@ -187,16 +187,22 @@ class Reviews extends React.Component {
     this.getReviewMeta();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.productId !== prevProps.productId) {
+      this.getReviews();
+      this.getReviewMeta();
+    }
+  }
 
   render() {
     return (
       <div id='reviews' className='reviews-view'>
-        <h2>{'Ratings & Reviews'}</h2>
+        <h1 id='reviews-title'>{'Ratings & Reviews'}</h1>
         <div className='reviews-panels'>
           <ReviewMeta
             reviewMeta={this.state.reviewMeta}
             productId={this.props.productId}
-            filterbyRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
+            filterByRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
             paletteMap={paletteMap}
             characteristicChart={characteristicChart}
           />
@@ -207,7 +213,6 @@ class Reviews extends React.Component {
             openReviewModal={this.openReviewModal}
             handleSortChange={this.handleSortChange}
             handleMoreReviews={this.handleMoreReviews}
-            ratingTheme={ratingTheme}
             paletteMap={paletteMap}
           />
           {this.state.showReviewModal &&

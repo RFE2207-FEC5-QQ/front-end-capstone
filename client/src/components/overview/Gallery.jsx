@@ -62,19 +62,16 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
 
   useEffect(() => {
     var photosArr = selectedStyle.photos;
-    var counter = 0;
     var result = [];
     var temp = [];
-    for (var i = 0; i < photosArr.length; i++) {
-      if (counter < 7) {
-        temp.push(photosArr[i])
-        counter++;
-      } else if (counter === 7) {
-        counter = 0;
+    photosArr.forEach(item => {
+      if (temp.length === 7) {
         result.push(temp);
-        temp = [];
+        temp = [item];
+      } else {
+        temp.push(item)
       }
-    }
+    })
     if (temp.length) {
       result.push(temp);
     }

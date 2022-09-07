@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Style from '../Style.jsx';
@@ -76,14 +76,15 @@ describe('Style Rendering', function() {
 })
 
 describe('Style Click', function() {
-  var user = userEvent.setup();
 
-  test('clicking on a style should make it checked', () => {
+  test('clicking on a style should make it checked', async () => {
+    var user = userEvent.setup();
     render(<Style styles={mockStyles} selectedStyle={mockSelectedStyle} updateStyle={() => {}} />);
-    var secondImage = screen.getAllByRole('img')[1]
-    user.click(secondImage)
-      .then(() => {
-        expect(secondImage).toHaveClass('checked-image');
-      })
+    var image = screen.getAllByRole('img')[1]
+    var check = screen.getAllByTestId('CheckIcon')[1];
+
+    expect(check).toHaveClass('unchecked-image');
+    await user.click(image)
+    expect(check).toHaveClass('checked-image');
   })
 })

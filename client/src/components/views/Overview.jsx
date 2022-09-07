@@ -72,7 +72,7 @@ const Overview = ({productId}) => {
 
   useEffect(() => {
     getProduct(productId);
-  }, [])
+  }, [productId])
 
   if (defaultView) {
     if (Object.keys(selectedStyle).length) {

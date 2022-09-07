@@ -8,12 +8,14 @@ import Outfit from './components/views/Outfit.jsx';
 import QuestionsAnswers from './components/views/QuestionsAnswers.jsx';
 import Reviews from './components/views/Reviews.jsx';
 import Contact from './components/views/Contact.jsx';
+import ClickTracker from './ClickTracker.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productId: 0,
+      productDetail: null,
       darkMode: JSON.parse(window.localStorage.getItem('dark')) || false,
       punkMode: false,
       psychMode: false,
@@ -74,7 +76,7 @@ class App extends React.Component {
     const progress = window.scrollY / (viewportHeight * viewportsPerRotation);
     const h = (from + 360 * progress) % 360;
     document.body.style.backgroundColor = `hsl(${h}deg, 100%, 50%)`;
-  };
+  }
 
   componentDidMount() {
     // Set theme on page load
@@ -113,21 +115,21 @@ class App extends React.Component {
     const navBar = document.querySelector('.nav-bar');
     const navPlaceHolder = document.querySelector('.bg-color-placeholder');
 
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       let currentScroll = window.scrollY;
       if (currentScroll - lastScroll > 0) {
-        navBar.classList.add("scrolled-down");
-        navPlaceHolder.classList.add("scrolled-down");
-        navBar.classList.remove("scrolled-up");
-        navPlaceHolder.classList.remove("scrolled-up");
+        navBar.classList.add('scrolled-down');
+        navPlaceHolder.classList.add('scrolled-down');
+        navBar.classList.remove('scrolled-up');
+        navPlaceHolder.classList.remove('scrolled-up');
       } else {
-        navBar.classList.add("scrolled-up");
-        navPlaceHolder.classList.add("scrolled-down");
-        navBar.classList.remove("scrolled-down");
-        navPlaceHolder.classList.remove("scrolled-up");
+        navBar.classList.add('scrolled-up');
+        navPlaceHolder.classList.add('scrolled-down');
+        navBar.classList.remove('scrolled-down');
+        navPlaceHolder.classList.remove('scrolled-up');
       }
       lastScroll = currentScroll;
-    })
+    });
 
   }
 
@@ -188,7 +190,11 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Navigation modes={modes} toggleTheme={themeTogglers}/>
-        <Overview productId={37315}/>
+        <div id='overview-section'>
+          <ClickTracker widget={'overview-section'} render={(handleClick) => (
+            <Overview productId={this.state.productId} handleClick={handleClick}/>
+          )} />
+        </div>
         <RelatedProducts
           onClick={this.changeProduct}
           productId={this.state.productId}
@@ -199,7 +205,7 @@ class App extends React.Component {
           product={this.state.productDetail}
         />
         <QuestionsAnswers/>
-        <Reviews productId={37311}/>
+        <Reviews productId={this.state.productId}/>
         <Contact/>
       </React.Fragment>
     );
