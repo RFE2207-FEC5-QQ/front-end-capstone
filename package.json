@@ -35,8 +35,7 @@
     "react-img-zoom": "^0.1.0",
     "react-material-ui-carousel": "^3.4.2",
     "react-multi-carousel": "^2.8.2",
-    "reactjs-popup": "^2.0.5",
-    "swiper": "^8.3.2"
+    "reactjs-popup": "^2.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
