@@ -14,7 +14,10 @@ const ReviewFormModal = ({metaCharacteristics, characteristicChart, productId, c
 
   return (
     <div className='review-form-modal'>
-      <Dialog open={true} onClose={closeReviewModal}>
+      <Dialog
+        open={true}
+        onClose={closeReviewModal}
+      >
         <DialogContent>
           <ReviewForm
             postSubmit={closeReviewModal}

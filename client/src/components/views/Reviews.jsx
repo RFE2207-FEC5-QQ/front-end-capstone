@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import ReviewList from '../lists/ReviewList.jsx';
 import ReviewMeta from '../cards/ReviewMeta.jsx';
@@ -51,20 +50,6 @@ const characteristicChart = {
   }
 };
 
-const ratingTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#333333',
-    },
-    neutral: {
-      main: '#dfcc97',
-    },
-    success: {
-      main: '#90ee90',
-    },
-  },
-});
-
 const paletteMap = {
   '1': '#ff3333',
   '2': '#ff9966',
@@ -78,8 +63,7 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: null,
-      reviewMeta: null,
+      reviews: [],
       sort: 'relevant',
       page: 1,
       filter: {},
@@ -89,10 +73,9 @@ class Reviews extends React.Component {
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
-    this.getReviewMeta = this.getReviewMeta.bind(this);
     this.openReviewModal = this.openReviewModal.bind(this);
     this.closeReviewModal = this.closeReviewModal.bind(this);
-
+    this.resetRatingFilter = this.resetRatingFilter.bind(this);
   }
 
   handleSortChange(e) {
@@ -123,6 +106,15 @@ class Reviews extends React.Component {
     // After state is set, use getReviews as a callback to get filtered list of reviews
     this.setState({filter}, this.getReviews);
   }
+
+  resetRatingFilter() {
+    let filter = this.state.filter;
+    if (filter['rating']) {
+      delete filter['rating'];
+      this.setState({filter}, this.getReviews);
+    }
+  }
+
 
   getReviews() {
     return axios.get('/reviews', {
@@ -160,20 +152,6 @@ class Reviews extends React.Component {
       });
   }
 
-  getReviewMeta() {
-    axios.get('/reviews/meta', {
-      params: {
-        productId: this.props.productId
-      }
-    })
-      .then((success) => {
-        this.setState({reviewMeta: success.data});
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
   openReviewModal() {
     this.setState({showReviewModal: true});
   }
@@ -184,13 +162,11 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     this.getReviews();
-    this.getReviewMeta();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.productId !== prevProps.productId) {
       this.getReviews();
-      this.getReviewMeta();
     }
   }
 
@@ -200,9 +176,10 @@ class Reviews extends React.Component {
         <h1 id='reviews-title'>{'Ratings & Reviews'}</h1>
         <div className='reviews-panels'>
           <ReviewMeta
-            reviewMeta={this.state.reviewMeta}
-            productId={this.props.productId}
+            reviewMeta={this.props.reviewMeta}
+            filter={this.state.filter}
             filterByRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
+            resetRatingFilter={this.resetRatingFilter}
             paletteMap={paletteMap}
             characteristicChart={characteristicChart}
           />
@@ -217,7 +194,7 @@ class Reviews extends React.Component {
           />
           {this.state.showReviewModal &&
           <ReviewFormModal
-            metaCharacteristics={this.state.reviewMeta.characteristics}
+            metaCharacteristics={this.props.reviewMeta.characteristics}
             characteristicChart={characteristicChart}
             productId={this.props.productId}
             closeReviewModal={this.closeReviewModal}

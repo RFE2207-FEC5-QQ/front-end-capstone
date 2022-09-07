@@ -4,6 +4,8 @@ import { Rating } from '@mui/material';
 
 import ReviewFormImageModal from '../modals/ReviewFormImageModal.jsx';
 import ReviewImageList from '../lists/ReviewImageList.jsx';
+import ReviewFormCharacteristic from '../cards/ReviewFormCharacteristic.jsx';
+
 
 // TODO: Should actually refactor this and the other modal (anything with toggled visibility)
 // to store their visibility within the component, that way you don't re-render the parent every time
@@ -18,38 +20,27 @@ export default class ReviewForm extends React.Component {
   // props.setErrorMessage - Sets an error message to display in parent component
   constructor(props) {
     super(props);
-    // TODO: Ensure someone can't submit the form without all required values filled out
     this.state = {
       errorMessage: null,
-      rating: null, // 1 - 5
+      rating: null,
       ratingValid: false,
-      recommend: null, // Recommendation will be captured via a radio button array of “Yes” and “No”.
-      // Default radio button behavior will apply.
+      recommend: null,
       recommendValid: false,
-      characteristics: {},
-      characteristicsValid: function(metaCharacteristics) {
+      characteristics: function(mc) {
         let output = {};
-        for (let key in metaCharacteristics) {
-          output[key] = false;
+        for (let key in mc) {
+          output[mc[key].id] = 3;
         }
         return output;
       }(this.props.metaCharacteristics),
-      summary: '', // A text input allowing up to 60 characters.
-      // Placeholder text should read: “Example: Best purchase ever!”
-      // Optional
+      summary: '',
       summaryValid: true,
-      body: '', // A text input allowing up to 1000 characters.
-      // Placeholder text should read: “Why did you like the product or not?”.
-      // The review must be over 50 characters long in order to be submitted. If the user tries to submit a review shorter than 50 characters, then the submission should fail in the same manner as it would for a blank mandatory field.
+      body: '',
       bodyValid: false,
-      photos: [], // Up to 5 photos allowed
-      name: '', // A text input allowing up to 60 characters for the user’s display name.
-      // Placeholder text should read: “Example: jackson11!”.
-      // Below this field, the text “For privacy reasons, do not use your full name or email address” will appear.
+      photos: [],
+      name: '',
       nameValid: false,
-      email: '', // A text input allowing up to 60 characters.
-      // Placeholder text should read: “Example: jackson11@email.com”.
-      // Below this field, the text “For authentication reasons, you will not be emailed” will appear.
+      email: '',
       emailValid: false,
       showFormImageModal: false
     };
@@ -58,6 +49,7 @@ export default class ReviewForm extends React.Component {
     this.submitPhoto = this.submitPhoto.bind(this);
     this.openFormImageModal = this.openFormImageModal.bind(this);
     this.closeFormImageModal = this.closeFormImageModal.bind(this);
+    this.onCharValueChange = this.onCharValueChange.bind(this);
   }
 
   postReview() {
@@ -102,16 +94,24 @@ export default class ReviewForm extends React.Component {
     this.setState({showFormImageModal: false});
   }
 
+  onCharValueChange(characteristic, value) {
+    let characteristics = this.state.characteristics;
+    characteristics[this.props.metaCharacteristics[characteristic].id] = parseInt(value);
+    this.setState({characteristics});
+  }
+
   render() {
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
+        <h2>Leave a Review</h2>
         <div className='review-form-rating'>
           {'Rating '}
           <Rating
             sx={{
-              color: this.props.paletteMap[this.state.rating || 3][1]
+              color: this.props.paletteMap[this.state.rating || 3]
             }}
             name="rating"
+            size='large'
             value={this.state.rating}
             onChange={(e) =>
               this.setState({rating: parseInt(e.target.value)}, () => {
@@ -124,69 +124,52 @@ export default class ReviewForm extends React.Component {
         </div>
         <div className='review-form-recommend'>
           {'Do you recommend this product?'}
-          <label>
-            <input
-              type='radio'
-              name='recommend-true'
-              value='true'
-              checked={this.state.recommend === true}
-              onChange={(e) =>
-                this.setState({recommend: true}, () => {
-                  if (!this.state.recommendValid) {
-                    this.setState({recommendValid: true});
-                  }
-                })
-              }
-            />
-            Yes
-          </label>
-          <label>
-            <input
-              type='radio'
-              name='recommend-false'
-              value='false'
-              checked={this.state.recommend === false}
-              onChange={(e) =>
-                this.setState({recommend: false}, () => {
-                  if (!this.state.recommendValid) {
-                    this.setState({recommendValid: true});
-                  }
-                })
-              }
-            />
-            No
-          </label>
+          <div>
+            <label>
+              <input
+                type='radio'
+                name='recommend-true'
+                value='true'
+                checked={this.state.recommend === true}
+                onChange={(e) =>
+                  this.setState({recommend: true}, () => {
+                    if (!this.state.recommendValid) {
+                      this.setState({recommendValid: true});
+                    }
+                  })
+                }
+              />
+              Yes
+            </label>
+            <label>
+              <input
+                type='radio'
+                name='recommend-false'
+                value='false'
+                checked={this.state.recommend === false}
+                onChange={(e) =>
+                  this.setState({recommend: false}, () => {
+                    if (!this.state.recommendValid) {
+                      this.setState({recommendValid: true});
+                    }
+                  })
+                }
+              />
+              No
+            </label>
+          </div>
         </div>
         <div className='review-form-characteristics'>
-          {'Characteristics'}
-          {Object.keys(this.props.metaCharacteristics).map((characteristic) => (
-            <div key={characteristic.toLowerCase()} className='review-form-characteristics-entry'>
-              {characteristic}
-              {Object.keys(this.props.characteristicChart[characteristic]).map((key) => (
-                <div key={`${characteristic.toLowerCase()}-${key}`} className='review-form-characteristics-entry-value'>
-                  <label>
-                    <input
-                      type='radio'
-                      name={`characteristic-${characteristic.toLowerCase()}-${key}`}
-                      value={key}
-                      checked={this.state.characteristics[this.props.metaCharacteristics[characteristic].id] === parseInt(key)}
-                      onChange={(e) => {
-                        let characteristics = this.state.characteristics;
-                        characteristics[this.props.metaCharacteristics[characteristic].id] = parseInt(e.target.value);
-                        this.setState({characteristics});
-                        if (!this.state.characteristicsValid[characteristic]) {
-                          let characteristicsValid = this.state.characteristicsValid;
-                          characteristicsValid[characteristic] = true;
-                          this.setState({characteristicsValid});
-                        }
-                      }}
-                    />
-                    {this.props.characteristicChart[characteristic][key]}
-                  </label>
-                </div>
-              ))}
-            </div>
-          ))}
+          {Object.keys(this.props.metaCharacteristics).map((characteristic) =>
+            <ReviewFormCharacteristic
+              key={characteristic.toLowerCase()}
+              metaCharacteristics={this.props.metaCharacteristics}
+              characteristic={characteristic}
+              characteristics={this.state.characteristics}
+              characteristicChart={this.props.characteristicChart}
+              onCharValueChange={this.onCharValueChange}
+            />
+          )}
         </div>
         <div className='review-form-summary'>
           <label>
@@ -277,16 +260,7 @@ export default class ReviewForm extends React.Component {
               this.state.summaryValid &&
               this.state.bodyValid &&
               this.state.nameValid &&
-              this.state.emailValid &&
-              function(characteristicsValid) {
-                for (let characteristic in characteristicsValid) {
-                  if (!characteristicsValid[characteristic]) {
-                    return false;
-                  }
-                }
-                return true;
-              }(this.state.characteristicsValid)
-            )
+              this.state.emailValid)
           }
         />
         <div id='review-form-error'>

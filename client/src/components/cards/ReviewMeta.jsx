@@ -1,12 +1,11 @@
 import React from 'react';
 import { Rating, LinearProgress, Skeleton } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import ReviewMetaCharacteristicsList from '../lists/ReviewMetaCharacteristicsList.jsx';
 import ReviewMetaStarBreakdown from '../cards/ReviewMetaStarBreakdown.jsx';
 
-const ReviewMeta = ({reviewMeta, productId, filterByRating, paletteMap, characteristicChart}) => {
+const ReviewMeta = ({reviewMeta, filter, filterByRating, resetRatingFilter, paletteMap, characteristicChart}) => {
 
   let averageRating = 0;
   let totalReviews = 0;
@@ -50,8 +49,17 @@ const ReviewMeta = ({reviewMeta, productId, filterByRating, paletteMap, characte
           </div>
         </div>
       }
-      <ReviewMetaStarBreakdown reviewMeta={reviewMeta} filterByRating={filterByRating} totalReviews={totalReviews}/>
-      <ReviewMetaCharacteristicsList reviewMeta={reviewMeta} characteristicChart={characteristicChart}/>
+      <ReviewMetaStarBreakdown
+        reviewMeta={reviewMeta}
+        filter={filter}
+        filterByRating={filterByRating}
+        resetRatingFilter={resetRatingFilter}
+        totalReviews={totalReviews}
+      />
+      <ReviewMetaCharacteristicsList
+        reviewMeta={reviewMeta}
+        characteristicChart={characteristicChart}
+      />
     </div>
   );
 

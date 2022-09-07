@@ -6,7 +6,7 @@ const ReviewMetaCharacteristic = ({char, characteristics, characteristicChart}) 
   return (
     <div className='review-meta-characteristics-entry'>
       <div className='review-meta-characteristic-labels'>
-        <span id='review-meta-characteristic-center'>{char}</span>
+        <span id='review-meta-characteristic-title'>{char}</span>
       </div>
       <Slider
         sx={{
@@ -16,18 +16,7 @@ const ReviewMetaCharacteristic = ({char, characteristics, characteristicChart}) 
         min={1}
         max={5}
         marks
-        // marks={function() {
-        //   let array = Object.keys(characteristicChart[char]);
-        //   let output = [];
-        //   for (let i = 0; i < array.length; i++) {
-        //     let label = '';
-        //     if (Math.round(parseFloat(characteristics[char]['value'])) === parseInt(array[i])) {
-        //       label = characteristicChart[char][array[i]];
-        //     }
-        //     output.push({value: array[i], label});
-        //   }
-        //   return output;
-        // }()}
+        disabled={true}
         valueLabelDisplay="off"
       />
       <div className='review-meta-characteristic-labels'>
