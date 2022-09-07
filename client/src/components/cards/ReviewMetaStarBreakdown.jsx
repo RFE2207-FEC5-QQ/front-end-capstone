@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinearProgress, Skeleton } from '@mui/material';
+import { LinearProgress, Skeleton, Rating } from '@mui/material';
 
 const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatingFilter, totalReviews}) => {
 
@@ -20,7 +20,14 @@ const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatin
                 return (
                   <div className='review-meta-filters-entry' key={`${value}-star-filter`}>
                     <button onClick={() => filterByRating(value)}>x</button>
-                    {`${value} Stars`}
+                    <Rating
+                      sx={{
+                        color: '#121212'
+                      }}
+                      name="rating"
+                      value={value}
+                      readOnly
+                    />
                   </div>
                 );
               });

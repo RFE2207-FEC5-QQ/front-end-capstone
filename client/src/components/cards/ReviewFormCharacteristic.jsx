@@ -25,9 +25,9 @@ const ReviewFormCharacteristic = ({metaCharacteristics, characteristic, characte
           for (let i = 0; i < characteristicValues.length; i++) {
             if (i % 2 === 0) {
               let label = characteristicChart[characteristic][i + 1];
-              output.push({value: characteristicValues[i], label});
+              output.push({value: parseInt(characteristicValues[i]), label});
             } else {
-              output.push({value: characteristicValues[i], label: ''});
+              output.push({value: parseInt(characteristicValues[i]), label: ''});
             }
           }
           return output;
