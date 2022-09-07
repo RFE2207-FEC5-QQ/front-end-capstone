@@ -185,7 +185,6 @@ class Reviews extends React.Component {
             reviews={this.state.reviews}
             productId={this.props.productId}
             sort={this.state.sort}
-            productId={this.props.productId}
             getReviews={this.getReviews}
             openReviewModal={this.openReviewModal}
             handleSortChange={this.handleSortChange}
