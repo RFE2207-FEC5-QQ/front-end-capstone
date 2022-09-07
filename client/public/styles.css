@@ -996,6 +996,14 @@ body {
   cursor: crosshair;
 }
 
+.expanded-image-null {
+  position: absolute;
+  border-radius: 5px;
+  border: solid 1px var(--images-border);
+  cursor: zoom-in;
+  padding: 30% 40%;
+}
+
 .zoom-image-container {
   cursor: zoom-out;
 }
@@ -1069,6 +1077,14 @@ body {
   border: solid 1px var(--images-border);
   cursor: zoom-in;
   /* transition: 0.5s; */
+}
+
+.selected-image-null {
+  position: absolute;
+  border-radius: 5px;
+  border: solid 1px var(--images-border);
+  cursor: zoom-in;
+  padding: 35.4% 40%;
 }
 
 .right-arrow {

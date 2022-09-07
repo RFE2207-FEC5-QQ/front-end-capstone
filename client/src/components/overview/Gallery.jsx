@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Zoom from 'react-img-zoom';
 
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CropFreeIcon from '@mui/icons-material/CropFree';
@@ -104,14 +105,20 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
             className={carouselIndex === 0 ? 'no-arrow' : 'up-arrow'}
           />
           {photos.map((item, idx) => {
-            return (
-              <img
-                key={idx}
-                className={idx === index ? 'selected-carousel-image carousel-image' : 'carousel-image'}
-                src={item.thumbnail_url}
-                onClick={() => {carouselClick(idx)}}
-              ></img>
-            )
+            if (item.thumbnail_url) {
+              return (
+                <img
+                  key={idx}
+                  className={idx === index ? 'selected-carousel-image carousel-image' : 'carousel-image'}
+                  src={item.thumbnail_url}
+                  onClick={() => {carouselClick(idx)}}
+                ></img>
+              )
+            } else {
+              return (
+                <ImageNotSupportedIcon />
+              )
+            }
           })}
           <KeyboardArrowDownIcon
             onClick={clickDown}
@@ -123,11 +130,17 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
             onClick={clickBack}
             className={(carouselIndex === 0 && index === 0) ? 'no-arrow' : 'left-arrow'}
           />
-          <img
-            className='selected-image'
-            src={photo.url}
-            onClick={cropClick}
-            ></img>
+          {photo.url ? (
+            <img
+              className='selected-image'
+              src={photo.url}
+              onClick={cropClick}
+              ></img>
+          ) : (
+            <ImageNotSupportedIcon
+              className='selected-image-null'
+            />
+          )}
           <ArrowForwardIcon
             onClick={clickForward}
             className={(index === photos.length - 1 && carouselIndex === carousel.length - 1) ? 'no-arrow' : 'right-arrow'}
