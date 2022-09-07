@@ -36,7 +36,7 @@
   --text-hover-color: #8e8e8e;
   --text-sale-color: #C0392B;
   --theme-icon-color: #282828;
-  --header-text-size: 2rem;
+  --header-text-size: 1.5rem;
   --secondary-header-text-size: 0.9rem;
   --gallery-background-color: #E8E8E8;
   --images-border: black;
@@ -101,7 +101,7 @@
 /* Standard content formatting */
 html {
   /* Current navbar height is 7rem. Change as necessary along with bg-placeholder. */
-  margin-top: 11rem;
+  margin-top: 8rem;
   scroll-behavior: smooth;
 }
 
@@ -124,7 +124,7 @@ body {
 
 /* For hiding or showing navbar during scrolling */
 .scrolled-down {
-  transform: translateY(-70%);
+  transform: translateY(-65%);
   transition: transform 0.75s ease-in-out;
 }
 .scrolled-up {
@@ -137,7 +137,7 @@ body {
   position: fixed;
   background-color: var(--bg-theme-color);
   width: 100%;
-  height: 11rem;
+  height: 7rem;
   top: 0;
   z-index: 998;
 }
@@ -169,7 +169,7 @@ body {
   font-family: var(--header-font);
   font-size: var(--header-text-size);
   padding-left: 2rem;
-  padding-top: 0.25rem;
+  /* padding-top: 0.25rem; */
   /* padding-bottom: 0.25rem; */
 }
 
@@ -178,15 +178,15 @@ body {
   margin: auto;
   filter: invert(0.5) sepia(1) saturate(2) opacity(87%);
   margin-top: 0.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.8rem;
+  height: 1.8rem;
   z-index: 999;
 }
 
 .title {
   display: flex;
   justify-content: center;
-  height: 3rem;
+  height: 2rem;
   font-weight: var(--header-font-weight);
 }
 

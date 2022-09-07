@@ -72,12 +72,6 @@ const Navigation = ({ modes, toggleTheme }) => {
               className={`nav-info ${punkedOut}`}
             >Related Products</a>
             <a
-              href='#questions'
-              id='question-head'
-              onClick={toggleFocus}
-              className={`nav-info ${punkedOut}`}
-            >Questions</a>
-            <a
               href='#reviews'
               id='review-head'
               onClick={toggleFocus}
@@ -89,7 +83,6 @@ const Navigation = ({ modes, toggleTheme }) => {
               onClick={toggleFocus}
               className={`nav-info ${punkedOut}`}
             >Contact</a>
-            {/* <div className='top-bar-container'> */}
             {darkMode
               ? <DarkModeOutlinedIcon
                 aria-label='dark-icon'
@@ -102,7 +95,6 @@ const Navigation = ({ modes, toggleTheme }) => {
                 onClick={ toggleDark }
               />
             }
-            {/* </div> */}
           </div>
         </div>
       </div>

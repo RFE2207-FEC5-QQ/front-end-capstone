@@ -30,43 +30,19 @@ class App extends React.Component {
   }
 
   changeProduct(item) {
-    this.setState({
-      productId: item,
-      productDetail: this.state.productDetail,
-      darkMode: this.state.darkMode,
-      punkMode: this.state.punkMode,
-      psychMode: this.state.psychMode,
-    });
+    this.setState({productId: item});
   }
 
   darkMode() {
-    this.setState({
-      productId: this.state.productId,
-      productDetail: this.state.productDetail,
-      darkMode: !this.state.darkMode,
-      punkMode: this.state.punkMode,
-      psychMode: this.state.psychMode,
-    });
+    this.setState({darkMode: !this.state.darkMode});
   }
 
   punkMode() {
-    this.setState({
-      productId: this.state.productId,
-      productDetail: this.state.productDetail,
-      darkMode: this.state.darkMode,
-      punkMode: !this.state.punkMode,
-      psychMode: this.state.psychMode,
-    });
+    this.setState({punkMode: !this.state.punkMode});
   }
 
   psychMode() {
-    this.setState({
-      productId: this.state.productId,
-      productDetail: this.state.productDetail,
-      darkMode: this.state.darkMode,
-      punkMode: this.state.punkMode,
-      psychMode: !this.state.psychMode,
-    });
+    this.setState({psychMode: !this.state.psychMode});
   }
 
 
@@ -117,9 +93,6 @@ class App extends React.Component {
         this.setState({
           productId: allProducts[0].id,
           productDetail: allProducts[0],
-          darkMode: this.state.darkMode,
-          punkMode: this.state.punkMode,
-          psychMode: this.state.psychMode,
         });
       })
       .catch(err => {
@@ -147,7 +120,6 @@ class App extends React.Component {
       }
       lastScroll = currentScroll;
     });
-
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -178,13 +150,8 @@ class App extends React.Component {
       axios(options)
         .then(res => {
           const currentProduct = res.data;
-          // console.log('current product', currentProduct)
           this.setState({
-            productId: this.state.productId,
             productDetail: currentProduct,
-            darkMode: this.state.darkMode,
-            punkMode: this.state.punkMode,
-            psychMode: this.state.psychMode,
           });
         })
         .catch(err => {
@@ -208,21 +175,38 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <Navigation modes={modes} toggleTheme={themeTogglers}/>
+        <div id='navigation-section'>
+          <ClickTracker widget={'navigation-section'} render={(handleClick) => (
+            <Navigation
+              handleClick={handleClick}
+              modes={modes}
+              toggleTheme={themeTogglers}/>
+          )} />
+        </div>
         <div id='overview-section'>
           <ClickTracker widget={'overview-section'} render={(handleClick) => (
             <Overview productId={this.state.productId} handleClick={handleClick}/>
           )} />
         </div>
-        <RelatedProducts
-          onClick={this.changeProduct}
-          productId={this.state.productId}
-          product={this.state.productDetail}
-          modes={modes}/>
-        <Outfit
-          productId={this.state.productId}
-          product={this.state.productDetail}
-        />
+        <div id='related-section'>
+          <ClickTracker widget={'related-section'} render={(handleClick) => (
+            <RelatedProducts
+              handleClick={handleClick}
+              onClick={this.changeProduct}
+              productId={this.state.productId}
+              product={this.state.productDetail}
+              modes={modes}/>
+          )} />
+        </div>
+        <div id='outfit-section'>
+          <ClickTracker widget={'outfit-section'} render={(handleClick) => (
+            <Outfit
+              handleClick={handleClick}
+              productId={this.state.productId}
+              product={this.state.productDetail}
+            />
+          )} />
+        </div>
         <QuestionsAnswers/>
         <div id='reviews-section'>
           <ClickTracker widget={'reviews-section'} render={(handleClick) => (
