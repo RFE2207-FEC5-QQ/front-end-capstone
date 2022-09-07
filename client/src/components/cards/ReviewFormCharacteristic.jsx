@@ -8,6 +8,7 @@ const ReviewFormCharacteristic = ({metaCharacteristics, characteristic, characte
       <div className='review-meta-characteristic-labels'>
         <span id='review-form-characteristic-title'>{characteristic}</span>
       </div>
+      {/* {TODO: SET DEFAULT TO NULL, ALSO NEEDS TO BE DONE IN REVIEWFORM.JSX} */}
       <Slider
         sx={{
           maxWidth: 5 / 6
