@@ -403,12 +403,15 @@ body {
   /* border: 2px solid greenyellow; */
   display: flex;
   flex-direction: row;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .product-name > * {
   width: 7rem;
   font-size: 1rem;
   text-align: center;
+  font-weight: bolder;
 }
 
 .product-comparator {
