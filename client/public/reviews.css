@@ -168,6 +168,7 @@
   padding: 15px;
   margin-top: 20px;
   margin-bottom: 20px;
+  word-wrap: break-word;
 }
 
 .review-buttons {
