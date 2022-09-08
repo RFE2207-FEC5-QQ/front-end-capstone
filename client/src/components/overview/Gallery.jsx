@@ -116,7 +116,12 @@ const Gallery = ({ product, selectedStyle, updateView, defaultView }) => {
               )
             } else {
               return (
-                <ImageNotSupportedIcon />
+                <ImageNotSupportedIcon
+                  className='selected-carousel-image'
+                  sx={{
+                    padding: '9px'
+                  }}
+                />
               )
             }
           })}
