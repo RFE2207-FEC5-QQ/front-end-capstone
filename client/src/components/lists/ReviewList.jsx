@@ -1,13 +1,11 @@
 import React from 'react';
 
-import { InputLabel, MenuItem, FormControl, Skeleton, Button } from '@mui/material';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { InputLabel, MenuItem, FormControl, Skeleton, Button, Select } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
 
 const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openReviewModal, handleSortChange, handleMoreReviews, atListEnd, darkMode}) => {
-
-  // console.log(atListEnd);
 
   return (
     <div className='review-list'>
@@ -31,7 +29,7 @@ const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openRev
           <MenuItem value={'relevant'}>relevance</MenuItem>
         </Select>
       </div>
-      {reviews.length === 0 ? <Skeleton sx={{mt: 2}} variant='rectangular' height='500px'/>
+      {reviews.length === 0 ? <Skeleton sx={{mt: 2}} variant='rectangular' height='620px'/>
         :
         <div className='review-list-entries'>
           {reviews.map((review, index) => (

@@ -70,7 +70,11 @@
   color: var(--text-theme-color);
   background-color: var(--header-divider-color);
 }
-
+/*
+.review-meta-filters .MuiButton-root {
+  padding: 0;
+}
+ */
 .review-meta-filters-entry {
   display: flex;
   align-items: center;
@@ -105,9 +109,10 @@
 .review-meta-characteristics-entry .MuiSlider-thumb {
 }
  */
+/*
 .review-meta-characteristics-entry .Mui-disabled {
 }
-
+ */
 .review-meta-characteristic-labels, .review-form-characteristic-labels {
   display: grid;
   grid-auto-flow: column;

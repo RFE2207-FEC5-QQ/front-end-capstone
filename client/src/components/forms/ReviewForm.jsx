@@ -8,7 +8,6 @@ import ReviewFormCharacteristic from '../cards/ReviewFormCharacteristic.jsx';
 
 import { paletteMap } from '../../App.jsx';
 
-
 // TODO: Should actually refactor this and the other modal (anything with toggled visibility)
 // to store their visibility within the component, that way you don't re-render the parent every time
 // You show / hide the component

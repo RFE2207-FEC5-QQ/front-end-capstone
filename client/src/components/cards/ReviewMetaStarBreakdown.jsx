@@ -9,10 +9,10 @@ const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatin
       {/* {TODO: ADD 'FILTERS APPLIED' SECTION} */}
       {filter['rating'] &&
         <div className='review-meta-filters'>
-          <Button onClick={() => resetRatingFilter()}>Remove All Filters</Button>
           <div id='review-meta-filters-title'>
             {filter['rating'].length === 1 ? 'Filter Applied' : 'Filters Applied'}
           </div>
+          <Button onClick={() => resetRatingFilter()}>Remove All Filters</Button>
           {
             function() {
               let filtersSorted = filter['rating'].slice().sort();
