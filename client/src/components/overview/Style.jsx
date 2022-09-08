@@ -58,8 +58,9 @@ const Style = ({ styles, updateStyle, selectedStyle }) => {
                       className='style-image'
                       onClick={() => {styleClick(style)}}
                       sx={{
-                        width: '68px',
-                        height: '68px'
+                        width: '28px',
+                        height: '28px',
+                        padding: '20px'
                       }}
                     />
                   </Grid>
