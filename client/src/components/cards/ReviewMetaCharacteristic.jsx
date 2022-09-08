@@ -10,13 +10,14 @@ const ReviewMetaCharacteristic = ({char, characteristics, characteristicChart}) 
       </div>
       <Slider
         sx={{
-          padding: 0
+          padding: 0,
+          color: '#99856f',
         }}
         value={Number(parseFloat(characteristics[char]['value']).toFixed(1))}
         min={1}
         max={5}
         marks
-        disabled={true}
+        // disabled={true}
         valueLabelDisplay="off"
       />
       <div className='review-meta-characteristic-labels'>

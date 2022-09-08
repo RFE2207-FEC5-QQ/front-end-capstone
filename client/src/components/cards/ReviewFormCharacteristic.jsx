@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Slider } from '@mui/material';
 
-const ReviewFormCharacteristic = ({metaCharacteristics, characteristic, characteristics, characteristicChart, onCharValueChange}) => {
+const ReviewFormCharacteristic = ({metaCharacteristics, characteristic, characteristics, characteristicChart, onCharValueChange, darkMode}) => {
 
   return (
     <div id='review-form-characteristics-entry' align='center'>
@@ -11,7 +11,8 @@ const ReviewFormCharacteristic = ({metaCharacteristics, characteristic, characte
       {/* {TODO: SET DEFAULT TO NULL, ALSO NEEDS TO BE DONE IN REVIEWFORM.JSX} */}
       <Slider
         sx={{
-          maxWidth: 5 / 6
+          maxWidth: 5 / 6,
+          color: '#99856f',
         }}
         min={1}
         max={5}

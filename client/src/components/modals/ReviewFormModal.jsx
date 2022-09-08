@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, Button } from '@mui/material';
 
 import ReviewForm from '../forms/ReviewForm.jsx';
 
@@ -27,7 +27,7 @@ const ReviewFormModal = ({metaCharacteristics, characteristicChart, productId, c
           />
         </DialogContent>
         <DialogActions>
-          <button onClick={closeReviewModal}>Close</button>
+          <Button onClick={closeReviewModal}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>

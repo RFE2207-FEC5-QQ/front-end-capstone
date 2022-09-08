@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Rating } from '@mui/material';
+import { Rating, Button } from '@mui/material';
 
 import ReviewFormImageModal from '../modals/ReviewFormImageModal.jsx';
 import ReviewImageList from '../lists/ReviewImageList.jsx';
@@ -214,7 +214,7 @@ export default class ReviewForm extends React.Component {
         </div>
         <div id='review-form-photos' className='review-form-entry'>
           <div className='review-form-title'>{'Photos'}</div>
-          <button disabled={this.state.photos.length > 4} onClick={this.openFormImageModal}>Add Photos</button>
+          <Button disabled={this.state.photos.length > 4} onClick={this.openFormImageModal}>Add Photos</Button>
           {this.state.photos.length > 0 && <ReviewImageList photoUrls={this.state.photos}/>}
           {this.state.showFormImageModal && <ReviewFormImageModal photos={this.state.photos} submitPhoto={this.submitPhoto} closeModal={this.closeFormImageModal}/>}
         </div>
@@ -258,9 +258,8 @@ export default class ReviewForm extends React.Component {
           </label>
           <div><small>{`Max characters left: ${(60 - this.state.email.length).toString()}`}</small></div>
         </div>
-        <input
+        <Button
           type='submit'
-          value='Submit'
           disabled={
             !(this.state.ratingValid &&
               this.state.recommendValid &&
@@ -269,7 +268,7 @@ export default class ReviewForm extends React.Component {
               this.state.nameValid &&
               this.state.emailValid)
           }
-        />
+        >Submit</Button>
         <div id='review-form-error'>
           {this.state.errorMessage}
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InputLabel, MenuItem, FormControl, Skeleton } from '@mui/material';
+import { InputLabel, MenuItem, FormControl, Skeleton, Button } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
@@ -42,7 +42,7 @@ const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openRev
       {reviews.length === 0 ? <Skeleton variant='rectangular' height='100px'/>
         :
         <div className='review-buttons'>
-          <button hidden={atListEnd} onClick={handleMoreReviews}>More Reviews</button> <button onClick={openReviewModal}>Add a Review +</button>
+          <Button hidden={atListEnd} onClick={handleMoreReviews}>More Reviews</Button> <Button onClick={openReviewModal}>Add a Review +</Button>
         </div>
       }
     </div>

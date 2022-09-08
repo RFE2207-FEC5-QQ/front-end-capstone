@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, Button } from '@mui/material';
 
 const ReviewImageModal = ({id, url, closeImageModal}) => {
 
@@ -13,7 +13,7 @@ const ReviewImageModal = ({id, url, closeImageModal}) => {
           />
         </DialogContent>
         <DialogActions>
-          <button onClick={closeImageModal}>Close</button>
+          <Button onClick={closeImageModal}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>
