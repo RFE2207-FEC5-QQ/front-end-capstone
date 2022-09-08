@@ -844,12 +844,11 @@ body::-webkit-scrollbar {
 
 .expanded-left-arrow {
   position: absolute;
-  /* left: 110px;
-  top: 300px; */
   left: 8%;
   top: 50%;
   cursor: pointer;
   transition: 0.5s;
+  color: var(--images-border);
 }
 
 .expanded-left-arrow:hover {
@@ -933,6 +932,7 @@ body::-webkit-scrollbar {
   left: 4%;
   top: 50%;
   cursor: pointer;
+  color: var(--images-border);
   /* transition: 1s; */
 }
 
@@ -1014,9 +1014,10 @@ body::-webkit-scrollbar {
   font-weight: bold;
 }
 
-.original-price {
+.org-price {
   font: bold;
   display: inline;
+  text-decoration: line-through;
 }
 .sale-price {
   color: #fd0505;
