@@ -200,7 +200,7 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            <div><small>{`Max characters left: ${(60 - this.state.summary.length).toString()}`}</small></div>
+            <div><small>{`Max characters left: [${(60 - this.state.summary.length).toString()}]`}</small></div>
           </label>
         </div>
         <div id='review-form-body' className='review-form-entry'>
@@ -220,7 +220,7 @@ export default class ReviewForm extends React.Component {
               }
             />
             <div><small>{this.state.bodyValid ? 'Minimum reached' : `Minimum required characters left: [${(50 - this.state.body.length).toString()}]`}</small></div>
-            <div><small>{`Max characters left: ${(1000 - this.state.body.length).toString()}`}</small></div>
+            <div><small>{`Max characters left: [${(1000 - this.state.body.length).toString()}]`}</small></div>
           </label>
         </div>
         <div id='review-form-photos' className='review-form-entry'>
@@ -247,7 +247,7 @@ export default class ReviewForm extends React.Component {
               }
             />
           </label>
-          <small>{`Max characters left: ${(60 - this.state.name.length).toString()}`}</small>
+          <small>{`Max characters left: [${(60 - this.state.name.length).toString()}]`}</small>
         </div>
         <div id='review-form-email' className='review-form-entry'>
           <div className='review-form-title'>{'Email'}</div>
@@ -267,7 +267,7 @@ export default class ReviewForm extends React.Component {
               }
             />
           </label>
-          <div><small>{`Max characters left: ${(60 - this.state.email.length).toString()}`}</small></div>
+          <div><small>{`Max characters left: [${(60 - this.state.email.length).toString()}]`}</small></div>
         </div>
         <Button
           type='submit'

@@ -24,19 +24,16 @@ const ReviewFormImageModal = ({photos, submitPhoto, closeModal}) => {
         <DialogContent>
           <div className='review-form-image-modal-entry'>
             {photoLimitReached ? <p>Photo limit reached</p> :
-              <label>
-                {'Photo URL'}
-                <input
-                  type='text'
-                  name='photourl'
-                  placeholder='Enter photo URL'
-                  value={photoUrl}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setPhotoUrl(e.target.value);
-                  }}
-                />
-              </label>
+              <input
+                type='text'
+                name='photourl'
+                placeholder='Enter photo URL'
+                value={photoUrl}
+                onChange={(e) => {
+                  e.preventDefault();
+                  setPhotoUrl(e.target.value);
+                }}
+              />
             }
           </div>
           <Button

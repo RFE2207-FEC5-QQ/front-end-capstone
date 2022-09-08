@@ -1,12 +1,12 @@
 import React from 'react';
 import { LinearProgress, Skeleton, Rating, Button } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatingFilter, totalReviews, darkMode}) => {
 
   return (
     <div className='review-meta-avg-rating-breakdown'>
       <h2 className='review-meta-title'>Rating Breakdown</h2>
-      {/* {TODO: ADD 'FILTERS APPLIED' SECTION} */}
       {filter['rating'] &&
         <div className='review-meta-filters'>
           <div id='review-meta-filters-title'>
@@ -19,7 +19,9 @@ const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatin
               return filtersSorted.map((value) => {
                 return (
                   <div className='review-meta-filters-entry' key={`${value}-star-filter`}>
-                    <Button onClick={() => filterByRating(value)}>x</Button>
+                    <CloseIcon
+                      onClick={() => filterByRating(value)}>
+                    </CloseIcon>
                     <Rating
                       sx={{
                         color: darkMode ? 'rgba(230, 230, 230, 0.87)' : '#000000'
