@@ -24,10 +24,7 @@
   --shadow-color: rgba(0, 0, 0, 0.15);
   --header-font: 'Lane';
   --header-font-weight: 900;
-  /* --header-divider-color: #F5F5F5; */
-  --header-divider-color: #f2e4ea;
-  /* --header-divider-color: #87b3fa; */
-  /* --header-divider-color: #f0e5f4; */
+  --header-divider-color: #99856f;
   --header-hover-color: #2d80b8;
   --text-font: Helvetica-light, Helvetica;
 
@@ -36,7 +33,7 @@
   --text-hover-color: #8e8e8e;
   --text-sale-color: #C0392B;
   --theme-icon-color: #282828;
-  --header-text-size: 1.5rem;
+  --header-text-size: 1.7rem;
   --secondary-header-text-size: 0.9rem;
   --gallery-background-color: #E8E8E8;
   --images-border: black;
@@ -46,15 +43,12 @@
 
 /* Apply custom themes and variables here */
 .dark-mode {
-  /* --bg-theme-color: #23262E; */
   --bg-theme-color: #24232e;
   --text-theme-color: rgba(230, 230, 230, 0.87);
   --header-font-weight: 100;
-  /* --header-divider-color: #1f1f23; */
   --header-divider-color: #403A4D;
   --header-hover-color: #37a0e6;
   --popup-theme-color: #1B1D24;
-  /* --shadow-color: rgba(0, 0, 0, 0.3); */
   --text-font-weight: 100;
   --text-hover-color: rgba(255, 255, 255, 1);
   --text-sale-color: rgba(231, 76, 70, 0.87);
@@ -103,6 +97,7 @@ html {
   /* Current navbar height is 7rem. Change as necessary along with bg-placeholder. */
   margin-top: 8rem;
   scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
 }
 
 body {
@@ -153,13 +148,13 @@ body {
 } */
 
 .theme-icon {
-  border-radius: 50%;
-  padding-bottom: 0.4rem;
+  position: relative;
+  top: -0.25rem;
   color: var(--theme-icon-color);
+  color: white;
 }
 
 .theme-icon:hover {
-  color: var(--text-hover-color);
   cursor: pointer;
 }
 
@@ -169,14 +164,12 @@ body {
   font-family: var(--header-font);
   font-size: var(--header-text-size);
   padding-left: 2rem;
-  /* padding-top: 0.25rem; */
-  /* padding-bottom: 0.25rem; */
 }
 
 .logo {
   display: flex;
   margin: auto;
-  filter: invert(0.5) sepia(1) saturate(2) opacity(87%);
+  filter: invert(1) sepia(2) saturate(2) opacity(87%);
   margin-top: 0.5rem;
   width: 1.8rem;
   height: 1.8rem;
@@ -186,8 +179,9 @@ body {
 .title {
   display: flex;
   justify-content: center;
-  height: 2rem;
+  height: 2.2rem;
   font-weight: var(--header-font-weight);
+  color: #99856f;
 }
 
 .secondary-header {
@@ -211,7 +205,7 @@ body {
   cursor: pointer;
   outline: none;
   text-decoration: none;
-  color: var(--text-theme-color);
+  color: white;
   padding-bottom: 0.4rem;
   border-bottom: 3px solid transparent;
 }
@@ -219,17 +213,15 @@ body {
 .nav-info:hover {
   cursor: pointer;
   outline: none;
-  color: var(--header-hover-color);
-  border-bottom: 3px solid var(--header-hover-color);
-  /* border-bottom: 3px solid var(--text-theme-color); */
+  color: white;
+  border-bottom: 3px solid white;
 }
 
 .header-focused {
   cursor: pointer;
   outline: none;
-  color: var(--header-hover-color);
-  /* border-bottom: 3px solid var(--text-theme-color); */
-  border-bottom: 3px solid var(--header-hover-color);
+  color: white;
+  border-bottom: 3px solid white;
 }
 
 /* Common text size and color formatting for specific headers. */
@@ -239,7 +231,7 @@ body {
 .strike-original-price,
 .comparison-title,
 .modal-button {
-  color: #909497;
+  color: #99856f;
 }
 
 /* Related products carousel and cards */
@@ -486,11 +478,11 @@ body {
 }
 
 .add-outfits-btn {
-  color: #A6ACAF;
+  color: #99856f;
 }
 
 .add-outfits-btn:hover {
-  color: #909497;
+  color: #786856;
   /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2)) */
 }
 
@@ -794,6 +786,7 @@ body {
   width: 100%;
   height: 10%;
   padding: 2rem;
+  color: white;
 }
 
 /* Overview */
