@@ -804,7 +804,7 @@ body {
 /* Image Gallery */
 /* Expanded View */
 .expanded-view {
-  background-color: var(--gallery-background-color);
+  /* background-color: var(--gallery-background-color); */
   position: relative;
   width: 148%;
   height: 600px;
@@ -870,7 +870,7 @@ body {
 
 /* Default View */
 .overview-gallery {
-  background-color: var(--gallery-background-color);
+  /* background-color: var(--gallery-background-color); */
   position: relative;
   width: 95%;
   height: 600px;
