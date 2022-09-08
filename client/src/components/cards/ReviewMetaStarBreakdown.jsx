@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinearProgress, Skeleton, Rating, Button } from '@mui/material';
 
-const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatingFilter, totalReviews}) => {
+const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatingFilter, totalReviews, darkMode}) => {
 
   return (
     <div className='review-meta-avg-rating-breakdown'>
@@ -46,7 +46,7 @@ const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatin
             <div className='review-meta-avg-rating-breakdown-bar'>
               <LinearProgress
                 sx={{
-                  bgcolor: '#333333',
+                  bgcolor: darkMode ? '#333333' : '#DDDDDD',
                   p: 0.3
                 }}
                 variant='determinate'

@@ -7,7 +7,7 @@ import ReviewMetaStarBreakdown from '../cards/ReviewMetaStarBreakdown.jsx';
 
 import { paletteMap } from '../../App.jsx';
 
-const ReviewMeta = ({reviewMeta, filter, filterByRating, resetRatingFilter, characteristicChart}) => {
+const ReviewMeta = ({reviewMeta, filter, filterByRating, resetRatingFilter, characteristicChart, darkMode}) => {
 
   let averageRating = 0;
   let totalReviews = 0;
@@ -57,6 +57,7 @@ const ReviewMeta = ({reviewMeta, filter, filterByRating, resetRatingFilter, char
         filterByRating={filterByRating}
         resetRatingFilter={resetRatingFilter}
         totalReviews={totalReviews}
+        darkMode={darkMode}
       />
       <ReviewMetaCharacteristicsList
         reviewMeta={reviewMeta}
