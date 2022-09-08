@@ -7,6 +7,16 @@ import Review from '../cards/Review.jsx';
 
 const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openReviewModal, handleSortChange, handleMoreReviews, atListEnd}) => {
 
+  const checkForBottom = (e) => {
+    if (atListEnd) {
+      return;
+    }
+    let targetBottom = e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight + 1;
+    if (targetBottom) {
+      handleMoreReviews();
+    }
+  };
+
   return (
     <div className='review-list'>
       <div className='review-list-top'>
@@ -26,7 +36,7 @@ const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openRev
       </div>
       {reviews.length === 0 ? <Skeleton sx={{mt: 2}} variant='rectangular' height='620px'/>
         :
-        <div className='review-list-entries'>
+        <div className='review-list-entries' onScroll={checkForBottom}>
           {reviews.map((review, index) => (
             <Review review={review} productId={productId} removeReview={removeReview} reviewIndex={index} key={review.review_id}/>
           ))}
