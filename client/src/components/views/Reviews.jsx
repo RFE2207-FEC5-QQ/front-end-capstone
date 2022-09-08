@@ -220,7 +220,10 @@ class Reviews extends React.Component {
             atListEnd: true
           });
         } else {
-          this.setState({reviews});
+          this.setState({
+            reviews,
+            atListEnd: false
+          });
         }
       })
       .catch((error) => {
