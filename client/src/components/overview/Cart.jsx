@@ -95,7 +95,7 @@ const Cart = ({ selectedStyle, skus }) => {
             </InputLabel>
             <Select
               value={size}
-              label="Select"
+              label="Select Size"
               onChange={updateSize}
               id='select-label'
               >
@@ -112,7 +112,7 @@ const Cart = ({ selectedStyle, skus }) => {
             </InputLabel>
             <Select
               value={qty}
-              label="Select"
+              label="-"
               onChange={updateQty}
               disabled={size === ''}
             >
@@ -143,7 +143,6 @@ const Cart = ({ selectedStyle, skus }) => {
             </InputLabel>
             <Select
               value={size}
-              label="Select"
               disabled
               >
             </Select>
