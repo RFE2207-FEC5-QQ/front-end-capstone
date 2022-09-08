@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Grid } from '@mui/material'
+import { Grid } from '@mui/material';
 
 import Info from '../overview/Info.jsx';
 import Style from '../overview/Style.jsx';

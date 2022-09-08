@@ -12,6 +12,7 @@
 
 #reviews-title {
   margin: 0;
+  margin-bottom: 10px;
 }
 
 .review-meta {
@@ -66,8 +67,8 @@
 .review-meta-filters {
   margin-bottom: 5px;
   padding: 5px;
-  color: #121212;
-  background-color: lightyellow;
+  color: var(--text-theme-color);
+  background-color: var(--popup-theme-color);
 }
 
 .review-meta-filters-entry {
@@ -89,7 +90,7 @@
 }
 
 .review-meta-avg-rating-breakdown-entry:hover {
-  color: #121212;
+  color: var(--text-theme-color);
   background-color: lightyellow;
 }
 
@@ -111,6 +112,7 @@
   /* grid-auto-columns: 1fr; */
   align-items: center;
   /* word-break: break-word; */
+  margin-top: 5px;
 }
 
 #review-meta-characteristic-left, #review-form-characteristic-left {
@@ -148,6 +150,11 @@
   margin-bottom: 10px;
 }
 
+.blah {
+  background-color: green;
+  color: green;
+}
+
 .review-list-entries {
   max-height: 620px;
   overflow-y: scroll;
@@ -155,7 +162,7 @@
 }
 
 .review {
-  background-color: #232323;
+  background-color: var(--popup-theme-color);
   padding: 15px;
   margin-top: 20px;
   margin-bottom: 20px;

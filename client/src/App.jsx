@@ -210,7 +210,11 @@ class App extends React.Component {
         <QuestionsAnswers/>
         <div id='reviews-section'>
           <ClickTracker widget={'reviews-section'} render={(handleClick) => (
-            <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta}/>
+            <Reviews
+              productId={this.state.productId}
+              reviewMeta={this.state.reviewMeta}
+              darkMode={this.state.darkMode}
+            />
           )} />
         </div>
         <Contact/>
@@ -218,5 +222,13 @@ class App extends React.Component {
     );
   }
 }
+
+export const paletteMap = {
+  '1': '#ff3333',
+  '2': '#ff9966',
+  '3': '#dfcc97',
+  '4': '#66cce6',
+  '5': '#90ee90'
+};
 
 export default App;

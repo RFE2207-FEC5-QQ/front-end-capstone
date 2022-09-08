@@ -51,14 +51,6 @@ const characteristicChart = {
   }
 };
 
-const paletteMap = {
-  '1': '#ff3333',
-  '2': '#ff9966',
-  '3': '#dfcc97',
-  '4': '#66cce6',
-  '5': '#90ee90'
-};
-
 const productId = 37311;
 const reviews = [
   {
@@ -142,7 +134,6 @@ describe('\'ReviewList\' React component', () => {
       openReviewModal={() => {}}
       handleSortChange={() => {}}
       handleMoreReviews={() => {}}
-      paletteMap={paletteMap}
     />);
   });
 

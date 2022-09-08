@@ -5,13 +5,20 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
 
-const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openReviewModal, handleSortChange, handleMoreReviews, paletteMap, atListEnd}) => {
+const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openReviewModal, handleSortChange, handleMoreReviews, atListEnd, darkMode}) => {
+
+  // console.log(atListEnd);
 
   return (
     <div className='review-list'>
       <div className='review-list-top'>
-        {`${reviews.length} ${reviews.length === 1 ? 'review' : 'reviews'}, sorted by `}
+        {`${reviews.length} ${reviews.length === 1 ? 'review' : 'reviews'}, sorted by  `}
         <Select
+          sx={{
+            color: darkMode ? 'rgba(230, 230, 230, 0.87)' : '#000000',
+            backgroundColor: darkMode ? '#1B1D24' : 'rgba(230, 230, 230, 0.87)',
+            pl: 1
+          }}
           variant="standard"
           labelId="sort-select-label"
           id="sort-select"
@@ -28,7 +35,7 @@ const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openRev
         :
         <div className='review-list-entries'>
           {reviews.map((review, index) => (
-            <Review review={review} productId={productId} paletteMap={paletteMap} removeReview={removeReview} reviewIndex={index} key={review.review_id}/>
+            <Review review={review} productId={productId} removeReview={removeReview} reviewIndex={index} key={review.review_id}/>
           ))}
         </div>
       }

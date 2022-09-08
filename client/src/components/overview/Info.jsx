@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Rating } from '@mui/material'
+import { Box, Rating } from '@mui/material';
+
+import { paletteMap } from '../../App.jsx';
 
 const Info = ({ product, selectedStyle }) => {
 
   const [reviews, setReviews] = useState({});
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(0);
 
   const getAvgRating = (ratings) => {
     var total = 0;
@@ -17,7 +19,7 @@ const Info = ({ product, selectedStyle }) => {
     var average = Math.ceil((total / count) * 100) / 100;
     setReviews(count);
     setRating(average);
-  }
+  };
 
   const getRatings = (id) => {
     var options = {
@@ -26,25 +28,28 @@ const Info = ({ product, selectedStyle }) => {
       params: {
         productId: product.id
       }
-    }
+    };
     axios(options)
       .then(result => {
         getAvgRating(result.data.ratings);
       })
       .catch(err => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     getRatings();
-  }, [product])
+  }, [product]);
 
   if (selectedStyle.sale_price) {
     return (
       <div className='product-info'>
         <div className='product-rating'>
           <Rating
+            sx={{
+              color: paletteMap[Math.round(rating)]
+            }}
             name='rating'
             value={rating}
             precision={0.25}
@@ -69,12 +74,15 @@ const Info = ({ product, selectedStyle }) => {
           </div>
         </div>
       </div>
-    )
+    );
   } else {
     return (
       <div className='product-info'>
         <div className='product-rating'>
           <Rating
+            sx={{
+              color: paletteMap[Math.round(rating)]
+            }}
             name='rating'
             value={rating}
             precision={0.25}
@@ -94,8 +102,8 @@ const Info = ({ product, selectedStyle }) => {
           {`$${selectedStyle.original_price}`}
         </div>
       </div>
-    )
+    );
   }
-}
+};
 
 export default Info;

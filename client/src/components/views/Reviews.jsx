@@ -50,14 +50,6 @@ const characteristicChart = {
   }
 };
 
-const paletteMap = {
-  '1': '#ff3333',
-  '2': '#ff9966',
-  '3': '#dfcc97',
-  '4': '#66cce6',
-  '5': '#90ee90'
-};
-
 class Reviews extends React.Component {
 
   constructor(props) {
@@ -151,7 +143,10 @@ class Reviews extends React.Component {
             atListEnd: true
           });
         } else {
-          this.setState({reviews});
+          this.setState({
+            reviews,
+            atListEnd: false
+          });
         }
       })
       .catch((error) => {
@@ -193,8 +188,8 @@ class Reviews extends React.Component {
             filter={this.state.filter}
             filterByRating={(ratingStars) => this.setFilter('rating', parseInt(ratingStars))}
             resetRatingFilter={this.resetRatingFilter}
-            paletteMap={paletteMap}
             characteristicChart={characteristicChart}
+            darkMode={this.props.darkMode}
           />
           <ReviewList
             reviews={this.state.reviews}
@@ -205,8 +200,8 @@ class Reviews extends React.Component {
             openReviewModal={this.openReviewModal}
             handleSortChange={this.handleSortChange}
             handleMoreReviews={this.handleMoreReviews}
-            paletteMap={paletteMap}
             atListEnd={this.state.atListEnd}
+            darkMode={this.props.darkMode}
           />
           {this.state.showReviewModal &&
           <ReviewFormModal
@@ -214,7 +209,6 @@ class Reviews extends React.Component {
             characteristicChart={characteristicChart}
             productId={this.props.productId}
             closeReviewModal={this.closeReviewModal}
-            paletteMap={paletteMap}
           />}
         </div>
       </div>

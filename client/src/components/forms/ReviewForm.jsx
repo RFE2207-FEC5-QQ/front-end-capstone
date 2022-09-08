@@ -6,6 +6,8 @@ import ReviewFormImageModal from '../modals/ReviewFormImageModal.jsx';
 import ReviewImageList from '../lists/ReviewImageList.jsx';
 import ReviewFormCharacteristic from '../cards/ReviewFormCharacteristic.jsx';
 
+import { paletteMap } from '../../App.jsx';
+
 
 // TODO: Should actually refactor this and the other modal (anything with toggled visibility)
 // to store their visibility within the component, that way you don't re-render the parent every time
@@ -16,7 +18,6 @@ export default class ReviewForm extends React.Component {
   // props.metaCharacteristics - Characteristics for currently selected product
   // props.characteristicChart - Mapping of characteristic types to their value descriptions
   // props.productId - Currently selected product
-  // props.paletteMap - Colors for the star ratings
   // props.setErrorMessage - Sets an error message to display in parent component
   constructor(props) {
     super(props);
@@ -108,7 +109,7 @@ export default class ReviewForm extends React.Component {
           <div className='review-form-title'>{'Rating'}</div>
           <Rating
             sx={{
-              color: this.props.paletteMap[this.state.rating || 3]
+              color: paletteMap[this.state.rating || 3]
             }}
             name="rating"
             size='large'

@@ -5,7 +5,9 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import ReviewImage from '../cards/ReviewImage.jsx';
 
-const Review = ({review, reviewIndex, productId, paletteMap, removeReview}) => {
+import { paletteMap } from './../../App.jsx';
+
+const Review = ({review, reviewIndex, productId, removeReview}) => {
 
   const [reviewBodyExpanded, setReviewBodyExpanded] = useState(false);
   const [markedHelpful, setMarkedHelpful] = useState(false);

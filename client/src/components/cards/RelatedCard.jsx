@@ -8,6 +8,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
 // import reactImageSize from 'react-image-size';
 
+import { paletteMap } from '../../App.jsx';
+
 const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
   const [detail, setDetail] = useState(null);
   const [style, setStyle] = useState(null);
@@ -184,6 +186,9 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
             }
             <div className='card-rating'>
               <Rating
+                sx={{
+                  color: paletteMap[Math.round(rating[0])]
+                }}
                 className='card-rating'
                 name="quarter-rating"
                 value={rating[0]}
