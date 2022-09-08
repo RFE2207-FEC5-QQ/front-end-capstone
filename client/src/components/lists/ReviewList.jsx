@@ -40,7 +40,19 @@ const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openRev
       {reviews.length === 0 ? <Skeleton variant='rectangular' height='100px'/>
         :
         <div className='review-buttons'>
-          <Button hidden={atListEnd} onClick={handleMoreReviews}>More Reviews</Button> <Button onClick={openReviewModal}>Add a Review +</Button>
+          <Button
+            sx={{
+              display: atListEnd ? 'none' : 'inline'
+            }}
+            onClick={handleMoreReviews}
+          >
+            More Reviews
+          </Button>
+          <Button
+            onClick={openReviewModal}
+          >
+            Add a Review +
+          </Button>
         </div>
       }
     </div>

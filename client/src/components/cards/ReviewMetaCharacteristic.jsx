@@ -17,8 +17,8 @@ const ReviewMetaCharacteristic = ({char, characteristics, characteristicChart}) 
         min={1}
         max={5}
         marks
-        // disabled={true}
         valueLabelDisplay="off"
+        disabled={true}
       />
       <div className='review-meta-characteristic-labels'>
         <span id='review-meta-characteristic-left'>{characteristicChart[char][1]}</span>
