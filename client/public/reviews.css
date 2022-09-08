@@ -149,7 +149,7 @@
 }
 
 .review-list-entries {
-  max-height: 605px;
+  max-height: 620px;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
@@ -284,7 +284,27 @@
   margin-bottom: 10px;
 }
 
-.review-form-characteristics-entry {
+#review-form-rating {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  line-height: 0;
+
+}
+
+/* #review-form-recommend {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+} */
+
+#review-form-body-entry {
+  min-height: 150px;
+}
+
+#review-form-characteristics-entry {
   margin-top: 10px;
   margin-bottom: 10px;
 }

@@ -5,10 +5,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
 
-const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openReviewModal, handleSortChange, handleMoreReviews, paletteMap}) => {
+const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openReviewModal, handleSortChange, handleMoreReviews, paletteMap, atListEnd}) => {
 
   console.log('reviews', reviews); // DEBUG
-
+  console.log(atListEnd);
   return (
     <div className='review-list'>
       <div className='review-list-top'>
@@ -37,7 +37,7 @@ const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openRev
       {reviews.length === 0 ? <Skeleton variant='rectangular' height='100px'/>
         :
         <div className='review-buttons'>
-          <button onClick={handleMoreReviews}>More Reviews</button> <button onClick={openReviewModal}>Add a Review +</button>
+          <button hidden={atListEnd} onClick={handleMoreReviews}>More Reviews</button> <button onClick={openReviewModal}>Add a Review +</button>
         </div>
       }
     </div>

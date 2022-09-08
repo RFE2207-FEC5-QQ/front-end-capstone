@@ -4,14 +4,14 @@ import { Slider } from '@mui/material';
 const ReviewFormCharacteristic = ({metaCharacteristics, characteristic, characteristics, characteristicChart, onCharValueChange}) => {
 
   return (
-    <div className='review-form-characteristics-entry' align='center'>
+    <div id='review-form-characteristics-entry' align='center'>
       <div className='review-meta-characteristic-labels'>
         <span id='review-form-characteristic-title'>{characteristic}</span>
       </div>
       {/* {TODO: SET DEFAULT TO NULL, ALSO NEEDS TO BE DONE IN REVIEWFORM.JSX} */}
       <Slider
         sx={{
-          maxWidth: 2 / 3
+          maxWidth: 5 / 6
         }}
         min={1}
         max={5}

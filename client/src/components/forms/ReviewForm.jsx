@@ -105,7 +105,7 @@ export default class ReviewForm extends React.Component {
       <form className='review-form-content' onSubmit={this.submitForm}>
         <h2>Leave a Review</h2>
         <div id='review-form-rating' className='review-form-entry'>
-          {'Rating '}
+          <div className='review-form-title'>{'Rating'}</div>
           <Rating
             sx={{
               color: this.props.paletteMap[this.state.rating || 3]
@@ -195,6 +195,7 @@ export default class ReviewForm extends React.Component {
           <div className='review-form-title'>{'Body'}</div>
           <label>
             <textarea
+              id='review-form-body-entry'
               className='review-form-input'
               name='body'
               placeholder='Why did you like the product or not?'
@@ -212,7 +213,7 @@ export default class ReviewForm extends React.Component {
         </div>
         <div id='review-form-photos' className='review-form-entry'>
           <div className='review-form-title'>{'Photos'}</div>
-          <button onClick={this.openFormImageModal}>Add Photos</button>
+          <button disabled={this.state.photos.length > 4} onClick={this.openFormImageModal}>Add Photos</button>
           {this.state.photos.length > 0 && <ReviewImageList photoUrls={this.state.photos}/>}
           {this.state.showFormImageModal && <ReviewFormImageModal photos={this.state.photos} submitPhoto={this.submitPhoto} closeModal={this.closeFormImageModal}/>}
         </div>

@@ -135,7 +135,8 @@ class Reviews extends React.Component {
       reviews: [],
       sort: 'relevant',
       filter: {},
-      showReviewModal: false
+      showReviewModal: false,
+      atListEnd: false
     };
     this.count = 2; // Changed this to non-state property
     this.handleSortChange = this.handleSortChange.bind(this);
@@ -213,7 +214,14 @@ class Reviews extends React.Component {
           }
           reviews = filteredReviews;
         }
-        this.setState({reviews});
+        if (success.data.atListEnd) {
+          this.setState({
+            reviews,
+            atListEnd: true
+          });
+        } else {
+          this.setState({reviews});
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -267,6 +275,7 @@ class Reviews extends React.Component {
             handleSortChange={this.handleSortChange}
             handleMoreReviews={this.handleMoreReviews}
             paletteMap={paletteMap}
+            atListEnd={this.state.atListEnd}
           />
           {this.state.showReviewModal &&
           <ReviewFormModal
