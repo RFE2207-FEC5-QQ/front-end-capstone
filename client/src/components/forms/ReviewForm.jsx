@@ -101,6 +101,14 @@ export default class ReviewForm extends React.Component {
   }
 
   render() {
+    const starLabels = {
+      1: 'Poor',
+      2: 'Fair',
+      3: 'Average',
+      4: 'Good',
+      5: 'Great',
+    };
+
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
         <h2>Leave a Review</h2>
@@ -113,6 +121,9 @@ export default class ReviewForm extends React.Component {
             name="rating"
             size='large'
             value={this.state.rating}
+            getLabelText={(value) =>
+              `${value} Star${value !== 1 ? 's' : ''}, ${starLabels[value]}`
+            }
             onChange={(e) =>
               this.setState({rating: parseInt(e.target.value)}, () => {
                 if (!this.state.ratingValid) {
@@ -121,6 +132,7 @@ export default class ReviewForm extends React.Component {
               })
             }
           />
+          {this.state.rating !== null && starLabels[this.state.rating]}
         </div>
         <div id='review-form-recommend' className='review-form-entry'>
           <div className='review-form-title'>{'Do you recommend this product?'}</div>
