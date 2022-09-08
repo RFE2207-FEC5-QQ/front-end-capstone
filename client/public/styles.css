@@ -33,7 +33,7 @@
   --text-hover-color: #8e8e8e;
   --text-sale-color: #C0392B;
   --theme-icon-color: #282828;
-  --header-text-size: 1.5rem;
+  --header-text-size: 1.7rem;
   --secondary-header-text-size: 0.9rem;
   --gallery-background-color: #E8E8E8;
   --images-border: black;
@@ -786,6 +786,7 @@ body {
   width: 100%;
   height: 10%;
   padding: 2rem;
+  color: white;
 }
 
 /* Overview */
