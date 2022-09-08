@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinearProgress, Skeleton, Rating } from '@mui/material';
+import { LinearProgress, Skeleton, Rating, Button } from '@mui/material';
 
 const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatingFilter, totalReviews}) => {
 
@@ -12,14 +12,14 @@ const ReviewMetaStarBreakdown = ({reviewMeta, filter, filterByRating, resetRatin
           <div id='review-meta-filters-title'>
             {filter['rating'].length === 1 ? 'Filter Applied' : 'Filters Applied'}
           </div>
-          <button onClick={() => resetRatingFilter()}>Remove All Filters</button>
+          <Button onClick={() => resetRatingFilter()}>Remove All Filters</Button>
           {
             function() {
               let filtersSorted = filter['rating'].slice().sort();
               return filtersSorted.map((value) => {
                 return (
                   <div className='review-meta-filters-entry' key={`${value}-star-filter`}>
-                    <button onClick={() => filterByRating(value)}>x</button>
+                    <Button onClick={() => filterByRating(value)}>x</Button>
                     <Rating
                       sx={{
                         color: '#121212'

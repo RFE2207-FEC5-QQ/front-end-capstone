@@ -1,12 +1,12 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, Button } from '@mui/material';
 
 import ReviewForm from '../forms/ReviewForm.jsx';
 
 // TODO: Should actually refactor this and the other modal (anything with toggled visibility)
 // to store their visibility within the component, that way you don't re-render the parent every time
 // You show / hide the component
-const ReviewFormModal = ({metaCharacteristics, characteristicChart, productId, closeReviewModal, paletteMap}) => {
+const ReviewFormModal = ({metaCharacteristics, characteristicChart, productId, closeReviewModal}) => {
 
   return (
     <div className='review-form-modal'>
@@ -20,11 +20,10 @@ const ReviewFormModal = ({metaCharacteristics, characteristicChart, productId, c
             metaCharacteristics={metaCharacteristics}
             characteristicChart={characteristicChart}
             productId={productId}
-            paletteMap={paletteMap}
           />
         </DialogContent>
         <DialogActions>
-          <button onClick={closeReviewModal}>Close</button>
+          <Button onClick={closeReviewModal}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>

@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { InputLabel, MenuItem, FormControl, Skeleton } from '@mui/material';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { InputLabel, MenuItem, FormControl, Skeleton, Button, Select } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
 
-const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openReviewModal, handleSortChange, handleMoreReviews, paletteMap, atListEnd}) => {
+const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openReviewModal, handleSortChange, handleMoreReviews, atListEnd}) => {
 
-  console.log('reviews', reviews); // DEBUG
-  console.log(atListEnd);
   return (
     <div className='review-list'>
       <div className='review-list-top'>
@@ -26,18 +24,18 @@ const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openRev
           <MenuItem value={'relevant'}>relevance</MenuItem>
         </Select>
       </div>
-      {reviews.length === 0 ? <Skeleton sx={{mt: 2}} variant='rectangular' height='500px'/>
+      {reviews.length === 0 ? <Skeleton sx={{mt: 2}} variant='rectangular' height='620px'/>
         :
         <div className='review-list-entries'>
           {reviews.map((review, index) => (
-            <Review review={review} productId={productId} paletteMap={paletteMap} removeReview={removeReview} reviewIndex={index} key={review.review_id}/>
+            <Review review={review} productId={productId} removeReview={removeReview} reviewIndex={index} key={review.review_id}/>
           ))}
         </div>
       }
       {reviews.length === 0 ? <Skeleton variant='rectangular' height='100px'/>
         :
         <div className='review-buttons'>
-          <button hidden={atListEnd} onClick={handleMoreReviews}>More Reviews</button> <button onClick={openReviewModal}>Add a Review +</button>
+          <Button hidden={atListEnd} onClick={handleMoreReviews}>More Reviews</Button> <Button onClick={openReviewModal}>Add a Review +</Button>
         </div>
       }
     </div>

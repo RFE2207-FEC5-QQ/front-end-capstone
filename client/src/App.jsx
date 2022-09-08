@@ -1,16 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-
 import Reviews from './components/views/Reviews.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 37311,
+      productId: 0,
+      productDetail: null,
       darkMode: JSON.parse(window.localStorage.getItem('dark')) || false,
       punkMode: false,
       psychMode: false,
@@ -21,33 +19,23 @@ class App extends React.Component {
     this.psychMode = this.psychMode.bind(this);
     this.useRainbow = this.useRainbow.bind(this);
     this.getReviewMeta = this.getReviewMeta.bind(this);
+    this.changeProduct = this.changeProduct.bind(this);
+  }
+
+  changeProduct(item) {
+    this.setState({productId: item});
   }
 
   darkMode() {
-    this.setState({
-      productId: this.state.productId,
-      darkMode: !this.state.darkMode,
-      punkMode: this.state.punkMode,
-      psychMode: this.state.psychMode,
-    });
+    this.setState({darkMode: !this.state.darkMode});
   }
 
   punkMode() {
-    this.setState({
-      productId: this.state.productId,
-      darkMode: this.state.darkMode,
-      punkMode: !this.state.punkMode,
-      psychMode: this.state.psychMode,
-    });
+    this.setState({punkMode: !this.state.punkMode});
   }
 
   psychMode() {
-    this.setState({
-      productId: this.state.productId,
-      darkMode: this.state.darkMode,
-      punkMode: this.state.punkMode,
-      psychMode: !this.state.psychMode,
-    });
+    this.setState({psychMode: !this.state.psychMode});
   }
 
 
@@ -84,6 +72,27 @@ class App extends React.Component {
       document.body.classList.remove('dark-mode');
     }
 
+    // Same as overview getProducts axios request. Pass down as props if warranted.
+    // Upon mount, API call to get back all products. By default state will be set
+    // as first product in the list (allProducts[0]).
+    // Change array index to change product.
+    const options = {
+      method: 'get',
+      url: '/details',
+    };
+    axios(options)
+      .then(res => {
+        const allProducts = res.data;
+        this.setState({
+          productId: allProducts[0].id,
+          productDetail: allProducts[0],
+        });
+      })
+      .catch(err => {
+        console.log('error getting products', err);
+      });
+
+
     // Enable psychedelic background scrolling
     let lastScroll = 0;
     const navBar = document.querySelector('.nav-bar');
@@ -104,7 +113,6 @@ class App extends React.Component {
       }
       lastScroll = currentScroll;
     });
-
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -123,6 +131,26 @@ class App extends React.Component {
         document.body.style.backgroundColor = '';
       }
     }
+
+    // ProductId will change when related product card is clicked.
+    // When productId changes, product state will change to include product info.
+    if (this.state.productId !== prevState.productId) {
+      const options = {
+        method: 'get',
+        url: '/info',
+        params: { id: this.state.productId },
+      };
+      axios(options)
+        .then(res => {
+          const currentProduct = res.data;
+          this.setState({
+            productDetail: currentProduct,
+          });
+        })
+        .catch(err => {
+          console.log('error getting updated product', err);
+        });
+    }
   }
 
   render() {
@@ -138,21 +166,24 @@ class App extends React.Component {
       psychMode: this.state.psychMode,
     };
 
-    const darkTheme = createTheme({
-      palette: {
-        mode: 'dark',
-      }
-    });
-
     return (
       <React.Fragment>
-        <ThemeProvider theme={darkTheme}>
-          <CssBaseline/>
-          <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta}/>
-        </ThemeProvider>
+        <Reviews
+          productId={this.state.productId}
+          reviewMeta={this.state.reviewMeta}
+          darkMode={this.state.darkMode}
+        />
       </React.Fragment>
     );
   }
 }
+
+export const paletteMap = {
+  '1': '#ff3333',
+  '2': '#ff9966',
+  '3': '#dfcc97',
+  '4': '#66cce6',
+  '5': '#90ee90'
+};
 
 export default App;

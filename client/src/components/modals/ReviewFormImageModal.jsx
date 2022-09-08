@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogContent } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, Button } from '@mui/material';
 
 import ReviewImageList from '../lists/ReviewImageList.jsx';
 
@@ -39,15 +39,15 @@ const ReviewFormImageModal = ({photos, submitPhoto, closeModal}) => {
               </label>
             }
           </div>
-          <button
+          <Button
             onClick={addPhoto}
             disabled={photoUrl.length === 0 || photoLimitReached}
-          >Add</button>
+          >Add</Button>
           {` ${photos.length}/${photoLimit} Added`}
           {photos.length > 0 && <ReviewImageList photoUrls={photos}/>}
         </DialogContent>
         <DialogActions>
-          <button onClick={closeModal}>Close</button>
+          <Button onClick={closeModal}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>
