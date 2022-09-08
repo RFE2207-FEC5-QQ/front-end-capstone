@@ -25,9 +25,11 @@
   --header-font: 'Lane';
   --header-font-weight: 900;
   --header-divider-color: #99856f;
-  --header-hover-color: #2d80b8;
+  --btn-color: #99856f;
+  --btn-text-color: #99856f;
+  --btn-bg-color: white;
+  --btn-hover-color: #99856f;
   --text-font: Helvetica-light, Helvetica;
-
   --text-size: 1rem;
   --text-font-weight: normal;
   --text-hover-color: #8e8e8e;
@@ -52,6 +54,10 @@
   --text-font-weight: 100;
   --text-hover-color: rgba(255, 255, 255, 1);
   --text-sale-color: rgba(231, 76, 70, 0.87);
+  --btn-bg-color: #584c3f;
+  --btn-text-color: white;
+  --btn-hover-color: #99856f;
+  --btn-color: white;
   --theme-icon-color: rgba(230, 230, 230, 0.87);
   --gallery-background-color: #1B2430;
   --images-border: lightgray;
@@ -106,6 +112,10 @@ body {
   font-family: var(--text-font);
   font-size: var(--text-size);
   margin-left: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 0px;
 }
 
 .nav-bar {
@@ -225,13 +235,15 @@ body {
 }
 
 /* Common text size and color formatting for specific headers. */
+.selected-style,
+.product-category,
 .related-header,
 .card-description:nth-child(1),
 .card-rating,
 .strike-original-price,
 .comparison-title,
 .modal-button {
-  color: #99856f;
+  color: #99856f!important;
 }
 
 /* Related products carousel and cards */
@@ -1118,4 +1130,46 @@ body {
 
 .product-social {
   margin: 5px;
+}
+
+/* Mui custom theme overrides */
+.MuiButton-root {
+  color: var(--btn-text-color)!important;
+  background-color: var(--btn-bg-color)!important;
+  border-radius: 0px!important;
+  border: 1px solid #99856f!important;
+  box-shadow: 0 0 0 0!important;
+}
+
+.MuiButton-root:hover {
+  background-color: var(--btn-hover-color)!important;
+  color: white!important;
+}
+
+/* Use if deciding to change style of select dropdown colors as well.
+.MuiButtonBase-root {
+  color: var(--btn-text-color)!important;
+}
+
+.MuiInputBase-input {
+  color: #99856f!important;
+}
+
+.MuiSvgIcon-root,
+.MuiInputLabel-root
+{
+  color: #99856f!important;
+} */
+
+.MuiOutlinedInput-notchedOutline {
+  border-radius: 0px!important;
+  border: 1px solid black!important;
+}
+
+.MuiOutlinedInput-notchedOutline:hover {
+  border: 1px solid black;
+}
+
+.MuiSelect-outlined:focus {
+  border-color: black!important;
 }
