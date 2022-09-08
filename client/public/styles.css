@@ -1177,3 +1177,7 @@ body::-webkit-scrollbar {
   color: lightgrey!important;
   border-color: lightgrey!important;
 }
+
+.react-multiple-carousel__arrow {
+  background-color: #99856f!important;
+}
