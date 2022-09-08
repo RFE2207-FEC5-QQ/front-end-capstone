@@ -865,11 +865,12 @@ body::-webkit-scrollbar {
 }
 
 .selected-carousel-icon {
-  color: var(--images-border);
+  color: red;
 }
 
 .expanded-up-arrow {
   margin-left: 0px;
+  color: var(--images-border);
 }
 
 /* Default View */
@@ -952,6 +953,7 @@ body::-webkit-scrollbar {
 
 .up-arrow {
   margin-left: 18px;
+  color: var(--images-border);
 }
 
 .no-arrow {
@@ -969,7 +971,7 @@ body::-webkit-scrollbar {
 
 .selected-carousel-image {
   border: solid var(--images-border) 2px;
-  border-bottom: solid var(--images-border) 7px;
+  border-bottom: solid var(--images-border) 9px;
 }
 
 .crop-icon {
