@@ -993,7 +993,7 @@ body::-webkit-scrollbar {
   margin: 10px;
   position: relative;
   bottom: 6px;
-  color: black;
+  color: var(--select-label);
 }
 
 .product-category {
