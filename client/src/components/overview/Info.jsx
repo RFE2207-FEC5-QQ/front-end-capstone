@@ -66,7 +66,7 @@ const Info = ({ product, selectedStyle }) => {
           {product.name}
         </div>
         <div className='product-price'>
-          <div className='original-price'>
+          <div className='org-price'>
             {`$${selectedStyle.original_price}`}
           </div>
           <div className='sale-price'>
