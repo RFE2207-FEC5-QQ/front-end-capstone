@@ -4,7 +4,7 @@ import { Slider } from '@mui/material';
 const ReviewFormCharacteristic = ({metaCharacteristics, characteristic, characteristics, characteristicChart, onCharValueChange}) => {
 
   return (
-    <div className='review-form-characteristics-entry' align='center'>
+    <div id='review-form-characteristics-entry' align='center'>
       <div className='review-meta-characteristic-labels'>
         <span id='review-form-characteristic-title'>{characteristic}</span>
       </div>

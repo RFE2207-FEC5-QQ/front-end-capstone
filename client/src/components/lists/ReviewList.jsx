@@ -5,11 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Review from '../cards/Review.jsx';
 
-const ReviewList = ({reviews, productId, sort, getReviews, openReviewModal, handleSortChange, handleMoreReviews, paletteMap}) => {
-
-  if (!reviews) {
-    return null;
-  }
+const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openReviewModal, handleSortChange, handleMoreReviews, paletteMap, atListEnd}) => {
 
   return (
     <div className='review-list'>
@@ -31,15 +27,15 @@ const ReviewList = ({reviews, productId, sort, getReviews, openReviewModal, hand
       {reviews.length === 0 ? <Skeleton sx={{mt: 2}} variant='rectangular' height='500px'/>
         :
         <div className='review-list-entries'>
-          {reviews.map((review) => (
-            <Review review={review} productId={productId} paletteMap={paletteMap} key={review.review_id}/>
+          {reviews.map((review, index) => (
+            <Review review={review} productId={productId} paletteMap={paletteMap} removeReview={removeReview} reviewIndex={index} key={review.review_id}/>
           ))}
         </div>
       }
       {reviews.length === 0 ? <Skeleton variant='rectangular' height='100px'/>
         :
         <div className='review-buttons'>
-          <button onClick={handleMoreReviews}>More Reviews</button> <button onClick={openReviewModal}>Add a Review +</button>
+          <button hidden={atListEnd} onClick={handleMoreReviews}>More Reviews</button> <button onClick={openReviewModal}>Add a Review +</button>
         </div>
       }
     </div>

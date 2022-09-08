@@ -66,12 +66,14 @@ class Reviews extends React.Component {
       reviews: [],
       sort: 'relevant',
       filter: {},
-      showReviewModal: false
+      showReviewModal: false,
+      atListEnd: false
     };
     this.count = 2; // Changed this to non-state property
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getReviews = this.getReviews.bind(this);
+    this.removeReview = this.removeReview.bind(this);
     this.openReviewModal = this.openReviewModal.bind(this);
     this.closeReviewModal = this.closeReviewModal.bind(this);
     this.resetRatingFilter = this.resetRatingFilter.bind(this);
@@ -143,11 +145,24 @@ class Reviews extends React.Component {
           }
           reviews = filteredReviews;
         }
-        this.setState({reviews});
+        if (success.data.atListEnd) {
+          this.setState({
+            reviews,
+            atListEnd: true
+          });
+        } else {
+          this.setState({reviews});
+        }
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  removeReview(index) {
+    let reviews = this.state.reviews.slice();
+    reviews.splice(index, 1);
+    this.setState({reviews});
   }
 
   openReviewModal() {
@@ -183,13 +198,15 @@ class Reviews extends React.Component {
           />
           <ReviewList
             reviews={this.state.reviews}
-            productId={this.props.productId}
             sort={this.state.sort}
+            productId={this.props.productId}
+            removeReview={this.removeReview}
             getReviews={this.getReviews}
             openReviewModal={this.openReviewModal}
             handleSortChange={this.handleSortChange}
             handleMoreReviews={this.handleMoreReviews}
             paletteMap={paletteMap}
+            atListEnd={this.state.atListEnd}
           />
           {this.state.showReviewModal &&
           <ReviewFormModal

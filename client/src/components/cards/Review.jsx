@@ -5,14 +5,11 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import ReviewImage from '../cards/ReviewImage.jsx';
 
-const Review = ({review, productId, paletteMap}) => {
+const Review = ({review, reviewIndex, productId, paletteMap, removeReview}) => {
 
   const [reviewBodyExpanded, setReviewBodyExpanded] = useState(false);
   const [markedHelpful, setMarkedHelpful] = useState(false);
   const [helpfulRating, setHelpfulRating] = useState(review.helpfulness);
-  const [reported, setReported] = useState(false);
-
-  if (reported) { return null; }
 
   // TODO: Only allow someone to mark a review as helpful once
   // Cache session with cookies to get their marked reviews
@@ -38,7 +35,7 @@ const Review = ({review, productId, paletteMap}) => {
       productId
     })
       .then((success) => {
-        setReported(true);
+        removeReview(reviewIndex);
       })
       .catch((error) => {
         console.log(error);

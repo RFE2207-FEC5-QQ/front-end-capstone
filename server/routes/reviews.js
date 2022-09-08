@@ -11,7 +11,12 @@ router.get('/reviews', (req, res, next) => {
     return;
   }
   model.getSortedReviews(req.query.productId, req.query.sort)
-    .then((reviews) => res.status(200).send({reviews: reviews.slice(0, req.query.count)}))
+    .then((reviews) => {
+      res.status(200).send({
+        reviews: reviews.slice(0, req.query.count),
+        atListEnd: req.query.count >= reviews.length
+      });
+    })
     .catch((error) => {
       console.log(error);
       res.sendStatus(404);

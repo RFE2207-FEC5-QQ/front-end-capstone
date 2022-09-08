@@ -104,8 +104,8 @@ export default class ReviewForm extends React.Component {
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
         <h2>Leave a Review</h2>
-        <div className='review-form-rating'>
-          {'Rating '}
+        <div id='review-form-rating' className='review-form-entry'>
+          <div className='review-form-title'>{'Rating'}</div>
           <Rating
             sx={{
               color: this.props.paletteMap[this.state.rating || 3]
@@ -122,8 +122,8 @@ export default class ReviewForm extends React.Component {
             }
           />
         </div>
-        <div className='review-form-recommend'>
-          {'Do you recommend this product?'}
+        <div id='review-form-recommend' className='review-form-entry'>
+          <div className='review-form-title'>{'Do you recommend this product?'}</div>
           <div>
             <label>
               <input
@@ -159,7 +159,8 @@ export default class ReviewForm extends React.Component {
             </label>
           </div>
         </div>
-        <div className='review-form-characteristics'>
+        <div id='review-form-characteristics' className='review-form-entry'>
+          {/* <div className='review-form-title'>{'Characteristics'}</div> */}
           {Object.keys(this.props.metaCharacteristics).map((characteristic) =>
             <ReviewFormCharacteristic
               key={characteristic.toLowerCase()}
@@ -171,10 +172,11 @@ export default class ReviewForm extends React.Component {
             />
           )}
         </div>
-        <div className='review-form-summary'>
+        <div id='review-form-summary' className='review-form-entry'>
+          <div className='review-form-title'>{'Summary (optional)'}</div>
           <label>
-            {'Summary (optional) '}
             <input
+              className='review-form-input'
               type='text'
               name='summary'
               placeholder='Example: Best purchase ever!'
@@ -186,13 +188,15 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            <small>{`Max characters left: ${(60 - this.state.summary.length).toString()}`}</small>
+            <div><small>{`Max characters left: ${(60 - this.state.summary.length).toString()}`}</small></div>
           </label>
         </div>
-        <div className='review-form-body'>
+        <div id='review-form-body' className='review-form-entry'>
+          <div className='review-form-title'>{'Body'}</div>
           <label>
-            {'Body '}
             <textarea
+              id='review-form-body-entry'
+              className='review-form-input'
               name='body'
               placeholder='Why did you like the product or not?'
               value={this.state.body}
@@ -203,20 +207,22 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            <small>{this.state.bodyValid ? 'Minimum reached' : `Minimum required characters left: [${(50 - this.state.body.length).toString()}]`}</small>
-            <small>{`Max characters left: ${(1000 - this.state.body.length).toString()}`}</small>
+            <div><small>{this.state.bodyValid ? 'Minimum reached' : `Minimum required characters left: [${(50 - this.state.body.length).toString()}]`}</small></div>
+            <div><small>{`Max characters left: ${(1000 - this.state.body.length).toString()}`}</small></div>
           </label>
         </div>
-        <div className='review-form-photos'>
-          {'Photos '}
-          <button onClick={this.openFormImageModal}>Add Photos</button>
+        <div id='review-form-photos' className='review-form-entry'>
+          <div className='review-form-title'>{'Photos'}</div>
+          <button disabled={this.state.photos.length > 4} onClick={this.openFormImageModal}>Add Photos</button>
           {this.state.photos.length > 0 && <ReviewImageList photoUrls={this.state.photos}/>}
           {this.state.showFormImageModal && <ReviewFormImageModal photos={this.state.photos} submitPhoto={this.submitPhoto} closeModal={this.closeFormImageModal}/>}
         </div>
-        <div className='review-form-name'>
+        <div id='review-form-name' className='review-form-entry'>
+          <div className='review-form-title'>{'Name'}</div>
+          <small>{'For privacy reasons, do not use your full name or email address'}</small>
           <label>
-            {'Name '}
             <input
+              className='review-form-input'
               type='text'
               name='name'
               placeholder='Example: jackson11!'
@@ -228,14 +234,15 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            <small>{`Max characters left: ${(60 - this.state.name.length).toString()}`}</small>
-            <small>{'For privacy reasons, do not use your full name or email address'}</small>
           </label>
+          <small>{`Max characters left: ${(60 - this.state.name.length).toString()}`}</small>
         </div>
-        <div className='review-form-email'>
+        <div id='review-form-email' className='review-form-entry'>
+          <div className='review-form-title'>{'Email'}</div>
+          <div><small>{'For authentication reasons, you will not be emailed'}</small></div>
           <label>
-            {'Email '}
             <input
+              className='review-form-input'
               type='text'
               name='email'
               placeholder='Example: jackson11@email.com'
@@ -247,9 +254,8 @@ export default class ReviewForm extends React.Component {
                 })
               }
             />
-            <small>{`Max characters left: ${(60 - this.state.email.length).toString()}`}</small>
-            <small>{'For authentication reasons, you will not be emailed'}</small>
           </label>
+          <div><small>{`Max characters left: ${(60 - this.state.email.length).toString()}`}</small></div>
         </div>
         <input
           type='submit'
