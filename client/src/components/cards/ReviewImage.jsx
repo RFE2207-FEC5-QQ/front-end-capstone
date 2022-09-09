@@ -43,7 +43,7 @@ export default class ReviewImage extends React.Component {
           src={this.state.url}
           loading='lazy'
           onClick={this.openImageModal}
-          onError={this.defaultSrcImage}
+          onError={this.props.errorResponse}
         />
       </div>
 

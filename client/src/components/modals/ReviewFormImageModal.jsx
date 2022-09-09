@@ -36,11 +36,13 @@ const ReviewFormImageModal = ({photos, submitPhoto, closeModal}) => {
               />
             }
           </div>
-          <Button
-            onClick={addPhoto}
-            disabled={photoUrl.length === 0 || photoLimitReached}
-          >Add</Button>
-          {` ${photos.length}/${photoLimit} Added`}
+          <div id='review-form-image-modal-button-content'>
+            <Button
+              onClick={addPhoto}
+              disabled={photoUrl.length === 0 || photoLimitReached}
+            >Add</Button>
+            {`${photos.length}/${photoLimit} Added`}
+          </div>
           {photos.length > 0 && <ReviewImageList photoUrls={photos}/>}
         </DialogContent>
         <DialogActions>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Rating, Divider, Chip } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
-import ReviewImage from '../cards/ReviewImage.jsx';
+import ReviewImageList from '../lists/ReviewImageList.jsx';
 
 import { paletteMap } from './../../App.jsx';
 
@@ -70,12 +70,16 @@ const Review = ({review, reviewIndex, productId, removeReview}) => {
           </span>
         </div>
       </div>
+      {review.summary.length > 0 &&
       <p className='review-summary'>
         {review.summary.slice(0, 60)}
       </p>
-      {review.body.length < 250 ? <div className='review-body-short'>{review.body.slice(0, 1000)}</div> :
-        <div className='review-body-long'>
-          {reviewBodyExpanded ? review.body.slice(0, 1000) : review.body.slice(0, 250) + '...'}
+      }
+      {review.body.length < 250 ? <p className='review-body-short'>{review.body.slice(0, 1000)}</p> :
+        <div>
+          <p className='review-body-long'>
+            {reviewBodyExpanded ? review.body.slice(0, 1000) : review.body.slice(0, 250) + '...'}
+          </p>
           <Divider>
             <Chip
               sx={{
@@ -90,13 +94,10 @@ const Review = ({review, reviewIndex, productId, removeReview}) => {
         </div>
       }
       {review.photos.length > 0 &&
-        <div className='review-images'>
-          {review.photos.slice(0, 5).map((photo) => {
-            return (
-              <ReviewImage id={photo.id} url={photo.url} key={photo.id}/>
-            );
-          })}
-        </div>
+        <ReviewImageList
+          photoUrls={review.photos.map((photo) => photo.url)}
+          errorResponse={()=>{}}
+        />
       }
       {review.recommend && (
         <div className='review-recommended'>

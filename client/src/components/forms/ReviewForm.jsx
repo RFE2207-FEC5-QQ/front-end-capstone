@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Rating, Button } from '@mui/material';
+import { Rating, Button, Checkbox, FormControlLabel } from '@mui/material';
 
 import ReviewFormImageModal from '../modals/ReviewFormImageModal.jsx';
 import ReviewImageList from '../lists/ReviewImageList.jsx';
@@ -109,6 +109,8 @@ export default class ReviewForm extends React.Component {
       5: 'Great',
     };
 
+    console.log(this.state);
+
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
         <h2>Leave a Review</h2>
@@ -136,12 +138,10 @@ export default class ReviewForm extends React.Component {
         </div>
         <div id='review-form-recommend' className='review-form-entry'>
           <div className='review-form-title'>{'Do you recommend this product?'}</div>
-          <div>
-            <label>
-              <input
-                type='radio'
-                name='recommend-true'
-                value='true'
+          <div id='review-form-recommend-inputs'>
+            <FormControlLabel
+              label='Yes'
+              control={<Checkbox
                 checked={this.state.recommend === true}
                 onChange={(e) =>
                   this.setState({recommend: true}, () => {
@@ -150,14 +150,11 @@ export default class ReviewForm extends React.Component {
                     }
                   })
                 }
-              />
-              Yes
-            </label>
-            <label>
-              <input
-                type='radio'
-                name='recommend-false'
-                value='false'
+              />}
+            />
+            <FormControlLabel
+              label='No'
+              control={<Checkbox
                 checked={this.state.recommend === false}
                 onChange={(e) =>
                   this.setState({recommend: false}, () => {
@@ -166,13 +163,12 @@ export default class ReviewForm extends React.Component {
                     }
                   })
                 }
-              />
-              No
-            </label>
+              />}
+            />
           </div>
         </div>
         <div id='review-form-characteristics' className='review-form-entry'>
-          {/* <div className='review-form-title'>{'Characteristics'}</div> */}
+          <div className='review-form-title'>{'Characteristics'}</div>
           {Object.keys(this.props.metaCharacteristics).map((characteristic) =>
             <ReviewFormCharacteristic
               key={characteristic.toLowerCase()}
