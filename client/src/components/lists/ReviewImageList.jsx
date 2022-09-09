@@ -4,6 +4,10 @@ import ReviewImage from '../cards/ReviewImage.jsx';
 
 const ReviewImageList = ({photoUrls, errorResponse}) => {
 
+  if (!errorResponse) {
+    errorResponse = () => {};
+  }
+
   return (
     <div className='review-images'>
       {photoUrls.map((photoUrl, index) => {

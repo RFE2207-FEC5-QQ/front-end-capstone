@@ -50,6 +50,7 @@ export default class ReviewForm extends React.Component {
     this.openFormImageModal = this.openFormImageModal.bind(this);
     this.closeFormImageModal = this.closeFormImageModal.bind(this);
     this.onCharValueChange = this.onCharValueChange.bind(this);
+    this.photoErrorResponse = this.photoErrorResponse.bind(this);
   }
 
   postReview() {
@@ -100,6 +101,12 @@ export default class ReviewForm extends React.Component {
     this.setState({characteristics});
   }
 
+  photoErrorResponse() {
+    let photos = this.state.photos.slice();
+    photos.pop();
+    this.setState({photos});
+  }
+
   render() {
     const starLabels = {
       1: 'Poor',
@@ -108,8 +115,6 @@ export default class ReviewForm extends React.Component {
       4: 'Good',
       5: 'Great',
     };
-
-    console.log(this.state);
 
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
@@ -222,8 +227,14 @@ export default class ReviewForm extends React.Component {
         <div id='review-form-photos' className='review-form-entry'>
           <div className='review-form-title'>{'Photos'}</div>
           <Button disabled={this.state.photos.length > 4} onClick={this.openFormImageModal}>Add Photos</Button>
-          {this.state.photos.length > 0 && <ReviewImageList photoUrls={this.state.photos}/>}
-          {this.state.showFormImageModal && <ReviewFormImageModal photos={this.state.photos} submitPhoto={this.submitPhoto} closeModal={this.closeFormImageModal}/>}
+          <ReviewImageList photoUrls={this.state.photos}/>
+          {this.state.showFormImageModal &&
+          <ReviewFormImageModal
+            photos={this.state.photos}
+            submitPhoto={this.submitPhoto}
+            closeModal={this.closeFormImageModal}
+            errorResponse={this.photoErrorResponse}
+          />}
         </div>
         <div id='review-form-name' className='review-form-entry'>
           <div className='review-form-title'>{'Name'}</div>

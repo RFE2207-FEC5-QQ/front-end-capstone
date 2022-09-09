@@ -151,11 +151,12 @@
   grid-auto-columns: 1fr;
 }
 
-#review-form-image-modal-button-content {
+.review-form-image-modal-entry {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
+  margin-top: 5px;
 }
 
 textarea {

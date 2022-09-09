@@ -6,7 +6,7 @@ import ReviewImageList from '../lists/ReviewImageList.jsx';
 // TODO: Should actually refactor this and the other modal (anything with toggled visibility)
 // to store their visibility within the component, that way you don't re-render the parent every time
 // You show / hide the component
-const ReviewFormImageModal = ({photos, submitPhoto, closeModal}) => {
+const ReviewFormImageModal = ({photos, submitPhoto, closeModal, errorResponse}) => {
 
   const [photoUrl, setPhotoUrl] = useState('');
   const photoLimit = 5;
@@ -35,15 +35,16 @@ const ReviewFormImageModal = ({photos, submitPhoto, closeModal}) => {
                 }}
               />
             }
-          </div>
-          <div id='review-form-image-modal-button-content'>
             <Button
               onClick={addPhoto}
               disabled={photoUrl.length === 0 || photoLimitReached}
             >Add</Button>
             {`${photos.length}/${photoLimit} Added`}
           </div>
-          {photos.length > 0 && <ReviewImageList photoUrls={photos}/>}
+          <ReviewImageList
+            photoUrls={photos}
+            errorResponse={errorResponse}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={closeModal}>Close</Button>
