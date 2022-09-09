@@ -70,11 +70,13 @@ const Review = ({review, reviewIndex, productId, removeReview}) => {
           </span>
         </div>
       </div>
+      {review.summary.length > 0 &&
       <p className='review-summary'>
         {review.summary.slice(0, 60)}
       </p>
-      {review.body.length < 250 ? <div className='review-body-short'>{review.body.slice(0, 1000)}</div> :
-        <div className='review-body-long'>
+      }
+      {review.body.length < 250 ? <p className='review-body-short'>{review.body.slice(0, 1000)}</p> :
+        <p className='review-body-long'>
           {reviewBodyExpanded ? review.body.slice(0, 1000) : review.body.slice(0, 250) + '...'}
           <Divider>
             <Chip
@@ -87,7 +89,7 @@ const Review = ({review, reviewIndex, productId, removeReview}) => {
               variant={reviewBodyExpanded ? 'outlined' : 'solid'}
             />
           </Divider>
-        </div>
+        </p>
       }
       {review.photos.length > 0 &&
         <div className='review-images'>

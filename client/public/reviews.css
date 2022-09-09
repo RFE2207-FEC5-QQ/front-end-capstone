@@ -170,6 +170,7 @@
 .review {
   background-color: var(--popup-theme-color);
   padding: 15px;
+  padding-bottom: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
   word-wrap: break-word;
@@ -217,6 +218,10 @@
 .review-summary {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+.review-body-long {
+  margin-bottom: 0px;
 }
 
 .review-body-short {
@@ -307,7 +312,6 @@
   align-items: center;
   gap: 5px;
   line-height: 0;
-
 }
 
 /* #review-form-recommend {
@@ -316,6 +320,13 @@
   align-items: center;
   gap: 10px;
 } */
+
+#review-form-recommend-inputs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
 
 #review-form-body-entry {
   min-height: 150px;
