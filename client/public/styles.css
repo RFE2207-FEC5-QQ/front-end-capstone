@@ -808,6 +808,11 @@ body::-webkit-scrollbar {
   color: white;
 }
 
+.hack-reactor {
+  text-decoration: none;
+  color: white;
+}
+
 /* Overview */
 .view-overview {
   margin-bottom: 30px;
