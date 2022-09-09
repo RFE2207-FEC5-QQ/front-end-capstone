@@ -22,10 +22,10 @@ export default class ReviewForm extends React.Component {
     super(props);
     this.state = {
       errorMessage: null,
-      rating: null,
-      ratingValid: false,
-      recommend: null,
-      recommendValid: false,
+      rating: 5,
+      ratingValid: true,
+      recommend: true,
+      recommendValid: true,
       characteristics: function(mc) {
         let output = {};
         for (let key in mc) {
@@ -33,13 +33,13 @@ export default class ReviewForm extends React.Component {
         }
         return output;
       }(this.props.metaCharacteristics),
-      summary: '',
+      summary: 'It\'s doggy time',
       summaryValid: true,
-      body: '',
-      bodyValid: false,
-      photos: [],
-      name: '',
-      nameValid: false,
+      body: 'It\'s officially doggy time, so here\'s a few photos of some great dogs. Look at them. Look in their eyes and tell me those aren\'t some great dogs right there. You can\'t. It\'s simply an undeniable fact!',
+      bodyValid: true,
+      photos: ['https://www.rover.com/blog/wp-content/uploads/2021/06/denvers_golden_life-1024x1024.jpg', 'https://t2.ea.ltmcdn.com/en/posts/4/0/9/10_things_you_should_know_about_golden_retrievers_904_600_square.jpg', 'https://s36700.pcdn.co/wp-content/uploads/2019/11/Golden-Puppy_getty82781924-399x600.png'],
+      name: 'Doggy Time',
+      nameValid: true,
       email: '',
       emailValid: false,
       showFormImageModal: false
