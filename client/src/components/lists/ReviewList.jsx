@@ -54,12 +54,14 @@ const ReviewList = ({reviews, productId, sort, getReviews, removeReview, openRev
             sx={{
               display: atListEnd ? 'none' : 'inline'
             }}
+            size='large'
             onClick={handleMoreReviews}
           >
             More Reviews
           </Button>
           <Button
             onClick={openReviewModal}
+            size='large'
           >
             Add a Review +
           </Button>

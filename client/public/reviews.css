@@ -68,7 +68,9 @@
   margin-bottom: 5px;
   padding: 10px;
   color: var(--text-theme-color);
-  background-color: var(--header-divider-color);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--header-divider-color);
 }
 /*
 .review-meta-filters .MuiButton-root {
@@ -87,6 +89,7 @@
 }
  */
 #review-meta-filters-title {
+  margin-bottom: 5px;
   font-weight: bold;
 }
 
@@ -155,7 +158,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin-top: 5px;
 }
 
@@ -171,11 +174,6 @@ textarea {
 
 .review-list-top {
   margin-bottom: 10px;
-}
-
-.blah {
-  background-color: green;
-  color: green;
 }
 
 .review-list-entries {
@@ -196,7 +194,7 @@ textarea {
 .review-buttons {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin-top: 20px;
 }
 
@@ -360,4 +358,27 @@ textarea {
 
 #review-form-error {
   color: red;
+}
+
+
+.MuiDialogContent-root, .MuiDialogContentText-root, .MuiDialogActions-root {
+  color: var(--text-theme-color);
+  background-color: var(--bg-theme-color);
+}
+
+.MuiTypography-root {
+  font-family: var(--text-font)!important;
+}
+
+.MuiSlider-markLabel {
+  font-family: var(--text-font)!important;
+  color: var(--text-theme-color)!important;
+}
+
+.MuiCheckbox-root {
+  color: var(--text-theme-color)!important;
+}
+
+.MuiSlider-thumb {
+  box-shadow: none!important;
 }

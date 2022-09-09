@@ -27,8 +27,11 @@
   --header-divider-color: #99856f;
   --btn-color: #99856f;
   --btn-text-color: #99856f;
-  --btn-bg-color: white;
+  --btn-border-color: #99856f;
   --btn-hover-color: #99856f;
+  --btn-disabled-color: lightgrey;
+  /* --btn-disabled-bg-color:  */
+  --btn-disabled-border-color: lightgrey;
   --text-font: Helvetica-light, Helvetica;
   --text-size: 1rem;
   --text-font-weight: normal;
@@ -54,9 +57,12 @@
   --text-font-weight: 100;
   --text-hover-color: rgba(255, 255, 255, 1);
   --text-sale-color: rgba(231, 76, 70, 0.87);
-  --btn-bg-color: #584c3f;
-  --btn-text-color: white;
-  --btn-hover-color: #99856f;
+  --btn-border-color: rgba(230, 230, 230, 0.87);
+  --btn-text-color: rgba(230, 230, 230, 0.87);
+  --btn-hover-color: #1B1D24;
+  --btn-disabled-color: rgb(116, 116, 116);
+  /* --btn-disabled-bg-color:  */
+  --btn-disabled-border-color: rgb(86, 86, 86);
   --btn-color: white;
   --theme-icon-color: rgba(230, 230, 230, 0.87);
   --gallery-background-color: #1B2430;
@@ -797,7 +803,8 @@ body::-webkit-scrollbar {
   background-color: var(--header-divider-color);
   width: 100%;
   height: 10%;
-  padding: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   color: white;
 }
 
@@ -1140,9 +1147,9 @@ body::-webkit-scrollbar {
 /* Mui custom theme overrides */
 .MuiButton-root {
   color: var(--btn-text-color)!important;
-  background-color: var(--btn-bg-color)!important;
+  background-color: var(--bg-theme-color)!important;
   border-radius: 0px!important;
-  border: 1px solid #99856f!important;
+  border: 1px solid var(--btn-border-color)!important;
   box-shadow: 0 0 0 0!important;
 }
 
@@ -1161,7 +1168,7 @@ body::-webkit-scrollbar {
 .MuiList-root
  {
   color: var(--btn-text-color)!important;
-  background-color: var(--btn-bg-color)!important;
+  background-color: var(--bg-theme-color)!important;
 }
 
 .MuiSelect-icon,
@@ -1177,8 +1184,8 @@ body::-webkit-scrollbar {
 }
 
 .Mui-disabled {
-  color: lightgrey!important;
-  border-color: lightgrey!important;
+  color: var(--btn-disabled-color)!important;
+  border-color: var(--btn-disabled-border-color)!important;
 }
 
 .react-multiple-carousel__arrow {

@@ -225,7 +225,6 @@ export default class ReviewForm extends React.Component {
           </label>
         </div>
         <div id='review-form-photos' className='review-form-entry'>
-          <div className='review-form-title'>{'Photos'}</div>
           <Button disabled={this.state.photos.length > 4} onClick={this.openFormImageModal}>Add Photos</Button>
           <ReviewImageList photoUrls={this.state.photos}/>
           {this.state.showFormImageModal &&
@@ -278,6 +277,7 @@ export default class ReviewForm extends React.Component {
         </div>
         <Button
           type='submit'
+          size='large'
           disabled={
             !(this.state.ratingValid &&
               this.state.recommendValid &&
