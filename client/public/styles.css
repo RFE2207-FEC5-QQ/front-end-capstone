@@ -818,6 +818,10 @@ body::-webkit-scrollbar {
   margin-bottom: 30px;
 }
 
+.overview-styles {
+  padding-right: 20px;
+}
+
 /* Image Gallery */
 /* Expanded View */
 .expanded-view {
@@ -977,7 +981,6 @@ body::-webkit-scrollbar {
   width: 55px;
   height: 55px;
   margin: 5px;
-  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -1119,7 +1122,7 @@ body::-webkit-scrollbar {
 }
 
 .slogan-description {
-  border-right: 5px solid var(--images-border);
+  border-right: 2px solid var(--images-border);
   padding-right: 5px;
 }
 

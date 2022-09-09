@@ -295,6 +295,7 @@ textarea {
   outline-style: solid;
   outline-width: 1px;
   outline-offset: -1px;
+  outline-color: var(--images-border);
 }
 
 .review-bottomline {
