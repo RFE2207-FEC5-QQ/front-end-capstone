@@ -272,7 +272,7 @@ body::-webkit-scrollbar {
 .related-card {
   flex-direction: column;
   /* border: 1px solid var(--card-border-color); */
-  border-radius: 2%;
+  border-radius: 0px;
   position: relative;
   width: 13.5rem;
   height: 20rem;
