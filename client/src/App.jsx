@@ -91,8 +91,8 @@ class App extends React.Component {
       .then(res => {
         const allProducts = res.data;
         this.setState({
-          productId: allProducts[0].id,
-          productDetail: allProducts[0],
+          productId: allProducts[4].id,
+          productDetail: allProducts[4],
         });
       })
       .catch(err => {
