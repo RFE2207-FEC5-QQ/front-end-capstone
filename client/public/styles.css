@@ -63,7 +63,7 @@
   --btn-disabled-color: rgb(116, 116, 116);
   /* --btn-disabled-bg-color:  */
   --btn-disabled-border-color: rgb(86, 86, 86);
-  --btn-color: white;
+  --btn-color: rgba(230, 230, 230, 0.87);;
   --theme-icon-color: rgba(230, 230, 230, 0.87);
   --gallery-background-color: #1B2430;
   --images-border: lightgray;
@@ -496,7 +496,7 @@ body::-webkit-scrollbar {
 }
 
 .add-outfits-btn {
-  color: #99856f;
+  color: var(--btn-color);
 }
 
 .add-outfits-btn:hover {
@@ -1185,7 +1185,6 @@ body::-webkit-scrollbar {
 
 .MuiOutlinedInput-notchedOutline {
   border-radius: 0px!important;
-  /* border: 1px solid black!important; */
   border: 1px solid var(--btn-border-color)!important;
 }
 
@@ -1195,5 +1194,5 @@ body::-webkit-scrollbar {
 }
 
 .react-multiple-carousel__arrow {
-  background-color: #99856f!important;
+  background-color: var(--btn-color)!important;
 }
