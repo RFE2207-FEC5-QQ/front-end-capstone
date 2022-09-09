@@ -813,13 +813,17 @@ body::-webkit-scrollbar {
   color: white;
 }
 
-/* Overview */
-.view-overview {
-  margin-bottom: 30px;
+#overview-section {
+  display: flex;
+  justify-content: center;
 }
 
-.overview-styles {
-  padding-right: 20px;
+/* Overview */
+.view-overview {
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+  margin-bottom: 30px;
 }
 
 /* Image Gallery */

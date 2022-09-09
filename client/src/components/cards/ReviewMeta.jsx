@@ -25,6 +25,7 @@ const ReviewMeta = ({reviewMeta, filter, filterByRating, resetRatingFilter, char
 
   return (
     <div className='review-meta'>
+      <h1 id='reviews-title'>{'Ratings & Reviews'}</h1>
       {!reviewMeta ? <Skeleton sx={{mt: 1}} variant="rectangular" height='100px'/>
         :
         <div className='review-meta-topbar'>
