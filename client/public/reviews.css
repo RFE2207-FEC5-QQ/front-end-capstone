@@ -151,6 +151,17 @@
   grid-auto-columns: 1fr;
 }
 
+#review-form-image-modal-button-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+textarea {
+  resize: none;
+}
+
 .review-list {
   max-width: 800px;
   width: 65%;
@@ -304,6 +315,10 @@
 .review-form-entry {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.review-form-input {
+  margin-top: 5px;
 }
 
 #review-form-rating {

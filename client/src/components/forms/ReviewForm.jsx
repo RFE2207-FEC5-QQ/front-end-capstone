@@ -109,6 +109,8 @@ export default class ReviewForm extends React.Component {
       5: 'Great',
     };
 
+    console.log(this.state);
+
     return (
       <form className='review-form-content' onSubmit={this.submitForm}>
         <h2>Leave a Review</h2>
@@ -166,7 +168,7 @@ export default class ReviewForm extends React.Component {
           </div>
         </div>
         <div id='review-form-characteristics' className='review-form-entry'>
-          {/* <div className='review-form-title'>{'Characteristics'}</div> */}
+          <div className='review-form-title'>{'Characteristics'}</div>
           {Object.keys(this.props.metaCharacteristics).map((characteristic) =>
             <ReviewFormCharacteristic
               key={characteristic.toLowerCase()}
