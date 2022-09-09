@@ -96,7 +96,6 @@ const Review = ({review, reviewIndex, productId, removeReview}) => {
       {review.photos.length > 0 &&
         <ReviewImageList
           photoUrls={review.photos.map((photo) => photo.url)}
-          errorResponse={()=>{}}
         />
       }
       {review.recommend && (
