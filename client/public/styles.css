@@ -985,6 +985,7 @@ body::-webkit-scrollbar {
   width: 55px;
   height: 55px;
   margin: 5px;
+  object-fit: cover;
   cursor: pointer;
 }
 
