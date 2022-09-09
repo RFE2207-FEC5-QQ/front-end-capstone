@@ -135,7 +135,7 @@ body::-webkit-scrollbar {
 
 /* For hiding or showing navbar during scrolling */
 .scrolled-down {
-  transform: translateY(-65%);
+  transform: translateY(-67%);
   transition: transform 0.75s ease-in-out;
 }
 .scrolled-up {
