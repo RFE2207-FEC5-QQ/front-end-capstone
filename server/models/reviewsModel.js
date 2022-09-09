@@ -19,7 +19,7 @@ const getAllProductReviews = (productId) => {
 
 const sortNewest = (reviews) => {
   return reviews.slice().sort(function(a, b) {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
+    return b.review_id - a.review_id;
   });
 };
 
