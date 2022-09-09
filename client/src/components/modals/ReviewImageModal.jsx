@@ -12,7 +12,7 @@ const ReviewImageModal = ({id, url, closeImageModal}) => {
             style={{ width: '100%'}}
           />
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{margin: 'auto'}}>
           <Button onClick={closeImageModal}>Close</Button>
         </DialogActions>
       </Dialog>
