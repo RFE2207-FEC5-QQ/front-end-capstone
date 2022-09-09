@@ -35,7 +35,7 @@ const Description = ({ product }) => {
             <a href='https://www.facebook.com'>
               <FacebookIcon
                 sx={{
-                  color: '#4267B2',
+                  color: '#99856f',
                   fontSize: 40,
                   margin: '5px'
                 }}
@@ -44,7 +44,7 @@ const Description = ({ product }) => {
             <a href='https://www.twitter.com'>
               <TwitterIcon
                 sx={{
-                  color: '#00acee',
+                  color: '#99856f',
                   fontSize: 40,
                   margin: '5px'
                 }}
@@ -53,7 +53,7 @@ const Description = ({ product }) => {
             <a href='https://www.pinterest.com'>
               <PinterestIcon
                 sx={{
-                  color: '#E60023',
+                  color: '#99856f',
                   fontSize: 40,
                   margin: '5px'
                 }}
