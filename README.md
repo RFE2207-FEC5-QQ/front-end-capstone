@@ -12,6 +12,8 @@
 # Description
 > The redesigned Atelier user interface will allow customers to browse and search products, add desired products to their cart, and finally checkout the products in the cart. The interface consists of a ‘Product Details’ page, which contains three main features:
 > * Overview
+[Overview.webm](https://user-images.githubusercontent.com/104472508/189486186-8c18adae-7be5-4c84-b280-add5d71283fd.webm)
+
 > * Ratings & reviews
 > * Related items & comparison section
 > 
