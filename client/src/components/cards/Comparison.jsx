@@ -52,27 +52,16 @@ const Comparison = ({ mainProduct, currProduct }) => {
         currValues.push('N/A');
       }
     });
-
-    // console.log('arrfeatures', arrFeatures);
-    // console.log('currFeatures', currFeatures);
-    // console.log('currValues', currValues);
-    // console.log('mainFeatures', mainFeatures);
-    // console.log('mainValues', mainValues);
-
     const mapFeatures = arrFeatures.map((value) => <span className='comp-values comp-category'>{value}</span>);
     const mapCurrValues = currValues.map((value) => <span className='comp-values'>{value}</span>);
     const mapMainValues = mainValues.map((value) => <span className='comp-values'>{value}</span>);
 
-
-
     for (let i = 0; i < arrFeatures.length; i++) {
       combined.push(<div className='comp-values1' key={i}>{mapCurrValues[i]} {mapFeatures[i]} {mapMainValues[i]}</div>);
     }
-    // console.log(combined);
     setCombinedVal(combined);
 
   }, [mainProduct, currProduct]);
-
 
   const handleClose = () => setOpen(false);
 

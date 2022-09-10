@@ -33,7 +33,6 @@ const Outfit = ({ productId }) => {
 
   useEffect(() => {
     const storedOutfit = JSON.parse(localStorage.getItem('outfits'));
-    // console.log('local stored outfit data:', storedOutfit);
     if (storedOutfit) {
       setOutfits(storedOutfit);
     }
@@ -48,7 +47,6 @@ const Outfit = ({ productId }) => {
 
   const removeOutfit = (item) => {
     const updatedOutfits = outfits.filter((outfit) => outfit !== item);
-    // console.log(updatedOutfits);
     localStorage.setItem('outfits', JSON.stringify([...updatedOutfits]));
     setOutfits([...updatedOutfits]);
   };

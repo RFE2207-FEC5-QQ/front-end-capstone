@@ -45,7 +45,6 @@ const RelatedProducts = ({ onClick, productId, product, modes }) => {
         if (relatedIds.includes(productId)) {
           relatedIds.splice(relatedIds.indexOf(productId), 1);
         }
-        // console.log('relatedIds', relatedIds);
         setRelatedList(relatedIds);
       })
       .catch((err) => {
