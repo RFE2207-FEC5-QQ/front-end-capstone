@@ -19,19 +19,26 @@
 
 # Installation
 **Requirements**
-* [Node 16.16.0](https://nodejs.org/en/)
+* [Node >=16.16.x](https://nodejs.org/en/)
 
 **Dependencies**
 * [React + ReactDOM](https://reactjs.org/)
 * [MaterialUI](https://mui.com/)
 * [Axios](https://axios-http.com/)
+* [Dotenv](https://www.npmjs.com/package/dotenv)
 * [ExpressJS](https://expressjs.com/)
+* [react-img-zoom](https://www.npmjs.com/package/react-img-zoom)
+* [react-material-ui-carousel](https://www.npmjs.com/package/react-material-ui-carousel)
+* [react-multi-carousel](https://www.npmjs.com/package/react-multi-carousel)
+* [reactjs-popup](https://www.npmjs.com/package/reactjs-popup)
 
 **Dev Dependencies**
 * [Jest](https://jestjs.io/)
+* [jest-environment-jsdom](https://www.npmjs.com/package/jest-environment-jsdom)
+* [Supertest](https://www.npmjs.com/package/supertest)
+* [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 * [Webpack](https://webpack.js.org/)
 * [Babel](https://babeljs.io/)
-* [Dotenv](https://www.npmjs.com/package/dotenv)
 * [ESLint](https://eslint.org/)
 
 # Usage
