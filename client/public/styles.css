@@ -17,7 +17,6 @@
 
 /* Place global element variables here */
 :root {
-  /* --bg-theme-color: #fff; */
   --bg-theme-color: rgb(255, 255, 255);
   --text-theme-color: rgba(0, 0, 0, 1);
   --popup-theme-color: #F8F9F9;
@@ -30,7 +29,6 @@
   --btn-border-color: #99856f;
   --btn-hover-color: #99856f;
   --btn-disabled-color: lightgrey;
-  /* --btn-disabled-bg-color:  */
   --btn-disabled-border-color: lightgrey;
   --text-font: Helvetica-light, Helvetica;
   --text-size: 1rem;
@@ -61,7 +59,6 @@
   --btn-text-color: rgba(230, 230, 230, 0.87);
   --btn-hover-color: #1B1D24;
   --btn-disabled-color: rgb(116, 116, 116);
-  /* --btn-disabled-bg-color:  */
   --btn-disabled-border-color: rgb(86, 86, 86);
   --btn-color: rgba(230, 230, 230, 0.87);;
   --theme-icon-color: rgba(230, 230, 230, 0.87);
@@ -153,16 +150,6 @@ body::-webkit-scrollbar {
   z-index: 998;
 }
 
-/* .top-bar-container {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  background-color: var(--header-divider-color);
-  width: 100%;
-  height: 100%;
-  padding: 0.25rem;
-} */
-
 .theme-icon {
   position: relative;
   top: -0.25rem;
@@ -243,7 +230,6 @@ body::-webkit-scrollbar {
 /* Common text size and color formatting for specific headers. */
 .selected-style,
 .product-category,
-/* .related-header, */
 .card-description:nth-child(1),
 .strike-original-price,
 .comparison-title,
@@ -261,7 +247,6 @@ body::-webkit-scrollbar {
 }
 
 .carousel {
-  /* border: 2px solid black; */
   max-width: 80vw;
   margin: auto;
   padding-top: 1rem;
@@ -271,7 +256,6 @@ body::-webkit-scrollbar {
 
 .related-card {
   flex-direction: column;
-  /* border: 1px solid var(--card-border-color); */
   border-radius: 0px;
   position: relative;
   width: 13.5rem;
@@ -287,17 +271,12 @@ body::-webkit-scrollbar {
   align-items: center;
 }
 
-.related-card .img-container {
-  /* padding-top: 1rem; */
-}
-
 .related-card .card-content {
   margin-top: 1rem;
 }
 
 .related-card:hover {
   cursor: pointer;
-  /* border: 2px solid #EBEDEF; */
   box-shadow: 0px 0px 1px var(--shadow-color);
   box-shadow: 0px 0px 3px var(--shadow-color);
   box-shadow: 0px 0px 5px var(--shadow-color);
@@ -325,7 +304,6 @@ body::-webkit-scrollbar {
 }
 
 .card-img {
-  /* border: 2px solid yellow; */
   width: 97%;
   height: 97%;
   object-fit: cover;
@@ -334,7 +312,6 @@ body::-webkit-scrollbar {
 }
 
 .card-content {
-  /* border: 2px solid grey; */
   display: flex;
   flex-direction: column;
   height: 30%;
@@ -365,9 +342,7 @@ body::-webkit-scrollbar {
   border: 2px solid var(--popup-theme-color);
   position: relative;
   background-color: var(--bg-theme-color);
-  /* height: 200px; */
   height: 10rem;
-  /* width: 300px; */
   width: 20rem;
   align-items: left;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
@@ -400,7 +375,6 @@ body::-webkit-scrollbar {
 }
 
 .comparison-header-container {
-  /* border: 2px solid black; */
   background-color: var(--bg-theme-color);
   position: sticky;
   top: 0;
@@ -410,7 +384,6 @@ body::-webkit-scrollbar {
 }
 
 .product-name {
-  /* border: 2px solid greenyellow; */
   display: flex;
   flex-direction: row;
   padding-top: 0.25rem;
@@ -425,19 +398,16 @@ body::-webkit-scrollbar {
 }
 
 .product-comparator {
-  /* border: 2px solid greenyellow; */
   font-weight: 550;
 }
 
 .comparison-content {
-  /* border: 2px solid purple; */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
 .comparison-content > * {
-  /* border: 2px solid gold; */
   display: flex;
   gap: 0.75rem;
   font-size: 0.85rem;
@@ -445,7 +415,6 @@ body::-webkit-scrollbar {
 }
 
 .comp-values {
-  /* border: 2px solid red; */
   width: 100px;
   justify-content: center;
 }
@@ -479,7 +448,6 @@ body::-webkit-scrollbar {
 
 /* Outfit cards */
 .add-outfits-btn-container {
-  /* border: 2px solid steelblue; */
   display: flex;
   height: 20rem;
   justify-content: center;
@@ -487,7 +455,6 @@ body::-webkit-scrollbar {
 }
 
 .add-outfits-btn-container:hover {
-  /* border: transparent; */
   box-shadow: 0px 0px 1px var(--shadow-color);
   box-shadow: 0px 0px 3px var(--shadow-color);
   box-shadow: 0px 0px 5px var(--shadow-color);
@@ -501,7 +468,6 @@ body::-webkit-scrollbar {
 
 .add-outfits-btn:hover {
   color: #786856;
-  /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2)) */
 }
 
 /* Glitch animation for punk mode */
@@ -829,7 +795,6 @@ body::-webkit-scrollbar {
 /* Image Gallery */
 /* Expanded View */
 .expanded-view {
-  /* background-color: var(--gallery-background-color); */
   position: relative;
   width: 148%;
   height: 600px;
@@ -895,19 +860,16 @@ body::-webkit-scrollbar {
 
 /* Default View */
 .overview-gallery {
-  /* background-color: var(--gallery-background-color); */
   position: relative;
   width: 95%;
   height: 600px;
   margin-left: 3%;
   border-radius: 5px;
-  /* transition: 0.5s; */
 }
 
 .gallery-carousel {
   position: absolute;
   top: 5%;
-  /* left: 2%; */
   display: flex;
   flex-direction: column;
   padding-right: 20px;
@@ -929,7 +891,6 @@ body::-webkit-scrollbar {
   object-fit: cover;
   border: solid 1px var(--images-border);
   cursor: zoom-in;
-  /* transition: 0.5s; */
 }
 
 .selected-image-null {
@@ -945,7 +906,6 @@ body::-webkit-scrollbar {
   top: 50%;
   cursor: pointer;
   color: var(--images-border);
-  /* transition: 0.5s; */
 }
 
 .left-arrow {
@@ -954,7 +914,6 @@ body::-webkit-scrollbar {
   top: 50%;
   cursor: pointer;
   color: var(--images-border);
-  /* transition: 1s; */
 }
 
 .right-arrow:hover {
@@ -1000,7 +959,6 @@ body::-webkit-scrollbar {
   top: 10px;
   cursor: pointer;
   color: var(--images-border);
-  /* transition: 1s; */
 }
 
 .crop-icon:hover {
@@ -1173,9 +1131,6 @@ body::-webkit-scrollbar {
 }
 
 /* Use if deciding to change style of select dropdown colors as well. */
-/* .MuiButtonBase-root {
-  color: var(--btn-text-color)!important;
-} */
 .MuiInputBase-root,
 .MuiInputBase-input,
 .MuiMenuItem-root,
