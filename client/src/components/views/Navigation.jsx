@@ -34,7 +34,6 @@ const Navigation = ({ modes, toggleTheme }) => {
 
     if (!currentHead) {
       oldHead.classList.toggle('header-focused');
-      // oldHead.classList.remove('nav-info');
     }
     if (currentHead) {
       if (newFocusedId !== oldFocusedId) {

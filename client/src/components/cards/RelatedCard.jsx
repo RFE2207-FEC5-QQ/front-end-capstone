@@ -6,8 +6,6 @@ import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import CircularProgress from '@mui/material/CircularProgress';
 import CloseIcon from '@mui/icons-material/Close';
 import Comparison from './Comparison.jsx';
-// import reactImageSize from 'react-image-size';
-
 import { paletteMap } from '../../App.jsx';
 
 const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
@@ -52,7 +50,6 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
   // For regular image display. No algorithm applied to sort by dimensions.
   const currentStyle = (style) => {
     setStyle(style);
-    // console.log('style', style, 'item,', item);
     if (style.photos[0].thumbnail_url) {
       setImgURL(style.photos[0].thumbnail_url);
     } else {
@@ -77,7 +74,6 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
       })
       .then((results) => {
         const productDetail = results.data;
-        // console.log('productDetail', productDetail);
         setDetail(productDetail);
         setOrigPrice(productDetail.default_price);
       })
@@ -93,11 +89,9 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
       })
       .then((results) => {
         const productStyle = results.data;
-        // console.log('productStyle', productStyle);
         const defaultStyle = productStyle
           .results
           .find(eachStyle => eachStyle['default?'] === true);
-        // console.log('defaultStyle', defaultStyle);
         if (defaultStyle) {
           currentStyle(defaultStyle);
         } else {
@@ -130,8 +124,6 @@ const RelatedCard = ({ item, mainProduct, modal, onClick }) => {
         } else {
           setRating([0, 'No ratings yet']);
         }
-        // console.log('productRating', productRatings);
-        // console.log('avgRating', avgRating);
       })
       .catch((err) => {
         throw ('Error getting product rating');
