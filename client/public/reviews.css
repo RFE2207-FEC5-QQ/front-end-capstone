@@ -1,5 +1,4 @@
 .reviews-view {
-  padding: 15px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -8,8 +7,7 @@
 .reviews-panels {
   display: flex;
   gap: 20px;
-  min-width: 500px;
-  width: 80vw;
+  width: 100%;
 }
 
 #reviews-title {
@@ -169,7 +167,6 @@ textarea {
 }
 
 .review-list {
-  max-width: 800px;
   width: 65%;
   padding: 0px 0px 10px 10px;
 }
@@ -384,4 +381,21 @@ textarea {
 
 .MuiSlider-thumb {
   box-shadow: none!important;
+}
+
+@media only screen and (max-width: 700px) {
+
+  .reviews-panels {
+    flex-wrap: wrap;
+  }
+
+  .review-meta {
+    width: 100%;
+  }
+
+  .review-list {
+    width: 100%;
+    padding: 0;
+  }
+
 }

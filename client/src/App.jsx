@@ -183,39 +183,41 @@ class App extends React.Component {
               toggleTheme={themeTogglers}/>
           )} />
         </div>
-        <div id='overview-section'>
-          <ClickTracker widget={'overview-section'} render={(handleClick) => (
-            <Overview productId={this.state.productId} handleClick={handleClick}/>
-          )} />
-        </div>
-        <div id='related-section'>
-          <ClickTracker widget={'related-section'} render={(handleClick) => (
-            <RelatedProducts
-              handleClick={handleClick}
-              onClick={this.changeProduct}
-              productId={this.state.productId}
-              product={this.state.productDetail}
-              modes={modes}/>
-          )} />
-        </div>
-        <div id='outfit-section'>
-          <ClickTracker widget={'outfit-section'} render={(handleClick) => (
-            <Outfit
-              handleClick={handleClick}
-              productId={this.state.productId}
-              product={this.state.productDetail}
-            />
-          )} />
-        </div>
-        <QuestionsAnswers/>
-        <div id='reviews-section'>
-          <ClickTracker widget={'reviews-section'} render={(handleClick) => (
-            <Reviews
-              productId={this.state.productId}
-              reviewMeta={this.state.reviewMeta}
-              darkMode={this.state.darkMode}
-            />
-          )} />
+        <div id='widgets'>
+          <div id='overview-section'>
+            <ClickTracker widget={'overview-section'} render={(handleClick) => (
+              <Overview productId={this.state.productId} handleClick={handleClick}/>
+            )} />
+          </div>
+          <div id='related-section'>
+            <ClickTracker widget={'related-section'} render={(handleClick) => (
+              <RelatedProducts
+                handleClick={handleClick}
+                onClick={this.changeProduct}
+                productId={this.state.productId}
+                product={this.state.productDetail}
+                modes={modes}/>
+            )} />
+          </div>
+          <div id='outfit-section'>
+            <ClickTracker widget={'outfit-section'} render={(handleClick) => (
+              <Outfit
+                handleClick={handleClick}
+                productId={this.state.productId}
+                product={this.state.productDetail}
+              />
+            )} />
+          </div>
+          <QuestionsAnswers/>
+          <div id='reviews-section'>
+            <ClickTracker widget={'reviews-section'} render={(handleClick) => (
+              <Reviews
+                productId={this.state.productId}
+                reviewMeta={this.state.reviewMeta}
+                darkMode={this.state.darkMode}
+              />
+            )} />
+          </div>
         </div>
         <Contact/>
       </React.Fragment>

@@ -88,6 +88,7 @@
     rgba(251, 7, 217, 1) 90%,
     rgba(255, 0, 0, 1) 100%
   );
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 100% 100%;
@@ -114,7 +115,7 @@ body {
   color: var(--text-theme-color);
   font-family: var(--text-font);
   font-size: var(--text-size);
-  margin-left: 0;
+  margin: 0;
 }
 
 body::-webkit-scrollbar {
@@ -128,6 +129,13 @@ body::-webkit-scrollbar {
   top: 0;
   z-index: 999;
   transition: all 0s;
+}
+
+#widgets {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1440px;
+  padding: 15px;
 }
 
 /* For hiding or showing navbar during scrolling */
@@ -239,7 +247,7 @@ body::-webkit-scrollbar {
 
 /* Related products carousel and cards */
 .related-header {
-  width: 80vw;
+  width: 100%;
   margin: auto;
   font-size: 2rem;
   font-weight: bold;
@@ -247,7 +255,7 @@ body::-webkit-scrollbar {
 }
 
 .carousel {
-  max-width: 80vw;
+  max-width: 100%;
   margin: auto;
   padding-top: 1rem;
   padding-bottom: 2rem;
@@ -443,6 +451,7 @@ body::-webkit-scrollbar {
 }
 
 .popup-content {
+  animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
   -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
 
@@ -788,7 +797,7 @@ body::-webkit-scrollbar {
 .view-overview {
   display: flex;
   justify-content: center;
-  width: 80vw;
+  width: 100%;
   margin-bottom: 30px;
 }
 
