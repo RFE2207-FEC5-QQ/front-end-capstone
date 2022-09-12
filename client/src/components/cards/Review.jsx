@@ -70,29 +70,31 @@ const Review = ({review, reviewIndex, productId, removeReview}) => {
           </span>
         </div>
       </div>
-      {review.summary.length > 0 &&
-      <p className='review-summary'>
-        {review.summary.slice(0, 60)}
-      </p>
-      }
-      {review.body.length < 250 ? <p className='review-body-short'>{review.body.slice(0, 1000)}</p> :
-        <div>
-          <p className='review-body-long'>
-            {reviewBodyExpanded ? review.body.slice(0, 1000) : review.body.slice(0, 250) + '...'}
-          </p>
-          <Divider>
-            <Chip
-              sx={{
-                mt: 1,
-                mb: 1
-              }}
-              label={reviewBodyExpanded ? 'Show less' : 'Show more'}
-              onClick={toggleReviewBodyExpanded}
-              variant={reviewBodyExpanded ? 'outlined' : 'solid'}
-            />
-          </Divider>
-        </div>
-      }
+      <div className='review-text'>
+        {review.summary.length > 0 &&
+        <p className='review-summary'>
+          {review.summary.slice(0, 60)}
+        </p>
+        }
+        {review.body.length < 250 ? <p className='review-body-short'>{review.body.slice(0, 1000)}</p> :
+          <div>
+            <p className='review-body-long'>
+              {reviewBodyExpanded ? review.body.slice(0, 1000) : review.body.slice(0, 250) + '...'}
+            </p>
+            <Divider>
+              <Chip
+                sx={{
+                  mt: 1,
+                  mb: 1
+                }}
+                label={reviewBodyExpanded ? 'Show less' : 'Show more'}
+                onClick={toggleReviewBodyExpanded}
+                variant={reviewBodyExpanded ? 'outlined' : 'solid'}
+              />
+            </Divider>
+          </div>
+        }
+      </div>
       {review.photos.length > 0 &&
         <ReviewImageList
           photoUrls={review.photos.map((photo) => photo.url)}

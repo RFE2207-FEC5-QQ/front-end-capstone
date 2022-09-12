@@ -205,7 +205,6 @@ textarea {
 }
 /*
 .review-rating {
-
 }
  */
 .review-name-date {
@@ -226,24 +225,30 @@ textarea {
   display: flex;
   align-items: center;
   margin-right: 10px;
+}
 
+.review-rating, .review-name-date {
+  margin-bottom: 7px;
+}
+
+.review-text {
+  margin-top: 11.2px;
 }
 
 .review-summary {
   font-size: 1.2rem;
   font-weight: bold;
+  margin-top: 0px;
 }
 
 .review-body-long {
+  margin-top: 0px;
   margin-bottom: 0px;
 }
 
 .review-body-short {
+  margin-top: 0px;
   margin-bottom: 15px;
-}
-
-.review-body-long {
-  margin-bottom: 0px;
 }
 
 .review-response {
